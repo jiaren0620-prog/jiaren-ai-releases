@@ -1,7 +1,7 @@
 $ErrorActionPreference = 'Stop'
 
 $root = Resolve-Path (Join-Path $PSScriptRoot '..')
-$executable = Join-Path $root 'release-v112\win-unpacked\Jiaren AI.exe'
+$executable = Join-Path $root 'release-v113\win-unpacked\Jiaren AI.exe'
 if (-not (Test-Path $executable)) {
   throw "Protected runtime executable is missing: $executable"
 }

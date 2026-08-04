@@ -11,7 +11,7 @@ const rendererSource = fs.readFileSync(path.join(projectRoot, "dist", "assets", 
 const builderSource = fs.readFileSync(path.join(projectRoot, "electron-builder-v019.cjs"), "utf8");
 const packageJson = JSON.parse(fs.readFileSync(path.join(projectRoot, "package.json"), "utf8"));
 
-assert.equal(packageJson.version, "1.1.2");
+assert.equal(packageJson.version, "1.1.3");
 assert.match(mainSource, /app\.getPath\("userData"\)/);
 assert.match(mainSource, /const legacyWritableRoot = portableRoot/);
 assert.match(mainSource, /for \(const directoryName of \["\.jiaren", "\.project"\]\)/);
@@ -44,4 +44,4 @@ assert.match(builderSource, /requiredPath\(projectDir, "jiaren-local-service"\)/
 assert.match(builderSource, /requiredPath\(projectDir, "\.agents"\)/);
 assert.match(builderSource, /JIAREN_ELECTRON_DIST/);
 
-console.log("Jiaren AI 1.1.2 configuration persistence and package manifest checks passed.");
+console.log("Jiaren AI 1.1.3 configuration persistence and package manifest checks passed.");

@@ -5,7 +5,7 @@ const path = require("node:path");
 const { spawnSync } = require("node:child_process");
 
 const projectRoot = path.resolve(__dirname, "..");
-const releaseRoot = path.resolve(projectRoot, "release-v112");
+const releaseRoot = path.resolve(projectRoot, "release-v113");
 
 const localProtectionPatch = spawnSync(
   process.execPath,
@@ -232,7 +232,7 @@ if (svgDownloadAndImageToolsPatch.error || svgDownloadAndImageToolsPatch.status 
   process.exit(svgDownloadAndImageToolsPatch.status ?? 1);
 }
 
-if (path.dirname(releaseRoot) !== projectRoot || path.basename(releaseRoot) !== "release-v112") {
+if (path.dirname(releaseRoot) !== projectRoot || path.basename(releaseRoot) !== "release-v113") {
   console.error(`Refusing to clean an unexpected release directory: ${releaseRoot}`);
   process.exit(1);
 }
@@ -258,12 +258,12 @@ if (!toolRoot) {
 const sourceElectronDist = path.join(toolRoot, "node_modules", "electron", "dist");
 const cleanElectronDist = path.resolve(projectRoot, "build", "electron-dist-clean");
 const expectedBuildRoot = path.resolve(projectRoot, "build");
-const packageTempRoot = path.resolve(expectedBuildRoot, "package-temp-v112");
+const packageTempRoot = path.resolve(expectedBuildRoot, "package-temp-v113");
 if (path.dirname(cleanElectronDist) !== expectedBuildRoot || path.basename(cleanElectronDist) !== "electron-dist-clean") {
   console.error(`Refusing to clean an unexpected Electron staging directory: ${cleanElectronDist}`);
   process.exit(1);
 }
-if (path.dirname(packageTempRoot) !== expectedBuildRoot || path.basename(packageTempRoot) !== "package-temp-v112") {
+if (path.dirname(packageTempRoot) !== expectedBuildRoot || path.basename(packageTempRoot) !== "package-temp-v113") {
   console.error(`Refusing to clean an unexpected package temp directory: ${packageTempRoot}`);
   process.exit(1);
 }

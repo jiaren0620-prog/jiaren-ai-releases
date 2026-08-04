@@ -44,7 +44,7 @@ module.exports = {
   nodeGypRebuild: false,
   buildDependenciesFromSource: false,
   directories: {
-    output: path.join(projectDir, "release-v112"),
+    output: path.join(projectDir, "release-v113"),
     buildResources: buildRoot,
   },
   files: [
@@ -116,7 +116,7 @@ module.exports = {
   },
   nsis: {
     include: requiredPath(buildRoot, "installer.nsh"),
-    artifactName: "Jiaren-AI-Setup-1.1.2-x64.${ext}",
+    artifactName: "Jiaren-AI-Setup-1.1.3-x64.${ext}",
     oneClick: false,
     perMachine: false,
     allowElevation: false,

@@ -2,7 +2,18 @@
   'use strict';
 
   let currentVersion = '0.1.9';
-  const GITHUB_LATEST_URL = 'https://raw.githubusercontent.com/jiaren0620-prog/jiaren-ai-releases/main/latest.json';
+  const UPDATE_SOURCES = [
+    {
+      id: 'cdn',
+      url: 'https://cdn.jiaren.xyz/updates/latest.json',
+      timeoutMs: 8000,
+    },
+    {
+      id: 'github',
+      url: 'https://raw.githubusercontent.com/jiaren0620-prog/jiaren-ai-releases/main/latest.json',
+      timeoutMs: 12000,
+    },
+  ];
   const DISMISSED_KEY = 'jiaren-global-dismissed-announcements';
   const HANDLED_VERSION_KEY = 'jiaren-global-handled-version';
   let stopDownloadProgress = null;
@@ -35,33 +46,40 @@
       const result = await window.jiaren.system.getAppVersion().catch(() => null);
       if (result?.version) currentVersion = result.version;
     }
-    const controller = new AbortController();
-    const timeout = window.setTimeout(() => controller.abort(), 12000);
-    try {
-      const response = await fetch(`${GITHUB_LATEST_URL}?v=${Date.now()}`, {
-        cache: 'no-store',
-        signal: controller.signal,
-      });
-      if (!response.ok) throw new Error(`GitHub update source returned ${response.status}`);
-      const latest = await response.json();
-      if (!latest?.version || !latest?.downloadUrl) throw new Error('GitHub update metadata is incomplete');
-      return {
-        announcements: [],
-        latestRelease: {
-          id: `github-${latest.version}`,
-          version: latest.version,
-          platform: latest.platform || 'windows-x64',
-          title: latest.title || `Jiaren AI ${latest.version}`,
-          notes: latest.notes || 'GitHub Release 已发布新版本，建议更新后继续使用。',
-          downloadUrl: latest.downloadUrl,
-          checksumSha256: latest.checksumSha256 || '',
-          releaseUrl: latest.releaseUrl || '',
-          publishedAt: latest.releaseDate || '',
-        },
-      };
-    } finally {
-      window.clearTimeout(timeout);
+    const errors = [];
+    for (const source of UPDATE_SOURCES) {
+      const controller = new AbortController();
+      const timeout = window.setTimeout(() => controller.abort(), source.timeoutMs);
+      try {
+        const separator = source.url.includes('?') ? '&' : '?';
+        const response = await fetch(`${source.url}${separator}v=${Date.now()}`, {
+          cache: 'no-store',
+          signal: controller.signal,
+        });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const latest = await response.json();
+        if (!latest?.version || !latest?.downloadUrl) throw new Error('更新信息不完整');
+        return {
+          announcements: [],
+          latestRelease: {
+            id: `${source.id}-${latest.version}`,
+            version: latest.version,
+            platform: latest.platform || 'windows-x64',
+            title: latest.title || `Jiaren AI ${latest.version}`,
+            notes: latest.notes || 'Jiaren AI 已发布新版本，建议更新后继续使用。',
+            downloadUrl: latest.downloadUrl,
+            checksumSha256: latest.checksumSha256 || '',
+            releaseUrl: latest.releaseUrl || '',
+            publishedAt: latest.releaseDate || '',
+          },
+        };
+      } catch (error) {
+        errors.push(`${source.id}: ${error?.name === 'AbortError' ? '连接超时' : error?.message || '连接失败'}`);
+      } finally {
+        window.clearTimeout(timeout);
+      }
     }
+    throw new Error(`无法连接更新服务：${errors.join('；')}`);
   }
 
   function buildOverlay() {

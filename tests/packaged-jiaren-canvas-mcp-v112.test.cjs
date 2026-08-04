@@ -8,7 +8,7 @@ const path = require("node:path");
 const { spawn } = require("node:child_process");
 const test = require("node:test");
 
-const packageRoot = path.resolve(__dirname, "..", "release-v112", "win-unpacked");
+const packageRoot = path.resolve(__dirname, "..", "release-v113", "win-unpacked");
 const electronPath = path.join(packageRoot, "Jiaren AI.exe");
 const mcpPath = path.join(packageRoot, "resources", "tools", "jiaren-canvas-mcp", "bin", "jiaren-canvas-mcp.cjs");
 

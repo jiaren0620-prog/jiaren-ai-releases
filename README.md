@@ -86,20 +86,17 @@ flowchart LR
 | --- | --- |
 | ![Jiaren AI 启动页](assets/jiaren-start.png) | ![Jiaren AI 画布](assets/jiaren-canvas.png) |
 
-## V1.1.2 正式版
+## V1.1.3 正式版
 
 发布日期：`2026-08-04`
 
-- 完成本地 Codex 与 Jiaren 画布联动，流式对话、工具状态和画布结果可见；
-- Codex 图片能力只服从本地 App Server 的真实能力声明，不转交无关图片模型；
-- 新增多渠道模型驱动与配置持久化；
-- 优化多图片任务队列、参数切换和任务状态隔离；
-- 新增图片标注修改节点并保留用户提示词；
-- 恢复图片右键完整 25 项工具，修复 SVG 下载格式；
-- 优化启动页四入口、安装器、更新进度、节点暗色样式和圆角一致性；
-- 保留本地抠图、Upscayl、FFmpeg、Seedance、Skills、Jiaren Agent 和社区功能。
+- 保留 V1.1.2 的完整画布、Jiaren Agent、Codex、图片/视频/音频和本地媒体工具功能；
+- 更新器优先读取香港 CDN 的版本清单，GitHub 作为故障回退线路；
+- 更新安装包、blockmap 与 SHA-256 校验链路，避免更新时下载 GitHub 大文件；
+- 继续保留 Codex 流式对话、工具状态、审批、画布结果回传和本地 Codex App Server；
+- 继续保留多渠道模型驱动、图片任务队列、图片标注修改和完整 25 项图片右键工具。
 
-完整说明见 [V1.1.2 Release](https://github.com/jiaren0620-prog/jiaren-ai-releases/releases/tag/v1.1.2)。
+完整说明见 [V1.1.3 Release](https://github.com/jiaren0620-prog/jiaren-ai-releases/releases/tag/v1.1.3)。
 
 ## 快速开始
 
@@ -125,17 +122,17 @@ cd jiaren-ai-releases
 
 | 文件 | 用途 |
 | --- | --- |
-| [Jiaren-AI-Setup-1.1.2-x64.exe](https://github.com/jiaren0620-prog/jiaren-ai-releases/releases/download/v1.1.2/Jiaren-AI-Setup-1.1.2-x64.exe) | Windows 10/11 x64 全功能安装包 |
-| [Jiaren-AI-1.1.2-source.zip](https://github.com/jiaren0620-prog/jiaren-ai-releases/releases/download/v1.1.2/Jiaren-AI-1.1.2-source.zip) | V1.1.2 桌面端源码归档 |
-| [SHA256SUMS.txt](https://github.com/jiaren0620-prog/jiaren-ai-releases/releases/download/v1.1.2/SHA256SUMS.txt) | 发布文件 SHA-256 清单 |
+| [香港 CDN 下载 Jiaren-AI-Setup-1.1.3-x64.exe](https://cdn.jiaren.xyz/downloads/Jiaren-AI-Setup-1.1.3-x64.exe) | Windows 10/11 x64 全功能安装包 |
+| [GitHub Release 归档](https://github.com/jiaren0620-prog/jiaren-ai-releases/releases/tag/v1.1.3) | 安装包、blockmap、源码与校验清单 |
+| [Jiaren-AI-1.1.3-source.zip](https://github.com/jiaren0620-prog/jiaren-ai-releases/releases/download/v1.1.3/Jiaren-AI-1.1.3-source.zip) | V1.1.3 桌面端源码归档 |
 
-Windows x64 安装包大小为 **1,024,189,082 字节**，SHA-256：
+Windows x64 安装包大小为 **1,024,188,258 字节**，SHA-256：
 
 ```text
-686D01E958D6EA964C1D94B83059D0AF3007A5DA7BBF7B6CA963180E3B393417
+35F54AD8C45A9C10DABDEFC45DDA7D794240DAE0E3D45CFD75F3676DBCDEEDBD
 ```
 
-下载后可在 PowerShell 中执行 `Get-FileHash .\Jiaren-AI-Setup-1.1.2-x64.exe -Algorithm SHA256` 核对完整性。完整文件清单见 Release 中的 `SHA256SUMS.txt`。
+下载后可在 PowerShell 中执行 `Get-FileHash .\Jiaren-AI-Setup-1.1.3-x64.exe -Algorithm SHA256` 核对完整性。完整文件清单见 Release 中的 `SHA256SUMS.txt`。软件更新优先走香港 CDN，GitHub 仅作备用线路。
 
 ## 系统要求
 

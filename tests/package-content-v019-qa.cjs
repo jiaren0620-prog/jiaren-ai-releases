@@ -4,7 +4,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const projectRoot = path.resolve(__dirname, "..");
-const unpackedRoot = path.resolve(process.argv[2] || path.join(projectRoot, "release-v112", "win-unpacked"));
+const unpackedRoot = path.resolve(process.argv[2] || path.join(projectRoot, "release-v113", "win-unpacked"));
 const resourcesRoot = path.join(unpackedRoot, "resources");
 const asarPath = path.join(resourcesRoot, "app.asar");
 const asarUnpackedRoot = path.join(resourcesRoot, "app.asar.unpacked");
@@ -237,4 +237,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log("Jiaren AI 1.1.2 package contains all required local runtimes and application features.");
+console.log("Jiaren AI 1.1.3 package contains all required local runtimes and application features.");

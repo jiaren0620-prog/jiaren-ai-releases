@@ -15,8 +15,13 @@ assert.ok(script.includes("onUpdateDownloadProgress"), "Renderer does not subscr
 assert.ok(script.includes("smoothedSpeed"), "Download speed calculation is missing");
 assert.ok(script.includes("formatDuration"), "Remaining-time calculation is missing");
 assert.ok(script.includes("正在校验"), "Verification-stage feedback is missing");
-assert.ok(script.includes("raw.githubusercontent.com/jiaren0620-prog/jiaren-ai-releases/main/latest.json"), "Updater does not read GitHub release metadata");
-assert.ok(script.includes("cache: 'no-store'"), "GitHub update metadata is not cache-busted");
+const cdnSource = "https://cdn.jiaren.xyz/updates/latest.json";
+const githubSource = "https://raw.githubusercontent.com/jiaren0620-prog/jiaren-ai-releases/main/latest.json";
+assert.ok(script.includes(cdnSource), "Updater does not read Hong Kong CDN metadata");
+assert.ok(script.includes(githubSource), "Updater does not retain GitHub fallback metadata");
+assert.ok(script.indexOf(cdnSource) < script.indexOf(githubSource), "Hong Kong CDN is not the primary update source");
+assert.ok(script.includes("for (const source of UPDATE_SOURCES)"), "Updater source fallback loop is missing");
+assert.ok(script.includes("cache: 'no-store'"), "Update metadata is not cache-busted");
 assert.ok(!script.includes("api.jiaren.xyz/v1"), "Updater still depends on the legacy update server");
 assert.ok(styles.includes("/* Jiaren v0.1.9 updater progress */"), "Updater progress styles are missing");
 assert.ok(styles.includes("--jg-update-progress"), "Progress fill state is not styled");
