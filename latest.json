@@ -1,12 +1,14 @@
 {
-  "version": "1.1.2",
+  "version": "1.1.3",
   "platform": "windows-x64",
   "releaseDate": "2026-08-04",
-  "title": "Jiaren AI 1.1.2",
-  "notes": "完善本地 Codex 与画布联动、渠道驱动、图片任务回传和多任务稳定性。更新安装包由 GitHub Release 提供，并执行 SHA-256 完整性校验。",
-  "downloadUrl": "https://github.com/jiaren0620-prog/jiaren-ai-releases/releases/download/v1.1.2/Jiaren-AI-Setup-1.1.2-x64.exe",
-  "fileName": "Jiaren-AI-Setup-1.1.2-x64.exe",
-  "byteSize": 1024189082,
-  "checksumSha256": "686d01e958d6ea964c1d94b83059d0af3007a5da7bbf7b6ca963180e3b393417",
-  "releaseUrl": "https://github.com/jiaren0620-prog/jiaren-ai-releases/releases/tag/v1.1.2"
+  "title": "Jiaren AI 1.1.3",
+  "notes": "更新主线路切换为香港 CDN，GitHub 作为备用线路；保留 V1.1.2 的完整画布、Codex、Jiaren Agent 和本地媒体功能。",
+  "downloadUrl": "https://cdn.jiaren.xyz/downloads/Jiaren-AI-Setup-1.1.3-x64.exe",
+  "fallbackDownloadUrl": "https://github.com/jiaren0620-prog/jiaren-ai-releases/releases/download/v1.1.3/Jiaren-AI-Setup-1.1.3-x64.exe",
+  "fileName": "Jiaren-AI-Setup-1.1.3-x64.exe",
+  "byteSize": 1024188258,
+  "checksumSha256": "35f54ad8c45a9c10dabefc45dda7d794240dae0e3d45cfd75f3676dbcdeedbd",
+  "blockmapUrl": "https://cdn.jiaren.xyz/downloads/Jiaren-AI-Setup-1.1.3-x64.exe.blockmap",
+  "releaseUrl": "https://github.com/jiaren0620-prog/jiaren-ai-releases/releases/tag/v1.1.3"
 }
