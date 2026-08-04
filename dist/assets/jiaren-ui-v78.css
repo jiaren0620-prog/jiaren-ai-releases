@@ -1,0 +1,888 @@
+/* JiarenAI v78: compact image actions and native AI canvas theme. */
+#root .canvas-app-shell .image-selection-popover {
+  display: grid !important;
+  width: min(432px, calc(100vw - 24px)) !important;
+  max-width: calc(100vw - 24px) !important;
+  max-height: min(420px, calc(100vh - 24px)) !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 5px !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  padding: 8px !important;
+  border: 1px solid rgba(199, 255, 61, 0.2) !important;
+  border-radius: 8px !important;
+  color: #f4f7ef !important;
+  background: rgba(13, 16, 13, 0.985) !important;
+  background-image: none !important;
+  box-shadow: 0 20px 58px rgba(0, 0, 0, 0.58), inset 0 1px rgba(255, 255, 255, 0.035) !important;
+  backdrop-filter: blur(18px) saturate(1.04) !important;
+  scrollbar-color: rgba(199, 255, 61, 0.34) transparent !important;
+  scrollbar-width: thin !important;
+}
+
+#root .canvas-app-shell .image-selection-popover button {
+  display: inline-flex !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 36px !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 7px !important;
+  margin: 0 !important;
+  padding: 0 9px !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(244, 247, 239, 0.08) !important;
+  border-radius: 6px !important;
+  color: #dce3d7 !important;
+  background: #171c17 !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  font-size: 11px !important;
+  font-weight: 680 !important;
+  line-height: 1 !important;
+  text-align: left !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+#root .canvas-app-shell .image-selection-popover button:hover:not(:disabled) {
+  border-color: rgba(199, 255, 61, 0.34) !important;
+  color: #f4f7ef !important;
+  background: #202720 !important;
+  transform: none !important;
+}
+
+#root .canvas-app-shell .image-selection-popover button:focus-visible {
+  border-color: #c7ff3d !important;
+  outline: 2px solid rgba(199, 255, 61, 0.14) !important;
+  outline-offset: 1px !important;
+}
+
+#root .canvas-app-shell .image-selection-popover button:disabled {
+  color: #758071 !important;
+  background: #121612 !important;
+  opacity: 0.62 !important;
+}
+
+#root .canvas-app-shell .image-selection-popover button > svg,
+#root .canvas-app-shell .image-selection-popover .jc-community-share-icon {
+  width: 15px !important;
+  min-width: 15px !important;
+  height: 15px !important;
+  min-height: 15px !important;
+  flex: 0 0 15px !important;
+  margin: 0 !important;
+  color: #aebaa8 !important;
+  stroke-width: 1.8 !important;
+}
+
+#root .canvas-app-shell .image-selection-popover button:hover > svg,
+#root .canvas-app-shell .image-selection-popover .jc-community-context-item > svg {
+  color: #c7ff3d !important;
+}
+
+#root .canvas-app-shell .image-selection-popover .jc-community-context-item {
+  border-color: rgba(199, 255, 61, 0.24) !important;
+  color: #dfff88 !important;
+  background: rgba(199, 255, 61, 0.085) !important;
+}
+
+#root .canvas-app-shell .image-selection-popover button:has(> svg:only-child) {
+  justify-content: center !important;
+  padding: 0 !important;
+}
+
+#root .jiaren-canvas-native-panel {
+  --jc2-bg: #090b09;
+  --jc2-canvas: #0b0e0b;
+  --jc2-surface: #111511;
+  --jc2-raised: #171c17;
+  --jc2-hover: #202720;
+  --jc2-border: rgba(244, 247, 239, 0.1);
+  --jc2-border-strong: rgba(199, 255, 61, 0.34);
+  --jc2-text: #f4f7ef;
+  --jc2-muted: #98a292;
+  --jc2-accent: #c7ff3d;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) clamp(392px, 31vw, 448px) !important;
+  overflow: hidden !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  color: var(--jc2-text) !important;
+  background: var(--jc2-bg) !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+body:has(#root .canvas-app-shell.canvas-mode-active) > .jc-launcher {
+  display: none !important;
+  pointer-events: none !important;
+}
+
+#root .jiaren-canvas-native-canvas {
+  min-width: 0 !important;
+  overflow: hidden !important;
+  border-right: 1px solid var(--jc2-border) !important;
+  background-color: var(--jc2-canvas) !important;
+  background-image: linear-gradient(rgba(199, 255, 61, 0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(199, 255, 61, 0.035) 1px, transparent 1px) !important;
+  background-size: 36px 36px !important;
+}
+
+#root .jiaren-canvas-native-canvas .excalidraw,
+#root .jiaren-canvas-native-canvas .excalidraw .App-menu,
+#root .jiaren-canvas-native-canvas .excalidraw .App-menu_top {
+  color: var(--jc2-text) !important;
+  background-color: transparent !important;
+}
+
+#root .jiaren-canvas-native-canvas .excalidraw .Island,
+#root .jiaren-canvas-native-canvas .excalidraw .App-toolbar,
+#root .jiaren-canvas-native-canvas .excalidraw .App-menu_bottom__left > *,
+#root .jiaren-canvas-native-canvas .excalidraw .App-menu_bottom__right > * {
+  border-color: var(--jc2-border) !important;
+  color: var(--jc2-text) !important;
+  background: rgba(17, 21, 17, 0.96) !important;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.34) !important;
+}
+
+#root .jiaren-canvas-native-canvas .excalidraw button,
+#root .jiaren-canvas-tool-menu button,
+#root .jiaren-canvas-window-controls button {
+  border: 1px solid transparent !important;
+  border-radius: 6px !important;
+  color: var(--jc2-muted) !important;
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+#root .jiaren-canvas-native-canvas .excalidraw button:hover,
+#root .jiaren-canvas-tool-menu button:hover,
+#root .jiaren-canvas-window-controls button:hover {
+  border-color: rgba(199, 255, 61, 0.2) !important;
+  color: var(--jc2-accent) !important;
+  background: rgba(199, 255, 61, 0.08) !important;
+}
+
+#root .jiaren-canvas-native-canvas .excalidraw button.ToolIcon__icon--selected,
+#root .jiaren-canvas-tool-menu button.active {
+  border-color: rgba(199, 255, 61, 0.42) !important;
+  color: #090b09 !important;
+  background: var(--jc2-accent) !important;
+}
+
+/* Keep near-black Excalidraw swatches visible against the Jiaren dark panel. */
+#root .jiaren-canvas-native-canvas .excalidraw .color-picker__button {
+  min-width: 24px !important;
+  min-height: 24px !important;
+  border: 1px solid rgba(226, 235, 222, 0.46) !important;
+  background-color: var(--swatch-color) !important;
+  background-image: initial !important;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.86),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.09) !important;
+  filter: none !important;
+}
+
+#root .jiaren-canvas-native-canvas .excalidraw .color-picker__button.is-transparent {
+  background-color: #111511 !important;
+  background-image:
+    linear-gradient(45deg, rgba(226, 235, 222, 0.34) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(226, 235, 222, 0.34) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(226, 235, 222, 0.34) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(226, 235, 222, 0.34) 75%) !important;
+  background-position: 0 0, 0 4px, 4px -4px, -4px 0 !important;
+  background-size: 8px 8px !important;
+}
+
+#root .jiaren-canvas-native-canvas .excalidraw .color-picker__button:hover,
+#root .jiaren-canvas-native-canvas .excalidraw .color-picker__button:focus-visible {
+  border-color: rgba(199, 255, 61, 0.76) !important;
+  box-shadow:
+    0 0 0 2px rgba(199, 255, 61, 0.22),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.16) !important;
+}
+
+#root .jiaren-canvas-native-canvas .excalidraw .color-picker__button.active,
+#root .jiaren-canvas-native-canvas .excalidraw .color-picker__button[aria-pressed="true"] {
+  border-color: var(--jc2-accent) !important;
+  box-shadow:
+    0 0 0 2px rgba(199, 255, 61, 0.42),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.16) !important;
+}
+
+#root .jiaren-canvas-native-canvas .excalidraw .color-picker__button.active .color-picker__button-outline {
+  inset: -3px !important;
+  border: 1px solid var(--jc2-accent) !important;
+  border-radius: 7px !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+#root .jiaren-canvas-native-canvas .excalidraw .color-picker-container {
+  column-gap: 8px !important;
+  min-height: 32px !important;
+}
+
+#root .jiaren-canvas-tool-menu {
+  gap: 5px !important;
+  padding: 5px !important;
+  border: 1px solid var(--jc2-border) !important;
+  border-radius: 8px !important;
+  background: rgba(17, 21, 17, 0.96) !important;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.4) !important;
+  backdrop-filter: blur(16px) !important;
+}
+
+#root .jiaren-canvas-tool-menu button {
+  width: 34px !important;
+  min-width: 34px !important;
+  height: 34px !important;
+}
+
+#root .jiaren-canvas-tool-menu button > i {
+  background: var(--jc2-border) !important;
+}
+
+#root .jiaren-canvas-canvas-status {
+  min-height: 36px !important;
+  gap: 8px !important;
+  padding: 0 11px !important;
+  border: 1px solid var(--jc2-border) !important;
+  border-radius: 7px !important;
+  color: var(--jc2-text) !important;
+  background: rgba(17, 21, 17, 0.96) !important;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.34) !important;
+}
+
+#root .jiaren-canvas-canvas-status strong {
+  color: var(--jc2-text) !important;
+  font-size: 12px !important;
+}
+
+#root .jiaren-canvas-canvas-status span {
+  color: var(--jc2-muted) !important;
+  font-size: 10px !important;
+}
+
+#root .jiaren-canvas-native-chat {
+  display: grid !important;
+  min-width: 0 !important;
+  grid-template-rows: minmax(0, 1fr) auto auto auto !important;
+  overflow: hidden !important;
+  border: 0 !important;
+  color: var(--jc2-text) !important;
+  background: #0d100d !important;
+  background-image: none !important;
+}
+
+#root .jiaren-canvas-native-chat > header {
+  min-width: 0 !important;
+  min-height: 52px !important;
+  gap: 10px !important;
+  padding: 8px 12px !important;
+  border-bottom: 1px solid var(--jc2-border) !important;
+  color: var(--jc2-text) !important;
+  background: #101410 !important;
+}
+
+@media (min-width: 721px) {
+  #root .jiaren-canvas-native-panel > .jiaren-canvas-native-chat {
+    padding: 104px 14px 14px !important;
+  }
+
+  #root .jiaren-canvas-native-panel > .jiaren-canvas-native-chat > header {
+    top: 52px !important;
+  }
+}
+
+#root .jiaren-canvas-chat-title {
+  min-width: 0 !important;
+  gap: 7px !important;
+}
+
+#root .jiaren-canvas-chat-title strong {
+  min-width: 0 !important;
+  overflow: hidden !important;
+  color: var(--jc2-text) !important;
+  font-size: 13px !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+#root .jiaren-canvas-native-chat > header nav {
+  display: flex !important;
+  min-width: 0 !important;
+  flex: 0 0 auto !important;
+  align-items: center !important;
+  gap: 5px !important;
+}
+
+#root .jiaren-canvas-native-chat button,
+#root .jiaren-canvas-native-chat select,
+#root .jiaren-canvas-native-chat input,
+#root .jiaren-canvas-native-chat textarea {
+  box-sizing: border-box !important;
+  min-width: 0 !important;
+  border: 1px solid var(--jc2-border) !important;
+  border-radius: 6px !important;
+  color: var(--jc2-text) !important;
+  background: #121612 !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  letter-spacing: 0 !important;
+}
+
+#root .jiaren-canvas-native-chat button:hover:not(:disabled),
+#root .jiaren-canvas-native-chat select:hover,
+#root .jiaren-canvas-native-chat input:hover,
+#root .jiaren-canvas-native-chat textarea:hover {
+  border-color: rgba(199, 255, 61, 0.28) !important;
+  background: #171d17 !important;
+}
+
+#root .jiaren-canvas-native-chat :is(select, input, textarea):focus {
+  border-color: rgba(199, 255, 61, 0.58) !important;
+  outline: 2px solid rgba(199, 255, 61, 0.1) !important;
+  outline-offset: 0 !important;
+}
+
+#root .jiaren-canvas-native-chat .jiaren-canvas-new-chat-button {
+  width: auto !important;
+  min-width: 74px !important;
+  height: 32px !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  padding: 0 9px !important;
+  color: #dce3d7 !important;
+  font-size: 11px !important;
+  white-space: nowrap !important;
+}
+
+#root .jiaren-canvas-native-chat :is(.jiaren-canvas-clear-button, .jiaren-canvas-close-button) {
+  width: 32px !important;
+  min-width: 32px !important;
+  height: 32px !important;
+  padding: 0 !important;
+}
+
+#root .jiaren-canvas-chat-scroll {
+  display: flex !important;
+  min-height: 0 !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  padding: 11px 12px !important;
+  scrollbar-color: rgba(199, 255, 61, 0.24) transparent !important;
+  scrollbar-width: thin !important;
+}
+
+#root .jiaren-canvas-chat-hero {
+  gap: 2px !important;
+  padding: 0 1px 3px !important;
+}
+
+#root .jiaren-canvas-chat-hero strong {
+  color: var(--jc2-text) !important;
+  font-size: 16px !important;
+  line-height: 1.25 !important;
+}
+
+#root .jiaren-canvas-chat-hero span {
+  color: var(--jc2-muted) !important;
+  font-size: 11px !important;
+}
+
+#root .jiaren-canvas-context-card,
+#root .jiaren-canvas-agent-brief,
+#root .jiaren-canvas-chat-empty,
+#root .jiaren-canvas-chat-message {
+  border: 1px solid var(--jc2-border) !important;
+  border-radius: 7px !important;
+  color: #dce3d7 !important;
+  background: var(--jc2-surface) !important;
+  box-shadow: none !important;
+}
+
+#root .jiaren-canvas-context-card,
+#root .jiaren-canvas-agent-brief {
+  padding: 9px 10px !important;
+}
+
+#root .jiaren-canvas-context-card {
+  display: grid !important;
+  min-height: 54px !important;
+  max-height: 112px !important;
+  overflow: auto !important;
+}
+
+#root .jiaren-canvas-agent-brief {
+  display: grid !important;
+  min-height: 118px !important;
+  overflow: visible !important;
+}
+
+#root .jiaren-canvas-context-card strong,
+#root .jiaren-canvas-agent-brief > div:first-child span,
+#root .jiaren-canvas-agent-brief > div:first-child strong {
+  color: var(--jc2-accent) !important;
+  font-size: 10px !important;
+  font-weight: 760 !important;
+}
+
+#root .jiaren-canvas-context-card pre,
+#root .jiaren-canvas-agent-brief p {
+  margin: 5px 0 0 !important;
+  color: #aeb8a8 !important;
+  font-size: 10px !important;
+  line-height: 1.5 !important;
+}
+
+#root .jiaren-canvas-agent-brief > div:last-child {
+  gap: 5px !important;
+  margin-top: 7px !important;
+}
+
+#root .jiaren-canvas-agent-brief > div:last-child span {
+  min-height: 22px !important;
+  padding: 0 7px !important;
+  border: 1px solid rgba(199, 255, 61, 0.13) !important;
+  border-radius: 5px !important;
+  color: #b9c3b3 !important;
+  background: rgba(199, 255, 61, 0.055) !important;
+  font-size: 9px !important;
+}
+
+#root .jiaren-canvas-chat-controls {
+  display: grid !important;
+  gap: 7px !important;
+  padding: 10px 12px 8px !important;
+  border-top: 1px solid var(--jc2-border) !important;
+  background: #101410 !important;
+}
+
+#root .jiaren-canvas-chat-controls > textarea {
+  width: 100% !important;
+  min-height: 88px !important;
+  max-height: 180px !important;
+  padding: 10px 11px !important;
+  resize: vertical !important;
+  color: var(--jc2-text) !important;
+  font-size: 11px !important;
+  line-height: 1.5 !important;
+}
+
+#root .jiaren-canvas-chat-controls > textarea::placeholder {
+  color: #737e6e !important;
+}
+
+#root .jiaren-canvas-chat-controls > div {
+  display: grid !important;
+  min-width: 0 !important;
+  grid-template-columns: 36px 68px minmax(62px, 1fr) minmax(68px, 1fr) !important;
+  gap: 6px !important;
+}
+
+#root .jiaren-canvas-chat-controls > div > :is(button, select, input) {
+  width: 100% !important;
+  min-width: 0 !important;
+  height: 34px !important;
+  padding: 0 8px !important;
+  font-size: 10px !important;
+}
+
+#root .jiaren-canvas-camera-controls {
+  display: grid !important;
+  min-width: 0 !important;
+  grid-column: 1 / -2 !important;
+  grid-template-columns: 24px minmax(0, 1fr) minmax(0, 1fr) !important;
+  align-items: center !important;
+  gap: 5px !important;
+  min-height: 34px !important;
+  padding: 0 5px !important;
+  border: 1px solid var(--jc2-border) !important;
+  border-radius: 6px !important;
+  background: #121612 !important;
+}
+
+#root .jiaren-canvas-camera-controls > svg {
+  color: var(--jc2-accent) !important;
+  justify-self: center !important;
+}
+
+#root .jiaren-canvas-camera-controls select {
+  height: 28px !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+
+#root .jiaren-canvas-model-controls {
+  display: grid !important;
+  gap: 6px !important;
+  padding: 0 12px 8px !important;
+  background: #101410 !important;
+}
+
+#root .jiaren-canvas-model-controls label {
+  display: grid !important;
+  min-width: 0 !important;
+  grid-template-columns: 82px minmax(0, 1fr) !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+#root .jiaren-canvas-model-controls label > span {
+  color: var(--jc2-muted) !important;
+  font-size: 10px !important;
+  font-weight: 650 !important;
+}
+
+#root .jiaren-canvas-model-controls select {
+  width: 100% !important;
+  height: 34px !important;
+  padding: 0 9px !important;
+  font-size: 10px !important;
+}
+
+#root .jiaren-canvas-agent-actions {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 6px !important;
+  padding: 0 12px 11px !important;
+  background: #101410 !important;
+}
+
+#root .jiaren-canvas-agent-actions button {
+  min-width: 0 !important;
+  min-height: 36px !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  padding: 0 8px !important;
+  overflow: hidden !important;
+  color: #dce3d7 !important;
+  font-size: 11px !important;
+  font-weight: 720 !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+#root .jiaren-canvas-agent-actions button:first-child {
+  border-color: var(--jc2-accent) !important;
+  color: #090b09 !important;
+  background: var(--jc2-accent) !important;
+}
+
+#root .jiaren-canvas-agent-actions button:first-child:hover:not(:disabled) {
+  border-color: #d8ff78 !important;
+  color: #090b09 !important;
+  background: #d8ff78 !important;
+}
+
+#root .jiaren-canvas-selection-toolbar {
+  gap: 5px !important;
+  padding: 5px !important;
+  border: 1px solid var(--jc2-border-strong) !important;
+  border-radius: 7px !important;
+  color: var(--jc2-text) !important;
+  background: rgba(17, 21, 17, 0.98) !important;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.46) !important;
+}
+
+#root .jiaren-canvas-selection-toolbar button,
+#root .jiaren-canvas-selection-toolbar span {
+  min-height: 31px !important;
+  border-radius: 5px !important;
+  color: #dce3d7 !important;
+  background: #171c17 !important;
+}
+
+@media (max-width: 980px) {
+  #root .jiaren-canvas-native-panel {
+    grid-template-columns: minmax(0, 1fr) min(400px, 42vw) !important;
+  }
+
+  #root .jiaren-canvas-native-chat .jiaren-canvas-new-chat-button {
+    width: 32px !important;
+    min-width: 32px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    font-size: 0 !important;
+  }
+}
+
+@media (max-width: 720px) {
+  #root .canvas-app-shell .image-selection-popover {
+    width: min(294px, calc(100vw - 16px)) !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  #root .jiaren-canvas-native-panel {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  #root .jiaren-canvas-native-chat {
+    position: absolute !important;
+    inset: 48px 8px 8px !important;
+    z-index: 30 !important;
+    border: 1px solid var(--jc2-border) !important;
+    border-radius: 8px !important;
+  }
+}
+
+/* v88: image generation composer, popovers and responsive result cards. */
+body.jiaren-drawing-console-active
+  #root
+  .canvas-app-shell
+  .lovart-prompt-console {
+  position: fixed !important;
+  overflow: visible !important;
+}
+
+body.jiaren-drawing-console-active
+  #root
+  .canvas-app-shell
+  .lovart-prompt-console
+  > .iridescent-progress.compact {
+  position: absolute !important;
+  top: 12px !important;
+  right: 14px !important;
+  left: auto !important;
+  z-index: 8 !important;
+  display: block !important;
+  width: auto !important;
+  min-width: 68px !important;
+  height: 28px !important;
+  min-height: 28px !important;
+  padding: 0 !important;
+  border: 1px solid rgba(199, 255, 61, 0.26) !important;
+  border-radius: 6px !important;
+  color: #dfff88 !important;
+  background: rgba(13, 16, 13, 0.96) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.34) !important;
+  pointer-events: none !important;
+}
+
+body.jiaren-drawing-console-active
+  #root
+  .canvas-app-shell
+  .lovart-prompt-console
+  > .iridescent-progress.compact
+  .iridescent-progress-sheen {
+  display: none !important;
+}
+
+body.jiaren-drawing-console-active
+  #root
+  .canvas-app-shell
+  .lovart-prompt-console
+  > .iridescent-progress.compact
+  .iridescent-progress-content {
+  display: flex !important;
+  height: 100% !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  padding: 0 8px !important;
+}
+
+body.jiaren-drawing-console-active
+  #root
+  .canvas-app-shell
+  .lovart-prompt-console
+  > .iridescent-progress.compact
+  .iridescent-progress-ring {
+  width: 18px !important;
+  min-width: 18px !important;
+  height: 18px !important;
+  min-height: 18px !important;
+  font-size: 0 !important;
+}
+
+body.jiaren-drawing-console-active
+  #root
+  .canvas-app-shell
+  .lovart-prompt-console
+  > .iridescent-progress.compact
+  strong {
+  color: #dfff88 !important;
+  font-size: 10px !important;
+  font-weight: 750 !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+}
+
+body.jiaren-drawing-console-active
+  #root
+  .canvas-app-shell
+  .lovart-prompt-console
+  > .prompt-popover {
+  border: 1px solid rgba(199, 255, 61, 0.2) !important;
+  color: #f4f7ef !important;
+  background: #111511 !important;
+  background-image: none !important;
+  box-shadow: 0 18px 52px rgba(0, 0, 0, 0.56) !important;
+  color-scheme: dark !important;
+}
+
+body.jiaren-drawing-console-active
+  #root
+  .canvas-app-shell
+  .lovart-prompt-console
+  > .prompt-popover
+  :is(section, header, .popover-section) {
+  border-color: rgba(244, 247, 239, 0.09) !important;
+  color: #f4f7ef !important;
+  background: transparent !important;
+}
+
+body.jiaren-drawing-console-active
+  #root
+  .canvas-app-shell
+  .lovart-prompt-console
+  > .prompt-popover
+  :is(strong, label, small) {
+  color: #dce3d7 !important;
+}
+
+body.jiaren-drawing-console-active
+  #root
+  .canvas-app-shell
+  .lovart-prompt-console
+  > .prompt-popover
+  :is(button, .popover-row, .token, .ratio-token) {
+  min-width: 0 !important;
+  border-color: rgba(244, 247, 239, 0.1) !important;
+  color: #dce3d7 !important;
+  background: #171c17 !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+body.jiaren-drawing-console-active
+  #root
+  .canvas-app-shell
+  .lovart-prompt-console
+  > .prompt-popover
+  :is(button, .popover-row, .token, .ratio-token):is(:hover, :focus-visible) {
+  border-color: rgba(199, 255, 61, 0.38) !important;
+  color: #f4f7ef !important;
+  background: #202720 !important;
+}
+
+body.jiaren-drawing-console-active
+  #root
+  .canvas-app-shell
+  .lovart-prompt-console
+  > .prompt-popover
+  :is(button, .popover-row, .token, .ratio-token).active,
+body.jiaren-drawing-console-active
+  #root
+  .canvas-app-shell
+  .lovart-prompt-console
+  > .prompt-popover
+  :is(button, .popover-row, .token, .ratio-token)[aria-selected="true"] {
+  border-color: #c7ff3d !important;
+  color: #090b09 !important;
+  background: #c7ff3d !important;
+}
+
+body.jiaren-drawing-console-active
+  #root
+  .canvas-app-shell
+  .lovart-prompt-console
+  > .prompt-popover
+  :is(button, .popover-row, .token, .ratio-token).active
+  :is(span, strong, small, svg),
+body.jiaren-drawing-console-active
+  #root
+  .canvas-app-shell
+  .lovart-prompt-console
+  > .prompt-popover
+  :is(button, .popover-row, .token, .ratio-token)[aria-selected="true"]
+  :is(span, strong, small, svg) {
+  color: #090b09 !important;
+}
+
+body:has(#root .image-preview-backdrop)
+  #root
+  .canvas-app-shell
+  .lovart-prompt-console,
+body:has(#root .modal-backdrop .settings-modal)
+  #root
+  .canvas-app-shell
+  .lovart-prompt-console,
+body:has(#root :is(.pixpro-backdrop, .upscayl-backdrop, .vector-trace-backdrop, .jiaren-material-backdrop, .jiaren-pose-studio-backdrop, .jiaren-director-desk-backdrop, .compare-backdrop, .genpsd-embed-backdrop, .hunyuan3d-backdrop))
+  #root
+  .canvas-app-shell
+  .lovart-prompt-console {
+  display: none !important;
+  pointer-events: none !important;
+}
+
+#root .react-flow__node:has(.canvas-node.jiaren-drawing-media-card),
+#root .canvas-node.jiaren-drawing-media-card:has(.node-preview-image, .node-image-grid),
+#root .canvas-node.jiaren-drawing-media-card:has(.node-preview-image, .node-image-grid)
+  .node-body {
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  padding: 0 !important;
+  overflow: visible !important;
+}
+
+#root .canvas-node.jiaren-drawing-media-card:has(.node-preview-image, .node-image-grid) {
+  overflow: hidden !important;
+}
+
+#root .canvas-node.jiaren-drawing-media-card .node-preview-image {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  margin: 0 !important;
+  object-fit: contain !important;
+}
+
+#root .canvas-node.jiaren-drawing-media-card .node-image-grid {
+  display: grid !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  gap: 6px !important;
+  padding: 6px !important;
+  overflow: visible !important;
+  background: #0b0e0b !important;
+}
+
+#root .canvas-node.jiaren-drawing-media-card .node-image-grid:has(> :nth-child(2)) {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+
+#root .canvas-node.jiaren-drawing-media-card .node-grid-tile {
+  position: relative !important;
+  display: grid !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  place-items: center !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(244, 247, 239, 0.08) !important;
+  border-radius: 6px !important;
+  background: #090b09 !important;
+}
+
+#root .canvas-node.jiaren-drawing-media-card .node-grid-tile img {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  object-fit: contain !important;
+}
+
+#root .canvas-node.jiaren-drawing-media-card .node-grid-tile:not([style]) img {
+  height: auto !important;
+}

@@ -1,0 +1,387 @@
+/* v69: authoritative Codex workbench and community transition polish. */
+
+/* Bottom toolbar: the former brush and eraser positions are now direct Codex
+   node launchers. Keep them visually consistent with the rest of the rail. */
+#root .canvas-app-shell .bottom-floating-toolbar > button.t8-bottom-codex-agent,
+#root .canvas-app-shell .bottom-floating-toolbar > button.t8-bottom-codex-image {
+  position: relative !important;
+  color: #aeb8a8 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .bottom-floating-toolbar > button.t8-bottom-codex-agent:hover,
+#root .canvas-app-shell .bottom-floating-toolbar > button.t8-bottom-codex-agent:focus-visible,
+#root .canvas-app-shell .bottom-floating-toolbar > button.t8-bottom-codex-image:hover,
+#root .canvas-app-shell .bottom-floating-toolbar > button.t8-bottom-codex-image:focus-visible {
+  color: #c7ff3d !important;
+  background: rgba(199, 255, 61, 0.09) !important;
+  outline: 1px solid rgba(199, 255, 61, 0.28) !important;
+  outline-offset: -1px !important;
+}
+
+#root .canvas-app-shell .bottom-floating-toolbar > button.t8-bottom-codex-agent::after,
+#root .canvas-app-shell .bottom-floating-toolbar > button.t8-bottom-codex-image::after {
+  content: "" !important;
+  position: absolute !important;
+  right: 5px !important;
+  bottom: 5px !important;
+  width: 4px !important;
+  height: 4px !important;
+  border: 0 !important;
+  border-radius: 50% !important;
+  background: #c7ff3d !important;
+  box-shadow: none !important;
+}
+
+/* Shared node language. These components carry old Pixel/T8 inline tokens, so
+   redefine the tokens at the roots and then remove legacy paper gradients. */
+#root .canvas-app-shell :is(
+  [data-codex-cli-agent-root="true"],
+  [data-codex-image-conjure-root="true"]
+) {
+  --px-surface: #0d100d !important;
+  --px-muted: #151a15 !important;
+  --px-yellow: #1a2119 !important;
+  --px-cyan: #c7ff3d !important;
+  --px-ink: #eef3e9 !important;
+  --px-ink-soft: #a3ad9a !important;
+  border: 1px solid rgba(156, 186, 103, 0.28) !important;
+  border-radius: 8px !important;
+  color: #eef3e9 !important;
+  background: #0d100d !important;
+  background-image: none !important;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.46) !important;
+  font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", system-ui, sans-serif !important;
+  letter-spacing: 0 !important;
+}
+
+#root .canvas-app-shell [data-codex-cli-agent-root="true"] {
+  width: 460px !important;
+  min-height: 0 !important;
+}
+
+#root .canvas-app-shell [data-codex-image-conjure-root="true"] {
+  width: 520px !important;
+  padding: 14px !important;
+}
+
+#root .canvas-app-shell :is(
+  [data-codex-cli-agent-root="true"],
+  [data-codex-image-conjure-root="true"]
+) :is(header, section, nav, footer, article, form, fieldset, div) {
+  background-image: none !important;
+  text-shadow: none !important;
+}
+
+/* Legacy glass rules add a white inset highlight to every rounded text
+   container. On compact Codex copy that highlight crosses the glyph baseline. */
+#root .canvas-app-shell :is(
+  [data-codex-cli-agent-root="true"],
+  [data-codex-image-conjure-root="true"]
+) :is(div, span, label, p, ol, ul, li, code, strong, small) {
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell :is(
+  [data-codex-drag-surface="true"],
+  [data-codex-image-conjure-drag-surface="true"]
+) {
+  min-height: 58px !important;
+  border-bottom: 1px solid rgba(156, 186, 103, 0.2) !important;
+  padding: 10px 12px !important;
+  color: #eef3e9 !important;
+  background: #121712 !important;
+}
+
+#root .canvas-app-shell [data-codex-image-conjure-drag-surface="true"] {
+  margin: -14px -14px 12px !important;
+}
+
+#root .canvas-app-shell
+  [data-codex-drag-surface="true"] > div:first-child > div:first-child,
+#root .canvas-app-shell
+  [data-codex-image-conjure-drag-surface="true"] > div:first-child {
+  width: 38px !important;
+  height: 38px !important;
+  border: 1px solid rgba(199, 255, 61, 0.3) !important;
+  border-radius: 7px !important;
+  color: #c7ff3d !important;
+  background: rgba(199, 255, 61, 0.08) !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell [data-codex-drag-surface="true"] > div:first-child {
+  width: auto !important;
+  height: auto !important;
+  min-width: 0 !important;
+  border: 0 !important;
+  color: inherit !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell :is(
+  [data-codex-cli-agent-root="true"],
+  [data-codex-image-conjure-root="true"]
+) :is(.text-lg, .font-black) {
+  letter-spacing: 0 !important;
+}
+
+#root .canvas-app-shell [data-codex-drag-surface="true"] + div {
+  max-height: clamp(320px, calc(100vh - 260px), 680px) !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  padding: 12px !important;
+  scrollbar-gutter: stable !important;
+}
+
+#root .canvas-app-shell [data-codex-image-conjure-body="true"] {
+  max-height: clamp(330px, calc(100vh - 250px), 690px) !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  padding-right: 5px !important;
+  scrollbar-gutter: stable !important;
+}
+
+#root .canvas-app-shell :is(
+  [data-codex-drag-surface="true"] + div,
+  [data-codex-image-conjure-body="true"]
+)::-webkit-scrollbar {
+  width: 7px !important;
+}
+
+#root .canvas-app-shell :is(
+  [data-codex-drag-surface="true"] + div,
+  [data-codex-image-conjure-body="true"]
+)::-webkit-scrollbar-track {
+  background: #0d100d !important;
+}
+
+#root .canvas-app-shell :is(
+  [data-codex-drag-surface="true"] + div,
+  [data-codex-image-conjure-body="true"]
+)::-webkit-scrollbar-thumb {
+  border-radius: 6px !important;
+  background: rgba(199, 255, 61, 0.24) !important;
+}
+
+#root .canvas-app-shell :is(
+  [data-codex-cli-agent-root="true"],
+  [data-codex-image-conjure-root="true"]
+) section {
+  border: 1px solid rgba(156, 186, 103, 0.2) !important;
+  border-radius: 7px !important;
+  color: #e8eee3 !important;
+  background-color: #151a15 !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell :is(
+  [data-codex-cli-agent-root="true"],
+  [data-codex-image-conjure-root="true"]
+) :is(input, textarea, select, [contenteditable="true"], [role="textbox"]) {
+  min-width: 0 !important;
+  border: 1px solid rgba(156, 186, 103, 0.26) !important;
+  border-radius: 6px !important;
+  color: #eef3e9 !important;
+  background-color: #0c0f0c !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  caret-color: #c7ff3d !important;
+}
+
+#root .canvas-app-shell :is(
+  [data-codex-cli-agent-root="true"],
+  [data-codex-image-conjure-root="true"]
+) :is(input, textarea, select, [contenteditable="true"], [role="textbox"]):focus {
+  border-color: rgba(199, 255, 61, 0.52) !important;
+  outline: 2px solid rgba(199, 255, 61, 0.1) !important;
+  outline-offset: 0 !important;
+}
+
+#root .canvas-app-shell :is(
+  [data-codex-cli-agent-root="true"],
+  [data-codex-image-conjure-root="true"]
+) option {
+  color: #eef3e9 !important;
+  background: #101410 !important;
+}
+
+#root .canvas-app-shell :is(
+  [data-codex-cli-agent-root="true"],
+  [data-codex-image-conjure-root="true"]
+) [style*="background: rgb(255, 255, 255)"],
+#root .canvas-app-shell :is(
+  [data-codex-cli-agent-root="true"],
+  [data-codex-image-conjure-root="true"]
+) [style*="background: #ffffff"] {
+  color: #aeb8a8 !important;
+  background-color: #101410 !important;
+  background-image: none !important;
+}
+
+#root .canvas-app-shell :is(
+  [data-codex-cli-agent-root="true"],
+  [data-codex-image-conjure-root="true"]
+) button {
+  min-height: 30px !important;
+  border: 1px solid rgba(156, 186, 103, 0.24) !important;
+  border-radius: 6px !important;
+  color: #dce4d6 !important;
+  background-color: #1a2119 !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  text-align: center !important;
+  white-space: normal !important;
+}
+
+#root .canvas-app-shell :is(
+  [data-codex-cli-agent-root="true"],
+  [data-codex-image-conjure-root="true"]
+) button:hover {
+  border-color: rgba(199, 255, 61, 0.42) !important;
+  color: #f2f6ec !important;
+  background-color: #222b21 !important;
+}
+
+#root .canvas-app-shell :is(
+  [data-codex-cli-agent-root="true"],
+  [data-codex-image-conjure-root="true"]
+) button:is([data-codex-run-intent-active="true"], [style*="background: var(--px-cyan)"]),
+#root .canvas-app-shell [data-codex-image-conjure-root="true"] footer > button:first-child {
+  border-color: #c7ff3d !important;
+  color: #090b09 !important;
+  background-color: #c7ff3d !important;
+  background-image: none !important;
+  font-weight: 800 !important;
+}
+
+#root .canvas-app-shell :is(
+  [data-codex-cli-agent-root="true"],
+  [data-codex-image-conjure-root="true"]
+) button:disabled {
+  border-color: rgba(156, 186, 103, 0.12) !important;
+  color: #626c5d !important;
+  background: #111511 !important;
+  opacity: 1 !important;
+}
+
+#root .canvas-app-shell :is(
+  [data-codex-cli-agent-root="true"],
+  [data-codex-image-conjure-root="true"]
+) :is(svg, svg[class*="lucide"]) {
+  border: 0 !important;
+  color: currentColor !important;
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell :is(
+  [data-codex-cli-agent-root="true"],
+  [data-codex-image-conjure-root="true"]
+) :is(.rounded-xl, .rounded-lg, .rounded-md) {
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell [data-codex-imagegen-param-bar] {
+  border: 1px solid rgba(156, 186, 103, 0.18) !important;
+  border-radius: 7px !important;
+  padding: 8px !important;
+  color: #aeb8a8 !important;
+  background: #101410 !important;
+  background-image: none !important;
+}
+
+#root .canvas-app-shell :is(
+  [data-codex-cli-agent-root="true"],
+  [data-codex-image-conjure-root="true"]
+) .react-flow__handle {
+  width: 12px !important;
+  height: 12px !important;
+  border: 2px solid #0d100d !important;
+  box-shadow: 0 0 0 1px rgba(199, 255, 61, 0.34) !important;
+}
+
+/* The startup chooser is a single viewport. Community is opened as a full
+   application surface by wheel gesture; never render an embedded page below. */
+body.jiaren-launch-active .jiaren-launch-chooser {
+  overflow: hidden !important;
+  scroll-snap-type: none !important;
+}
+
+body.jiaren-launch-active :is(.jiaren-community-stage, .jiaren-community-scroll) {
+  display: none !important;
+}
+
+body.jiaren-app-mounted .jc-launcher.is-dragging::after,
+body.jiaren-app-mounted .jc-launcher.is-dragging::before {
+  content: none !important;
+  display: none !important;
+}
+
+body.jiaren-app-mounted .jc-launcher.is-dragging :is(
+  .jc-launcher-expanded,
+  .jc-launcher-copy
+) {
+  display: none !important;
+  opacity: 0 !important;
+}
+
+/* Community category and search row: fit all categories at desktop widths and
+   switch to an explicit two-row layout before anything can be clipped. */
+.jc-shell .jc-filter-bar {
+  min-width: 0 !important;
+  padding-right: 24px !important;
+}
+
+.jc-shell .jc-filter-bar .jc-tabs {
+  min-width: 0 !important;
+  gap: 4px !important;
+  scroll-padding-inline: 6px !important;
+}
+
+.jc-shell .jc-filter-bar .jc-tab {
+  min-width: 0 !important;
+  padding-inline: 10px !important;
+}
+
+.jc-shell .jc-filter-bar .jc-search {
+  flex: 0 0 280px !important;
+  min-width: 240px !important;
+  max-width: 320px !important;
+}
+
+@media (max-width: 1220px) {
+  .jc-shell,
+  .jc-shell[data-open="true"] {
+    grid-template-rows: 58px auto minmax(0, 1fr) !important;
+  }
+
+  .jc-shell .jc-filter-bar {
+    height: auto !important;
+    min-height: 92px !important;
+    align-content: center !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    padding-block: 8px !important;
+  }
+
+  .jc-shell .jc-filter-bar .jc-search {
+    order: -1 !important;
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+  }
+
+  .jc-shell .jc-filter-bar .jc-tabs {
+    flex: 1 1 100% !important;
+    flex-wrap: wrap !important;
+    overflow: visible !important;
+  }
+}

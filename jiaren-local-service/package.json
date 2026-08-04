@@ -1,0 +1,13 @@
+{
+  "name": "jiaren-local-service",
+  "version": "1.1.2",
+  "private": true,
+  "license": "AGPL-3.0-only",
+  "type": "commonjs",
+  "dependencies": {
+    "cors": "2.8.5",
+    "express": "4.22.2",
+    "multer": "2.2.0",
+    "undici": "6.28.0"
+  }
+}

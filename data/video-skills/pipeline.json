@@ -1,0 +1,37 @@
+{
+  "id": "jiaren-seedance-storyboard-v1",
+  "name": "JiarenAI Seedance 2.0 分镜管线",
+  "version": "1.1.1",
+  "nodeKind": "sdVideo",
+  "enabledByDefault": false,
+  "defaultMode": "seedance",
+  "modes": [
+    {
+      "id": "studio",
+      "name": "影视工坊 + 导演",
+      "description": "一句话或完整剧本先经过资产锁定、剧情拆镜和导演校验，再编译为 Seedance 提示词。"
+    },
+    {
+      "id": "seedance",
+      "name": "纯 Seedance",
+      "description": "保留原有 Seedance 提示词编译与模型请求，不启用影视工坊扩展。"
+    }
+  ],
+  "stages": [
+    { "id": "story-parse", "source": "storyboard-generator", "purpose": "拆解剧情事件、动作、对白与时长" },
+    { "id": "asset-lock", "source": "jiaren-anime-short-drama", "purpose": "建立角色、场景、道具和视觉风格资产锁" },
+    { "id": "shot-plan", "source": "storyboard-master-v9", "purpose": "规划景别、构图、运镜和镜头目的" },
+    { "id": "continuity-lock", "source": "seedance-v103", "purpose": "锁定台词、空间锚点、资产编号与镜头连续性" },
+    { "id": "director-check", "source": "seedance-video-director-v1.0.3", "purpose": "检查开场钩子、目标与冲突、节奏和失败镜头恢复" },
+    { "id": "prompt-compile", "source": "seedance-prompt-2.0", "purpose": "编译 Seedance 全能参考提示词" }
+  ],
+  "hardRules": {
+    "preserveSourcePlot": true,
+    "preserveDialogueVerbatim": true,
+    "allowSkillExamplesAsStoryContent": false,
+    "retryFailedShotOnly": true,
+    "useCurrentUserApiOnly": true,
+    "replaceExistingSeedanceApi": false,
+    "restoreRemovedDirectorPage": false
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "jiaren-canvas": {
+      "command": "node",
+      "args": ["./tools/jiaren-canvas-mcp/bin/jiaren-canvas-mcp.cjs"],
+      "startup_timeout_sec": 20,
+      "tool_timeout_sec": 90
+    }
+  }
+}

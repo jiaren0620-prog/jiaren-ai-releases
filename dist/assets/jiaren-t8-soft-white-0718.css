@@ -1,0 +1,1224 @@
+/*
+ * Jiaren T8 soft-white material layer.
+ * Presentation only: T8 data, ports, sizes, actions and workflow logic stay unchanged.
+ */
+
+:root {
+  --jt8-surface: #ffffff;
+  --jt8-surface-soft: #fbfdfc;
+  --jt8-surface-muted: #f4f8f6;
+  --jt8-field: #f1f5f3;
+  --jt8-border: #dce7e1;
+  --jt8-border-strong: #cbdad2;
+  --jt8-text: #18241e;
+  --jt8-text-muted: #66756c;
+  --jt8-text-dim: #8b9890;
+  --jt8-mint: #c9f0da;
+  --jt8-mint-strong: #238a58;
+  --jt8-blue: #1976ed;
+  --jt8-blue-dark: #0f61cb;
+  --jt8-soft-shadow: 8px 12px 24px rgba(104, 125, 113, 0.1), -8px -8px 20px rgba(255, 255, 255, 0.92), inset 0 1px 0 rgba(255, 255, 255, 0.98);
+  --jt8-soft-shadow-hover: 10px 15px 28px rgba(104, 125, 113, 0.14), -8px -8px 20px rgba(255, 255, 255, 0.98), inset 0 1px 0 #fff;
+  --jt8-soft-shadow-pressed: inset 2px 3px 7px rgba(103, 128, 113, 0.16), inset -1px -1px 4px rgba(255, 255, 255, 0.82);
+  --jt8-radius-card: 18px;
+  --jt8-radius-inner: 12px;
+  --jt8-radius-button: 11px;
+  --jt8-motion: 180ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* The T8 scope consumes these tokens in its existing inline styles. */
+.canvas-app-shell .t8-original-scope,
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] {
+  --t8-bg-node: var(--jt8-surface);
+  --t8-bg-panel: var(--jt8-surface-soft);
+  --t8-bg-panel-elevated: var(--jt8-surface-muted);
+  --t8-border: var(--jt8-border);
+  --t8-border-strong: var(--jt8-border-strong);
+  --t8-text-main: var(--jt8-text);
+  --t8-text-muted: var(--jt8-text-muted);
+  --t8-text-dim: var(--jt8-text-dim);
+  --t8-accent: var(--jt8-blue);
+  --t8-accent-strong: var(--jt8-blue-dark);
+  color: var(--jt8-text);
+}
+
+/* T8 cards, including the video node's independent root class. */
+.canvas-app-shell .t8-original-scope .t8-node,
+.canvas-app-shell .t8-original-scope .t8-advanced-node,
+.canvas-app-shell .t8-original-scope .t8-codex-node,
+.canvas-app-shell .t8-original-scope .t8-native-video-node,
+.canvas-app-shell .t8-original-scope .codex-cli-agent-node,
+.canvas-app-shell .t8-original-scope .codex-image-conjure-node,
+.canvas-app-shell .t8-original-scope .relative[class*="border-2"]:not(.react-flow__handle),
+.canvas-app-shell .t8-original-scope > .relative.rounded-xl.border-2,
+.canvas-app-shell .t8-original-scope .relative.rounded-xl.border-2,
+.canvas-app-shell .t8-original-scope .relative.rounded-xl.border-2.bg-zinc-900,
+.canvas-app-shell .react-flow__node[data-id^="t8:"] > .t8-node,
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] > .relative.rounded-xl.border-2 {
+  border: 1px solid var(--jt8-border) !important;
+  border-radius: var(--jt8-radius-card) !important;
+  color: var(--jt8-text) !important;
+  background-color: var(--jt8-surface) !important;
+  background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(247, 251, 249, 0.84)) !important;
+  box-shadow: var(--jt8-soft-shadow) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(1.02);
+  backdrop-filter: blur(12px) saturate(1.02);
+  transition: border-color var(--jt8-motion), box-shadow var(--jt8-motion), background-color var(--jt8-motion), filter var(--jt8-motion) !important;
+}
+
+.canvas-app-shell .t8-original-scope .t8-node:hover,
+.canvas-app-shell .t8-original-scope .t8-advanced-node:hover,
+.canvas-app-shell .t8-original-scope .t8-codex-node:hover,
+.canvas-app-shell .t8-original-scope .t8-native-video-node:hover,
+.canvas-app-shell .t8-original-scope .codex-cli-agent-node:hover,
+.canvas-app-shell .t8-original-scope .codex-image-conjure-node:hover,
+.canvas-app-shell .t8-original-scope .relative[class*="border-2"]:not(.react-flow__handle):hover,
+.canvas-app-shell .t8-original-scope > .relative.rounded-xl.border-2:hover,
+.canvas-app-shell .t8-original-scope .relative.rounded-xl.border-2:hover,
+.canvas-app-shell .t8-original-scope .relative.rounded-xl.border-2.bg-zinc-900:hover,
+.canvas-app-shell .react-flow__node[data-id^="t8:"] > .t8-node:hover,
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] > .relative.rounded-xl.border-2:hover {
+  border-color: var(--jt8-border-strong) !important;
+  box-shadow: var(--jt8-soft-shadow-hover) !important;
+}
+
+.canvas-app-shell .react-flow__node.selected .t8-original-scope .t8-node,
+.canvas-app-shell .react-flow__node.selected .t8-original-scope .t8-advanced-node,
+.canvas-app-shell .react-flow__node.selected .t8-original-scope .t8-codex-node,
+.canvas-app-shell .react-flow__node.selected .t8-original-scope .codex-cli-agent-node,
+.canvas-app-shell .react-flow__node.selected .t8-original-scope .relative[class*="border-2"]:not(.react-flow__handle),
+.canvas-app-shell .react-flow__node.selected .t8-original-scope > .relative.rounded-xl.border-2,
+.canvas-app-shell .react-flow__node.selected .t8-original-scope .relative.rounded-xl.border-2,
+.canvas-app-shell .react-flow__node.selected[data-id^="t8:video"] > .relative.rounded-xl.border-2 {
+  border-color: rgba(25, 118, 237, 0.5) !important;
+  box-shadow: 0 0 0 2px rgba(25, 118, 237, 0.12), var(--jt8-soft-shadow-hover) !important;
+}
+
+.canvas-app-shell .react-flow__node[data-status="running"] .t8-original-scope :is(.t8-node, .t8-advanced-node, .t8-codex-node, .t8-native-video-node),
+.canvas-app-shell .react-flow__node[data-status="running"] .t8-original-scope .relative[class*="border-2"]:not(.react-flow__handle),
+.canvas-app-shell .react-flow__node[data-status="running"] .t8-original-scope > .relative.rounded-xl.border-2,
+.canvas-app-shell .react-flow__node[data-status="running"] .t8-original-scope .relative.rounded-xl.border-2,
+.canvas-app-shell .react-flow__node[data-status="running"] > .relative.rounded-xl.border-2 {
+  border-color: rgba(35, 138, 88, 0.58) !important;
+  box-shadow: 0 0 0 2px rgba(35, 138, 88, 0.12), var(--jt8-soft-shadow) !important;
+}
+
+.canvas-app-shell .react-flow__node[data-status="error"] .t8-original-scope :is(.t8-node, .t8-advanced-node, .t8-codex-node, .t8-native-video-node),
+.canvas-app-shell .react-flow__node[data-status="error"] .t8-original-scope .relative[class*="border-2"]:not(.react-flow__handle),
+.canvas-app-shell .react-flow__node[data-status="error"] .t8-original-scope > .relative.rounded-xl.border-2,
+.canvas-app-shell .react-flow__node[data-status="error"] .t8-original-scope .relative.rounded-xl.border-2,
+.canvas-app-shell .react-flow__node[data-status="error"] > .relative.rounded-xl.border-2 {
+  border-color: rgba(197, 88, 88, 0.48) !important;
+  background-color: #fff8f8 !important;
+  box-shadow: 0 0 0 2px rgba(197, 88, 88, 0.1), var(--jt8-soft-shadow) !important;
+}
+
+/* Header, panels and drop/upload areas keep the white ceramic hierarchy. */
+.canvas-app-shell .t8-original-scope :is(.t8-node-header, .t8-advanced-panel, .t8-codex-card, .t8-codex-status-card, .t8-material-grid, .t8-grid-settings-panel, .t8-grid-output-panel, .t8-card),
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] :is(.bg-zinc-800, .bg-zinc-900) {
+  border-color: var(--jt8-border) !important;
+  border-radius: var(--jt8-radius-inner) !important;
+  color: var(--jt8-text) !important;
+  background-color: var(--jt8-surface-soft) !important;
+  background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(246, 250, 248, 0.74)) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.96), 0 4px 12px rgba(104, 125, 113, 0.06) !important;
+}
+
+/* Replace legacy dark utility surfaces and white-on-black labels inside cloned nodes. */
+.canvas-app-shell .t8-original-scope :is([class*="bg-white/5"], [class*="bg-white/10"], [class*="bg-zinc-800"]),
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] :is([class*="bg-white/5"], [class*="bg-white/10"], [class*="bg-zinc-800"]) {
+  border-color: var(--jt8-border) !important;
+  background-color: var(--jt8-surface-muted) !important;
+  background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.88), rgba(241, 246, 243, 0.78)) !important;
+}
+
+.canvas-app-shell .t8-original-scope [class*="text-white"],
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] [class*="text-white"] {
+  color: var(--jt8-text-muted) !important;
+}
+
+.canvas-app-shell .t8-original-scope :is(.text-white, [class*="font-bold"][class*="text-white"], [class*="font-black"][class*="text-white"]),
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] :is(.text-white, [class*="font-bold"][class*="text-white"], [class*="font-black"][class*="text-white"]) {
+  color: var(--jt8-text) !important;
+}
+
+.canvas-app-shell .t8-original-scope :is(input, select, textarea),
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] :is(input, select, textarea) {
+  border: 1px solid var(--jt8-border) !important;
+  border-radius: var(--jt8-radius-button) !important;
+  color: var(--jt8-text) !important;
+  background-color: var(--jt8-field) !important;
+  background-image: linear-gradient(145deg, #f7faf8, #edf3f0) !important;
+  box-shadow: inset 1px 2px 5px rgba(111, 132, 120, 0.08), inset -1px -1px 3px rgba(255, 255, 255, 0.86) !important;
+}
+
+.canvas-app-shell .t8-original-scope :is(input, select, textarea):focus,
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] :is(input, select, textarea):focus {
+  border-color: rgba(25, 118, 237, 0.55) !important;
+  background-color: #fff !important;
+  box-shadow: 0 0 0 3px rgba(25, 118, 237, 0.1), inset 0 1px 0 #fff !important;
+  outline: none !important;
+}
+
+.canvas-app-shell .t8-original-scope option,
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] option {
+  color: var(--jt8-text) !important;
+  background: #fff !important;
+}
+
+.canvas-app-shell .t8-original-scope :is(input[type="checkbox"], input[type="radio"]),
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] :is(input[type="checkbox"], input[type="radio"]) {
+  accent-color: var(--jt8-mint-strong) !important;
+}
+
+.canvas-app-shell .t8-original-scope :is(input[type="range"], progress),
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] :is(input[type="range"], progress) {
+  accent-color: var(--jt8-blue) !important;
+}
+
+.canvas-app-shell .t8-original-scope :is([class*="upload"], [class*="drop"], [data-grid-editor-stage]),
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] :is([class*="upload"], [class*="drop"]) {
+  border-color: rgba(173, 193, 181, 0.78) !important;
+  border-radius: var(--jt8-radius-inner) !important;
+  background-color: var(--jt8-surface-soft) !important;
+  background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.76), rgba(243, 248, 245, 0.72)) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.96) !important;
+}
+
+/* Empty grid cells receive a quiet upload surface without changing drag/drop geometry. */
+.canvas-app-shell .t8-original-scope [data-grid-editor-stage] [data-node-id]:not([data-grid-editor-item-id]) {
+  border-radius: 9px;
+  background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.34), rgba(236, 244, 239, 0.2)) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.74), inset 0 0 0 1px rgba(208, 222, 213, 0.36) !important;
+}
+
+/* Existing T8 buttons keep their click targets and hierarchy; only material changes. */
+.canvas-app-shell .t8-original-scope button:not(.danger):not(.destructive),
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] button:not([class*="bg-rose-500"]) {
+  border: 1px solid var(--jt8-border) !important;
+  border-radius: var(--jt8-radius-button) !important;
+  color: var(--jt8-text) !important;
+  background-color: var(--jt8-surface-soft) !important;
+  background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(240, 248, 243, 0.8)) !important;
+  box-shadow: 4px 5px 12px rgba(104, 125, 113, 0.08), -3px -3px 8px rgba(255, 255, 255, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.96) !important;
+  transition: color var(--jt8-motion), border-color var(--jt8-motion), background-color var(--jt8-motion), box-shadow var(--jt8-motion), filter var(--jt8-motion) !important;
+}
+
+.canvas-app-shell .t8-original-scope button:not(.danger):not(.destructive):hover:not(:disabled),
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] button:not([class*="bg-rose-500"]):hover:not(:disabled) {
+  border-color: rgba(35, 138, 88, 0.45) !important;
+  background-color: #f4fff8 !important;
+  box-shadow: 5px 7px 14px rgba(104, 125, 113, 0.11), -3px -3px 8px #fff, inset 0 1px 0 #fff !important;
+}
+
+.canvas-app-shell .t8-original-scope button:not(.danger):not(.destructive):active:not(:disabled),
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] button:not([class*="bg-rose-500"]):active:not(:disabled) {
+  background-color: var(--jt8-mint) !important;
+  box-shadow: var(--jt8-soft-shadow-pressed) !important;
+  transform: none !important;
+}
+
+.canvas-app-shell .t8-original-scope button:is(.active, .is-active, .selected, .is-selected, [aria-pressed="true"], [aria-selected="true"]):not(.t8-btn-primary),
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] button:is(.active, .is-active, .selected, .is-selected, [aria-pressed="true"], [aria-selected="true"]):not([class*="bg-rose-500"]) {
+  border-color: rgba(35, 138, 88, 0.42) !important;
+  color: #176d45 !important;
+  background-color: var(--jt8-mint) !important;
+  background-image: linear-gradient(145deg, #eafff2, #c8f0da) !important;
+  box-shadow: inset 1px 2px 5px rgba(35, 138, 88, 0.1), inset -1px -1px 3px rgba(255, 255, 255, 0.72) !important;
+}
+
+.canvas-app-shell.canvas-app-shell .t8-original-scope button.t8-btn.t8-btn-primary,
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] button[class*="bg-rose-500"] {
+  border-color: var(--jt8-blue) !important;
+  color: #fff !important;
+  background-color: var(--jt8-blue) !important;
+  background-image: linear-gradient(135deg, #2788f5, #1268d7) !important;
+  box-shadow: 0 6px 14px rgba(25, 118, 237, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.34) !important;
+}
+
+.canvas-app-shell.canvas-app-shell .t8-original-scope button.t8-btn.t8-btn-primary:hover:not(:disabled),
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] button[class*="bg-rose-500"]:hover:not(:disabled) {
+  border-color: var(--jt8-blue-dark) !important;
+  background-color: #176fdd !important;
+  background-image: linear-gradient(135deg, #3b97fa, #0f61cb) !important;
+  box-shadow: 0 8px 18px rgba(25, 118, 237, 0.27), inset 0 1px 0 rgba(255, 255, 255, 0.4) !important;
+}
+
+.canvas-app-shell .t8-original-scope button:disabled,
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] button:disabled {
+  color: #9aa79f !important;
+  background: #edf2ef !important;
+  box-shadow: inset 0 1px 2px rgba(104, 125, 113, 0.06) !important;
+  filter: saturate(0.45) !important;
+  opacity: 0.56 !important;
+}
+
+/* The context menu stays light and neutral in both app themes. */
+.canvas-app-shell.canvas-app-shell.canvas-app-shell.canvas-app-shell .canvas-context-menu {
+  border-color: #dce7e1 !important;
+  border-radius: 22px !important;
+  color: var(--jt8-text) !important;
+  background-color: rgba(255, 255, 255, 0.96) !important;
+  background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(247, 250, 248, 0.94)) !important;
+  box-shadow: 10px 14px 30px rgba(104, 125, 113, 0.12), -8px -8px 22px rgba(255, 255, 255, 0.96), inset 0 1px 0 #fff !important;
+}
+
+.canvas-app-shell.canvas-app-shell.canvas-app-shell.canvas-app-shell .canvas-context-menu button,
+.canvas-app-shell.canvas-app-shell.canvas-app-shell.canvas-app-shell .canvas-context-menu [role="menuitem"] {
+  border-color: #dce7e1 !important;
+  border-radius: 12px !important;
+  color: var(--jt8-text) !important;
+  background-color: rgba(251, 253, 252, 0.94) !important;
+  background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(242, 249, 245, 0.82)) !important;
+  box-shadow: 3px 4px 10px rgba(104, 125, 113, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+}
+
+.canvas-app-shell.canvas-app-shell.canvas-app-shell.canvas-app-shell .canvas-context-menu button:hover,
+.canvas-app-shell.canvas-app-shell.canvas-app-shell.canvas-app-shell .canvas-context-menu [role="menuitem"]:hover {
+  border-color: rgba(25, 118, 237, 0.32) !important;
+  background-color: #f2f8ff !important;
+  background-image: linear-gradient(145deg, #fff, #eef6ff) !important;
+  box-shadow: 4px 6px 12px rgba(83, 119, 154, 0.11), inset 0 1px 0 #fff !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .canvas-app-shell .t8-original-scope *,
+  .canvas-app-shell .react-flow__node[data-id^="t8:video"] * {
+    transition-duration: 1ms !important;
+    animation-duration: 1ms !important;
+  }
+}
+
+/*
+ * Full T8/Codex interior pass.
+ * This layer is intentionally presentation-only and excludes the AI-video workflow.
+ */
+:root {
+  --jt8-surface-inset: #eef3f0;
+  --jt8-surface-hover: #f7fbf9;
+  --jt8-blue-soft: #eef6ff;
+  --jt8-blue-ring: rgba(25, 118, 237, 0.16);
+  --jt8-mint-soft: #e8f8ef;
+  --jt8-danger: #b84d4d;
+  --jt8-danger-soft: #fff2f2;
+  --jt8-port-input: #59b883;
+  --jt8-port-output: #4e91e8;
+  --jt8-edge: #77a5d8;
+  --jt8-edge-selected: #2176d3;
+}
+
+.canvas-app-shell :where(.t8-original-scope, .react-flow__node[data-id^="t8:video"]) {
+  --t8-bg-base: var(--jt8-surface-soft);
+  --t8-bg-node: var(--jt8-surface);
+  --t8-bg-panel: var(--jt8-surface-soft);
+  --t8-bg-panel-elevated: var(--jt8-surface-muted);
+  --t8-bg-panel-muted: var(--jt8-surface-inset);
+  --t8-text-main: var(--jt8-text);
+  --t8-text-muted: var(--jt8-text-muted);
+  --t8-text-dim: var(--jt8-text-dim);
+  --t8-border: var(--jt8-border);
+  --t8-border-strong: var(--jt8-border-strong);
+  --t8-accent: var(--jt8-blue);
+  --t8-accent-strong: var(--jt8-blue-dark);
+  --t8-danger: var(--jt8-danger);
+  color-scheme: light;
+  font-family: Inter, "Microsoft YaHei", "PingFang SC", system-ui, sans-serif !important;
+  text-shadow: none !important;
+}
+
+/* Legacy dark utility surfaces become quiet, neutral tool surfaces. */
+.canvas-app-shell .t8-original-scope :is(div, section, article, aside, header, footer, fieldset, label, li, ul, table, thead, tbody, tr, td, th)[class*="bg-black"],
+.canvas-app-shell .t8-original-scope :is(div, section, article, aside, header, footer, fieldset, label, li, ul, table, thead, tbody, tr, td, th)[class*="bg-zinc-"],
+.canvas-app-shell .t8-original-scope :is(div, section, article, aside, header, footer, fieldset, label, li, ul, table, thead, tbody, tr, td, th)[class*="bg-slate-"],
+.canvas-app-shell .t8-original-scope :is(div, section, article, aside, header, footer, fieldset, label, li, ul, table, thead, tbody, tr, td, th)[class*="bg-neutral-"],
+.canvas-app-shell .t8-original-scope :is(div, section, article, aside, header, footer, fieldset, label, li, ul, table, thead, tbody, tr, td, th)[class*="bg-gray-"],
+.canvas-app-shell .t8-original-scope :is(div, section, article, aside, header, footer, fieldset, label, li, ul, table, thead, tbody, tr, td, th)[class*="bg-white/"],
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] :is(div, section, article, aside, header, footer, fieldset, label, li)[class*="bg-black"],
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] :is(div, section, article, aside, header, footer, fieldset, label, li)[class*="bg-zinc-"] {
+  border-color: var(--jt8-border) !important;
+  color: var(--jt8-text) !important;
+  background-color: var(--jt8-surface-muted) !important;
+  background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(239, 245, 242, 0.82)) !important;
+  text-shadow: none !important;
+}
+
+.canvas-app-shell .t8-original-scope :is([class*="border-white/"], [class*="border-zinc-"], [class*="border-slate-"], [class*="border-gray-"]),
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] :is([class*="border-white/"], [class*="border-zinc-"], [class*="border-slate-"]) {
+  border-color: var(--jt8-border) !important;
+}
+
+.canvas-app-shell .t8-original-scope :is([class*="text-white"], [class*="text-zinc-"], [class*="text-slate-"], [class*="text-neutral-"], [class*="text-gray-"]),
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] :is([class*="text-white"], [class*="text-zinc-"], [class*="text-slate-"]) {
+  color: var(--jt8-text-muted) !important;
+  text-shadow: none !important;
+}
+
+.canvas-app-shell .t8-original-scope :is(h1, h2, h3, h4, h5, h6, strong, legend, .font-black, .font-extrabold, .font-bold),
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] :is(h1, h2, h3, h4, h5, h6, strong, legend, .font-black, .font-extrabold, .font-bold) {
+  color: var(--jt8-text) !important;
+  letter-spacing: 0 !important;
+  text-shadow: none !important;
+}
+
+/* Stable internal sections across core, utility, toolbox, 3D and Codex nodes. */
+.canvas-app-shell .t8-original-scope :is(
+  .t8-node-header,
+  .t8-card,
+  .t8-advanced-panel,
+  .t8-codex-card,
+  .t8-codex-status-card,
+  .t8-material-grid,
+  .t8-grid-settings-panel,
+  .t8-grid-output-panel,
+  .t8-generation-history-panel,
+  .t8-generation-history-item,
+  .t8-generation-target-preview,
+  fieldset,
+  details,
+  [data-director-reference-pool],
+  [data-video-edit-workbench],
+  [data-video-edit-node-theme-surface],
+  [data-video-edit-preview-body],
+  [data-video-edit-inspector],
+  [data-video-edit-node-timeline-card],
+  [data-video-edit-timeline-card],
+  [data-video-edit-track-lane],
+  [data-video-edit-selected-item-inspector],
+  [data-video-edit-workbench-capability-dock],
+  [data-codex-imagegen-param-bar]
+) {
+  border-color: var(--jt8-border) !important;
+  color: var(--jt8-text) !important;
+  background-color: var(--jt8-surface-soft) !important;
+  background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(243, 248, 245, 0.82)) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.98), 0 4px 12px rgba(90, 110, 99, 0.055) !important;
+  text-shadow: none !important;
+}
+
+/* Codex image workbench uses a data root instead of the shared node class. */
+.canvas-app-shell .t8-original-scope [data-codex-image-conjure-root] {
+  border: 1px solid var(--jt8-border) !important;
+  border-radius: var(--jt8-radius-card) !important;
+  color: var(--jt8-text) !important;
+  background-color: var(--jt8-surface) !important;
+  background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(247, 251, 249, 0.84)) !important;
+  box-shadow: var(--jt8-soft-shadow) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(1.02);
+  backdrop-filter: blur(12px) saturate(1.02);
+}
+
+.canvas-app-shell .t8-original-scope [data-codex-image-conjure-root] :is(header, section, [data-codex-image-conjure-body] > div) {
+  border-color: var(--jt8-border) !important;
+  color: var(--jt8-text) !important;
+  background-color: var(--jt8-surface-soft) !important;
+  background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(243, 248, 245, 0.82)) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.96), 0 4px 12px rgba(90, 110, 99, 0.055) !important;
+}
+
+.canvas-app-shell .t8-original-scope [data-codex-image-conjure-root] header > div:first-child {
+  border: 1px solid rgba(25, 118, 237, 0.28) !important;
+  color: #fff !important;
+  background-color: var(--jt8-blue) !important;
+  background-image: linear-gradient(135deg, #2788f5, #1268d7) !important;
+  box-shadow: 0 5px 12px rgba(25, 118, 237, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.34) !important;
+}
+
+.canvas-app-shell .t8-original-scope [data-codex-image-conjure-root] :is([data-codex-image-conjure-body], [data-codex-imagegen-param-bar]) {
+  color: var(--jt8-text) !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+.canvas-app-shell .t8-original-scope :is(
+  .t8-original-portal,
+  [data-codex-skill-picker-portal],
+  [data-video-edit-timeline-context-menu],
+  [data-video-edit-shortcuts-panel]
+) {
+  border-color: var(--jt8-border) !important;
+  color: var(--jt8-text) !important;
+  background-color: rgba(255, 255, 255, 0.98) !important;
+  background-image: linear-gradient(145deg, #fff, #f6faf8) !important;
+  box-shadow: 0 18px 44px rgba(67, 85, 75, 0.16), inset 0 1px 0 #fff !important;
+  -webkit-backdrop-filter: blur(18px) saturate(1.04);
+  backdrop-filter: blur(18px) saturate(1.04);
+}
+
+/* Inputs, selects, textareas, editable prompt fields and inline search. */
+.canvas-app-shell .t8-original-scope :is(input, select, textarea, [contenteditable="true"]):not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] :is(input, select, textarea, [contenteditable="true"]):not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  border: 1px solid var(--jt8-border) !important;
+  color: var(--jt8-text) !important;
+  caret-color: var(--jt8-blue) !important;
+  background-color: var(--jt8-surface-inset) !important;
+  background-image: linear-gradient(145deg, #f7faf8, #edf2ef) !important;
+  box-shadow: inset 1px 2px 5px rgba(86, 106, 95, 0.09), inset -1px -1px 3px rgba(255, 255, 255, 0.9) !important;
+  text-shadow: none !important;
+}
+
+.canvas-app-shell .t8-original-scope :is(input, textarea, [contenteditable="true"])::placeholder,
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] :is(input, textarea, [contenteditable="true"])::placeholder {
+  color: #929f98 !important;
+  opacity: 1 !important;
+}
+
+.canvas-app-shell .t8-original-scope :is(input, select, textarea, [contenteditable="true"]):focus,
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] :is(input, select, textarea, [contenteditable="true"]):focus {
+  border-color: rgba(25, 118, 237, 0.52) !important;
+  background-color: #fff !important;
+  background-image: none !important;
+  box-shadow: 0 0 0 3px var(--jt8-blue-ring), inset 0 1px 0 #fff !important;
+  outline: none !important;
+}
+
+.canvas-app-shell .t8-original-scope :is(input, select, textarea):disabled,
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] :is(input, select, textarea):disabled {
+  border-color: #e1e8e4 !important;
+  color: #99a59e !important;
+  background: #edf2ef !important;
+  box-shadow: inset 0 1px 2px rgba(86, 106, 95, 0.06) !important;
+  opacity: 0.64 !important;
+}
+
+.canvas-app-shell .t8-original-scope :is(input[type="checkbox"], input[type="radio"]),
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] :is(input[type="checkbox"], input[type="radio"]) {
+  accent-color: var(--jt8-mint-strong) !important;
+  filter: drop-shadow(0 1px 1px rgba(78, 102, 89, 0.12));
+}
+
+.canvas-app-shell .t8-original-scope :is(input[type="range"], progress),
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] :is(input[type="range"], progress) {
+  accent-color: var(--jt8-blue) !important;
+  filter: saturate(0.84);
+}
+
+.canvas-app-shell .t8-original-scope progress::-webkit-progress-bar {
+  border-radius: 999px;
+  background: var(--jt8-surface-inset) !important;
+  box-shadow: inset 1px 1px 3px rgba(86, 106, 95, 0.12);
+}
+
+.canvas-app-shell .t8-original-scope progress::-webkit-progress-value {
+  border-radius: 999px;
+  background: linear-gradient(90deg, #8fd8ad, #53b97e) !important;
+}
+
+/* Upload/drop/reference zones keep their dimensions but gain the reference soft-card material. */
+.canvas-app-shell .t8-original-scope :is(
+  [class*="upload"],
+  [class*="dropzone"],
+  [class*="drop-zone"],
+  [data-drop-kinds],
+  [data-grid-editor-stage],
+  [data-director-reference-pool]
+),
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] :is([class*="upload"], [class*="dropzone"], [class*="drop-zone"], [data-drop-kinds]) {
+  border-color: rgba(156, 179, 166, 0.76) !important;
+  color: var(--jt8-text-muted) !important;
+  background-color: var(--jt8-surface-soft) !important;
+  background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(238, 245, 241, 0.78)) !important;
+  box-shadow: inset 0 1px 0 #fff, inset 0 0 0 1px rgba(255, 255, 255, 0.34) !important;
+}
+
+.canvas-app-shell .t8-original-scope :is([class*="upload"], [class*="dropzone"], [class*="drop-zone"], [data-drop-kinds]):hover {
+  border-color: rgba(35, 138, 88, 0.48) !important;
+  background-color: #f6fff9 !important;
+  background-image: linear-gradient(145deg, #fff, #edf9f2) !important;
+}
+
+/* Buttons: neutral secondary, mint selected, blue primary, restrained destructive. */
+.canvas-app-shell .t8-original-scope button:not(.danger):not(.destructive):not([data-variant="danger"]),
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] button:not(.danger):not(.destructive):not([data-variant="danger"]) {
+  border-color: var(--jt8-border) !important;
+  color: var(--jt8-text) !important;
+  background-color: var(--jt8-surface-soft) !important;
+  background-image: linear-gradient(145deg, #fff, #f0f5f2) !important;
+  box-shadow: 3px 5px 11px rgba(83, 104, 92, 0.09), -2px -2px 6px rgba(255, 255, 255, 0.92), inset 0 1px 0 #fff !important;
+  text-shadow: none !important;
+}
+
+.canvas-app-shell .t8-original-scope button:hover:not(:disabled):not(.danger):not(.destructive):not([data-variant="danger"]),
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] button:hover:not(:disabled):not(.danger):not(.destructive):not([data-variant="danger"]) {
+  border-color: rgba(35, 138, 88, 0.4) !important;
+  color: #176b45 !important;
+  background-color: var(--jt8-surface-hover) !important;
+  background-image: linear-gradient(145deg, #fff, #edf8f2) !important;
+  box-shadow: 5px 7px 14px rgba(83, 104, 92, 0.12), -2px -2px 7px #fff, inset 0 1px 0 #fff !important;
+  filter: brightness(1.015) !important;
+}
+
+.canvas-app-shell .t8-original-scope button:is(.active, .is-active, .selected, .is-selected, [aria-pressed="true"], [aria-selected="true"], [data-enabled="true"]):not(.t8-btn-primary),
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] button:is(.active, .is-active, .selected, .is-selected, [aria-pressed="true"], [aria-selected="true"], [data-enabled="true"]) {
+  border-color: rgba(35, 138, 88, 0.4) !important;
+  color: #176b45 !important;
+  background-color: var(--jt8-mint-soft) !important;
+  background-image: linear-gradient(145deg, #f7fff9, #dff4e8) !important;
+  box-shadow: inset 1px 2px 5px rgba(35, 138, 88, 0.11), inset -1px -1px 3px #fff !important;
+}
+
+.canvas-app-shell .t8-original-scope button:is(
+  .t8-btn-primary,
+  [class*="bg-blue-"],
+  [class*="bg-sky-"],
+  [class*="bg-cyan-"],
+  [class*="bg-emerald-"],
+  [class*="bg-green-"]
+),
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] button:is([class*="bg-rose-500"], [class*="bg-blue-"], [class*="bg-sky-"]) {
+  border-color: var(--jt8-blue) !important;
+  color: #fff !important;
+  background-color: var(--jt8-blue) !important;
+  background-image: linear-gradient(135deg, #2d8cf5, #1468d2) !important;
+  box-shadow: 0 6px 14px rgba(25, 118, 237, 0.21), inset 0 1px 0 rgba(255, 255, 255, 0.38) !important;
+}
+
+.canvas-app-shell .t8-original-scope button:is(.danger, .destructive, [data-variant="danger"], [class*="bg-red-"], [class*="bg-rose-"]):not(.t8-btn-primary),
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] button:is(.danger, .destructive, [data-variant="danger"], [class*="bg-red-"]) {
+  border-color: rgba(184, 77, 77, 0.28) !important;
+  color: var(--jt8-danger) !important;
+  background-color: var(--jt8-danger-soft) !important;
+  background-image: linear-gradient(145deg, #fffafa, #ffecec) !important;
+  box-shadow: 3px 5px 11px rgba(128, 65, 65, 0.08), inset 0 1px 0 #fff !important;
+}
+
+.canvas-app-shell .t8-original-scope button:focus-visible,
+.canvas-app-shell .t8-original-scope a:focus-visible,
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] :is(button, a):focus-visible {
+  outline: 2px solid var(--jt8-blue-ring) !important;
+  outline-offset: 2px !important;
+}
+
+.canvas-app-shell .t8-original-scope :is(a, [role="link"]),
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] :is(a, [role="link"]) {
+  color: var(--jt8-blue-dark) !important;
+  text-decoration-color: rgba(15, 97, 203, 0.28) !important;
+  text-underline-offset: 2px;
+}
+
+/* Retire legacy T8 decorative purple/orange/amber fills on passive surfaces. */
+.canvas-app-shell .t8-original-scope :is(div, section, article, aside, header, footer, fieldset, label, li, span)[class*="bg-violet-"],
+.canvas-app-shell .t8-original-scope :is(div, section, article, aside, header, footer, fieldset, label, li, span)[class*="bg-purple-"],
+.canvas-app-shell .t8-original-scope :is(div, section, article, aside, header, footer, fieldset, label, li, span)[class*="bg-fuchsia-"],
+.canvas-app-shell .t8-original-scope :is(div, section, article, aside, header, footer, fieldset, label, li, span)[class*="bg-orange-"],
+.canvas-app-shell .t8-original-scope :is(div, section, article, aside, header, footer, fieldset, label, li, span)[class*="bg-amber-"],
+.canvas-app-shell .t8-original-scope :is(div, section, article, aside, header, footer, fieldset, label, li, span)[class*="bg-yellow-"] {
+  border-color: var(--jt8-border) !important;
+  color: var(--jt8-text-muted) !important;
+  background-color: var(--jt8-surface-muted) !important;
+  background-image: linear-gradient(145deg, #fff, #eff5f2) !important;
+  box-shadow: inset 0 1px 0 #fff !important;
+}
+
+.canvas-app-shell .t8-original-scope :is([class*="text-violet-"], [class*="text-purple-"], [class*="text-fuchsia-"], [class*="text-orange-"], [class*="text-amber-"], [class*="text-yellow-"]) {
+  color: var(--jt8-text-muted) !important;
+  text-shadow: none !important;
+}
+
+.canvas-app-shell .t8-original-scope :is([class*="border-violet-"], [class*="border-purple-"], [class*="border-fuchsia-"], [class*="border-orange-"], [class*="border-amber-"], [class*="border-yellow-"]) {
+  border-color: var(--jt8-border) !important;
+}
+
+.canvas-app-shell .t8-original-scope :is(hr, table, th, td),
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] :is(hr, table, th, td) {
+  border-color: var(--jt8-border) !important;
+}
+
+.canvas-app-shell .t8-original-scope :is([class*="rounded-full"], [class*="rounded-[999"]):not(button):not(.react-flow__handle) {
+  border-color: var(--jt8-border) !important;
+  color: var(--jt8-text-muted) !important;
+  background-color: var(--jt8-surface-muted) !important;
+  text-shadow: none !important;
+}
+
+/* Preserve intentional black letterboxing only for media/viewer elements. */
+.canvas-app-shell .t8-original-scope :is(video, canvas, .t8-media-preview, [data-video-edit-preview-screen]),
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] :is(video, canvas) {
+  background-color: #202622 !important;
+  background-image: none !important;
+}
+
+/* T8/Codex handles: green input, blue output, clear white glass ring. */
+.canvas-app-shell .t8-original-scope .react-flow__handle,
+.canvas-app-shell .react-flow__node[data-id^="t8:"] .react-flow__handle,
+.canvas-app-shell .react-flow__node[data-id*="codex"] .react-flow__handle {
+  border: 2px solid rgba(255, 255, 255, 0.98) !important;
+  background-color: var(--jt8-port-output) !important;
+  background-image: linear-gradient(145deg, #73b0f5, #337dcc) !important;
+  box-shadow: 0 0 0 1px rgba(63, 101, 82, 0.24), 0 3px 8px rgba(48, 81, 63, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.58) !important;
+  transition: filter var(--jt8-motion), box-shadow var(--jt8-motion), background-color var(--jt8-motion) !important;
+}
+
+.canvas-app-shell .t8-original-scope :is(.react-flow__handle-left, .react-flow__handle.target),
+.canvas-app-shell .react-flow__node[data-id^="t8:"] :is(.react-flow__handle-left, .react-flow__handle.target),
+.canvas-app-shell .react-flow__node[data-id*="codex"] :is(.react-flow__handle-left, .react-flow__handle.target) {
+  background-color: var(--jt8-port-input) !important;
+  background-image: linear-gradient(145deg, #82d2a6, #3da46b) !important;
+}
+
+.canvas-app-shell .t8-original-scope .react-flow__handle:hover,
+.canvas-app-shell .react-flow__node[data-id^="t8:"] .react-flow__handle:hover,
+.canvas-app-shell .react-flow__node[data-id*="codex"] .react-flow__handle:hover {
+  filter: brightness(1.08) saturate(1.05) !important;
+  box-shadow: 0 0 0 4px rgba(25, 118, 237, 0.13), 0 4px 10px rgba(48, 81, 63, 0.2), inset 0 1px 0 #fff !important;
+}
+
+.canvas-app-shell .t8-original-scope .react-flow__handle:is(.connectingfrom, .connectingto, .valid),
+.canvas-app-shell .react-flow__node[data-id^="t8:"] .react-flow__handle:is(.connectingfrom, .connectingto, .valid),
+.canvas-app-shell .react-flow__node[data-id*="codex"] .react-flow__handle:is(.connectingfrom, .connectingto, .valid) {
+  box-shadow: 0 0 0 4px rgba(35, 138, 88, 0.16), 0 4px 10px rgba(35, 138, 88, 0.2), inset 0 1px 0 #fff !important;
+}
+
+.canvas-app-shell .react-flow__resize-control {
+  border: 1px solid rgba(61, 94, 73, 0.24) !important;
+  background: rgba(255, 255, 255, 0.92) !important;
+  box-shadow: 0 1px 5px rgba(46, 78, 58, 0.14) !important;
+}
+
+.canvas-app-shell .react-flow__resize-control.handle {
+  width: 9px !important;
+  height: 9px !important;
+  border-radius: 999px !important;
+}
+
+.canvas-app-shell .react-flow__resize-control.line {
+  background: rgba(80, 116, 94, 0.22) !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Only edges whose IDs include T8/Codex nodes are changed; AI-video edges remain untouched. */
+.canvas-app-shell .react-flow__edge[data-id*="t8:"] .react-flow__edge-path,
+.canvas-app-shell .react-flow__edge[data-testid*="t8:"] .react-flow__edge-path,
+.canvas-app-shell .react-flow__edge[data-id*="codex"] .react-flow__edge-path,
+.canvas-app-shell .react-flow__edge[data-testid*="codex"] .react-flow__edge-path {
+  stroke: var(--jt8-edge) !important;
+  stroke-width: 2 !important;
+  filter: drop-shadow(0 1px 1px rgba(74, 112, 91, 0.16));
+  transition: stroke var(--jt8-motion), filter var(--jt8-motion) !important;
+}
+
+.canvas-app-shell .react-flow__edge.selected[data-id*="t8:"] .react-flow__edge-path,
+.canvas-app-shell .react-flow__edge.selected[data-id*="codex"] .react-flow__edge-path,
+.canvas-app-shell .react-flow__edge[data-id*="t8:"]:hover .react-flow__edge-path,
+.canvas-app-shell .react-flow__edge[data-id*="codex"]:hover .react-flow__edge-path {
+  stroke: var(--jt8-edge-selected) !important;
+  stroke-width: 2.5 !important;
+  filter: drop-shadow(0 2px 3px rgba(33, 118, 211, 0.22));
+}
+
+.canvas-app-shell .t8-original-scope ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.canvas-app-shell .t8-original-scope ::-webkit-scrollbar-track {
+  border-radius: 999px;
+  background: rgba(226, 234, 229, 0.7);
+}
+
+.canvas-app-shell .t8-original-scope ::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background: rgba(117, 142, 128, 0.45);
+  background-clip: padding-box;
+}
+
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .canvas-app-shell .t8-original-scope :is(.t8-node, .t8-card, .t8-original-portal),
+  .canvas-app-shell .react-flow__node[data-id^="t8:video"] > :first-child {
+    background-color: #fff !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .canvas-app-shell .t8-original-scope *,
+  .canvas-app-shell .react-flow__node[data-id^="t8:"] *,
+  .canvas-app-shell .react-flow__edge[data-id*="t8:"] .react-flow__edge-path,
+  .canvas-app-shell .react-flow__edge[data-id*="codex"] .react-flow__edge-path {
+    transition-duration: 1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* Final coverage for T8/Codex roots that use the compact utility-node markup. */
+.canvas-app-shell .t8-original-scope {
+  --px-surface: var(--jt8-surface);
+  --px-ink: var(--jt8-text);
+  --px-ink-soft: var(--jt8-text-muted);
+  --px-muted: var(--jt8-surface-muted);
+  --px-peach: var(--jt8-mint-soft);
+  --px-cyan: #e7f5ee;
+  --px-yellow: #eef8f2;
+}
+
+.canvas-app-shell .t8-original-scope > :first-child {
+  border: 1px solid var(--jt8-border) !important;
+  border-radius: var(--jt8-radius-card) !important;
+  color: var(--jt8-text) !important;
+  background-color: var(--jt8-surface) !important;
+  background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(247, 251, 249, 0.84)) !important;
+  box-shadow: var(--jt8-soft-shadow) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(1.02);
+  backdrop-filter: blur(12px) saturate(1.02);
+}
+
+.canvas-app-shell .t8-original-scope > :first-child:hover {
+  border-color: var(--jt8-border-strong) !important;
+  box-shadow: var(--jt8-soft-shadow-hover) !important;
+}
+
+.canvas-app-shell .react-flow__node.selected .t8-original-scope > :first-child {
+  border-color: rgba(25, 118, 237, 0.5) !important;
+  box-shadow: 0 0 0 2px rgba(25, 118, 237, 0.12), var(--jt8-soft-shadow-hover) !important;
+}
+
+/* Video-edit keeps its header as a first-class workbench band. */
+.canvas-app-shell .t8-original-scope [data-video-edit-node-theme-surface] > header {
+  border-bottom: 1px solid var(--jt8-border) !important;
+  border-radius: var(--jt8-radius-inner) var(--jt8-radius-inner) 0 0 !important;
+  color: var(--jt8-text) !important;
+  background-color: var(--jt8-surface-soft) !important;
+  background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(241, 248, 244, 0.88)) !important;
+  box-shadow: inset 0 1px 0 #fff, 0 3px 10px rgba(90, 110, 99, 0.06) !important;
+}
+
+/* Keep the three compact output controls legible at the existing fixed grid width. */
+.canvas-app-shell .t8-original-scope [data-video-edit-option-list="presets"] .grid-cols-3 > :is(select, input) {
+  min-width: 0 !important;
+  width: 100% !important;
+  min-height: 28px !important;
+  padding: 0 18px 0 4px !important;
+  font-size: 10px !important;
+  line-height: 1.1 !important;
+  letter-spacing: 0 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.canvas-app-shell .t8-original-scope [data-video-edit-option-list="presets"] .grid-cols-3 > input {
+  padding-right: 4px !important;
+}
+
+/* Neutralize the compact legacy black/peach surfaces without changing their geometry. */
+.canvas-app-shell .t8-original-scope :is(
+  [style*="--px-peach"],
+  [style*="--px-cyan"],
+  [style*="--px-yellow"],
+  .t8-material-preview-header,
+  .t8-material-preview-count
+) {
+  border-color: var(--jt8-border) !important;
+  color: var(--jt8-text-muted) !important;
+  background-color: var(--jt8-mint-soft) !important;
+  background-image: linear-gradient(145deg, #f7fff9, #e1f4e9) !important;
+  box-shadow: inset 0 1px 0 #fff, 0 2px 6px rgba(90, 110, 99, 0.06) !important;
+}
+
+.canvas-app-shell .t8-original-scope :is(
+  [class~="border"],
+  [class*="border-black"],
+  [class*="border-zinc"],
+  [class*="border-slate"],
+  [class*="border-neutral-900"]
+):not(button):not(.react-flow__handle) {
+  border-color: var(--jt8-border) !important;
+}
+
+/* Compact nodes also carry their borders and shadows in --px-* inline styles. */
+.canvas-app-shell .t8-original-scope :is(
+  [style*="--px-ink"],
+  [style*="--px-muted"],
+  [style*="--px-surface"],
+  [style*="--px-ink-soft"]
+):not(.react-flow__handle) {
+  border-color: var(--jt8-border) !important;
+  border-radius: var(--jt8-radius-inner) !important;
+  box-shadow: inset 0 1px 0 #fff, 0 3px 9px rgba(90, 110, 99, 0.055) !important;
+}
+
+.canvas-app-shell .t8-original-scope :is(
+  [style*="--px-muted"],
+  [style*="--px-peach"]
+):not(.react-flow__handle) {
+  background-color: var(--jt8-surface-muted) !important;
+  background-image: linear-gradient(145deg, #f8fcfa, #eaf3ee) !important;
+}
+
+.canvas-app-shell .t8-original-scope:is(
+  [data-t8-original-node="frame-pair"],
+  [data-t8-original-node="loop"],
+  [data-t8-original-node="pick-from-set"],
+  [data-t8-original-node="face-expression-3d"]
+) > :first-child {
+  border: 1px solid var(--jt8-border) !important;
+  border-radius: var(--jt8-radius-card) !important;
+  background-color: var(--jt8-surface) !important;
+  background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(247, 251, 249, 0.84)) !important;
+  box-shadow: var(--jt8-soft-shadow) !important;
+}
+
+.canvas-app-shell .t8-original-scope:is(
+  [data-t8-original-node="frame-pair"],
+  [data-t8-original-node="loop"],
+  [data-t8-original-node="pick-from-set"]
+) :is([style*="--px-peach"], [style*="background: var(--px-peach"]) {
+  border-color: var(--jt8-border) !important;
+  background-color: var(--jt8-mint-soft) !important;
+  background-image: linear-gradient(145deg, #f7fff9, #e1f4e9) !important;
+  box-shadow: inset 0 1px 0 #fff, 0 2px 6px rgba(90, 110, 99, 0.06) !important;
+}
+
+/* The outer card always keeps the larger node radius after inline-style cleanup. */
+.canvas-app-shell .t8-original-scope > :first-child {
+  border-radius: var(--jt8-radius-card) !important;
+  box-shadow: var(--jt8-soft-shadow) !important;
+}
+
+.canvas-app-shell .react-flow__node.selected .t8-original-scope > :first-child {
+  box-shadow: 0 0 0 2px rgba(25, 118, 237, 0.12), var(--jt8-soft-shadow-hover) !important;
+}
+
+.canvas-app-shell.canvas-app-shell .t8-original-scope > [data-codex-cli-agent-root],
+.canvas-app-shell.canvas-app-shell .t8-original-scope > [data-codex-image-conjure-root] {
+  border-radius: var(--jt8-radius-card) !important;
+  box-shadow: var(--jt8-soft-shadow) !important;
+}
+/* Jiaren media-node and chat-panel polish. Presentation only. */
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] > .relative.rounded-xl.border-2,
+.canvas-app-shell .react-flow__node[data-id^="t8:audio"] > .relative.rounded-xl.border-2 {
+  overflow: visible !important;
+  border: 1px solid #d7e5dd !important;
+  border-radius: 16px !important;
+  color: #1c3025 !important;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(247, 252, 249, 0.95)) !important;
+  box-shadow: 0 12px 30px rgba(47, 88, 66, 0.1), inset 0 1px 0 #fff !important;
+}
+
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] > .relative.rounded-xl.border-2 {
+  width: 360px !important;
+}
+
+.canvas-app-shell .react-flow__node[data-id^="t8:audio"] > .relative.rounded-xl.border-2 {
+  width: 380px !important;
+}
+
+.canvas-app-shell :is(.react-flow__node[data-id^="t8:video"], .react-flow__node[data-id^="t8:audio"]) > .relative.rounded-xl.border-2 > :is(.flex.items-center.border-b, .flex.items-center.gap-2) {
+  min-height: 50px !important;
+  padding: 9px 12px !important;
+  border-color: rgba(190, 215, 202, 0.72) !important;
+  border-radius: 15px 15px 0 0 !important;
+  background: rgba(251, 254, 252, 0.92) !important;
+}
+
+.canvas-app-shell :is(.react-flow__node[data-id^="t8:video"], .react-flow__node[data-id^="t8:audio"]) > .relative.rounded-xl.border-2 > :is(.p-2\.5, .p-2) {
+  display: grid !important;
+  gap: 10px !important;
+  padding: 12px !important;
+}
+
+.canvas-app-shell :is(.react-flow__node[data-id^="t8:video"], .react-flow__node[data-id^="t8:audio"]) [class*="text-white"] {
+  color: #64776c !important;
+}
+
+.canvas-app-shell :is(.react-flow__node[data-id^="t8:video"], .react-flow__node[data-id^="t8:audio"]) :is(.text-white, .font-semibold, strong) {
+  color: #1b3125 !important;
+}
+
+.canvas-app-shell :is(.react-flow__node[data-id^="t8:video"], .react-flow__node[data-id^="t8:audio"]) :is([class*="bg-black"], [class*="bg-zinc"], [class*="bg-white/5"], [class*="bg-white/10"]) {
+  border-color: #dbe8e1 !important;
+  color: #4e6659 !important;
+  background: linear-gradient(145deg, #f9fcfa, #eff6f2) !important;
+  box-shadow: inset 0 1px 0 #fff !important;
+}
+
+.canvas-app-shell :is(.react-flow__node[data-id^="t8:video"], .react-flow__node[data-id^="t8:audio"]) :is(input, select, textarea) {
+  border: 1px solid #d6e4dc !important;
+  border-radius: 10px !important;
+  color: #1d3327 !important;
+  background: #f5f9f7 !important;
+  box-shadow: inset 0 1px 2px rgba(55, 92, 73, 0.05) !important;
+}
+
+.canvas-app-shell :is(.react-flow__node[data-id^="t8:video"], .react-flow__node[data-id^="t8:audio"]) :is(input, select, textarea):focus {
+  border-color: rgba(36, 174, 108, 0.62) !important;
+  outline: none !important;
+  background: #fff !important;
+  box-shadow: 0 0 0 3px rgba(36, 174, 108, 0.1) !important;
+}
+
+.canvas-app-shell :is(.react-flow__node[data-id^="t8:video"], .react-flow__node[data-id^="t8:audio"]) option {
+  color: #1d3327 !important;
+  background: #fff !important;
+}
+
+.canvas-app-shell :is(.react-flow__node[data-id^="t8:video"], .react-flow__node[data-id^="t8:audio"]) button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  min-height: 30px;
+  border: 1px solid #d5e3db !important;
+  border-radius: 9px !important;
+  color: #526b5d !important;
+  background: linear-gradient(145deg, #fff, #f0f6f3) !important;
+  box-shadow: 0 3px 9px rgba(45, 84, 63, 0.06), inset 0 1px 0 #fff !important;
+}
+
+.canvas-app-shell :is(.react-flow__node[data-id^="t8:video"], .react-flow__node[data-id^="t8:audio"]) button:hover:not(:disabled) {
+  border-color: rgba(36, 174, 108, 0.4) !important;
+  color: #167d4c !important;
+  background: #eef9f3 !important;
+}
+
+.canvas-app-shell :is(.react-flow__node[data-id^="t8:video"], .react-flow__node[data-id^="t8:audio"]) button:is([class*="rose"], [class*="violet"], [class*="emerald"], [class*="cyan"]) {
+  border-color: rgba(36, 174, 108, 0.34) !important;
+  color: #126c43 !important;
+  background: linear-gradient(145deg, #dff6e9, #cbeedb) !important;
+  box-shadow: 0 6px 14px rgba(36, 174, 108, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.84) !important;
+}
+
+.canvas-app-shell :is(.react-flow__node[data-id^="t8:video"], .react-flow__node[data-id^="t8:audio"]) :is(video, audio) {
+  width: 100% !important;
+  overflow: hidden;
+  border: 1px solid #d6e4dc;
+  border-radius: 12px;
+  background: #edf4f0;
+}
+
+.canvas-app-shell .react-flow__node[data-id^="t8:video"] video {
+  aspect-ratio: 16 / 9;
+  min-height: 164px;
+  object-fit: contain;
+  background: #e9f0ec !important;
+}
+
+.canvas-app-shell .react-flow__node[data-id^="t8:audio"] audio {
+  height: 38px !important;
+}
+
+.canvas-app-shell :is(.react-flow__node[data-id^="t8:video"], .react-flow__node[data-id^="t8:audio"]) .react-flow__handle {
+  width: 10px !important;
+  height: 10px !important;
+  border: 2px solid #fff !important;
+  background: #28a96b !important;
+  box-shadow: 0 0 0 1px rgba(26, 127, 78, 0.32), 0 2px 6px rgba(24, 100, 63, 0.18) !important;
+}
+
+.agent-panel {
+  position: fixed !important;
+  z-index: 420 !important;
+  top: 66px !important;
+  right: 18px !important;
+  bottom: 24px !important;
+  display: grid !important;
+  grid-template-rows: 58px 46px minmax(0, 1fr) auto !important;
+  width: min(460px, calc(100vw - 36px)) !important;
+  max-height: none !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(182, 213, 197, 0.78) !important;
+  border-radius: 18px !important;
+  color: #1c3025 !important;
+  background: linear-gradient(180deg, rgba(235, 250, 242, 0.98), rgba(250, 253, 251, 0.98) 34%, #f8fbf9 100%) !important;
+  box-shadow: 0 22px 64px rgba(38, 78, 56, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.92) !important;
+  backdrop-filter: blur(20px) saturate(1.04) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(1.04) !important;
+}
+
+.agent-panel-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 0 14px 0 18px !important;
+  border-bottom: 1px solid rgba(190, 217, 203, 0.66) !important;
+  background: rgba(255, 255, 255, 0.54) !important;
+}
+
+.agent-panel-header > div {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: #176f47;
+}
+
+.agent-panel-header strong {
+  color: #172d21;
+  font-size: 15px;
+}
+
+.agent-panel-header > button,
+.agent-input-bar > button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex: 0 0 auto !important;
+  padding: 0 !important;
+  border: 1px solid rgba(182, 211, 196, 0.74) !important;
+  color: #526d5e !important;
+  background: rgba(255, 255, 255, 0.72) !important;
+}
+
+.agent-panel-header > button {
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 9px !important;
+  font-size: 20px !important;
+  line-height: 1 !important;
+}
+
+.agent-toolbar {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto auto !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 8px 14px !important;
+  border-bottom: 1px solid rgba(196, 221, 208, 0.58) !important;
+  background: rgba(250, 253, 251, 0.76) !important;
+}
+
+.agent-toolbar :is(select, button) {
+  height: 30px !important;
+  min-width: 0 !important;
+  border: 1px solid #d3e3da !important;
+  border-radius: 9px !important;
+  color: #405b4c !important;
+  background: rgba(255, 255, 255, 0.8) !important;
+}
+
+.agent-toolbar button.active,
+.agent-toolbar .agent-workflow-button {
+  color: #116e42 !important;
+  border-color: rgba(36, 174, 108, 0.34) !important;
+  background: #def5e8 !important;
+}
+
+.agent-messages {
+  min-height: 0 !important;
+  overflow-y: auto !important;
+  padding: 18px 16px 24px !important;
+  background: transparent !important;
+}
+
+.agent-message {
+  display: grid !important;
+  grid-template-columns: 30px minmax(0, 1fr) !important;
+  align-items: start !important;
+  gap: 9px !important;
+  margin-bottom: 14px !important;
+}
+
+.agent-message.user {
+  grid-template-columns: minmax(0, 1fr) 30px !important;
+}
+
+.agent-message.user .agent-avatar {
+  grid-column: 2;
+}
+
+.agent-message.user .agent-bubble {
+  grid-row: 1;
+  grid-column: 1;
+  justify-self: end;
+}
+
+.agent-avatar {
+  display: grid !important;
+  place-items: center !important;
+  width: 30px !important;
+  height: 30px !important;
+  border: 1px solid rgba(36, 174, 108, 0.24) !important;
+  border-radius: 10px !important;
+  color: #177a4c !important;
+  background: linear-gradient(145deg, #e4f8ec, #ccefdc) !important;
+}
+
+.agent-bubble {
+  max-width: 92% !important;
+  padding: 12px 14px !important;
+  border: 1px solid rgba(199, 220, 209, 0.76) !important;
+  border-radius: 14px !important;
+  color: #293d32 !important;
+  background: rgba(255, 255, 255, 0.88) !important;
+  box-shadow: 0 7px 20px rgba(57, 90, 71, 0.07) !important;
+  font-size: 13px !important;
+  line-height: 1.7 !important;
+  white-space: pre-wrap !important;
+}
+
+.agent-message.user .agent-bubble {
+  border-color: rgba(36, 174, 108, 0.22) !important;
+  color: #1e4a34 !important;
+  background: #e3f7eb !important;
+}
+
+.agent-input-bar {
+  display: grid !important;
+  grid-template-columns: 38px minmax(0, 1fr) 38px !important;
+  align-items: center !important;
+  gap: 8px !important;
+  margin: 0 14px 14px !important;
+  padding: 8px !important;
+  border: 1px solid rgba(36, 174, 108, 0.38) !important;
+  border-radius: 14px !important;
+  background: rgba(255, 255, 255, 0.92) !important;
+  box-shadow: 0 10px 28px rgba(43, 91, 65, 0.1), inset 0 1px 0 #fff !important;
+}
+
+.agent-input-bar input {
+  min-width: 0 !important;
+  height: 38px !important;
+  border: 0 !important;
+  outline: 0 !important;
+  color: #1d3327 !important;
+  background: transparent !important;
+}
+
+.agent-input-bar > button {
+  width: 38px !important;
+  height: 38px !important;
+  border-radius: 11px !important;
+}
+
+.agent-input-bar > button:last-child {
+  color: #fff !important;
+  border-color: #2ca86b !important;
+  background: linear-gradient(145deg, #36b779, #21955e) !important;
+}
+
+.canvas-app-shell :is(.t8-original-scope, .agent-panel, .jiaren-director-desk, .canvas-context-menu) :is(button, [role="button"]) {
+  line-height: 1.2 !important;
+}
+
+.canvas-app-shell :is(.t8-original-scope, .agent-panel, .jiaren-director-desk, .canvas-context-menu) :is(button, [role="button"]) > svg,
+.canvas-app-shell :is(.t8-original-scope, .agent-panel, .jiaren-director-desk, .canvas-context-menu) :is(button, [role="button"]) > span > svg,
+.canvas-app-shell :is(.t8-original-scope, .agent-panel, .jiaren-director-desk, .canvas-context-menu) svg {
+  display: block !important;
+  flex: 0 0 auto !important;
+  vertical-align: middle !important;
+}
+
+.canvas-app-shell .t8-original-scope :is(button, [role="button"]):has(> svg) {
+  align-items: center !important;
+}
+
+@media (max-width: 720px) {
+  .agent-panel {
+    top: 58px !important;
+    right: 10px !important;
+    bottom: 12px !important;
+    width: calc(100vw - 20px) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .canvas-app-shell :is(.t8-original-scope, .agent-panel, .jiaren-director-desk) *,
+  .canvas-app-shell :is(.t8-original-scope, .agent-panel, .jiaren-director-desk) *::before,
+  .canvas-app-shell :is(.t8-original-scope, .agent-panel, .jiaren-director-desk) *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

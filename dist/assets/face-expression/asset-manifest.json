@@ -1,0 +1,22 @@
+{
+  "id": "t8-ict-neutral-head-v1",
+  "name": "JiarenAI ICT Neutral Human Head",
+  "version": 1,
+  "file": "t8-ict-neutral-head-v1.glb",
+  "sha256": "B4469D8CDEE43DCE3CA669184DB1FFBE68107E6C93A4F7E6BB1F49D00C4CC961",
+  "sizeBytes": 19616944,
+  "renderVertices": 28911,
+  "materials": 12,
+  "expressionChannels": 52,
+  "source": "https://github.com/USC-ICT/ICT-FaceKit",
+  "sourceAsset": "ICT Face Model Light",
+  "sourceLicense": "MIT",
+  "licenseFile": "LICENSE-ICT-FaceKit.txt",
+  "modifications": [
+    "Converted the neutral OBJ topology and expression meshes into one glTF 2.0 binary",
+    "Mapped ICT left/right expression names to the JiarenAI ARKit-compatible 52-channel schema",
+    "Combined split browInnerUp and cheekPuff shapes into symmetric JiarenAI channels",
+    "Added a conservative tongueOut deformation for the JiarenAI channel missing from ICT Face Model Light",
+    "Recomputed smooth normals and assigned neutral clay studio materials"
+  ]
+}

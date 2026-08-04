@@ -1,0 +1,26 @@
+{
+  "name": "jiaren-canvas",
+  "version": "1.1.2",
+  "description": "Use Codex to read and operate the current Jiaren AI canvas through a local approval bridge.",
+  "author": {
+    "name": "JiarenAI"
+  },
+  "license": "MIT",
+  "keywords": ["jiaren", "canvas", "mcp", "agent"],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Jiaren Canvas",
+    "shortDescription": "Read and operate the current Jiaren AI canvas.",
+    "longDescription": "Connects Codex to the locally running Jiaren AI canvas. Codex can inspect nodes, selected content, create editable workflows and submit canvas changes through Jiaren AI's explicit approval flow.",
+    "developerName": "JiarenAI",
+    "category": "Productivity",
+    "capabilities": ["Canvas", "MCP", "Approval"],
+    "defaultPrompt": [
+      "读取当前 Jiaren AI 画布并总结节点结构",
+      "根据选中节点创建一组生图提示词",
+      "把当前节点整理为可执行的生成流程"
+    ],
+    "brandColor": "#C7FF3D"
+  }
+}

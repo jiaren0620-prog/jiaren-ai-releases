@@ -1,0 +1,17 @@
+Jiaren AI v1.1.2 开源许可说明
+
+Copyright (C) 2026 JiarenAI
+
+Jiaren AI 自有代码依据 GNU Affero General Public License version 3 发布，SPDX 标识：AGPL-3.0-only。
+
+本程序是自由软件：你可以根据自由软件基金会发布的 GNU Affero General Public License 第 3 版对其进行再发布和/或修改。
+
+本程序的发布是希望它能够有用，但不提供任何担保；甚至不提供适销性或特定用途适用性的默示担保。完整条款见软件根目录 LICENSE，或访问 https://www.gnu.org/licenses/agpl-3.0.html。
+
+如果你修改本程序并通过计算机网络让用户与修改版本交互，必须依照 AGPL-3.0 第 13 条向这些用户显著提供相应源码。
+
+第三方组件不受本说明取代，继续遵循其各自许可证。详见 docs/THIRD_PARTY_NOTICES.md。
+
+AGPL-3.0 不授予 Jiaren AI、JiarenAI、JIA 名称、Logo、域名或产品视觉的商标使用权。分叉或再发布版本不得暗示获得 JiarenAI 官方认可。
+
+隐私边界：画布项目、图片、提示词和用户填写的 API Key 默认保存在用户本机。Jiaren AI 不会把这些本地内容作为版本检查的一部分上传；调用第三方 AI 服务时，内容会按照用户自己的配置直接发送给对应服务商。

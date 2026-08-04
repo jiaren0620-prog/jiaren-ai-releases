@@ -1,0 +1,12 @@
+{
+  "name": "@jiaren/canvas-mcp",
+  "version": "1.1.2",
+  "private": true,
+  "description": "Jiaren Canvas Control MCP bridge",
+  "bin": {
+    "jiaren-canvas-mcp": "bin/jiaren-canvas-mcp.cjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

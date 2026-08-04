@@ -1,0 +1,3497 @@
+/* SPDX-License-Identifier: MIT */
+:root {
+  --jiaren-media-panel-width: min(900px, calc(100vw - 220px));
+  --jiaren-media-panel-bottom: 82px;
+  --jiaren-media-card-width: 258px;
+  --jiaren-media-card-height: 236px;
+  --jiaren-media-line: rgba(30, 64, 48, 0.16);
+  --jiaren-media-line-strong: rgba(32, 142, 90, 0.48);
+  --jiaren-media-surface: rgba(255, 255, 255, 0.96);
+  --jiaren-media-muted: #718078;
+  --jiaren-media-ink: #1e2a24;
+  --jiaren-media-accent: #2fb477;
+  --jiaren-media-shadow: 0 18px 52px rgba(37, 62, 49, 0.14), 0 2px 8px rgba(37, 62, 49, 0.08);
+}
+
+.jiaren-launch-chooser {
+  position: fixed;
+  inset: 58px 0 0;
+  z-index: 58;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+
+.jiaren-launch-art {
+  position: relative;
+  width: min(1080px, calc(100vw - 160px));
+  aspect-ratio: 841.92 / 595.2;
+  transform: translate(0.43%, 12%);
+  perspective: 1100px;
+  pointer-events: auto;
+}
+
+.jiaren-launch-art > img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+.jiaren-launch-art > button {
+  position: absolute;
+  top: 31.1%;
+  width: 18.45%;
+  height: 13.75%;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 13px;
+  background: transparent;
+  box-shadow: none;
+  cursor: pointer;
+  transform-origin: 50% 55%;
+  transform-style: preserve-3d;
+  transition: border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease, transform 220ms ease;
+}
+
+.jiaren-launch-art > button > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  border-radius: inherit;
+  pointer-events: none;
+  user-select: none;
+  backface-visibility: hidden;
+}
+
+.jiaren-launch-art > button > span {
+  position: absolute;
+  left: 29.7%;
+  top: 51.3%;
+  color: #707070;
+  font-family: "Source Han Sans CN", "Microsoft YaHei UI", sans-serif;
+  font-size: clamp(12px, 1.5vw, 16px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0;
+  transform: translateY(-50%);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.jiaren-launch-art > button:nth-of-type(1) { left: 12.68%; }
+.jiaren-launch-art > button:nth-of-type(2) { left: 31.13%; }
+.jiaren-launch-art > button:nth-of-type(3) { left: 49.58%; }
+.jiaren-launch-art > button:nth-of-type(4) { left: 68.03%; }
+
+.jiaren-launch-art > button:hover,
+.jiaren-launch-art > button:focus-visible {
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+  outline: none;
+  transform: none;
+}
+
+.jiaren-launch-art > button:focus-visible {
+  outline: 2px solid rgba(47, 180, 119, 0.5);
+  outline-offset: 3px;
+}
+
+body.jiaren-launch-active .jiaren-canvas-top-chrome,
+body.jiaren-launch-active .bottom-floating-toolbar,
+body.jiaren-launch-active .lovart-prompt-console,
+body.jiaren-launch-active .react-flow__controls,
+body.jiaren-launch-active .react-flow__minimap,
+body.jiaren-launch-active .canvas-minimap,
+body.jiaren-launch-active .canvas-context-menu,
+body.jiaren-launch-active .clean-node-menu,
+body.jiaren-launch-active .project-context-menu,
+body.jiaren-launch-active .jiaren-tools-menu {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+body.jiaren-launch-active .clean-main-canvas,
+body.jiaren-launch-active .canvas-stage,
+body.jiaren-launch-active .main-canvas-flow,
+body.jiaren-launch-active .react-flow,
+body.jiaren-launch-active .react-flow__pane {
+  pointer-events: none !important;
+}
+
+.jiaren-media-square-card,
+.canvas-node.jiaren-basic-image-card,
+.canvas-node.jiaren-drawing-media-card {
+  position: relative !important;
+  box-sizing: border-box !important;
+  width: var(--jiaren-media-card-width) !important;
+  min-width: var(--jiaren-media-card-width) !important;
+  max-width: var(--jiaren-media-card-width) !important;
+  height: var(--jiaren-media-card-height) !important;
+  min-height: var(--jiaren-media-card-height) !important;
+  max-height: var(--jiaren-media-card-height) !important;
+  overflow: visible !important;
+  border: 1px solid var(--jiaren-media-line) !important;
+  border-radius: 12px !important;
+  color: var(--jiaren-media-ink) !important;
+  background: var(--jiaren-media-surface) !important;
+  box-shadow: 0 12px 34px rgba(37, 62, 49, 0.11), inset 0 1px rgba(255, 255, 255, 0.94) !important;
+  backdrop-filter: blur(18px) saturate(1.08);
+  -webkit-backdrop-filter: blur(18px) saturate(1.08);
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease !important;
+}
+
+.t8-original-scope.jiaren-media-square-card {
+  display: block !important;
+}
+
+.jiaren-media-square-card:hover,
+.canvas-node.jiaren-basic-image-card:hover,
+.canvas-node.jiaren-drawing-media-card:hover {
+  border-color: rgba(47, 180, 119, 0.32) !important;
+  box-shadow: 0 16px 40px rgba(37, 62, 49, 0.14), inset 0 1px rgba(255, 255, 255, 0.96) !important;
+}
+
+.jiaren-media-square-card.is-selected,
+.canvas-node.jiaren-basic-image-card.selected,
+.canvas-node.jiaren-drawing-media-card.selected {
+  border-color: var(--jiaren-media-line-strong) !important;
+  box-shadow: 0 0 0 3px rgba(47, 180, 119, 0.11), 0 18px 42px rgba(37, 62, 49, 0.15) !important;
+}
+
+.jiaren-media-card-heading {
+  height: 50px;
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 9px;
+  padding: 0 12px;
+  border-bottom: 1px solid rgba(30, 64, 48, 0.09);
+}
+
+.jiaren-media-card-icon,
+.jiaren-image-line-icon {
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(47, 180, 119, 0.22);
+  border-radius: 8px;
+  color: #218a5b;
+  background: rgba(225, 247, 235, 0.86);
+}
+
+.jiaren-image-line-icon::before {
+  content: "";
+  width: 13px;
+  height: 11px;
+  border: 1.6px solid currentColor;
+  border-radius: 3px;
+  background: linear-gradient(145deg, transparent 46%, currentColor 47% 52%, transparent 53%);
+}
+
+.jiaren-image-line-icon.large {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+}
+
+.jiaren-media-card-heading > div { min-width: 0; }
+.jiaren-media-card-heading strong,
+.jiaren-media-card-heading small {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  letter-spacing: 0;
+}
+.jiaren-media-card-heading strong { font-size: 13px; font-weight: 750; }
+.jiaren-media-card-heading small { margin-top: 2px; color: var(--jiaren-media-muted); font-size: 10px; }
+.jiaren-media-card-heading em {
+  padding: 3px 7px;
+  border-radius: 999px;
+  color: #27855b;
+  background: #eaf8f0;
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.jiaren-media-card-preview {
+  height: 151px;
+  margin: 8px 10px 0;
+  overflow: hidden;
+  border: 1px solid rgba(30, 64, 48, 0.12);
+  border-radius: 9px;
+  background: #f6f8f7;
+}
+
+.jiaren-media-card-preview > img,
+.jiaren-media-card-video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.jiaren-media-card-empty {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 9px;
+  color: #7b8781;
+  font-size: 10px;
+  text-align: center;
+}
+
+.jiaren-media-card-meta {
+  height: 27px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 11px;
+  color: #748079;
+  font-size: 9px;
+}
+.jiaren-media-card-meta span { white-space: nowrap; }
+.jiaren-media-card-meta span + span::before { content: "·"; margin-right: 6px; color: #a3ada8; }
+
+.jiaren-media-port {
+  width: 10px !important;
+  height: 10px !important;
+  border: 2px solid #fff !important;
+  background: var(--jiaren-media-accent) !important;
+  box-shadow: 0 0 0 1px rgba(30, 100, 68, 0.24) !important;
+}
+.jiaren-media-port-input { left: -6px !important; }
+.jiaren-media-port-output { right: -6px !important; }
+
+.canvas-node.jiaren-basic-image-card .canvas-node-label,
+.canvas-node.jiaren-drawing-media-card .canvas-node-label {
+  height: 50px !important;
+  padding: 0 12px !important;
+  border-bottom: 1px solid rgba(30, 64, 48, 0.09) !important;
+  display: grid !important;
+  grid-template-columns: 28px minmax(0, 1fr) !important;
+  align-items: center !important;
+  gap: 9px !important;
+  color: var(--jiaren-media-ink) !important;
+  background: transparent !important;
+}
+.canvas-node.jiaren-basic-image-card .canvas-node-label > svg,
+.canvas-node.jiaren-drawing-media-card .canvas-node-label > svg {
+  width: 28px !important;
+  height: 28px !important;
+  padding: 6px !important;
+  box-sizing: border-box !important;
+  border: 1px solid rgba(47, 180, 119, 0.22) !important;
+  border-radius: 8px !important;
+  color: #218a5b !important;
+  background: rgba(225, 247, 235, 0.86) !important;
+}
+.canvas-node.jiaren-basic-image-card .canvas-node-label > span,
+.canvas-node.jiaren-drawing-media-card .canvas-node-label > span {
+  min-width: 0 !important;
+  overflow: hidden !important;
+  color: var(--jiaren-media-ink) !important;
+  font-size: 13px !important;
+  font-weight: 750 !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+.canvas-node.jiaren-basic-image-card .canvas-node-model-chip,
+.canvas-node.jiaren-basic-image-card .canvas-node-label > b,
+.canvas-node.jiaren-drawing-media-card .canvas-node-model-chip,
+.canvas-node.jiaren-drawing-media-card .canvas-node-label > b {
+  display: none !important;
+}
+.canvas-node.jiaren-basic-image-card .node-body,
+.canvas-node.jiaren-drawing-media-card .node-body {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  height: 185px !important;
+  min-height: 185px !important;
+  display: grid !important;
+  place-items: center !important;
+  overflow: hidden !important;
+  border-radius: 0 0 11px 11px !important;
+  background: #f7f9f8 !important;
+  box-shadow: none !important;
+}
+.canvas-node.jiaren-basic-image-card .node-upload-placeholder,
+.canvas-node.jiaren-drawing-media-card .plain-generate-node {
+  width: calc(100% - 20px) !important;
+  height: calc(100% - 18px) !important;
+  min-height: 0 !important;
+  border: 1px dashed rgba(47, 180, 119, 0.28) !important;
+  border-radius: 9px !important;
+  color: #68766f !important;
+  background: rgba(255, 255, 255, 0.76) !important;
+}
+
+.jiaren-media-bottom-editor {
+  position: fixed !important;
+  left: 50% !important;
+  bottom: var(--jiaren-media-panel-bottom) !important;
+  z-index: 99980 !important;
+  width: var(--jiaren-media-panel-width) !important;
+  min-width: 520px !important;
+  max-width: var(--jiaren-media-panel-width) !important;
+  height: auto !important;
+  max-height: min(390px, calc(100vh - 190px)) !important;
+  overflow: auto !important;
+  box-sizing: border-box !important;
+  padding: 12px !important;
+  border: 1px solid rgba(30, 64, 48, 0.14) !important;
+  border-radius: 14px !important;
+  color: var(--jiaren-media-ink) !important;
+  background: rgba(255, 255, 255, 0.965) !important;
+  box-shadow: var(--jiaren-media-shadow) !important;
+  backdrop-filter: blur(22px) saturate(1.08) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(1.08) !important;
+  transform: translateX(-50%) !important;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
+.jiaren-media-bottom-editor.is-hidden { display: none !important; }
+.jiaren-media-bottom-editor.is-open { display: block !important; }
+.jiaren-media-bottom-editor .react-flow__handle { display: none !important; }
+.jiaren-media-bottom-editor,
+.jiaren-media-bottom-editor * { letter-spacing: 0 !important; }
+.jiaren-media-bottom-editor > .t8-original-scope,
+.jiaren-media-bottom-editor > .t8-original-scope > div,
+.jiaren-image-bottom-editor > div {
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  border: 0 !important;
+  border-radius: 10px !important;
+  color: var(--jiaren-media-ink) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+.jiaren-media-bottom-editor [class*="text-white"] { color: #344139 !important; }
+.jiaren-media-bottom-editor [class*="border-white"] { border-color: rgba(30, 64, 48, 0.13) !important; }
+.jiaren-media-bottom-editor [class*="bg-white"] { background-color: rgba(245, 248, 246, 0.94) !important; }
+.jiaren-media-bottom-editor input,
+.jiaren-media-bottom-editor textarea,
+.jiaren-media-bottom-editor select {
+  color: #26342d !important;
+  background: #f7f9f8 !important;
+  border-color: rgba(30, 64, 48, 0.16) !important;
+}
+.jiaren-media-bottom-editor button {
+  min-height: 30px;
+  border-color: rgba(30, 64, 48, 0.13) !important;
+  color: #334139 !important;
+  background-color: rgba(244, 248, 246, 0.94) !important;
+}
+.jiaren-media-bottom-editor button:hover { border-color: rgba(47, 180, 119, 0.34) !important; }
+.jiaren-media-bottom-editor button[class*="rose"],
+.jiaren-media-bottom-editor button[class*="amber"] {
+  color: #fff !important;
+  background: linear-gradient(135deg, #37be80, #269b65) !important;
+  box-shadow: 0 8px 20px rgba(38, 155, 101, 0.18) !important;
+}
+
+.jiaren-media-mode-tabs {
+  position: sticky;
+  top: 0;
+  z-index: 8;
+  display: inline-flex;
+  width: max-content;
+  gap: 2px;
+  margin: 10px 12px 0;
+  padding: 3px;
+  border: 1px solid rgba(30, 64, 48, 0.12);
+  border-radius: 9px;
+  background: rgba(241, 246, 243, 0.96);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.9);
+}
+
+.jiaren-media-mode-tabs button {
+  min-width: 66px;
+  min-height: 30px !important;
+  padding: 0 14px;
+  border: 0 !important;
+  border-radius: 7px;
+  color: #66756d !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  font-size: 12px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.jiaren-media-mode-tabs button.is-active,
+.jiaren-media-mode-tabs button:hover {
+  color: #1f6849 !important;
+  background: #fff !important;
+  box-shadow: 0 2px 8px rgba(35, 71, 52, 0.1) !important;
+}
+
+.jiaren-video-bottom-editor,
+.jiaren-image-bottom-editor,
+.jiaren-audio-bottom-editor {
+  padding: 0 0 12px !important;
+  border-radius: 16px !important;
+  background: rgba(255, 255, 255, 0.975) !important;
+}
+
+.jiaren-video-bottom-editor > [class~="p-2.5"],
+.jiaren-image-bottom-editor > .t8-original-scope > div > [class~="p-2.5"],
+.jiaren-audio-bottom-editor > .t8-original-scope > div > [class~="p-2.5"] {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
+  gap: 10px !important;
+  padding: 10px 12px 0 !important;
+}
+
+.jiaren-audio-bottom-editor > div[data-node-id] {
+  position: relative !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  color: var(--jiaren-media-ink) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.jiaren-audio-bottom-editor > div[data-node-id] > .absolute.pointer-events-none {
+  display: none !important;
+}
+
+.jiaren-audio-bottom-editor > div[data-node-id] > [class~="flex"][class~="border-b"] {
+  min-height: 48px !important;
+  padding: 8px 14px !important;
+  border-color: rgba(30, 64, 48, 0.1) !important;
+  background: transparent !important;
+}
+
+.jiaren-audio-bottom-editor > div[data-node-id] > [class~="p-2.5"] {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  align-items: start !important;
+  gap: 10px !important;
+  padding: 10px 12px 0 !important;
+}
+
+.jiaren-audio-bottom-editor > div[data-node-id] > [class~="p-2.5"] > * {
+  min-width: 0 !important;
+  margin: 0 !important;
+}
+
+.jiaren-audio-bottom-editor > div[data-node-id] > [class~="p-2.5"] > :nth-child(5) {
+  grid-column: span 2;
+}
+
+.jiaren-audio-bottom-editor > div[data-node-id] > [class~="p-2.5"] > button:last-of-type {
+  align-self: end !important;
+}
+
+.jiaren-audio-bottom-editor [class*="bg-black"] {
+  background: rgba(239, 246, 242, 0.76) !important;
+}
+
+.jiaren-audio-bottom-editor [class*="violet"] {
+  border-color: rgba(47, 180, 119, 0.25) !important;
+  color: #245f45 !important;
+}
+
+.jiaren-audio-bottom-editor .jiaren-audio-model-field label {
+  display: block;
+  margin-bottom: 4px;
+  color: #66756d !important;
+  font-size: 10px;
+}
+
+.jiaren-video-bottom-editor > [class~="p-2.5"] > *,
+.jiaren-image-bottom-editor > .t8-original-scope > div > [class~="p-2.5"] > *,
+.jiaren-audio-bottom-editor > .t8-original-scope > div > [class~="p-2.5"] > * {
+  min-width: 0;
+  margin: 0 !important;
+}
+
+.jiaren-video-bottom-editor textarea,
+.jiaren-image-bottom-editor textarea,
+.jiaren-audio-bottom-editor textarea {
+  min-height: 72px !important;
+  max-height: 116px !important;
+  resize: vertical !important;
+}
+
+.jiaren-video-bottom-editor > [class~="flex"][class~="items-center"][class~="border-b"],
+.jiaren-image-bottom-editor > .t8-original-scope > div > [class~="flex"][class~="items-center"][class~="border-b"],
+.jiaren-audio-bottom-editor > .t8-original-scope > div > [class~="flex"][class~="items-center"][class~="border-b"] {
+  min-height: 48px;
+  padding: 8px 14px !important;
+  border-color: rgba(30, 64, 48, 0.1) !important;
+}
+
+.jiaren-media-bottom-editor option {
+  color: #26342d !important;
+  background: #fff !important;
+}
+
+.jiaren-media-bottom-editor button:disabled,
+.jiaren-media-bottom-editor select:disabled,
+.jiaren-media-bottom-editor input:disabled {
+  cursor: not-allowed !important;
+  opacity: 0.46 !important;
+}
+
+.jiaren-audio-card-preview {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 14px 12px 12px;
+  background: linear-gradient(180deg, #f7faf8 0%, #eef5f1 100%);
+}
+
+.jiaren-audio-waveform {
+  width: 88%;
+  height: 82px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.jiaren-audio-waveform i {
+  width: 4px;
+  min-height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #63c995, #2fae76);
+  opacity: 0.72;
+  transform-origin: center;
+}
+
+.jiaren-audio-waveform.is-active i {
+  animation: jiaren-wave-pulse 900ms ease-in-out infinite alternate;
+}
+
+.jiaren-audio-waveform.is-active i:nth-child(3n) { animation-delay: 140ms; }
+.jiaren-audio-waveform.is-active i:nth-child(4n) { animation-delay: 260ms; }
+
+.jiaren-audio-card-preview audio {
+  position: absolute;
+  right: 10px;
+  bottom: 8px;
+  left: 10px;
+  width: calc(100% - 20px);
+  height: 28px;
+}
+
+.jiaren-audio-empty-label {
+  position: absolute;
+  right: 10px;
+  bottom: 13px;
+  left: 10px;
+  color: #718078;
+  font-size: 10px;
+  text-align: center;
+}
+
+@keyframes jiaren-wave-pulse {
+  from { transform: scaleY(0.64); opacity: 0.48; }
+  to { transform: scaleY(1); opacity: 0.9; }
+}
+
+body.jiaren-drawing-console-active .lovart-prompt-console {
+  width: var(--jiaren-media-panel-width) !important;
+  max-width: var(--jiaren-media-panel-width) !important;
+  bottom: var(--jiaren-media-panel-bottom) !important;
+  padding: 14px !important;
+  border: 1px solid rgba(30, 64, 48, 0.14) !important;
+  border-radius: 14px !important;
+  background: rgba(255, 255, 255, 0.965) !important;
+  box-shadow: var(--jiaren-media-shadow) !important;
+  backdrop-filter: blur(22px) saturate(1.08) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(1.08) !important;
+}
+
+.canvas-context-menu {
+  max-height: min(640px, calc(100vh - 96px)) !important;
+  border-color: rgba(30, 64, 48, 0.13) !important;
+  border-radius: 12px !important;
+  background: rgba(255, 255, 255, 0.975) !important;
+  box-shadow: 0 18px 48px rgba(35, 58, 47, 0.14) !important;
+  backdrop-filter: blur(18px) !important;
+  -webkit-backdrop-filter: blur(18px) !important;
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .jiaren-media-square-card,
+  .jiaren-media-bottom-editor,
+  body.jiaren-drawing-console-active .lovart-prompt-console,
+  .canvas-context-menu { background: #fff !important; }
+}
+
+@media (max-width: 900px) {
+  :root { --jiaren-media-panel-width: calc(100vw - 32px); }
+  .jiaren-media-bottom-editor { min-width: 0 !important; }
+  .jiaren-launch-art { width: calc(100vw - 30px); }
+  .jiaren-video-bottom-editor > [class~="p-2.5"],
+  .jiaren-image-bottom-editor > .t8-original-scope > div > [class~="p-2.5"],
+  .jiaren-audio-bottom-editor > .t8-original-scope > div > [class~="p-2.5"] {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .jiaren-launch-art > button,
+  .jiaren-media-square-card,
+  .canvas-node.jiaren-basic-image-card,
+  .canvas-node.jiaren-drawing-media-card { transition: none !important; }
+  .jiaren-audio-waveform.is-active i { animation: none !important; }
+}
+
+/* ZeroLu/open-canvas MIT interaction pattern, adapted to Jiaren's existing data and API layer. */
+:root {
+  --jiaren-media-sheet-gutter: clamp(14px, 1.8vw, 28px);
+  --jiaren-media-sheet-bottom: 76px;
+  --jiaren-media-sheet-radius: 24px;
+  --jiaren-media-sheet-shadow: 0 28px 80px rgba(29, 53, 40, 0.18), 0 4px 16px rgba(29, 53, 40, 0.08);
+}
+
+.jiaren-launch-art > button:hover,
+.jiaren-launch-art > button:focus-visible {
+  border-color: rgba(74, 222, 128, 0.34) !important;
+  background: linear-gradient(145deg, rgba(236, 253, 245, 0.1), rgba(74, 222, 128, 0.12)) !important;
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.56), 0 12px 34px rgba(34, 197, 94, 0.16) !important;
+}
+
+.jiaren-launch-art > button:active {
+  background: rgba(34, 197, 94, 0.13) !important;
+  box-shadow: inset 0 2px 8px rgba(20, 83, 45, 0.12) !important;
+  transform: translateY(-1px) scale(0.992) !important;
+}
+
+.react-flow__node:has(.jiaren-media-square-card),
+.react-flow__node:has(.canvas-node.jiaren-basic-image-card),
+.react-flow__node:has(.canvas-node.jiaren-drawing-media-card) {
+  overflow: visible !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.react-flow__handle.node-add-button,
+.react-flow__handle.flow-handle-plus {
+  color: transparent !important;
+  font-size: 0 !important;
+}
+
+.react-flow__handle.node-add-button::before,
+.react-flow__handle.node-add-button::after,
+.react-flow__handle.flow-handle-plus::before,
+.react-flow__handle.flow-handle-plus::after {
+  display: none !important;
+  content: none !important;
+}
+
+.jiaren-media-square-card,
+.canvas-node.jiaren-basic-image-card,
+.canvas-node.jiaren-drawing-media-card {
+  border-radius: 20px !important;
+  border-color: rgba(32, 89, 61, 0.17) !important;
+  box-shadow: 0 20px 58px rgba(28, 55, 40, 0.14), inset 0 1px rgba(255, 255, 255, 0.96) !important;
+}
+
+.jiaren-media-square-card:hover,
+.canvas-node.jiaren-basic-image-card:hover,
+.canvas-node.jiaren-drawing-media-card:hover {
+  border-color: rgba(47, 180, 119, 0.42) !important;
+  box-shadow: 0 0 0 1px rgba(47, 180, 119, 0.08), 0 24px 64px rgba(28, 55, 40, 0.17) !important;
+  transform: translateY(-2px) !important;
+}
+
+.jiaren-media-square-card.is-selected,
+.canvas-node.jiaren-basic-image-card.selected,
+.canvas-node.jiaren-drawing-media-card.selected {
+  border-color: rgba(47, 180, 119, 0.68) !important;
+  box-shadow: 0 0 0 3px rgba(47, 180, 119, 0.12), 0 24px 68px rgba(28, 55, 40, 0.19) !important;
+}
+
+.canvas-node.jiaren-basic-image-card .node-body,
+.canvas-node.jiaren-drawing-media-card .node-body {
+  border: 0 !important;
+  border-radius: 0 0 19px 19px !important;
+  box-shadow: none !important;
+}
+
+.jiaren-media-card-preview {
+  border-radius: 14px !important;
+  border-style: dashed !important;
+  background: linear-gradient(180deg, rgba(248, 251, 249, 0.98), rgba(239, 246, 242, 0.96)) !important;
+}
+
+.jiaren-media-bottom-editor {
+  position: fixed !important;
+  left: var(--jiaren-media-sheet-gutter) !important;
+  right: var(--jiaren-media-sheet-gutter) !important;
+  bottom: var(--jiaren-media-sheet-bottom) !important;
+  z-index: 99980 !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  max-height: min(520px, calc(100vh - 150px)) !important;
+  overflow: auto !important;
+  padding: 14px !important;
+  border: 1px solid rgba(28, 65, 45, 0.15) !important;
+  border-radius: var(--jiaren-media-sheet-radius) !important;
+  background: rgba(255, 255, 255, 0.975) !important;
+  box-shadow: var(--jiaren-media-sheet-shadow) !important;
+  transform: none !important;
+  transform-origin: center bottom !important;
+}
+
+.jiaren-media-bottom-editor.is-open {
+  display: block !important;
+  animation: jiaren-open-canvas-sheet-in 210ms cubic-bezier(0.2, 0.72, 0.2, 1) both;
+}
+
+.jiaren-video-bottom-editor,
+.jiaren-image-bottom-editor,
+.jiaren-audio-bottom-editor {
+  padding: 12px 14px 14px !important;
+  border-radius: var(--jiaren-media-sheet-radius) !important;
+}
+
+.jiaren-media-mode-tabs {
+  position: relative !important;
+  top: auto !important;
+  margin: 0 0 12px !important;
+  padding: 4px !important;
+  border-radius: 12px !important;
+  background: rgba(235, 244, 239, 0.94) !important;
+}
+
+.jiaren-media-mode-tabs button {
+  min-width: 76px !important;
+  min-height: 34px !important;
+  border-radius: 9px !important;
+}
+
+.jiaren-media-mode-tabs button.is-active,
+.jiaren-media-mode-tabs button:hover {
+  color: #194c36 !important;
+  background: #fff !important;
+  box-shadow: 0 4px 14px rgba(35, 71, 52, 0.12) !important;
+}
+
+.jiaren-media-bottom-editor input,
+.jiaren-media-bottom-editor textarea,
+.jiaren-media-bottom-editor select,
+body.jiaren-drawing-console-active .lovart-prompt-console textarea {
+  min-width: 0 !important;
+  border: 1px solid rgba(31, 70, 49, 0.14) !important;
+  border-radius: 12px !important;
+  color: #25352c !important;
+  background: rgba(246, 249, 247, 0.98) !important;
+  box-shadow: inset 0 1px 2px rgba(22, 55, 37, 0.03) !important;
+}
+
+.jiaren-media-bottom-editor input,
+.jiaren-media-bottom-editor select {
+  min-height: 38px !important;
+  padding-inline: 12px !important;
+}
+
+.jiaren-media-bottom-editor textarea {
+  min-height: 88px !important;
+  padding: 12px !important;
+  line-height: 1.5 !important;
+}
+
+.jiaren-video-bottom-editor > [class~="p-2.5"],
+.jiaren-image-bottom-editor > .t8-original-scope > div > [class~="p-2.5"] {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 12px !important;
+  padding: 4px 0 0 !important;
+}
+
+.jiaren-video-bottom-editor {
+  position: fixed !important;
+}
+
+.jiaren-video-bottom-editor > [class~="flex"][class~="items-center"][class~="border-b"] {
+  min-height: 52px !important;
+  padding: 8px 190px 8px 2px !important;
+}
+
+.jiaren-video-bottom-editor > .jiaren-media-mode-tabs {
+  position: absolute !important;
+  top: 18px !important;
+  right: 18px !important;
+  left: auto !important;
+  z-index: 2 !important;
+  width: auto !important;
+  margin: 0 !important;
+}
+
+.jiaren-video-bottom-editor > [class~="p-2.5"]:has(> :nth-child(6):last-child) {
+  grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+  align-items: end !important;
+}
+
+.jiaren-video-bottom-editor > [class~="p-2.5"]:has(> :nth-child(6):last-child) > :nth-child(1),
+.jiaren-video-bottom-editor > [class~="p-2.5"]:has(> :nth-child(6):last-child) > :nth-child(2),
+.jiaren-video-bottom-editor > [class~="p-2.5"]:has(> :nth-child(6):last-child) > :nth-child(3),
+.jiaren-video-bottom-editor > [class~="p-2.5"]:has(> :nth-child(6):last-child) > :nth-child(4) {
+  grid-column: span 3 !important;
+}
+
+.jiaren-video-bottom-editor > [class~="p-2.5"]:has(> :nth-child(6):last-child) > :nth-child(5) {
+  grid-column: 1 / span 9 !important;
+  grid-row: 2 !important;
+}
+
+.jiaren-video-bottom-editor > [class~="p-2.5"]:has(> :nth-child(6):last-child) > :nth-child(6) {
+  grid-column: 10 / -1 !important;
+  grid-row: 2 !important;
+  align-self: end !important;
+  justify-self: end !important;
+}
+
+.jiaren-audio-bottom-editor > div[data-node-id] > .jiaren-audio-editor-heading {
+  min-height: 44px !important;
+  margin-bottom: 10px !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+.jiaren-audio-bottom-editor > div[data-node-id] > .jiaren-audio-editor-grid {
+  display: grid !important;
+  grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+  gap: 12px !important;
+  padding: 0 !important;
+}
+
+.jiaren-audio-editor-grid > * {
+  min-width: 0 !important;
+  margin: 0 !important;
+}
+
+.jiaren-audio-editor-grid > :not(.jiaren-audio-model-field):not(.jiaren-audio-mode-version-grid):not(.jiaren-audio-title-input-field):not(.jiaren-audio-style-input-field):not(.jiaren-audio-prompt-field):not(.jiaren-audio-seed-grid):not(.jiaren-audio-generate-button) {
+  grid-column: 1 / -1;
+}
+
+.jiaren-audio-prompt-field {
+  grid-column: 1 / span 8 !important;
+  grid-row: 1 / span 2 !important;
+}
+
+.jiaren-audio-prompt-field textarea {
+  min-height: 100px !important;
+}
+
+.jiaren-audio-model-field {
+  grid-column: 9 / -1 !important;
+  grid-row: 1 !important;
+}
+
+.jiaren-audio-generate-button {
+  grid-column: 9 / -1 !important;
+  grid-row: 2 !important;
+  align-self: end !important;
+  min-height: 42px !important;
+  border: 1px solid rgba(25, 69, 47, 0.13) !important;
+  border-radius: 999px !important;
+  color: #1d372a !important;
+  background: #fff !important;
+  box-shadow: 0 8px 24px rgba(28, 69, 45, 0.11) !important;
+}
+
+.jiaren-audio-generate-button:hover {
+  border-color: rgba(47, 180, 119, 0.38) !important;
+  background: #f8fcfa !important;
+  box-shadow: 0 10px 28px rgba(28, 69, 45, 0.15) !important;
+}
+
+.jiaren-audio-mode-version-grid {
+  grid-column: 1 / span 4 !important;
+  grid-row: 3 !important;
+}
+
+.jiaren-audio-title-input-field {
+  grid-column: 7 / span 3 !important;
+  grid-row: 3 !important;
+}
+
+.jiaren-audio-style-input-field {
+  grid-column: 10 / -1 !important;
+  grid-row: 3 !important;
+}
+
+.jiaren-audio-seed-grid {
+  grid-column: 5 / span 2 !important;
+  grid-row: 3 !important;
+}
+
+.jiaren-video-bottom-editor button[class*="rose"],
+.jiaren-video-bottom-editor button[class*="amber"],
+.jiaren-audio-bottom-editor button[class*="violet"],
+.jiaren-audio-bottom-editor button[class*="zinc"] {
+  min-height: 40px !important;
+  border: 1px solid rgba(25, 69, 47, 0.13) !important;
+  border-radius: 999px !important;
+  color: #1d372a !important;
+  background: #fff !important;
+  box-shadow: 0 8px 24px rgba(28, 69, 45, 0.1) !important;
+}
+
+body.jiaren-drawing-console-active .lovart-prompt-console {
+  position: fixed !important;
+  left: var(--jiaren-media-anchor-left, 50%) !important;
+  right: auto !important;
+  top: var(--jiaren-media-anchor-top, 50%) !important;
+  bottom: auto !important;
+  z-index: 99980 !important;
+  display: grid !important;
+  width: var(--jiaren-media-anchor-width, min(1040px, calc(100vw - 36px))) !important;
+  min-width: 0 !important;
+  max-width: calc(100vw - 36px) !important;
+  min-height: 210px !important;
+  max-height: var(--jiaren-media-anchor-max-height, min(520px, calc(100vh - 120px))) !important;
+  overflow: auto !important;
+  grid-template-columns: 92px minmax(0, 1fr) !important;
+  gap: 12px !important;
+  padding: 14px !important;
+  border-radius: var(--jiaren-media-sheet-radius) !important;
+  transform: translateX(-50%) !important;
+  transform-origin: center top !important;
+  animation: jiaren-drawing-anchor-in 180ms ease-out both;
+}
+
+body.jiaren-drawing-console-active .lovart-prompt-console[data-jiaren-placement="above"] {
+  transform: translate(-50%, -100%) !important;
+  transform-origin: center bottom !important;
+}
+
+body.jiaren-drawing-console-active .lovart-prompt-console > .jiaren-image-mode-tabs,
+body.jiaren-drawing-console-active .lovart-prompt-console > .iridescent-progress,
+body.jiaren-drawing-console-active .lovart-prompt-console > .prompt-reference-strip,
+body.jiaren-drawing-console-active .lovart-prompt-console > .prompt-console-footer,
+body.jiaren-drawing-console-active .lovart-prompt-console > .prompt-popover {
+  grid-column: 1 / -1 !important;
+}
+
+body.jiaren-drawing-console-active .lovart-prompt-console > .jiaren-image-mode-tabs {
+  grid-row: 1 !important;
+  justify-self: start !important;
+}
+
+body.jiaren-drawing-console-active .lovart-prompt-console > .reference-picker {
+  grid-column: 1 !important;
+  min-height: 92px !important;
+  border-radius: 16px !important;
+  border-color: rgba(47, 180, 119, 0.2) !important;
+  background: rgba(247, 251, 249, 0.98) !important;
+}
+
+body.jiaren-drawing-console-active .lovart-prompt-console > textarea,
+body.jiaren-drawing-console-active .lovart-prompt-console > .upstream-prompt-summary {
+  grid-column: 2 !important;
+  min-height: 92px !important;
+  margin: 0 !important;
+  padding: 14px !important;
+  border-radius: 18px !important;
+}
+
+body.jiaren-drawing-console-active .lovart-prompt-console > .prompt-console-footer {
+  display: flex !important;
+  min-width: 0 !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+}
+
+body.jiaren-drawing-console-active .lovart-prompt-console .generate-button {
+  min-width: 142px !important;
+  min-height: 42px !important;
+  margin-left: auto !important;
+  border: 1px solid rgba(25, 69, 47, 0.13) !important;
+  border-radius: 999px !important;
+  color: #1d372a !important;
+  background: #fff !important;
+  box-shadow: 0 8px 24px rgba(28, 69, 45, 0.11) !important;
+}
+
+@keyframes jiaren-open-canvas-sheet-in {
+  from { opacity: 0; transform: translate3d(0, 28px, 0) scale(0.992); }
+  to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes jiaren-drawing-anchor-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* The basic image generator uses the same media-card hierarchy as the video node. */
+:root {
+  --jiaren-drawing-card-width: 320px;
+  --jiaren-drawing-card-height: 390px;
+  --jiaren-drawing-card-header: 56px;
+}
+
+.canvas-node.jiaren-drawing-media-card {
+  width: var(--jiaren-drawing-card-width) !important;
+  min-width: var(--jiaren-drawing-card-width) !important;
+  max-width: var(--jiaren-drawing-card-width) !important;
+  height: var(--jiaren-drawing-card-height) !important;
+  min-height: var(--jiaren-drawing-card-height) !important;
+  max-height: var(--jiaren-drawing-card-height) !important;
+  border-radius: 20px !important;
+  background: rgba(255, 255, 255, 0.97) !important;
+}
+
+.canvas-node.jiaren-drawing-media-card .canvas-node-label {
+  height: var(--jiaren-drawing-card-header) !important;
+  min-height: var(--jiaren-drawing-card-header) !important;
+  padding: 0 14px !important;
+  grid-template-columns: 32px minmax(0, 1fr) !important;
+  gap: 10px !important;
+}
+
+.canvas-node.jiaren-drawing-media-card .canvas-node-label > svg {
+  width: 32px !important;
+  height: 32px !important;
+  padding: 7px !important;
+  border-radius: 10px !important;
+}
+
+.canvas-node.jiaren-drawing-media-card .canvas-node-label > span {
+  font-size: 14px !important;
+}
+
+.canvas-node.jiaren-drawing-media-card .node-body {
+  height: calc(var(--jiaren-drawing-card-height) - var(--jiaren-drawing-card-header)) !important;
+  min-height: calc(var(--jiaren-drawing-card-height) - var(--jiaren-drawing-card-header)) !important;
+  padding: 14px !important;
+  border-radius: 0 0 19px 19px !important;
+  background: rgba(249, 251, 250, 0.98) !important;
+}
+
+.canvas-node.jiaren-drawing-media-card .plain-generate-node {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  display: grid !important;
+  place-content: center !important;
+  justify-items: center !important;
+  gap: 12px !important;
+  box-sizing: border-box !important;
+  padding: 20px !important;
+  border: 1px dashed rgba(47, 180, 119, 0.32) !important;
+  border-radius: 15px !important;
+  color: #66766e !important;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(243, 249, 246, 0.96)) !important;
+}
+
+.canvas-node.jiaren-drawing-media-card .plain-generate-node > svg {
+  width: 46px !important;
+  height: 46px !important;
+  color: #2aa86f !important;
+  stroke-width: 1.6 !important;
+}
+
+.canvas-node.jiaren-drawing-media-card .plain-generate-node > strong {
+  color: #25352c !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+}
+
+.canvas-node.jiaren-drawing-media-card .plain-generate-node > span {
+  max-width: 230px !important;
+  overflow: hidden !important;
+  color: #78867f !important;
+  font-size: 11px !important;
+  line-height: 1.45 !important;
+  text-align: center !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.canvas-node.jiaren-drawing-media-card .node-preview-image,
+.canvas-node.jiaren-drawing-media-card .node-image-grid {
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 15px !important;
+  object-fit: cover !important;
+}
+
+.canvas-node.jiaren-drawing-media-card > .react-flow__handle {
+  top: 50% !important;
+  z-index: 8 !important;
+  display: grid !important;
+  width: 12px !important;
+  height: 12px !important;
+  min-width: 12px !important;
+  min-height: 12px !important;
+  padding: 0 !important;
+  place-items: center !important;
+  overflow: hidden !important;
+  border: 2px solid #fff !important;
+  border-radius: 999px !important;
+  color: transparent !important;
+  background: var(--jiaren-media-accent) !important;
+  box-shadow: 0 0 0 1px rgba(29, 111, 72, 0.28), 0 2px 7px rgba(29, 111, 72, 0.2) !important;
+  transform: translateY(-50%) !important;
+}
+
+.canvas-node.jiaren-drawing-media-card > .react-flow__handle-left {
+  left: -7px !important;
+}
+
+.canvas-node.jiaren-drawing-media-card > .react-flow__handle-right {
+  right: -7px !important;
+}
+
+.canvas-node.jiaren-drawing-media-card > .react-flow__handle > svg {
+  display: none !important;
+}
+
+@media (max-width: 900px) {
+  :root {
+    --jiaren-media-sheet-gutter: 10px;
+    --jiaren-media-sheet-bottom: 68px;
+  }
+
+  .jiaren-video-bottom-editor > [class~="p-2.5"],
+  .jiaren-image-bottom-editor > .t8-original-scope > div > [class~="p-2.5"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .jiaren-audio-prompt-field,
+  .jiaren-audio-model-field,
+  .jiaren-audio-generate-button,
+  .jiaren-audio-mode-version-grid,
+  .jiaren-audio-title-input-field,
+  .jiaren-audio-style-input-field,
+  .jiaren-audio-seed-grid {
+    grid-column: 1 / -1 !important;
+    grid-row: auto !important;
+  }
+
+  .jiaren-video-bottom-editor > .jiaren-media-mode-tabs {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    margin-bottom: 8px !important;
+  }
+
+  .jiaren-video-bottom-editor > [class~="flex"][class~="items-center"][class~="border-b"] {
+    padding-right: 2px !important;
+  }
+
+  body.jiaren-drawing-console-active .lovart-prompt-console {
+    grid-template-columns: 72px minmax(0, 1fr) !important;
+  }
+}
+
+/* Final image-node geometry: keep the editor attached to the active card. */
+body.jiaren-drawing-console-active .lovart-prompt-console {
+  position: fixed !important;
+  left: var(--jiaren-media-anchor-left, 50%) !important;
+  right: auto !important;
+  top: var(--jiaren-media-anchor-top, 120px) !important;
+  bottom: auto !important;
+  width: var(--jiaren-media-anchor-width, min(1040px, calc(100vw - 36px))) !important;
+  max-width: calc(100vw - 36px) !important;
+  max-height: var(--jiaren-media-anchor-max-height, min(520px, calc(100vh - 160px))) !important;
+  overflow: auto !important;
+  transform: translateX(-50%) !important;
+  transform-origin: center top !important;
+  animation: jiaren-open-canvas-anchor-below 200ms cubic-bezier(0.2, 0.72, 0.2, 1) both !important;
+}
+
+body.jiaren-drawing-console-active .lovart-prompt-console[data-jiaren-placement="above"] {
+  transform: translate(-50%, -100%) !important;
+  transform-origin: center bottom !important;
+  animation-name: jiaren-open-canvas-anchor-above !important;
+}
+
+.canvas-node.jiaren-drawing-media-card .canvas-node-label {
+  transform: none !important;
+}
+
+.canvas-node.jiaren-drawing-media-card .node-body {
+  display: grid !important;
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr) !important;
+  place-content: stretch !important;
+  place-items: stretch !important;
+  box-sizing: border-box !important;
+  padding: 14px !important;
+}
+
+.canvas-node.jiaren-drawing-media-card .plain-generate-node {
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  align-self: stretch !important;
+  justify-self: stretch !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.jiaren-drawing-console-active .lovart-prompt-console {
+    animation: none !important;
+  }
+}
+
+/* Jiaren local Skill Factory and industrial 3D nodes. */
+.spin { animation: jiaren-local-spin 900ms linear infinite; }
+@keyframes jiaren-local-spin { to { transform: rotate(360deg); } }
+
+.jiaren-local-port {
+  width: 12px !important;
+  height: 12px !important;
+  border: 2px solid #fff !important;
+  box-shadow: 0 0 0 1px rgba(15, 23, 42, .18) !important;
+  z-index: 20 !important;
+}
+.jiaren-local-port.is-skill { background: #ff4fa3 !important; }
+.jiaren-local-port.is-model { background: #58a6ff !important; }
+.jiaren-local-port.is-image { background: #f7c948 !important; }
+
+.jiaren-skill-node {
+  width: 380px;
+  height: 250px;
+  display: grid;
+  grid-template-rows: 54px minmax(0, 1fr) 55px;
+  overflow: hidden;
+  color: #f7f7fa;
+  border: 1px solid rgba(255, 79, 163, .48);
+  border-radius: 8px;
+  background: #151519;
+  box-shadow: 0 14px 34px rgba(12, 8, 16, .28);
+}
+.jiaren-skill-node.is-selected { border-color: #ff4fa3; box-shadow: 0 0 0 2px rgba(255, 79, 163, .2), 0 16px 38px rgba(12, 8, 16, .34); }
+.jiaren-skill-node.is-completed { border-color: #35c98a; }
+.jiaren-skill-node > header,
+.jiaren-3d-upload-node > header,
+.jiaren-3d-preview-head {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 12px;
+}
+.jiaren-skill-node > header > div,
+.jiaren-3d-upload-node > header > div,
+.jiaren-3d-preview-head > div {
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 6px;
+  background: rgba(255, 79, 163, .14);
+  color: #ff6eb1;
+}
+.jiaren-skill-node > header > span,
+.jiaren-3d-upload-node > header > span,
+.jiaren-3d-preview-head > span { min-width: 0; display: grid; gap: 2px; }
+.jiaren-skill-node > header strong,
+.jiaren-3d-upload-node > header strong,
+.jiaren-3d-preview-head strong { font-size: 14px; line-height: 1.1; letter-spacing: 0; }
+.jiaren-skill-node > header small,
+.jiaren-3d-upload-node > header small,
+.jiaren-3d-preview-head small { color: #8b8b96; font-size: 10px; letter-spacing: 0; }
+.jiaren-skill-node > header em,
+.jiaren-3d-upload-node > header em { min-width: 0; margin-left: auto; color: #a5a5af; font-size: 10px; font-style: normal; white-space: nowrap; }
+.jiaren-skill-node-main {
+  min-width: 0;
+  min-height: 0;
+  margin: 0 12px;
+  overflow: hidden;
+  border: 1px dashed rgba(255, 255, 255, .18);
+  border-radius: 6px;
+  color: #d9d9df;
+  background: #101013;
+  cursor: pointer;
+}
+.jiaren-skill-node-main > span { height: 100%; display: grid; place-content: center; justify-items: center; gap: 5px; }
+.jiaren-skill-node-main > span svg { color: #ff5ca9; }
+.jiaren-skill-node-main > span strong { font-size: 12px; }
+.jiaren-skill-node-main > span small { color: #777780; font-size: 10px; }
+.jiaren-skill-node-main > img { width: 100%; height: 100%; object-fit: cover; }
+.jiaren-skill-node > footer { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 5px 10px; padding: 8px 12px; }
+.jiaren-skill-node > footer .jiaren-progress-track { grid-column: 1 / -1; }
+.jiaren-skill-node > footer > span { min-width: 0; overflow: hidden; color: #8d8d97; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; }
+.jiaren-skill-node > footer > button { display: inline-flex; align-items: center; gap: 3px; border: 0; color: #ff79b9; background: transparent; font-size: 10px; cursor: pointer; }
+
+.jiaren-progress-track { height: 5px; overflow: hidden; border-radius: 3px; background: rgba(255, 255, 255, .1); }
+.jiaren-progress-track > i { display: block; width: 0; height: 100%; border-radius: inherit; background: #ff4fa3; transition: width 220ms ease; }
+
+.jiaren-local-dialog-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 100020;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(7, 7, 10, .72);
+  backdrop-filter: blur(8px);
+}
+.jiaren-skill-dialog {
+  width: min(1080px, calc(100vw - 48px));
+  max-height: min(840px, calc(100vh - 48px));
+  display: grid;
+  grid-template-rows: 62px minmax(0, 1fr) auto 60px;
+  overflow: hidden;
+  color: #f3f3f6;
+  border: 1px solid #34343c;
+  border-radius: 8px;
+  background: #121216;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, .56);
+  font-family: "Microsoft YaHei", "PingFang SC", system-ui, sans-serif;
+}
+.jiaren-local-dialog-head { display: flex; align-items: center; gap: 11px; padding: 0 18px; border-bottom: 1px solid #2a2a31; }
+.jiaren-local-dialog-head > .jiaren-local-dialog-mark { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 7px; color: #ff73b6; background: #2c1623; }
+.jiaren-local-dialog-head > div:nth-child(2) { display: grid; gap: 2px; }
+.jiaren-local-dialog-head > div:nth-child(2) strong { font-size: 16px; letter-spacing: 0; }
+.jiaren-local-dialog-head > div:nth-child(2) span { color: #8e8e99; font-size: 11px; }
+.jiaren-local-dialog-head > button { width: 34px; height: 34px; display: grid; place-items: center; margin-left: 6px; border: 1px solid #313139; border-radius: 6px; color: #a8a8b2; background: #1a1a1f; cursor: pointer; }
+.jiaren-engine-state { min-width: 0; display: inline-flex; align-items: center; gap: 6px; margin-left: auto; overflow: hidden; color: #a0a0aa; font-size: 11px; text-overflow: ellipsis; white-space: nowrap; }
+.jiaren-engine-state.is-ready { color: #54d6a0; }
+.jiaren-skill-dialog-body { min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) 350px; overflow: auto; }
+.jiaren-skill-form { min-width: 0; display: grid; align-content: start; gap: 14px; padding: 18px; border-right: 1px solid #292930; }
+.jiaren-skill-side { min-width: 0; display: grid; align-content: start; gap: 14px; padding: 18px; background: #0f0f13; }
+.jiaren-segmented { width: max-content; max-width: 100%; display: grid; grid-template-columns: repeat(2, minmax(130px, 1fr)); padding: 3px; border: 1px solid #303038; border-radius: 7px; background: #19191e; }
+.jiaren-segmented button { height: 32px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; border: 0; border-radius: 5px; color: #90909a; background: transparent; cursor: pointer; }
+.jiaren-segmented button.is-active { color: #fff; background: #3c1a2b; box-shadow: inset 0 0 0 1px rgba(255, 79, 163, .3); }
+.jiaren-skill-dropzone { min-height: 116px; display: grid; place-content: center; justify-items: center; gap: 6px; border: 1px dashed #4b4b55; border-radius: 7px; color: #a8a8b2; background: #17171c; cursor: pointer; }
+.jiaren-skill-dropzone:hover,
+.jiaren-skill-dropzone.is-dragging { border-color: #ff4fa3; color: #fff; background: #24151d; }
+.jiaren-skill-dropzone svg { color: #ff63ad; }
+.jiaren-skill-dropzone strong { font-size: 13px; }
+.jiaren-skill-dropzone span { color: #777781; font-size: 10px; }
+.jiaren-skill-files { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; }
+.jiaren-skill-file { min-width: 0; height: 56px; display: grid; grid-template-columns: 44px minmax(0, 1fr) 26px; align-items: center; gap: 8px; padding: 6px; border: 1px solid #2d2d34; border-radius: 6px; background: #18181d; }
+.jiaren-skill-file-preview { width: 44px; height: 44px; display: grid; place-items: center; overflow: hidden; border-radius: 4px; color: #777782; background: #0b0b0e; }
+.jiaren-skill-file-preview img,
+.jiaren-skill-file-preview video { width: 100%; height: 100%; object-fit: cover; }
+.jiaren-skill-file > div:nth-child(2) { min-width: 0; display: grid; gap: 4px; }
+.jiaren-skill-file strong { overflow: hidden; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; }
+.jiaren-skill-file span { color: #777781; font-size: 9px; }
+.jiaren-skill-file > button { width: 26px; height: 26px; display: grid; place-items: center; border: 0; color: #85858f; background: transparent; cursor: pointer; }
+.jiaren-field { min-width: 0; display: grid; gap: 6px; }
+.jiaren-field > span,
+.jiaren-skill-engine label > span,
+.jiaren-3d-materials label > span { color: #bcbcc4; font-size: 11px; font-weight: 650; }
+.jiaren-field input,
+.jiaren-field textarea,
+.jiaren-skill-engine input,
+.jiaren-3d-materials textarea,
+.jiaren-3d-materials input:not([type="range"]),
+.jiaren-3d-materials select { width: 100%; box-sizing: border-box; border: 1px solid #32323a; border-radius: 6px; outline: none; color: #ececf0; background: #1a1a20; font: inherit; font-size: 12px; }
+.jiaren-field input,
+.jiaren-skill-engine input,
+.jiaren-3d-materials input:not([type="range"]),
+.jiaren-3d-materials select { height: 36px; padding: 0 10px; }
+.jiaren-field textarea { min-height: 90px; resize: vertical; padding: 9px 10px; line-height: 1.5; }
+.jiaren-field input:focus,
+.jiaren-field textarea:focus,
+.jiaren-skill-engine input:focus,
+.jiaren-3d-materials textarea:focus { border-color: #ff4fa3; box-shadow: 0 0 0 2px rgba(255, 79, 163, .12); }
+.jiaren-field small { color: #6f6f79; font-size: 10px; }
+.jiaren-field.has-error input { border-color: #ef5f6a; }
+.jiaren-field.has-error small { color: #ff818a; }
+.jiaren-skill-engine,
+.jiaren-skill-progress { display: grid; gap: 11px; }
+.jiaren-skill-engine > header,
+.jiaren-skill-progress > header { display: flex; align-items: center; gap: 7px; color: #d8d8df; }
+.jiaren-skill-engine > header strong,
+.jiaren-skill-progress > header strong { font-size: 12px; }
+.jiaren-skill-engine label { min-width: 0; display: grid; gap: 5px; }
+.jiaren-skill-engine label > div { min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr) 34px; gap: 5px; }
+.jiaren-skill-engine label button { display: grid; place-items: center; border: 1px solid #32323a; border-radius: 6px; color: #9c9ca6; background: #1a1a20; cursor: pointer; }
+.jiaren-secondary-command,
+.jiaren-primary-command,
+.jiaren-danger-command,
+.jiaren-ai-material-command,
+.jiaren-material-apply { min-height: 36px; display: inline-flex; align-items: center; justify-content: center; gap: 7px; border-radius: 6px; font-weight: 700; cursor: pointer; }
+.jiaren-secondary-command { border: 1px solid #3c3c45; color: #d1d1d7; background: #202026; }
+.jiaren-skill-engine > p,
+.jiaren-skill-progress > p { margin: 0; color: #777781; font-size: 10px; line-height: 1.5; }
+.jiaren-skill-engine > p.is-ready { color: #54d6a0; }
+.jiaren-skill-progress { padding-top: 13px; border-top: 1px solid #292930; }
+.jiaren-skill-progress > header span { margin-left: auto; color: #ff70b4; font-size: 12px; font-variant-numeric: tabular-nums; }
+.jiaren-skill-progress.is-completed .jiaren-progress-track > i { background: #35c98a; }
+.jiaren-path-link { display: flex; align-items: center; gap: 6px; overflow: hidden; border: 0; color: #57d3a0; background: transparent; font-size: 10px; cursor: pointer; }
+.jiaren-path-link svg:last-child { margin-left: auto; }
+.jiaren-skill-progress details { border-top: 1px solid #25252c; padding-top: 8px; }
+.jiaren-skill-progress summary { color: #8a8a94; font-size: 10px; cursor: pointer; }
+.jiaren-skill-progress pre { max-height: 190px; overflow: auto; margin: 8px 0 0; color: #b7c6bd; background: #09090c; padding: 9px; font: 10px/1.45 Consolas, monospace; white-space: pre-wrap; word-break: break-word; }
+.jiaren-local-error { min-width: 0; display: flex; align-items: center; gap: 8px; padding: 9px 18px; color: #ff9aa1; border-top: 1px solid #45252b; background: #261316; font-size: 11px; }
+.jiaren-local-error span { min-width: 0; overflow-wrap: anywhere; }
+.jiaren-local-dialog-footer { min-width: 0; display: flex; align-items: center; gap: 10px; padding: 0 18px; border-top: 1px solid #2a2a31; }
+.jiaren-local-dialog-footer > span { min-width: 0; margin-right: auto; overflow: hidden; color: #777781; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; }
+.jiaren-primary-command { min-width: 130px; border: 1px solid #ff5ca9; color: #fff; background: #e53589; }
+.jiaren-danger-command { border: 1px solid #6e3036; color: #ff9ca3; background: #281417; }
+.jiaren-primary-command:disabled,
+.jiaren-secondary-command:disabled,
+.jiaren-danger-command:disabled,
+.jiaren-ai-material-command:disabled,
+.jiaren-material-apply:disabled { opacity: .42; cursor: not-allowed; }
+
+.jiaren-3d-upload-node {
+  width: 330px;
+  min-height: 252px;
+  display: grid;
+  grid-template-rows: 54px minmax(120px, 1fr) auto 35px;
+  overflow: hidden;
+  color: #27232a;
+  border: 2px solid #ef5d9d;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 12px 32px rgba(38, 24, 32, .16);
+}
+.jiaren-3d-upload-node.is-selected { box-shadow: 0 0 0 3px rgba(239, 93, 157, .16), 0 14px 34px rgba(38, 24, 32, .2); }
+.jiaren-3d-upload-node > header { background: #fff1f7; border-bottom: 1px solid #f4c5d9; }
+.jiaren-3d-upload-node > header > div { color: #d9367d; background: #fff; }
+.jiaren-3d-upload-node > header small { color: #98687e; }
+.jiaren-3d-upload-node > header em { color: #a27589; }
+.jiaren-3d-dropzone { min-height: 116px; display: grid; place-content: center; justify-items: center; gap: 6px; margin: 12px; border: 1px dashed #d5a3b8; border-radius: 6px; color: #6d5360; background: #fff9fb; cursor: pointer; }
+.jiaren-3d-dropzone:hover,
+.jiaren-3d-dropzone.is-dragging { border-color: #e6418b; background: #fff0f6; }
+.jiaren-3d-dropzone svg { color: #dc3b82; }
+.jiaren-3d-dropzone strong { font-size: 12px; }
+.jiaren-3d-dropzone span { color: #a47e8e; font-size: 9px; }
+.jiaren-3d-upload-list { display: grid; gap: 4px; padding: 0 12px 8px; }
+.jiaren-3d-upload-list span { min-width: 0; display: flex; align-items: center; gap: 5px; overflow: hidden; color: #755565; font-size: 9px; text-overflow: ellipsis; white-space: nowrap; }
+.jiaren-node-error { margin: 0 12px 8px; color: #c93045; font-size: 9px; line-height: 1.4; }
+.jiaren-3d-upload-node > footer { display: flex; align-items: center; gap: 7px; padding: 0 12px; color: #936177; border-top: 1px solid #f0d5e0; font-size: 9px; }
+.jiaren-3d-upload-node > footer i { width: 7px; height: 7px; border-radius: 50%; background: #58a6ff; }
+.jiaren-3d-upload-node > footer strong { margin-left: auto; color: #4d91dc; font-size: 8px; }
+
+.jiaren-3d-preview-node {
+  width: 960px;
+  height: 640px;
+  display: grid;
+  grid-template-rows: 55px minmax(0, 1fr);
+  overflow: hidden;
+  color: #22252a;
+  border: 2px solid #efbd3f;
+  border-radius: 8px;
+  background: #f7f8fa;
+  box-shadow: 0 18px 42px rgba(40, 34, 18, .17);
+}
+.jiaren-3d-preview-node.is-selected { box-shadow: 0 0 0 3px rgba(239, 189, 63, .18), 0 20px 46px rgba(40, 34, 18, .21); }
+.jiaren-3d-preview-head { min-width: 0; border-bottom: 1px solid #e3d29a; background: #fff8df; }
+.jiaren-3d-preview-head > div { color: #a97400; background: #fff; }
+.jiaren-3d-preview-head small { color: #8d7e57; }
+.jiaren-3d-preview-head nav { display: flex; align-items: center; gap: 5px; margin-left: auto; }
+.jiaren-3d-preview-head nav button,
+.jiaren-3d-model-switch button,
+.jiaren-3d-parts footer button { width: 30px; height: 30px; display: grid; place-items: center; border: 1px solid #ded7bf; border-radius: 5px; color: #756b4e; background: rgba(255, 255, 255, .72); cursor: pointer; }
+.jiaren-3d-preview-head nav button.is-active { color: #654800; border-color: #d4a72c; background: #ffe49a; }
+.jiaren-3d-workbench { min-width: 0; min-height: 0; display: grid; grid-template-columns: 170px minmax(0, 1fr) 245px; overflow: hidden; }
+.jiaren-3d-parts,
+.jiaren-3d-materials { min-width: 0; min-height: 0; background: #f8f9fb; }
+.jiaren-3d-parts { display: grid; grid-template-rows: 42px minmax(0, 1fr) 42px; border-right: 1px solid #dfe2e7; }
+.jiaren-3d-parts > header,
+.jiaren-3d-materials > header { display: flex; align-items: center; gap: 6px; padding: 0 10px; border-bottom: 1px solid #e1e4e9; }
+.jiaren-3d-parts > header strong,
+.jiaren-3d-materials > header strong { font-size: 11px; }
+.jiaren-3d-parts > header span,
+.jiaren-3d-materials > header span { margin-left: auto; color: #8b9099; font-size: 9px; }
+.jiaren-3d-parts > div { min-height: 0; overflow: auto; padding: 6px; }
+.jiaren-3d-parts > div > button { width: 100%; min-width: 0; height: 28px; display: grid; grid-template-columns: 7px minmax(0, 1fr) 14px; align-items: center; gap: 6px; padding: 0 7px; border: 0; border-radius: 4px; color: #565c65; background: transparent; cursor: pointer; }
+.jiaren-3d-parts > div > button:hover { background: #eceff3; }
+.jiaren-3d-parts > div > button.is-selected { color: #704e00; background: #ffecb6; }
+.jiaren-3d-parts > div > button i { width: 6px; height: 6px; border-radius: 2px; background: #aeb4bc; }
+.jiaren-3d-parts > div > button.is-selected i { background: #d4a72c; }
+.jiaren-3d-parts > div > button span { overflow: hidden; font-size: 9px; text-align: left; text-overflow: ellipsis; white-space: nowrap; }
+.jiaren-3d-parts > div > p { color: #9aa0a9; font-size: 9px; text-align: center; }
+.jiaren-3d-parts footer { display: flex; align-items: center; justify-content: center; gap: 5px; border-top: 1px solid #e1e4e9; }
+.jiaren-3d-parts footer button { width: 29px; height: 28px; border-color: #dfe2e7; color: #68707a; background: #fff; }
+.jiaren-3d-viewport { position: relative; min-width: 0; min-height: 0; overflow: hidden; }
+.jiaren-3d-canvas { position: absolute; inset: 0; touch-action: none; }
+.jiaren-3d-canvas canvas { display: block; width: 100% !important; height: 100% !important; }
+.jiaren-3d-viewport-state { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 9px; padding: 30px; color: #737983; background: rgba(244, 246, 248, .78); text-align: center; pointer-events: none; }
+.jiaren-3d-viewport-state strong { max-width: 360px; font-size: 11px; line-height: 1.5; overflow-wrap: anywhere; }
+.jiaren-3d-viewport-state.is-error { color: #b83545; }
+.jiaren-3d-viewport-meta { position: absolute; left: 10px; right: 10px; bottom: 10px; display: flex; align-items: center; justify-content: space-between; gap: 10px; pointer-events: none; }
+.jiaren-3d-viewport-meta span { display: inline-flex; align-items: center; gap: 5px; padding: 5px 7px; border: 1px solid rgba(50, 56, 64, .12); border-radius: 4px; color: #606771; background: rgba(255, 255, 255, .82); font-size: 8px; backdrop-filter: blur(6px); }
+.jiaren-3d-model-switch { position: absolute; top: 10px; left: 50%; display: grid; grid-template-columns: 28px minmax(0, 1fr) 28px; align-items: center; width: min(330px, calc(100% - 20px)); transform: translateX(-50%); border: 1px solid rgba(50, 56, 64, .12); border-radius: 5px; background: rgba(255, 255, 255, .86); backdrop-filter: blur(7px); }
+.jiaren-3d-model-switch button { width: 28px; height: 28px; border: 0; background: transparent; }
+.jiaren-3d-model-switch button:disabled { opacity: .3; }
+.jiaren-3d-model-switch span { min-width: 0; overflow: hidden; color: #535a63; font-size: 8px; text-align: center; text-overflow: ellipsis; white-space: nowrap; }
+.jiaren-3d-materials { display: grid; align-content: start; gap: 9px; overflow: auto; padding-bottom: 10px; border-left: 1px solid #dfe2e7; }
+.jiaren-3d-materials > header { height: 42px; padding: 0 10px; }
+.jiaren-3d-materials label { min-width: 0; display: grid; gap: 5px; padding: 0 10px; }
+.jiaren-3d-materials label > span { display: flex; align-items: center; color: #5f6670; font-size: 9px; }
+.jiaren-3d-materials label > span em { margin-left: auto; color: #8a9098; font-size: 8px; font-style: normal; font-variant-numeric: tabular-nums; }
+.jiaren-3d-materials textarea { min-height: 55px; resize: vertical; padding: 7px; color: #3b4149; border-color: #d9dde3; background: #fff; font-size: 9px; line-height: 1.45; }
+.jiaren-ai-material-command,
+.jiaren-material-apply { min-height: 31px; margin: 0 10px; border: 1px solid #d3a72c; color: #654900; background: #ffe69b; font-size: 9px; }
+.jiaren-material-apply { border-color: #cfd4db; color: #4a515a; background: #fff; }
+.jiaren-color-control { min-width: 0; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 6px; }
+.jiaren-color-control input[type="color"] { width: 34px !important; height: 30px !important; padding: 2px !important; border-color: #d8dce2 !important; background: #fff !important; }
+.jiaren-3d-materials input:not([type="range"]),
+.jiaren-3d-materials select { height: 30px; color: #4a5058; border-color: #d8dce2; background: #fff; font-size: 9px; }
+.jiaren-3d-materials input[type="range"] { width: 100%; accent-color: #d7aa2e; }
+.jiaren-3d-materials > p { min-width: 0; margin: 2px 10px 0; overflow: hidden; color: #8b919a; font-size: 8px; line-height: 1.45; text-overflow: ellipsis; white-space: nowrap; }
+
+@media (max-width: 900px) {
+  .jiaren-local-dialog-layer { padding: 12px; }
+  .jiaren-skill-dialog { width: calc(100vw - 24px); max-height: calc(100vh - 24px); }
+  .jiaren-skill-dialog-body { grid-template-columns: 1fr; }
+  .jiaren-skill-form { border-right: 0; border-bottom: 1px solid #292930; }
+  .jiaren-local-dialog-footer > span { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .jiaren-progress-track > i { transition: none; }
+}
+
+/* Studio canvas cleanup: keep a single infinite canvas surface and make Studio tools float. */
+.canvas-app-shell:has(.jiaren-animation-workbench.is-page1-design),
+.canvas-app-shell.theme-light:has(.jiaren-animation-workbench.is-page1-design),
+.canvas-app-shell:not(.theme-light):has(.jiaren-animation-workbench.is-page1-design) {
+  background: #fbfdfb !important;
+}
+
+.canvas-app-shell:has(.jiaren-animation-workbench.is-page1-design) .canvas-stage,
+.canvas-app-shell.theme-light:has(.jiaren-animation-workbench.is-page1-design) .canvas-stage,
+.canvas-app-shell:not(.theme-light):has(.jiaren-animation-workbench.is-page1-design) .canvas-stage {
+  background: #fbfdfb !important;
+  background-image: none !important;
+}
+
+.canvas-app-shell:has(.jiaren-animation-workbench.is-page1-design) .main-canvas-flow::before,
+.canvas-app-shell.theme-light:has(.jiaren-animation-workbench.is-page1-design) .main-canvas-flow::before,
+.canvas-app-shell:not(.theme-light):has(.jiaren-animation-workbench.is-page1-design) .main-canvas-flow::before,
+.canvas-app-shell:has(.jiaren-animation-workbench.is-page1-design) .main-canvas-flow.animation-simple-studio::before {
+  display: none !important;
+  content: none !important;
+}
+
+.canvas-app-shell:has(.jiaren-animation-workbench.is-page1-design) .react-flow__background,
+.canvas-app-shell.theme-light:has(.jiaren-animation-workbench.is-page1-design) .react-flow__background,
+.canvas-app-shell:not(.theme-light):has(.jiaren-animation-workbench.is-page1-design) .react-flow__background {
+  opacity: 0.18 !important;
+}
+
+.canvas-app-shell:has(.jiaren-primary-video-prompt) .jiaren-primary-video-custom-panel > div:nth-of-type(5) {
+  display: none !important;
+}
+
+.canvas-app-shell:has(.jiaren-primary-video-prompt) .jiaren-primary-video-custom-panel > div:nth-of-type(6) {
+  grid-column: 2 / 4 !important;
+}
+
+.canvas-app-shell:has(.jiaren-primary-video-prompt) .jiaren-primary-video-custom-panel > div:nth-of-type(6) .jiaren-primary-video-choice-grid.is-model {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+
+.canvas-app-shell .jiaren-animation-workbench.is-page1-design,
+.canvas-app-shell .jiaren-animation-workbench.is-page1-design.is-character,
+.canvas-app-shell .jiaren-animation-workbench.is-page1-design.is-workflow-active,
+.canvas-app-shell.theme-light .jiaren-animation-workbench.is-page1-design,
+.canvas-app-shell.theme-light .jiaren-animation-workbench.is-page1-design.is-character,
+.canvas-app-shell.theme-light .jiaren-animation-workbench.is-page1-design.is-workflow-active,
+.canvas-app-shell:not(.theme-light) .jiaren-animation-workbench.is-page1-design,
+.canvas-app-shell:not(.theme-light) .jiaren-animation-workbench.is-page1-design.is-character,
+.canvas-app-shell:not(.theme-light) .jiaren-animation-workbench.is-page1-design.is-workflow-active {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 96 !important;
+  display: block !important;
+  width: auto !important;
+  height: auto !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+  pointer-events: none !important;
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+.canvas-app-shell:has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-canvas,
+.canvas-app-shell:has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-canvas.is-active,
+.canvas-app-shell:has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-canvas.is-start,
+.canvas-app-shell.theme-light:has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-canvas,
+.canvas-app-shell.theme-light:has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-canvas.is-active,
+.canvas-app-shell.theme-light:has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-canvas.is-start,
+.canvas-app-shell:not(.theme-light):has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-canvas,
+.canvas-app-shell:not(.theme-light):has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-canvas.is-active,
+.canvas-app-shell:not(.theme-light):has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-canvas.is-start {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 104 !important;
+  display: block !important;
+  width: 100vw !important;
+  max-width: none !important;
+  height: 100vh !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  background: transparent !important;
+  pointer-events: none !important;
+}
+
+.canvas-app-shell:has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-canvas::before,
+.canvas-app-shell.theme-light:has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-canvas::before,
+.canvas-app-shell:not(.theme-light):has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-canvas::before {
+  display: none !important;
+  content: none !important;
+}
+
+.canvas-app-shell:has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-production-board,
+.canvas-app-shell:has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-canvas.is-active .jiaren-page1-production-board,
+.canvas-app-shell.theme-light:has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-production-board,
+.canvas-app-shell.theme-light:has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-canvas.is-active .jiaren-page1-production-board,
+.canvas-app-shell:not(.theme-light):has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-production-board,
+.canvas-app-shell:not(.theme-light):has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-canvas.is-active .jiaren-page1-production-board {
+  position: absolute !important;
+  inset: 0 auto auto 0 !important;
+  z-index: 2 !important;
+  display: block !important;
+  width: 100vw !important;
+  min-width: 100vw !important;
+  max-width: none !important;
+  height: 100vh !important;
+  min-height: 100vh !important;
+  padding: 72px 96px 180px 432px !important;
+  overflow: visible !important;
+  pointer-events: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  transform-origin: 0 0 !important;
+}
+
+.canvas-app-shell:has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-module-wrap,
+.canvas-app-shell:has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-script-module,
+.canvas-app-shell:has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-setup-module,
+.canvas-app-shell:has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-character-module,
+.canvas-app-shell:has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-scene-card,
+.canvas-app-shell:has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-storyboard-image-module,
+.canvas-app-shell:has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-storyboard-video-module,
+.canvas-app-shell:has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-audio-module,
+.canvas-app-shell:has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-final-module {
+  pointer-events: auto !important;
+}
+
+.canvas-app-shell:has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-module-wrap.is-pending-script {
+  --page1-node-x: 24px !important;
+}
+
+.canvas-app-shell:has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-agent-console,
+.canvas-app-shell:has(.jiaren-animation-workbench.is-page1-design) .jiaren-animation-workbench.is-page1-design.is-workflow-active .jiaren-page1-agent-console,
+.canvas-app-shell.theme-light:has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-agent-console,
+.canvas-app-shell.theme-light:has(.jiaren-animation-workbench.is-page1-design) .jiaren-animation-workbench.is-page1-design.is-workflow-active .jiaren-page1-agent-console,
+.canvas-app-shell:not(.theme-light):has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-agent-console,
+.canvas-app-shell:not(.theme-light):has(.jiaren-animation-workbench.is-page1-design) .jiaren-animation-workbench.is-page1-design.is-workflow-active .jiaren-page1-agent-console {
+  position: fixed !important;
+  left: 24px !important;
+  top: 64px !important;
+  bottom: 86px !important;
+  z-index: 180 !important;
+  display: grid !important;
+  grid-template-rows: auto minmax(0, 1fr) auto auto auto !important;
+  width: 388px !important;
+  min-width: 0 !important;
+  max-width: calc(100vw - 48px) !important;
+  height: auto !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(15, 23, 42, 0.1) !important;
+  border-radius: 18px !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 22px 54px rgba(15, 23, 42, 0.14) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(1.12) !important;
+  backdrop-filter: blur(18px) saturate(1.12) !important;
+  pointer-events: auto !important;
+  transform: translateX(0) !important;
+  transition: opacity 180ms ease, transform 180ms ease !important;
+}
+
+body.jiaren-studio-collapsed .canvas-app-shell:has(.jiaren-animation-workbench.is-page1-design) .jiaren-animation-workbench.is-page1-design.is-workflow-active .jiaren-page1-agent-console,
+body.jiaren-studio-collapsed .canvas-app-shell.theme-light:has(.jiaren-animation-workbench.is-page1-design) .jiaren-animation-workbench.is-page1-design.is-workflow-active .jiaren-page1-agent-console,
+body.jiaren-studio-collapsed .canvas-app-shell:not(.theme-light):has(.jiaren-animation-workbench.is-page1-design) .jiaren-animation-workbench.is-page1-design.is-workflow-active .jiaren-page1-agent-console {
+  left: -320px !important;
+  opacity: 0.16 !important;
+  transform: translateX(0) !important;
+}
+
+body.jiaren-studio-collapsed .canvas-app-shell:has(.jiaren-animation-workbench.is-page1-design) .jiaren-animation-workbench.is-page1-design.is-workflow-active .jiaren-page1-agent-console:hover,
+body.jiaren-studio-collapsed .canvas-app-shell:has(.jiaren-animation-workbench.is-page1-design) .jiaren-animation-workbench.is-page1-design.is-workflow-active .jiaren-page1-agent-console:focus-within,
+body.jiaren-studio-collapsed .canvas-app-shell.theme-light:has(.jiaren-animation-workbench.is-page1-design) .jiaren-animation-workbench.is-page1-design.is-workflow-active .jiaren-page1-agent-console:hover,
+body.jiaren-studio-collapsed .canvas-app-shell.theme-light:has(.jiaren-animation-workbench.is-page1-design) .jiaren-animation-workbench.is-page1-design.is-workflow-active .jiaren-page1-agent-console:focus-within,
+body.jiaren-studio-collapsed .canvas-app-shell:not(.theme-light):has(.jiaren-animation-workbench.is-page1-design) .jiaren-animation-workbench.is-page1-design.is-workflow-active .jiaren-page1-agent-console:hover,
+body.jiaren-studio-collapsed .canvas-app-shell:not(.theme-light):has(.jiaren-animation-workbench.is-page1-design) .jiaren-animation-workbench.is-page1-design.is-workflow-active .jiaren-page1-agent-console:focus-within {
+  left: 24px !important;
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+}
+
+.canvas-app-shell:has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-input textarea {
+  min-height: 48px !important;
+  color: #111827 !important;
+}
+
+.canvas-app-shell:has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-input textarea::placeholder {
+  color: rgba(31, 41, 55, 0.52) !important;
+}
+
+.canvas-app-shell:has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-script-overlay,
+.canvas-app-shell.theme-light:has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-script-overlay,
+.canvas-app-shell:not(.theme-light):has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-script-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 260 !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: 28px !important;
+  background: rgba(248, 250, 252, 0.28) !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  pointer-events: auto !important;
+}
+
+.canvas-app-shell:has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-script-overlay article,
+.canvas-app-shell.theme-light:has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-script-overlay article,
+.canvas-app-shell:not(.theme-light):has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-script-overlay article {
+  width: min(860px, calc(100vw - 80px)) !important;
+  max-height: calc(100vh - 80px) !important;
+  background: rgba(255, 255, 255, 0.96) !important;
+  color: #111827 !important;
+  border-color: rgba(15, 23, 42, 0.12) !important;
+  box-shadow: 0 26px 70px rgba(15, 23, 42, 0.18) !important;
+}
+
+.canvas-app-shell:has(.jiaren-animation-workbench.is-page1-design) .bottom-floating-toolbar {
+  display: flex !important;
+  opacity: 0 !important;
+  transform: translateX(-50%) translateY(12px) !important;
+  pointer-events: auto !important;
+  transition: opacity 160ms ease, transform 160ms ease !important;
+}
+
+.canvas-app-shell:has(.jiaren-animation-workbench.is-page1-design) .bottom-floating-toolbar {
+  display: flex !important;
+}
+
+.canvas-app-shell:has(.jiaren-animation-workbench.is-page1-design) .bottom-floating-toolbar:hover,
+.canvas-app-shell:has(.jiaren-animation-workbench.is-page1-design) .bottom-floating-toolbar:focus-within {
+  opacity: 1 !important;
+  transform: translateX(-50%) translateY(0) !important;
+}
+
+.canvas-app-shell:has(.jiaren-animation-workbench.is-page1-design) .canvas-minimap {
+  display: block !important;
+  opacity: 0.72 !important;
+}
+
+.canvas-app-shell:has(.jiaren-animation-workbench.is-page1-design) .canvas-minimap {
+  display: block !important;
+}
+
+/* Studio viewport interaction and compact production grids. */
+.canvas-app-shell:is(.theme-light, :not(.theme-light)):has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-canvas,
+.canvas-app-shell:is(.theme-light, :not(.theme-light)):has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-canvas.is-active {
+  pointer-events: auto !important;
+  touch-action: none !important;
+  cursor: grab !important;
+}
+
+.canvas-app-shell:is(.theme-light, :not(.theme-light)):has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-canvas:active {
+  cursor: grabbing !important;
+}
+
+.canvas-app-shell:is(.theme-light, :not(.theme-light)):has(.jiaren-animation-workbench.is-page1-design) :is(
+  .jiaren-page1-agent-console,
+  .jiaren-page1-module-wrap,
+  .jiaren-page1-script-overlay,
+  .jiaren-page1-image-preview,
+  .jiaren-page1-character-regenerate
+) {
+  cursor: default !important;
+}
+
+.canvas-app-shell:is(.theme-light, :not(.theme-light)):has(.jiaren-animation-workbench.is-page1-design) :is(
+  .jiaren-page1-script-character-line,
+  .jiaren-page1-connector
+) {
+  display: none !important;
+}
+
+.canvas-app-shell:is(.theme-light, :not(.theme-light)):has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-character-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(620px, 1fr)) !important;
+  grid-auto-flow: row !important;
+  align-items: start !important;
+  gap: 18px !important;
+  width: 1320px !important;
+  max-width: none !important;
+}
+
+.canvas-app-shell:is(.theme-light, :not(.theme-light)):has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-character-module {
+  width: auto !important;
+  min-width: 0 !important;
+}
+
+.canvas-app-shell:is(.theme-light, :not(.theme-light)):has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-scene-module {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(690px, 1fr)) !important;
+  grid-auto-flow: row !important;
+  align-items: start !important;
+  gap: 18px !important;
+  width: 1460px !important;
+  max-width: none !important;
+}
+
+.canvas-app-shell:is(.theme-light, :not(.theme-light)):has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-scene-card {
+  width: auto !important;
+  min-width: 0 !important;
+}
+
+.canvas-app-shell:is(.theme-light, :not(.theme-light)):has(.jiaren-animation-workbench.is-page1-design) :is(
+  .jiaren-page1-storyboard-image-module,
+  .jiaren-page1-storyboard-video-module
+) {
+  width: 1480px !important;
+  max-width: none !important;
+}
+
+.canvas-app-shell:is(.theme-light, :not(.theme-light)):has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-shot-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(320px, 1fr)) !important;
+  grid-auto-flow: row !important;
+  align-items: start !important;
+  gap: 14px !important;
+}
+
+.canvas-app-shell:is(.theme-light, :not(.theme-light)):has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-shot-card {
+  width: auto !important;
+  min-width: 0 !important;
+}
+
+.history-preview-frame img {
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+  object-fit: contain !important;
+}
+
+/* Creation center: user-provided SVG cards on the existing workspace actions. */
+.jiaren-launch-chooser {
+  overflow: auto !important;
+  padding: 28px clamp(24px, 5vw, 80px) !important;
+}
+
+.jiaren-launch-art {
+  position: relative !important;
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  align-items: stretch !important;
+  gap: clamp(16px, 2vw, 28px) !important;
+  width: min(1060px, calc(100vw - 160px)) !important;
+  aspect-ratio: auto !important;
+  transform: translateY(3%) !important;
+}
+
+.jiaren-launch-art > button {
+  position: relative !important;
+  inset: auto !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  height: auto !important;
+  aspect-ratio: 0.83 !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(184, 197, 207, 0.42) !important;
+  border-radius: clamp(22px, 2.5vw, 38px) !important;
+  background: transparent !important;
+  box-shadow: 0 20px 48px rgba(36, 56, 47, 0.12), 0 2px 8px rgba(36, 56, 47, 0.06) !important;
+  transition: border-color 180ms ease, box-shadow 180ms ease, filter 180ms ease, transform 220ms ease !important;
+}
+
+.jiaren-launch-art > button > img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  border-radius: inherit !important;
+}
+
+.jiaren-launch-art > button > span {
+  display: none !important;
+}
+
+.jiaren-launch-art > button:hover,
+.jiaren-launch-art > button:focus-visible {
+  border-color: rgba(116, 199, 255, 0.5) !important;
+  box-shadow: 0 28px 58px rgba(36, 56, 47, 0.18), 0 0 0 3px rgba(116, 199, 255, 0.08) !important;
+  filter: saturate(1.04) brightness(1.015);
+}
+
+@media (max-width: 980px) {
+  .jiaren-launch-art {
+    width: min(720px, calc(100vw - 48px)) !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 16px !important;
+    transform: none !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .jiaren-launch-chooser { padding: 24px 16px !important; }
+  .jiaren-launch-art {
+    width: min(310px, calc(100vw - 32px)) !important;
+    grid-template-columns: 1fr !important;
+    padding: 12px 0 28px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .jiaren-launch-art > button { animation: none !important; transition: none !important; }
+}
+
+/* Final image interaction polish. Keep this block after all legacy overrides. */
+body.jiaren-drawing-console-active .lovart-prompt-console {
+  overflow: visible !important;
+  isolation: isolate !important;
+}
+
+body.jiaren-drawing-console-active
+  .lovart-prompt-console
+  > .jiaren-image-mode-tabs {
+  z-index: 1 !important;
+}
+
+body.jiaren-drawing-console-active
+  .lovart-prompt-console
+  > .prompt-popover {
+  z-index: 200 !important;
+  isolation: isolate !important;
+  border-color: rgba(30, 64, 48, 0.16) !important;
+  background: #fff !important;
+  box-shadow: 0 22px 64px rgba(24, 49, 35, 0.2) !important;
+}
+
+body.jiaren-drawing-console-active
+  .lovart-prompt-console
+  > .reference-picker {
+  position: relative !important;
+  display: grid !important;
+  width: 72px !important;
+  min-width: 72px !important;
+  height: 92px !important;
+  min-height: 92px !important;
+  grid-template-columns: 1fr !important;
+  grid-template-rows: 28px 18px !important;
+  place-content: center !important;
+  place-items: center !important;
+  gap: 6px !important;
+  padding: 10px 6px !important;
+  overflow: visible !important;
+  text-align: center !important;
+}
+
+body.jiaren-drawing-console-active
+  .lovart-prompt-console
+  > .reference-picker
+  > :is(svg, img) {
+  display: block !important;
+  width: 22px !important;
+  height: 22px !important;
+  min-width: 22px !important;
+  min-height: 22px !important;
+  margin: 0 !important;
+  grid-row: 1 !important;
+}
+
+body.jiaren-drawing-console-active
+  .lovart-prompt-console
+  > .reference-picker
+  > span {
+  display: block !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  margin: 0 !important;
+  overflow: visible !important;
+  grid-row: 2 !important;
+  color: #466257 !important;
+  font-size: 11px !important;
+  line-height: 18px !important;
+  text-align: center !important;
+  text-overflow: clip !important;
+  white-space: nowrap !important;
+}
+
+body.jiaren-drawing-console-active
+  .lovart-prompt-console
+  > .reference-picker
+  > b {
+  position: absolute !important;
+  top: 7px !important;
+  right: 7px !important;
+  display: grid !important;
+  min-width: 18px !important;
+  height: 18px !important;
+  place-items: center !important;
+  margin: 0 !important;
+  border-radius: 999px !important;
+}
+
+.react-flow__node:has(.canvas-node.jiaren-drawing-media-card),
+.canvas-node.jiaren-drawing-media-card {
+  overflow: visible !important;
+  clip-path: none !important;
+  contain: none !important;
+}
+
+.canvas-node.jiaren-drawing-media-card > .react-flow__handle {
+  z-index: 40 !important;
+  display: grid !important;
+  width: 14px !important;
+  height: 14px !important;
+  min-width: 14px !important;
+  min-height: 14px !important;
+  padding: 0 !important;
+  place-items: center !important;
+  overflow: visible !important;
+  border: 2px solid #2fb477 !important;
+  border-radius: 999px !important;
+  background: #fff !important;
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, 0.92),
+    0 3px 10px rgba(30, 111, 72, 0.25) !important;
+}
+
+.canvas-node.jiaren-drawing-media-card
+  > .react-flow__handle-left {
+  left: -10px !important;
+}
+
+.canvas-node.jiaren-drawing-media-card
+  > .react-flow__handle-right {
+  right: -10px !important;
+}
+
+.canvas-node.jiaren-drawing-media-card > .react-flow__handle::after {
+  content: "" !important;
+  display: block !important;
+  width: 4px !important;
+  height: 4px !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: #2fb477 !important;
+}
+
+/* Final control popovers: float above the footer instead of entering its scroll area. */
+body.jiaren-drawing-console-active .lovart-prompt-console {
+  overflow: visible !important;
+}
+
+body.jiaren-drawing-console-active .lovart-prompt-console > .prompt-popover {
+  position: absolute !important;
+  top: auto !important;
+  right: 14px !important;
+  bottom: 54px !important;
+  left: 14px !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  max-height: min(340px, calc(100vh - 100px)) !important;
+  margin: 0 !important;
+  overflow: auto !important;
+}
+
+body.jiaren-drawing-console-active
+  .lovart-prompt-console
+  > .model-picker-popover {
+  right: auto !important;
+  width: min(420px, calc(100% - 28px)) !important;
+}
+
+body.jiaren-drawing-console-active
+  .lovart-prompt-console
+  > .params-picker-popover {
+  right: auto !important;
+  width: min(720px, calc(100% - 28px)) !important;
+}
+
+body.jiaren-drawing-console-active
+  .lovart-prompt-console
+  > .camera-picker-popover {
+  left: auto !important;
+  width: min(720px, calc(100% - 28px)) !important;
+}
+
+/* Image controls expand inside the editor so every option remains clickable. */
+body.jiaren-drawing-console-active .lovart-prompt-console > .prompt-popover {
+  position: absolute !important;
+  top: auto !important;
+  right: 14px !important;
+  bottom: 54px !important;
+  left: 14px !important;
+  z-index: 6 !important;
+  box-sizing: border-box !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  max-height: min(340px, calc(100vh - 100px)) !important;
+  grid-column: 1 / -1 !important;
+  margin: 0 !important;
+  overflow: auto !important;
+  border: 1px solid rgba(30, 64, 48, 0.14) !important;
+  border-radius: 14px !important;
+  color: #25352c !important;
+  background: rgba(255, 255, 255, 0.985) !important;
+  box-shadow: 0 14px 38px rgba(28, 55, 40, 0.12) !important;
+}
+
+body.jiaren-drawing-console-active
+  .lovart-prompt-console
+  > .model-picker-popover {
+  display: grid !important;
+  gap: 6px !important;
+}
+
+body.jiaren-drawing-console-active
+  .lovart-prompt-console
+  > :is(.params-picker-popover, .camera-picker-popover) {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 12px !important;
+}
+
+body.jiaren-drawing-console-active
+  .lovart-prompt-console
+  > .prompt-popover
+  :is(button, .token, .ratio-token) {
+  pointer-events: auto !important;
+  touch-action: manipulation !important;
+}
+
+body.jiaren-drawing-console-active
+  .lovart-prompt-console
+  > .prompt-popover
+  :is(.popover-row, .token, .ratio-token) {
+  color: #33473c !important;
+  border-color: rgba(30, 64, 48, 0.13) !important;
+  background: #f7faf8 !important;
+}
+
+body.jiaren-drawing-console-active
+  .lovart-prompt-console
+  > .prompt-popover
+  :is(.popover-row, .token, .ratio-token):hover {
+  border-color: rgba(47, 180, 119, 0.36) !important;
+  background: #eff9f3 !important;
+}
+
+body.jiaren-drawing-console-active
+  .lovart-prompt-console
+  > .prompt-popover
+  :is(.popover-row, .token, .ratio-token).active {
+  color: #18583b !important;
+  border-color: rgba(47, 180, 119, 0.48) !important;
+  background: #e4f7ec !important;
+}
+
+body.jiaren-drawing-console-active
+  .lovart-prompt-console
+  :is(.compact-selector, .model-pill, .camera-control-button).active {
+  color: #18583b !important;
+  background: #e4f7ec !important;
+  box-shadow: inset 0 0 0 1px rgba(47, 180, 119, 0.3) !important;
+}
+
+body.jiaren-drawing-console-active
+  .lovart-prompt-console
+  .async-pill:not(:disabled) {
+  cursor: pointer !important;
+  opacity: 1 !important;
+}
+
+body.jiaren-drawing-console-active
+  .lovart-prompt-console
+  .async-pill:not(:disabled):hover {
+  color: #18583b !important;
+  background: #e4f7ec !important;
+}
+
+.jiaren-model-picker-empty {
+  margin: 0 !important;
+  padding: 18px !important;
+  color: #6f7e76 !important;
+  font-size: 12px !important;
+  text-align: center !important;
+}
+
+body.jiaren-drawing-console-active
+  .lovart-prompt-console
+  > .model-picker-popover {
+  right: auto !important;
+  width: min(420px, calc(100% - 28px)) !important;
+}
+
+body.jiaren-drawing-console-active
+  .lovart-prompt-console
+  > .params-picker-popover {
+  right: auto !important;
+  width: min(720px, calc(100% - 28px)) !important;
+}
+
+body.jiaren-drawing-console-active
+  .lovart-prompt-console
+  > .camera-picker-popover {
+  left: auto !important;
+  width: min(720px, calc(100% - 28px)) !important;
+}
+
+@media (max-width: 760px) {
+  body.jiaren-drawing-console-active
+    .lovart-prompt-console
+    > :is(.params-picker-popover, .camera-picker-popover) {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* T8 prompt template library: bounded white work panel with independent columns. */
+[data-canvas-floating-ui="prompt-template-library"] {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 101400 !important;
+  display: grid !important;
+  place-items: center !important;
+  box-sizing: border-box !important;
+  padding: 24px !important;
+  background: rgba(28, 45, 36, 0.18) !important;
+  backdrop-filter: blur(5px) saturate(0.92) !important;
+  -webkit-backdrop-filter: blur(5px) saturate(0.92) !important;
+}
+
+[data-canvas-floating-ui="prompt-template-library"],
+[data-canvas-floating-ui="prompt-template-library"] * {
+  box-sizing: border-box !important;
+  letter-spacing: 0 !important;
+}
+
+[data-canvas-floating-ui="prompt-template-library"] > section {
+  display: flex !important;
+  width: min(1080px, calc(100vw - 64px)) !important;
+  min-width: 680px !important;
+  max-width: 1080px !important;
+  height: min(720px, calc(100vh - 96px)) !important;
+  min-height: 480px !important;
+  max-height: 720px !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(35, 74, 52, 0.14) !important;
+  border-radius: 18px !important;
+  color: #20362b !important;
+  background: rgba(255, 255, 255, 0.985) !important;
+  box-shadow: 0 28px 80px rgba(29, 53, 40, 0.2), 0 4px 16px rgba(29, 53, 40, 0.08) !important;
+  backdrop-filter: blur(22px) saturate(1.04) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(1.04) !important;
+}
+
+[data-canvas-floating-ui="prompt-template-library"] > section > header {
+  display: flex !important;
+  min-height: 62px !important;
+  flex: 0 0 auto !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+  padding: 10px 14px !important;
+  border: 0 !important;
+  border-bottom: 1px solid rgba(35, 74, 52, 0.1) !important;
+  color: #1d3428 !important;
+  background: rgba(250, 253, 251, 0.96) !important;
+}
+
+[data-canvas-floating-ui="prompt-template-library"] > section > header > div:first-child {
+  min-width: 0 !important;
+}
+
+[data-canvas-floating-ui="prompt-template-library"] > section > header > div:first-child > div:first-child {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  color: #173d2d !important;
+  font-size: 14px !important;
+  font-weight: 760 !important;
+}
+
+[data-canvas-floating-ui="prompt-template-library"] > section > header > div:first-child > div:last-child {
+  margin-top: 3px !important;
+  overflow: hidden !important;
+  color: #718178 !important;
+  font-size: 10px !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+[data-canvas-floating-ui="prompt-template-library"] > section > div:nth-child(2) {
+  display: grid !important;
+  grid-template-columns: 170px minmax(260px, 310px) minmax(0, 1fr) !important;
+  min-height: 0 !important;
+  flex: 1 1 auto !important;
+  overflow: hidden !important;
+  background: #fff !important;
+}
+
+[data-canvas-floating-ui="prompt-template-library"] > section > div:nth-child(2) > aside,
+[data-canvas-floating-ui="prompt-template-library"] > section > div:nth-child(2) > section,
+[data-canvas-floating-ui="prompt-template-library"] > section > div:nth-child(2) > main {
+  min-width: 0 !important;
+  min-height: 0 !important;
+  color: #263b31 !important;
+  background: #fff !important;
+}
+
+[data-canvas-floating-ui="prompt-template-library"] > section > div:nth-child(2) > aside {
+  overflow-y: auto !important;
+  padding: 10px !important;
+  border: 0 !important;
+  border-right: 1px solid rgba(35, 74, 52, 0.09) !important;
+  background: #f7faf8 !important;
+}
+
+[data-canvas-floating-ui="prompt-template-library"] > section > div:nth-child(2) > section {
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  padding: 10px !important;
+  border: 0 !important;
+  border-right: 1px solid rgba(35, 74, 52, 0.09) !important;
+}
+
+[data-canvas-floating-ui="prompt-template-library"] > section > div:nth-child(2) > section > div:last-child {
+  min-height: 0 !important;
+  flex: 1 1 auto !important;
+  overflow-y: auto !important;
+  padding-right: 3px !important;
+}
+
+[data-canvas-floating-ui="prompt-template-library"] > section > div:nth-child(2) > main {
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: auto !important;
+  padding: 12px !important;
+}
+
+[data-canvas-floating-ui="prompt-template-library"] :is(input, select, textarea) {
+  min-width: 0 !important;
+  border: 1px solid rgba(35, 74, 52, 0.14) !important;
+  border-radius: 8px !important;
+  color: #23382e !important;
+  background: #f7faf8 !important;
+  box-shadow: inset 0 1px 2px rgba(24, 58, 39, 0.025) !important;
+  outline: none !important;
+}
+
+[data-canvas-floating-ui="prompt-template-library"] :is(input, select, textarea):focus {
+  border-color: rgba(47, 180, 119, 0.55) !important;
+  box-shadow: 0 0 0 3px rgba(47, 180, 119, 0.1) !important;
+}
+
+[data-canvas-floating-ui="prompt-template-library"] button {
+  min-width: 0 !important;
+  border-color: rgba(35, 74, 52, 0.13) !important;
+  color: #294238 !important;
+  background-color: rgba(248, 252, 249, 0.96) !important;
+  box-shadow: none !important;
+}
+
+[data-canvas-floating-ui="prompt-template-library"] button:hover {
+  border-color: rgba(47, 180, 119, 0.32) !important;
+  color: #176b49 !important;
+  background-color: #eefaf3 !important;
+}
+
+[data-canvas-floating-ui="prompt-template-library"] button[class*="bg-cyan"],
+[data-canvas-floating-ui="prompt-template-library"] button[class*="border-cyan"] {
+  border-color: rgba(47, 180, 119, 0.42) !important;
+  color: #135f41 !important;
+  background: #e3f8ec !important;
+}
+
+[data-canvas-floating-ui="prompt-template-library"] [class*="text-white"],
+[data-canvas-floating-ui="prompt-template-library"] [class*="text-zinc"] {
+  color: #435c50 !important;
+}
+
+[data-canvas-floating-ui="prompt-template-library"] [class*="bg-black"],
+[data-canvas-floating-ui="prompt-template-library"] [class*="bg-white/"] {
+  background-color: #f7faf8 !important;
+}
+
+[data-canvas-floating-ui="prompt-template-library"] button:has(> svg) {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  text-align: center !important;
+  line-height: 1.2 !important;
+}
+
+[data-canvas-floating-ui="prompt-template-library"] button > svg {
+  display: block !important;
+  flex: 0 0 auto !important;
+  margin: 0 !important;
+}
+
+body:has([data-canvas-floating-ui="prompt-template-library"]) .jiaren-media-bottom-editor,
+body:has([data-canvas-floating-ui="prompt-template-library"]) .lovart-prompt-console,
+body:has(.jiaren-image-bottom-editor.is-open) .lovart-prompt-console {
+  display: none !important;
+}
+
+/* Image editor: one compact panel anchored below the selected card. */
+.jiaren-image-bottom-editor {
+  max-height: var(--jiaren-media-anchor-max-height, 430px) !important;
+  overflow: auto !important;
+  padding: 10px 12px 12px !important;
+}
+
+.jiaren-image-bottom-editor > .jiaren-media-mode-tabs {
+  margin: 0 0 8px !important;
+}
+
+.jiaren-image-bottom-editor > .t8-original-scope,
+.jiaren-image-bottom-editor > .t8-original-scope > div {
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+}
+
+.jiaren-image-bottom-editor > .t8-original-scope > div > [class~="flex"][class~="items-center"][class~="border-b"] {
+  min-height: 42px !important;
+  padding: 6px 2px 8px !important;
+}
+
+.jiaren-image-bottom-editor > .t8-original-scope > div > [class~="p-2.5"] {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  align-items: end !important;
+  gap: 8px 10px !important;
+  padding: 8px 0 0 !important;
+}
+
+.jiaren-image-bottom-editor > .t8-original-scope > div > [class~="p-2.5"] > * {
+  min-width: 0 !important;
+  margin: 0 !important;
+}
+
+.jiaren-image-bottom-editor textarea {
+  min-height: 78px !important;
+  max-height: 110px !important;
+}
+
+/* Audio editor order follows the approved 123.png reference. */
+.jiaren-audio-bottom-editor {
+  position: fixed !important;
+  padding: 12px 14px 14px !important;
+}
+
+.jiaren-audio-bottom-editor > .jiaren-media-mode-tabs {
+  position: absolute !important;
+  top: 12px !important;
+  left: 14px !important;
+  z-index: 3 !important;
+  margin: 0 !important;
+}
+
+.jiaren-audio-bottom-editor > div[data-node-id] > .jiaren-audio-editor-heading {
+  min-height: 44px !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  margin: 0 0 10px !important;
+  padding: 0 2px 0 190px !important;
+}
+
+.jiaren-audio-bottom-editor > div[data-node-id] > .jiaren-audio-editor-grid {
+  grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+  align-items: end !important;
+  gap: 10px 12px !important;
+}
+
+.jiaren-audio-title-input-field {
+  grid-column: 1 / span 3 !important;
+  grid-row: 1 !important;
+}
+
+.jiaren-audio-style-input-field {
+  grid-column: 4 / span 3 !important;
+  grid-row: 1 !important;
+}
+
+.jiaren-audio-model-field {
+  grid-column: 7 / -1 !important;
+  grid-row: 1 !important;
+}
+
+.jiaren-audio-prompt-field {
+  grid-column: 1 / -1 !important;
+  grid-row: 2 !important;
+}
+
+.jiaren-audio-prompt-field textarea {
+  min-height: 66px !important;
+  max-height: 92px !important;
+}
+
+.jiaren-audio-mode-version-grid {
+  grid-column: 1 / span 4 !important;
+  grid-row: 3 !important;
+}
+
+.jiaren-audio-seed-grid {
+  grid-column: 5 / span 2 !important;
+  grid-row: 3 !important;
+}
+
+.jiaren-audio-generate-button {
+  grid-column: 10 / -1 !important;
+  grid-row: 3 !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 38px !important;
+  justify-self: stretch !important;
+}
+
+/* Compact image action popover instead of a loose wall of text. */
+.image-selection-popover {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(112px, 1fr)) !important;
+  gap: 4px !important;
+  width: min(600px, calc(100vw - 28px)) !important;
+  max-width: calc(100vw - 28px) !important;
+  max-height: min(360px, calc(100vh - 28px)) !important;
+  overflow: auto !important;
+  padding: 8px !important;
+  border: 1px solid rgba(35, 74, 52, 0.14) !important;
+  border-radius: 14px !important;
+  color: #263b31 !important;
+  background: rgba(255, 255, 255, 0.985) !important;
+  box-shadow: 0 18px 48px rgba(29, 53, 40, 0.16), 0 2px 8px rgba(29, 53, 40, 0.07) !important;
+  backdrop-filter: blur(18px) saturate(1.04) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(1.04) !important;
+}
+
+.image-selection-popover button {
+  display: inline-flex !important;
+  min-width: 0 !important;
+  min-height: 34px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  padding: 0 8px !important;
+  border: 1px solid transparent !important;
+  border-radius: 8px !important;
+  color: #294238 !important;
+  background: #f7faf8 !important;
+  font-size: 11px !important;
+  line-height: 1.2 !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+}
+
+.image-selection-popover button:hover {
+  border-color: rgba(47, 180, 119, 0.28) !important;
+  color: #176b49 !important;
+  background: #ecf9f2 !important;
+}
+
+.image-selection-popover button > svg {
+  display: block !important;
+  flex: 0 0 auto !important;
+  margin: 0 !important;
+}
+
+/* Mandatory icon + text centering for rectangular T8/canvas action buttons. */
+:where(
+  .t8-original-scope,
+  .t8-advanced-node,
+  .t8-utility-node,
+  .t8-node,
+  .t8-cinematic-composer,
+  .jiaren-director-desk-backdrop
+) button:has(> svg):not(.t8-context-menu__item):not(.t8-mini-icon-button):not([class*="rounded-full"]):not([class*="absolute"]) {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  text-align: center !important;
+  line-height: 1.2 !important;
+}
+
+:where(
+  .t8-original-scope,
+  .t8-advanced-node,
+  .t8-utility-node,
+  .t8-node,
+  .t8-cinematic-composer,
+  .jiaren-director-desk-backdrop
+) button > svg {
+  display: block !important;
+  flex: 0 0 auto !important;
+  align-self: center !important;
+  margin: 0 !important;
+}
+
+.t8-panorama-3d-node .t8-btn,
+.t8-panorama-3d-node button:has(> svg):not(.t8-mini-icon-button):not([class*="rounded-full"]):not([class*="absolute"]) {
+  min-height: 30px !important;
+  padding: 0 9px !important;
+}
+
+.t8-panorama-3d-node .grid:has(> button) {
+  gap: 6px !important;
+}
+
+@media (max-width: 860px) {
+  [data-canvas-floating-ui="prompt-template-library"] {
+    padding: 10px !important;
+  }
+
+  [data-canvas-floating-ui="prompt-template-library"] > section {
+    width: calc(100vw - 20px) !important;
+    min-width: 0 !important;
+    height: calc(100vh - 20px) !important;
+    min-height: 0 !important;
+  }
+
+  [data-canvas-floating-ui="prompt-template-library"] > section > div:nth-child(2) {
+    grid-template-columns: 140px minmax(220px, 270px) minmax(0, 1fr) !important;
+  }
+
+  .jiaren-audio-title-input-field,
+  .jiaren-audio-style-input-field,
+  .jiaren-audio-model-field,
+  .jiaren-audio-prompt-field,
+  .jiaren-audio-mode-version-grid,
+  .jiaren-audio-seed-grid,
+  .jiaren-audio-generate-button {
+    grid-column: 1 / -1 !important;
+    grid-row: auto !important;
+  }
+
+  .image-selection-popover {
+    grid-template-columns: repeat(2, minmax(110px, 1fr)) !important;
+  }
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  [data-canvas-floating-ui="prompt-template-library"],
+  [data-canvas-floating-ui="prompt-template-library"] > section,
+  .image-selection-popover {
+    background: #ffffff !important;
+  }
+}
+
+/* Final screenshot QA: keep media editors compact, attached and text-safe. */
+.react-flow__handle > svg,
+.react-flow__handle.node-add-button > svg,
+.react-flow__handle.flow-handle-plus > svg {
+  display: none !important;
+}
+
+.react-flow__handle::before,
+.react-flow__handle::after {
+  content: none !important;
+  display: none !important;
+}
+
+body:has(.jiaren-director-desk-backdrop) .jiaren-media-bottom-editor,
+body:has(.jiaren-director-desk-backdrop) .lovart-prompt-console,
+body:has(.jiaren-director-desk-backdrop) .prompt-library-drawer {
+  display: none !important;
+}
+
+.canvas-node.jiaren-basic-image-card,
+.canvas-node.jiaren-drawing-media-card {
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(47, 180, 119, 0.24) !important;
+  border-radius: 20px !important;
+  background: rgba(255, 255, 255, 0.98) !important;
+  box-shadow: 0 18px 52px rgba(28, 55, 40, 0.13), inset 0 1px rgba(255, 255, 255, 0.98) !important;
+}
+
+.canvas-node.jiaren-basic-image-card.selected,
+.canvas-node.jiaren-drawing-media-card.selected {
+  border-color: rgba(47, 180, 119, 0.64) !important;
+  box-shadow: 0 0 0 3px rgba(47, 180, 119, 0.1), 0 20px 58px rgba(28, 55, 40, 0.16) !important;
+}
+
+.canvas-node.jiaren-basic-image-card .canvas-node-label,
+.canvas-node.jiaren-drawing-media-card .canvas-node-label {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-bottom: 1px solid rgba(31, 70, 49, 0.1) !important;
+  border-radius: 19px 19px 0 0 !important;
+  box-shadow: none !important;
+}
+
+.canvas-node.jiaren-basic-image-card .node-body,
+.canvas-node.jiaren-drawing-media-card .node-body {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 0 19px 19px !important;
+  background: #f7f9f8 !important;
+  box-shadow: none !important;
+}
+
+.canvas-node.jiaren-basic-image-card .node-preview-image,
+.canvas-node.jiaren-drawing-media-card .node-preview-image {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 0 0 19px 19px !important;
+  object-fit: contain !important;
+  object-position: center !important;
+}
+
+.jiaren-media-bottom-editor,
+body.jiaren-drawing-console-active .lovart-prompt-console {
+  box-sizing: border-box !important;
+  min-height: 0 !important;
+}
+
+.jiaren-media-bottom-editor button,
+.jiaren-media-bottom-editor label,
+.jiaren-media-mode-tabs button,
+body.jiaren-drawing-console-active .lovart-prompt-console button,
+.t8-cinematic-composer button,
+.t8-cinematic-composer label {
+  min-width: 0;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0 !important;
+}
+
+.jiaren-media-bottom-editor button,
+.jiaren-media-mode-tabs button,
+body.jiaren-drawing-console-active .lovart-prompt-console button,
+.t8-cinematic-composer button,
+.t8-cinematic-composer label {
+  display: inline-flex !important;
+}
+
+.jiaren-media-bottom-editor button > svg,
+body.jiaren-drawing-console-active .lovart-prompt-console button > svg,
+.t8-cinematic-composer button > svg,
+.t8-cinematic-composer label > svg {
+  display: block !important;
+  flex: 0 0 auto !important;
+  align-self: center !important;
+}
+
+.jiaren-media-bottom-editor :is(label, button, strong, small, span),
+body.jiaren-drawing-console-active .lovart-prompt-console :is(button, strong, small, span),
+.t8-cinematic-composer :is(label, button, strong, small, span) {
+  letter-spacing: 0 !important;
+}
+
+.jiaren-video-bottom-editor > [class~="p-2.5"]:has(> :nth-child(6):last-child) > :nth-child(5) textarea {
+  min-height: 84px !important;
+  width: 100% !important;
+}
+
+.jiaren-video-bottom-editor > [class~="p-2.5"]:has(> :nth-child(6):last-child) > :nth-child(6) button,
+.jiaren-video-bottom-editor button[class*="rose"],
+.jiaren-video-bottom-editor button[class*="amber"] {
+  width: min(220px, 100%) !important;
+  min-width: 150px !important;
+  padding-inline: 18px !important;
+  white-space: nowrap !important;
+}
+
+.jiaren-audio-bottom-editor {
+  height: auto !important;
+  max-height: var(--jiaren-media-anchor-max-height, min(430px, calc(100vh - 160px))) !important;
+}
+
+.jiaren-audio-bottom-editor > div[data-node-id] > .jiaren-audio-editor-grid {
+  align-items: end !important;
+  grid-auto-rows: min-content !important;
+}
+
+.jiaren-audio-bottom-editor .jiaren-audio-prompt-field textarea {
+  min-height: 92px !important;
+  max-height: 126px !important;
+}
+
+.jiaren-audio-bottom-editor .jiaren-audio-generate-button {
+  width: min(220px, 100%) !important;
+  min-width: 150px !important;
+  justify-self: end !important;
+  padding-inline: 18px !important;
+  white-space: nowrap !important;
+}
+
+.t8-cinematic-composer .t8-cinematic-favorite-header {
+  min-width: 0 !important;
+  flex-wrap: nowrap !important;
+}
+
+.t8-cinematic-composer .t8-cinematic-favorite-header > :is(button, label) {
+  width: auto !important;
+  min-width: 52px !important;
+  min-height: 28px !important;
+  flex: 0 0 auto !important;
+  flex-direction: row !important;
+  padding: 0 8px !important;
+  border-radius: 8px !important;
+  white-space: nowrap !important;
+}
+
+.t8-cinematic-composer .t8-cinematic-run-button {
+  display: flex !important;
+  width: min(220px, 100%) !important;
+  min-width: 170px !important;
+  margin: 10px 0 0 auto !important;
+  padding: 0 18px !important;
+  white-space: nowrap !important;
+}
+
+/* Prompt templates stay in an ordered floating work panel instead of covering the canvas. */
+.canvas-app-shell .prompt-library-drawer,
+.canvas-app-shell.theme-light .prompt-library-drawer,
+.canvas-app-shell:not(.theme-light) .prompt-library-drawer {
+  position: absolute !important;
+  top: 72px !important;
+  right: 22px !important;
+  bottom: auto !important;
+  left: auto !important;
+  width: min(760px, calc(100vw - 48px)) !important;
+  max-width: calc(100vw - 48px) !important;
+  height: min(720px, calc(100vh - 104px)) !important;
+  max-height: calc(100vh - 104px) !important;
+  grid-template-rows: auto minmax(0, 1fr) !important;
+  overflow: hidden !important;
+  border-radius: 18px !important;
+}
+
+.prompt-library-main {
+  grid-template-columns: 154px minmax(0, 1fr) !important;
+  min-height: 0 !important;
+}
+
+.prompt-library-content {
+  min-height: 0 !important;
+  overflow: hidden !important;
+}
+
+.prompt-library-list {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  align-content: start !important;
+  gap: 10px !important;
+  min-height: 0 !important;
+  overflow: auto !important;
+  padding: 0 14px 14px !important;
+}
+
+.prompt-library-card {
+  display: grid !important;
+  grid-template-columns: 124px minmax(0, 1fr) !important;
+  grid-template-rows: auto auto minmax(0, 1fr) auto !important;
+  gap: 7px 12px !important;
+  min-height: 154px !important;
+  padding: 10px !important;
+  border-radius: 12px !important;
+}
+
+.prompt-library-card > .prompt-library-preview {
+  grid-column: 1 !important;
+  grid-row: 1 / -1 !important;
+  width: 124px !important;
+  height: 132px !important;
+  min-height: 132px !important;
+  margin: 0 !important;
+}
+
+.prompt-library-card > .prompt-library-card-top,
+.prompt-library-card > p,
+.prompt-library-card > .prompt-library-tags,
+.prompt-library-card > .prompt-library-card-actions {
+  grid-column: 2 !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+}
+
+.prompt-library-card > p {
+  min-height: 0 !important;
+  max-height: 42px !important;
+  overflow: hidden !important;
+  font-size: 12px !important;
+  line-height: 1.55 !important;
+  -webkit-line-clamp: 2 !important;
+}
+
+.prompt-library-card-actions {
+  display: grid !important;
+  grid-template-columns: minmax(84px, 1fr) repeat(3, 34px) !important;
+  gap: 7px !important;
+}
+
+.prompt-library-card-actions button {
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 32px !important;
+  padding: 0 8px !important;
+}
+
+@media (max-width: 820px) {
+  .canvas-app-shell .prompt-library-drawer,
+  .canvas-app-shell.theme-light .prompt-library-drawer,
+  .canvas-app-shell:not(.theme-light) .prompt-library-drawer {
+    top: 58px !important;
+    right: 10px !important;
+    left: 10px !important;
+    width: auto !important;
+    max-width: none !important;
+    height: calc(100vh - 68px) !important;
+    max-height: calc(100vh - 68px) !important;
+  }
+
+  .prompt-library-main {
+    grid-template-columns: 1fr !important;
+  }
+
+  .prompt-library-categories {
+    display: flex !important;
+    overflow-x: auto !important;
+    padding: 10px !important;
+    border-right: 0 !important;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.16) !important;
+  }
+
+  .prompt-library-categories > strong {
+    display: none !important;
+  }
+}
+
+/* Keep the open-canvas editor visually attached to its selected media card. */
+.jiaren-media-bottom-editor {
+  left: var(--jiaren-media-anchor-left, 50%) !important;
+  right: auto !important;
+  top: var(--jiaren-media-anchor-top, 120px) !important;
+  bottom: auto !important;
+  width: var(--jiaren-media-anchor-width, min(1040px, calc(100vw - 36px))) !important;
+  max-width: calc(100vw - 36px) !important;
+  max-height: var(--jiaren-media-anchor-max-height, min(520px, calc(100vh - 160px))) !important;
+  transform: translateX(-50%) !important;
+  transform-origin: center top !important;
+}
+
+.jiaren-media-bottom-editor.is-open {
+  animation: jiaren-open-canvas-anchor-below 200ms cubic-bezier(0.2, 0.72, 0.2, 1) both !important;
+}
+
+.jiaren-media-bottom-editor[data-jiaren-placement="above"] {
+  transform: translate(-50%, -100%) !important;
+  transform-origin: center bottom !important;
+  animation-name: jiaren-open-canvas-anchor-above !important;
+}
+
+body.jiaren-drawing-console-active .lovart-prompt-console {
+  left: var(--jiaren-media-anchor-left, 50%) !important;
+  right: auto !important;
+  top: var(--jiaren-media-anchor-top, 120px) !important;
+  bottom: auto !important;
+  width: var(--jiaren-media-anchor-width, min(1040px, calc(100vw - 36px))) !important;
+  max-width: calc(100vw - 36px) !important;
+  max-height: var(--jiaren-media-anchor-max-height, min(520px, calc(100vh - 160px))) !important;
+  overflow: auto !important;
+  transform: translateX(-50%) !important;
+  transform-origin: center top !important;
+  animation: jiaren-open-canvas-anchor-below 200ms cubic-bezier(0.2, 0.72, 0.2, 1) both !important;
+}
+
+body.jiaren-drawing-console-active .lovart-prompt-console[data-jiaren-placement="above"] {
+  transform: translate(-50%, -100%) !important;
+  transform-origin: center bottom !important;
+  animation-name: jiaren-open-canvas-anchor-above !important;
+}
+
+.jiaren-video-bottom-editor button[class*="rose"],
+.jiaren-video-bottom-editor button[class*="amber"],
+.jiaren-audio-generate-button {
+  width: min(220px, 100%) !important;
+  justify-self: end !important;
+}
+
+.jiaren-launch-art > button:hover,
+.jiaren-launch-art > button:focus-visible {
+  animation: jiaren-launch-card-tilt 1.35s cubic-bezier(0.22, 0.72, 0.22, 1) 1 both;
+}
+
+.jiaren-launch-art > button:active {
+  transform: translate(3px, -3px) scale(0.992) !important;
+}
+
+@keyframes jiaren-launch-card-tilt {
+  0%, 100% { transform: translate3d(0, 0, 0) rotateX(0) rotateY(0) rotateZ(0) scale(1); }
+  28% { transform: translate3d(0, -5px, 14px) rotateX(-5deg) rotateY(8deg) rotateZ(-2.4deg) scale(1.025); }
+  58% { transform: translate3d(0, -3px, 10px) rotateX(3deg) rotateY(-5deg) rotateZ(1.4deg) scale(1.018); }
+  80% { transform: translate3d(0, -1px, 4px) rotateX(-1deg) rotateY(2deg) rotateZ(-0.5deg) scale(1.008); }
+}
+
+@keyframes jiaren-open-canvas-anchor-below {
+  from { opacity: 0; transform: translate(-50%, 18px) scale(0.994); }
+  to { opacity: 1; transform: translate(-50%, 0) scale(1); }
+}
+
+@keyframes jiaren-open-canvas-anchor-above {
+  from { opacity: 0; transform: translate(-50%, calc(-100% - 18px)) scale(0.994); }
+  to { opacity: 1; transform: translate(-50%, -100%) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .jiaren-media-bottom-editor.is-open,
+  body.jiaren-drawing-console-active .lovart-prompt-console {
+    animation: none !important;
+  }
+}
+
+/* Final cascade: reference-locked audio order and icon/text geometry. */
+.jiaren-audio-bottom-editor {
+  position: fixed !important;
+  height: auto !important;
+  max-height: var(--jiaren-media-anchor-max-height, min(430px, calc(100vh - 160px))) !important;
+  padding: 12px 14px 14px !important;
+}
+
+.jiaren-audio-bottom-editor > .jiaren-media-mode-tabs {
+  position: absolute !important;
+  top: 12px !important;
+  left: 14px !important;
+  right: auto !important;
+  z-index: 3 !important;
+  margin: 0 !important;
+}
+
+.jiaren-audio-bottom-editor > div[data-node-id] > .jiaren-audio-editor-heading {
+  min-height: 44px !important;
+  position: relative !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  margin: 0 0 10px !important;
+  padding: 0 2px 0 190px !important;
+  border: 0 !important;
+  overflow: visible !important;
+  color: transparent !important;
+  font-size: 0 !important;
+}
+
+.jiaren-audio-bottom-editor > div[data-node-id] > .jiaren-audio-editor-heading > * {
+  display: none !important;
+}
+
+.jiaren-audio-bottom-editor > div[data-node-id] > .jiaren-audio-editor-heading::after {
+  content: "音频 · 用户 API 模型";
+  display: inline-flex;
+  min-height: 32px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12px;
+  border: 1px solid rgba(47, 180, 119, 0.16);
+  border-radius: 9px;
+  color: #355347;
+  background: rgba(247, 251, 249, 0.96);
+  font-size: 11px;
+  font-weight: 720;
+}
+
+.jiaren-audio-bottom-editor > div[data-node-id] > .jiaren-audio-editor-grid {
+  display: grid !important;
+  grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+  grid-auto-rows: min-content !important;
+  align-items: end !important;
+  gap: 10px 12px !important;
+  padding: 0 !important;
+}
+
+.jiaren-audio-title-input-field {
+  grid-column: 1 / span 3 !important;
+  grid-row: 1 !important;
+}
+
+.jiaren-audio-style-input-field {
+  grid-column: 4 / span 3 !important;
+  grid-row: 1 !important;
+}
+
+.jiaren-audio-model-field {
+  grid-column: 7 / -1 !important;
+  grid-row: 1 !important;
+}
+
+.jiaren-audio-prompt-field {
+  grid-column: 1 / -1 !important;
+  grid-row: 2 !important;
+}
+
+.jiaren-audio-bottom-editor .jiaren-audio-prompt-field textarea {
+  min-height: 66px !important;
+  max-height: 92px !important;
+}
+
+.jiaren-audio-mode-version-grid {
+  grid-column: 1 / span 4 !important;
+  grid-row: 3 !important;
+}
+
+.jiaren-audio-seed-grid {
+  grid-column: 5 / span 2 !important;
+  grid-row: 3 !important;
+}
+
+.jiaren-audio-bottom-editor .jiaren-audio-generate-button {
+  grid-column: 10 / -1 !important;
+  grid-row: 3 !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 38px !important;
+  justify-self: stretch !important;
+  padding-inline: 14px !important;
+  white-space: nowrap !important;
+}
+
+.jiaren-image-bottom-editor {
+  max-height: var(--jiaren-media-anchor-max-height, 430px) !important;
+  overflow: auto !important;
+  padding: 10px 12px 12px !important;
+}
+
+.jiaren-image-bottom-editor > .t8-original-scope > div > [class~="p-2.5"] {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  align-items: end !important;
+  gap: 8px 10px !important;
+  padding: 8px 0 0 !important;
+}
+
+.jiaren-image-bottom-editor textarea {
+  min-height: 78px !important;
+  max-height: 110px !important;
+}
+
+:where(
+  .t8-original-scope,
+  .t8-advanced-node,
+  .t8-utility-node,
+  .t8-node,
+  .t8-cinematic-composer,
+  .jiaren-director-desk-backdrop
+) button:has(> svg):not(.t8-context-menu__item):not(.t8-mini-icon-button):not([class*="rounded-full"]):not([class*="absolute"]) {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  text-align: center !important;
+  line-height: 1.2 !important;
+}
+
+:where(
+  .t8-original-scope,
+  .t8-advanced-node,
+  .t8-utility-node,
+  .t8-node,
+  .t8-cinematic-composer,
+  .jiaren-director-desk-backdrop
+) button > svg {
+  display: block !important;
+  flex: 0 0 auto !important;
+  align-self: center !important;
+  margin: 0 !important;
+}
+
+@media (max-width: 860px) {
+  .jiaren-audio-title-input-field,
+  .jiaren-audio-style-input-field,
+  .jiaren-audio-model-field,
+  .jiaren-audio-prompt-field,
+  .jiaren-audio-mode-version-grid,
+  .jiaren-audio-seed-grid,
+  .jiaren-audio-generate-button {
+    grid-column: 1 / -1 !important;
+    grid-row: auto !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .jiaren-media-bottom-editor.is-open,
+  body.jiaren-drawing-console-active .lovart-prompt-console {
+    animation: none !important;
+  }
+
+  .jiaren-launch-art > button,
+  .jiaren-media-square-card,
+  .canvas-node.jiaren-basic-image-card,
+  .canvas-node.jiaren-drawing-media-card {
+    transition: none !important;
+  }
+
+  .jiaren-launch-art > button:hover,
+  .jiaren-launch-art > button:focus-visible {
+    animation: none !important;
+  }
+}
+
+/* Final image-node cascade. Keep this block last. */
+body.jiaren-drawing-console-active .lovart-prompt-console {
+  position: fixed !important;
+  left: var(--jiaren-media-anchor-left, 50%) !important;
+  right: auto !important;
+  top: var(--jiaren-media-anchor-top, 120px) !important;
+  bottom: auto !important;
+  width: var(--jiaren-media-anchor-width, min(1040px, calc(100vw - 36px))) !important;
+  max-width: calc(100vw - 36px) !important;
+  max-height: var(--jiaren-media-anchor-max-height, min(520px, calc(100vh - 160px))) !important;
+  overflow: visible !important;
+  transform: translateX(-50%) !important;
+  transform-origin: center top !important;
+  animation: jiaren-open-canvas-anchor-below 200ms cubic-bezier(0.2, 0.72, 0.2, 1) both !important;
+}
+
+body.jiaren-drawing-console-active .lovart-prompt-console[data-jiaren-placement="above"] {
+  transform: translate(-50%, -100%) !important;
+  transform-origin: center bottom !important;
+  animation-name: jiaren-open-canvas-anchor-above !important;
+}
+
+.canvas-node.jiaren-drawing-media-card .canvas-node-label {
+  transform: none !important;
+}
+
+.canvas-node.jiaren-drawing-media-card .node-body {
+  display: grid !important;
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr) !important;
+  place-content: stretch !important;
+  place-items: stretch !important;
+  box-sizing: border-box !important;
+  padding: 14px !important;
+}
+
+.canvas-node.jiaren-drawing-media-card .plain-generate-node {
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  align-self: stretch !important;
+  justify-self: stretch !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.jiaren-drawing-console-active .lovart-prompt-console {
+    animation: none !important;
+  }
+}
+
+/* Local feature theme bridge: portals live under body, outside .canvas-app-shell. */
+body:has(.canvas-app-shell.theme-light) .jiaren-skill-dialog {
+  color: #17211c;
+  border-color: #d7e1db;
+  background: #ffffff;
+  box-shadow: 0 28px 80px rgba(24, 39, 31, .2);
+}
+body:has(.canvas-app-shell.theme-light) .jiaren-local-dialog-head,
+body:has(.canvas-app-shell.theme-light) .jiaren-local-dialog-footer { border-color: #e1e8e4; }
+body:has(.canvas-app-shell.theme-light) .jiaren-local-dialog-mark { color: #167a51; background: #e7f5ed; }
+body:has(.canvas-app-shell.theme-light) .jiaren-local-dialog-head > div:nth-child(2) span,
+body:has(.canvas-app-shell.theme-light) .jiaren-local-dialog-footer > span,
+body:has(.canvas-app-shell.theme-light) .jiaren-field small { color: #6d7972; }
+body:has(.canvas-app-shell.theme-light) .jiaren-local-dialog-head > button,
+body:has(.canvas-app-shell.theme-light) .jiaren-skill-engine label button { color: #5d6962; border-color: #d9e2dc; background: #f7faf8; }
+body:has(.canvas-app-shell.theme-light) .jiaren-skill-form { border-color: #e2e9e5; }
+body:has(.canvas-app-shell.theme-light) .jiaren-skill-side { background: #f6f9f7; }
+body:has(.canvas-app-shell.theme-light) .jiaren-segmented { border-color: #dce5df; background: #edf2ef; }
+body:has(.canvas-app-shell.theme-light) .jiaren-segmented button { color: #68746d; }
+body:has(.canvas-app-shell.theme-light) .jiaren-segmented button.is-active { color: #0f5f3e; background: #ffffff; box-shadow: inset 0 0 0 1px rgba(31, 157, 104, .28); }
+body:has(.canvas-app-shell.theme-light) .jiaren-skill-dropzone { color: #5f6c64; border-color: #a9c8b6; background: #fbfdfc; }
+body:has(.canvas-app-shell.theme-light) .jiaren-skill-dropzone:hover,
+body:has(.canvas-app-shell.theme-light) .jiaren-skill-dropzone.is-dragging { color: #145f40; border-color: #259865; background: #edf8f2; }
+body:has(.canvas-app-shell.theme-light) .jiaren-skill-dropzone svg { color: #238c5e; }
+body:has(.canvas-app-shell.theme-light) .jiaren-skill-file { border-color: #dde6e0; background: #ffffff; }
+body:has(.canvas-app-shell.theme-light) .jiaren-skill-file-preview { color: #718078; background: #eef3f0; }
+body:has(.canvas-app-shell.theme-light) .jiaren-field > span,
+body:has(.canvas-app-shell.theme-light) .jiaren-skill-engine label > span { color: #35443b; }
+body:has(.canvas-app-shell.theme-light) .jiaren-field input,
+body:has(.canvas-app-shell.theme-light) .jiaren-field textarea,
+body:has(.canvas-app-shell.theme-light) .jiaren-skill-engine input { color: #1d2b23; border-color: #d8e1dc; background: #ffffff; }
+
+body:has(.canvas-app-shell:not(.theme-light)) .jiaren-skill-dialog {
+  color: #eef4f0;
+  border-color: #323b36;
+  background: #171a18;
+  box-shadow: 0 28px 84px rgba(0, 0, 0, .58);
+}
+body:has(.canvas-app-shell:not(.theme-light)) .jiaren-local-dialog-head,
+body:has(.canvas-app-shell:not(.theme-light)) .jiaren-local-dialog-footer { border-color: #303733; }
+body:has(.canvas-app-shell:not(.theme-light)) .jiaren-local-dialog-mark { color: #79d6aa; background: #193326; }
+body:has(.canvas-app-shell:not(.theme-light)) .jiaren-skill-side { background: #121512; }
+body:has(.canvas-app-shell:not(.theme-light)) .jiaren-skill-form { border-color: #303733; }
+body:has(.canvas-app-shell:not(.theme-light)) .jiaren-segmented { border-color: #343d38; background: #202521; }
+body:has(.canvas-app-shell:not(.theme-light)) .jiaren-segmented button.is-active { color: #eafff2; background: #214a35; box-shadow: inset 0 0 0 1px rgba(102, 210, 158, .28); }
+body:has(.canvas-app-shell:not(.theme-light)) .jiaren-skill-dropzone { color: #b4bdb8; border-color: #486454; background: #1d221f; }
+body:has(.canvas-app-shell:not(.theme-light)) .jiaren-skill-dropzone:hover,
+body:has(.canvas-app-shell:not(.theme-light)) .jiaren-skill-dropzone.is-dragging { color: #effff6; border-color: #4ec087; background: #1c3025; }
+body:has(.canvas-app-shell:not(.theme-light)) .jiaren-skill-dropzone svg { color: #6bd29f; }
+
+.jiaren-skill-engine-settings { border: 1px solid rgba(116, 137, 125, .22); border-radius: 7px; }
+.jiaren-skill-engine-settings > summary { min-height: 38px; display: flex; align-items: center; gap: 7px; padding: 0 10px; cursor: pointer; list-style: none; }
+.jiaren-skill-engine-settings > summary::-webkit-details-marker { display: none; }
+.jiaren-skill-engine-settings > summary strong { font-size: 11px; }
+.jiaren-skill-engine-settings > summary span { margin-left: auto; color: #6f8d7c; font-size: 9px; }
+.jiaren-skill-engine-settings > .jiaren-skill-engine { padding: 4px 10px 10px; border-top: 1px solid rgba(116, 137, 125, .18); }
+
+/* Semantic green/neutral node surfaces match the main Jiaren canvas. */
+.jiaren-skill-node,
+.jiaren-3d-upload-node { border-color: #299665 !important; }
+.jiaren-skill-node.is-selected,
+.jiaren-3d-upload-node.is-selected { box-shadow: 0 0 0 3px rgba(41, 150, 101, .18), 0 14px 34px rgba(24, 45, 34, .18) !important; }
+.jiaren-skill-node > header,
+.jiaren-3d-upload-node > header { border-color: #cce5d7 !important; background: #edf8f2 !important; }
+.jiaren-skill-node > header > div,
+.jiaren-3d-upload-node > header > div { color: #19784f !important; background: #ffffff !important; }
+.jiaren-skill-node-main { color: #33433a; border-color: #b9d6c6; background: #fbfdfc; }
+.jiaren-skill-node-main > span svg,
+.jiaren-skill-node > footer > button { color: #208258; }
+.jiaren-progress-track { background: rgba(35, 78, 55, .12); }
+.jiaren-progress-track > i { background: #2a9d68; }
+.jiaren-primary-command { color: #ffffff; border-color: #248b5e; background: #248b5e; }
+.jiaren-3d-dropzone { color: #52655a; border-color: #a8cbb7; background: #f8fcfa; }
+.jiaren-3d-dropzone:hover,
+.jiaren-3d-dropzone.is-dragging { border-color: #299665; background: #edf8f2; }
+.jiaren-3d-dropzone svg { color: #248b5e; }
+.jiaren-3d-upload-list span,
+.jiaren-3d-upload-node > footer { color: #4f6e5d; }
+.jiaren-3d-preview-node { border-color: #348b67 !important; box-shadow: 0 18px 42px rgba(29, 50, 40, .16) !important; }
+.jiaren-3d-preview-node.is-selected { box-shadow: 0 0 0 3px rgba(52, 139, 103, .18), 0 20px 46px rgba(29, 50, 40, .2) !important; }
+.jiaren-3d-preview-head { border-color: #c9ded3; background: #eff7f3; }
+.jiaren-3d-preview-head > div { color: #237553; }
+.jiaren-3d-preview-head nav button.is-active { color: #145f40; border-color: #62ae89; background: #d8efe3; }
+.jiaren-3d-parts > div > button.is-selected { color: #145f40; background: #dff2e8; }
+.jiaren-3d-parts > div > button.is-selected i { background: #299665; }
+.jiaren-ai-material-command { color: #145f40; border-color: #7fbea0; background: #dff2e8; }
+.jiaren-3d-materials input[type="range"] { accent-color: #299665; }
+
+body:has(.canvas-app-shell:not(.theme-light)) :is(.jiaren-skill-node, .jiaren-3d-upload-node, .jiaren-3d-preview-node) { color: #edf4f0; background: #181c19; }
+body:has(.canvas-app-shell:not(.theme-light)) :is(.jiaren-skill-node, .jiaren-3d-upload-node) > header,
+body:has(.canvas-app-shell:not(.theme-light)) .jiaren-3d-preview-head { border-color: #35423b !important; background: #202b25 !important; }
+body:has(.canvas-app-shell:not(.theme-light)) .jiaren-skill-node-main,
+body:has(.canvas-app-shell:not(.theme-light)) .jiaren-3d-dropzone { color: #bec9c3; border-color: #405a4c; background: #141815; }
+body:has(.canvas-app-shell:not(.theme-light)) .jiaren-3d-workbench,
+body:has(.canvas-app-shell:not(.theme-light)) .jiaren-3d-parts,
+body:has(.canvas-app-shell:not(.theme-light)) .jiaren-3d-materials { color: #dbe5df; background: #171b18; }
+body:has(.canvas-app-shell:not(.theme-light)) .jiaren-3d-parts,
+body:has(.canvas-app-shell:not(.theme-light)) .jiaren-3d-materials,
+body:has(.canvas-app-shell:not(.theme-light)) .jiaren-3d-parts > header,
+body:has(.canvas-app-shell:not(.theme-light)) .jiaren-3d-materials > header,
+body:has(.canvas-app-shell:not(.theme-light)) .jiaren-3d-parts footer { border-color: #303833; }
+body:has(.canvas-app-shell:not(.theme-light)) .jiaren-3d-parts > div > button { color: #b6c1bb; }
+body:has(.canvas-app-shell:not(.theme-light)) .jiaren-3d-parts > div > button:hover { background: #222a25; }
+body:has(.canvas-app-shell:not(.theme-light)) .jiaren-3d-materials textarea,
+body:has(.canvas-app-shell:not(.theme-light)) .jiaren-3d-materials input:not([type="range"]),
+body:has(.canvas-app-shell:not(.theme-light)) .jiaren-3d-materials select,
+body:has(.canvas-app-shell:not(.theme-light)) .jiaren-3d-parts footer button { color: #d7e0db; border-color: #374039; background: #202521; }
+
+/* Context menus use the active app theme, including portal-rendered pickers. */
+body:has(.canvas-app-shell.theme-light) .canvas-context-menu { color: #17211c !important; border: 1px solid #d5e2da !important; background: rgba(255, 255, 255, .97) !important; box-shadow: 0 18px 52px rgba(20, 42, 30, .18) !important; }
+body:has(.canvas-app-shell.theme-light) .canvas-context-menu .t8-advanced-menu-section { color: #176c49 !important; background: #edf8f2 !important; }
+body:has(.canvas-app-shell.theme-light) .canvas-context-menu .t8-advanced-menu-item { color: #1f2d25 !important; background: rgba(255, 255, 255, .94) !important; }
+body:has(.canvas-app-shell:not(.theme-light)) .canvas-context-menu { color: #e8f0eb !important; border: 1px solid #39453e !important; background: rgba(24, 29, 26, .98) !important; box-shadow: 0 20px 58px rgba(0, 0, 0, .5) !important; }
+body:has(.canvas-app-shell:not(.theme-light)) .canvas-context-menu :is(button, strong, span, small) { color: inherit !important; }
+body:has(.canvas-app-shell:not(.theme-light)) .canvas-context-menu .t8-advanced-menu-section { color: #8bdbb5 !important; background: #202d26 !important; }
+body:has(.canvas-app-shell:not(.theme-light)) .canvas-context-menu .t8-advanced-menu-item { color: #e8f0eb !important; background: #1d231f !important; }
+body:has(.canvas-app-shell:not(.theme-light)) .canvas-context-menu .t8-advanced-menu-item:hover { background: #29342e !important; }
+body:has(.canvas-app-shell:not(.theme-light)) .t8-original-scope .t8-context-menu--picker {
+  --t8-context-menu-bg: rgba(24, 29, 26, .99) !important;
+  --t8-context-menu-border: 1px solid #405047 !important;
+  --t8-context-menu-shadow: 0 20px 60px rgba(0, 0, 0, .52) !important;
+  --t8-context-menu-header-bg: #202d26 !important;
+  --t8-context-menu-header-text: #eaf3ee !important;
+  --t8-context-menu-item-text: #dce8e1 !important;
+  --t8-context-menu-item-hover: #2a3830 !important;
+  --t8-context-menu-divider: 1px solid #39473f !important;
+  color-scheme: dark;
+}
+
+/* Portrait Master: remove the cartoon avatar while preserving all editing data. */
+[data-node-kind="portrait-master"] svg[aria-label="肖像预览"] { display: none !important; }
+[data-node-kind="portrait-master"] div:has(> svg[aria-label="肖像预览"]) {
+  min-height: 178px;
+  border: 1px dashed color-mix(in srgb, var(--t8-accent) 38%, transparent);
+  border-radius: 7px;
+  background:
+    linear-gradient(90deg, transparent 49.5%, color-mix(in srgb, var(--t8-accent) 14%, transparent) 50%, transparent 50.5%),
+    linear-gradient(0deg, transparent 49.5%, color-mix(in srgb, var(--t8-accent) 14%, transparent) 50%, transparent 50.5%);
+}
+[data-node-kind="portrait-master"] div:has(> svg[aria-label="肖像预览"])::before {
+  content: "真人肖像参考";
+  display: grid;
+  place-items: center;
+  min-width: 118px;
+  min-height: 118px;
+  border: 1px solid color-mix(in srgb, var(--t8-accent) 34%, transparent);
+  border-radius: 50%;
+  color: var(--t8-text-muted);
+  background: color-mix(in srgb, var(--t8-bg-panel-elevated) 82%, transparent);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* The Studio remains one infinite canvas but now respects dark mode. */
+.canvas-app-shell:not(.theme-light):has(.jiaren-animation-workbench.is-page1-design),
+.canvas-app-shell:not(.theme-light):has(.jiaren-animation-workbench.is-page1-design) .canvas-stage { background: #0f1310 !important; }
+.canvas-app-shell:not(.theme-light):has(.jiaren-animation-workbench.is-page1-design) .react-flow__background { opacity: .25 !important; }
+.canvas-app-shell:not(.theme-light):has(.jiaren-animation-workbench.is-page1-design) :is(
+  .jiaren-page1-agent-console,
+  .jiaren-page1-module-wrap,
+  .jiaren-page1-script-module,
+  .jiaren-page1-setup-module,
+  .jiaren-page1-character-module,
+  .jiaren-page1-scene-card,
+  .jiaren-page1-storyboard-image-module,
+  .jiaren-page1-storyboard-video-module,
+  .jiaren-page1-audio-module,
+  .jiaren-page1-final-module,
+  .jiaren-page1-shot-card
+) { color: #edf4f0 !important; border-color: #344139 !important; background: rgba(23, 29, 25, .96) !important; box-shadow: 0 18px 48px rgba(0, 0, 0, .3) !important; }
+.canvas-app-shell:not(.theme-light):has(.jiaren-animation-workbench.is-page1-design) :is(input, textarea, select) { color: #edf4f0 !important; border-color: #3a4740 !important; background: #151a17 !important; }
+.canvas-app-shell:not(.theme-light):has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-script-overlay { background: rgba(7, 10, 8, .52) !important; }
+.canvas-app-shell:not(.theme-light):has(.jiaren-animation-workbench.is-page1-design) .jiaren-page1-script-overlay article { color: #edf4f0 !important; border-color: #3a4740 !important; background: #181d1a !important; box-shadow: 0 28px 76px rgba(0, 0, 0, .58) !important; }
+.jiaren-local-port.is-skill { background: #299665 !important; }
+body:has(.canvas-app-shell.theme-light) .jiaren-skill-node { color: #24342b; background: #ffffff; }
+body:has(.canvas-app-shell.theme-light) .jiaren-skill-node > footer > span { color: #66756c; }

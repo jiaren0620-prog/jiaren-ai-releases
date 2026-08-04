@@ -1,0 +1,5576 @@
+:root {
+  --jiaren-bg: #090b09;
+  --jiaren-canvas: #0d100d;
+  --jiaren-surface: #151915;
+  --jiaren-surface-raised: #1b201b;
+  --jiaren-surface-hover: #222822;
+  --jiaren-border: rgba(244, 247, 239, 0.1);
+  --jiaren-border-strong: rgba(199, 255, 61, 0.4);
+  --jiaren-accent: #c7ff3d;
+  --jiaren-accent-soft: rgba(199, 255, 61, 0.1);
+  --jiaren-text: #f4f7ef;
+  --jiaren-muted: #9aa392;
+  --jiaren-danger: #ff7676;
+  color-scheme: dark;
+}
+
+html,
+body,
+#root,
+.canvas-app-shell,
+.canvas-app-shell.theme-light,
+.canvas-app-shell.theme-dark,
+.canvas-stage,
+.main-canvas-flow {
+  color: var(--jiaren-text) !important;
+  background-color: var(--jiaren-bg) !important;
+  letter-spacing: 0 !important;
+}
+
+.canvas-app-shell,
+.canvas-app-shell.theme-light,
+.canvas-app-shell.theme-dark {
+  --as-bg: var(--jiaren-bg) !important;
+  --as-panel: var(--jiaren-surface) !important;
+  --as-control: var(--jiaren-surface-raised) !important;
+  --as-border: var(--jiaren-border) !important;
+  --as-divider: var(--jiaren-border) !important;
+  --as-text: var(--jiaren-text) !important;
+  --as-muted: var(--jiaren-muted) !important;
+  --as-accent: var(--jiaren-accent) !important;
+  font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif !important;
+}
+
+.canvas-app-shell *,
+.canvas-app-shell *::before,
+.canvas-app-shell *::after {
+  letter-spacing: 0 !important;
+}
+
+.canvas-app-shell .main-canvas-flow::before {
+  opacity: 0.74 !important;
+  background-image: linear-gradient(rgba(199, 255, 61, 0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(199, 255, 61, 0.045) 1px, transparent 1px) !important;
+  background-size: 36px 36px !important;
+}
+
+.canvas-app-shell .react-flow,
+.canvas-app-shell .react-flow__renderer,
+.canvas-app-shell .react-flow__pane {
+  background: transparent !important;
+}
+
+.canvas-app-shell :is(
+  .window-titlebar,
+  .jiaren-canvas-project-pill,
+  .jiaren-canvas-brand-pill,
+  .jiaren-canvas-toolbar-pill,
+  .bottom-floating-toolbar,
+  .flow-controls,
+  .canvas-minimap
+) {
+  border-color: var(--jiaren-border) !important;
+  color: var(--jiaren-text) !important;
+  background: rgba(21, 25, 21, 0.96) !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.34), inset 0 1px rgba(255, 255, 255, 0.035) !important;
+  backdrop-filter: blur(16px) !important;
+}
+
+.canvas-app-shell :is(.jiaren-canvas-toolbar-pill, .bottom-floating-toolbar, .flow-controls) button,
+.canvas-app-shell .window-titlebar .titlebar-controls button {
+  min-width: 34px !important;
+  height: 34px !important;
+  border: 1px solid transparent !important;
+  border-radius: 6px !important;
+  color: var(--jiaren-muted) !important;
+  background: transparent !important;
+}
+
+.canvas-app-shell :is(.jiaren-canvas-toolbar-pill, .bottom-floating-toolbar, .flow-controls) button:hover,
+.canvas-app-shell .window-titlebar .titlebar-controls button:hover {
+  border-color: rgba(199, 255, 61, 0.2) !important;
+  color: var(--jiaren-accent) !important;
+  background: var(--jiaren-accent-soft) !important;
+}
+
+.canvas-app-shell :is(.jiaren-canvas-toolbar-pill, .bottom-floating-toolbar, .flow-controls) button:is(.active, .is-active, [aria-pressed="true"]) {
+  border-color: var(--jiaren-accent) !important;
+  color: #090b09 !important;
+  background: var(--jiaren-accent) !important;
+}
+
+.canvas-app-shell .jiaren-brand-name,
+.canvas-app-shell .jiaren-canvas-project-pill strong {
+  color: var(--jiaren-text) !important;
+}
+
+.canvas-app-shell .jiaren-brand-balance,
+.canvas-app-shell .jiaren-canvas-project-pill :is(span, em) {
+  color: var(--jiaren-muted) !important;
+}
+
+.canvas-app-shell .canvas-node .node-body,
+.canvas-app-shell .smart-flow-node :is(.smart-card-header, .smart-card-body),
+.canvas-app-shell .jiaren-film-node,
+.canvas-app-shell .t8-advanced-node,
+.canvas-app-shell .t8-codex-node,
+.canvas-app-shell .t8-node {
+  border-color: var(--jiaren-border) !important;
+  color: var(--jiaren-text) !important;
+  background: var(--jiaren-surface) !important;
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.32), inset 0 1px rgba(255, 255, 255, 0.035) !important;
+}
+
+.canvas-app-shell .react-flow__node.selected :is(
+  .node-body,
+  .smart-card-header,
+  .smart-card-body,
+  .jiaren-film-node,
+  .t8-advanced-node,
+  .t8-codex-node,
+  .t8-node
+) {
+  border-color: var(--jiaren-border-strong) !important;
+  box-shadow: 0 0 0 1px rgba(199, 255, 61, 0.12), 0 18px 48px rgba(0, 0, 0, 0.4) !important;
+}
+
+.canvas-app-shell :is(.node-body, .smart-card-body, .jiaren-film-node, .t8-original-scope) :where(input, select, textarea) {
+  border-color: var(--jiaren-border) !important;
+  border-radius: 6px !important;
+  color: var(--jiaren-text) !important;
+  background: #101310 !important;
+}
+
+.canvas-app-shell :is(.node-body, .smart-card-body, .jiaren-film-node, .t8-original-scope) :where(input, select, textarea)::placeholder {
+  color: rgba(154, 163, 146, 0.62) !important;
+}
+
+.canvas-app-shell :is(.node-body, .smart-card-body, .jiaren-film-node, .t8-original-scope) :where(input, select, textarea):focus {
+  border-color: rgba(199, 255, 61, 0.48) !important;
+  outline: 2px solid rgba(199, 255, 61, 0.12) !important;
+}
+
+.canvas-app-shell :is(.node-body, .smart-card-body, .jiaren-film-node, .t8-original-scope) button:not(.danger):not(.destructive):not([data-variant="danger"]) {
+  border-color: var(--jiaren-border) !important;
+  border-radius: 6px !important;
+  color: var(--jiaren-text) !important;
+  background: var(--jiaren-surface-raised) !important;
+}
+
+.canvas-app-shell :is(.node-body, .smart-card-body, .jiaren-film-node, .t8-original-scope) button:hover:not(:disabled):not(.danger):not(.destructive):not([data-variant="danger"]) {
+  border-color: rgba(199, 255, 61, 0.3) !important;
+  color: var(--jiaren-accent) !important;
+  background: var(--jiaren-surface-hover) !important;
+}
+
+.canvas-app-shell :is(.node-body, .smart-card-body, .jiaren-film-node, .t8-original-scope) button:is(.active, .is-active, [aria-pressed="true"], [aria-selected="true"]) {
+  border-color: var(--jiaren-accent) !important;
+  color: #090b09 !important;
+  background: var(--jiaren-accent) !important;
+}
+
+.canvas-app-shell .react-flow__handle {
+  border-color: var(--jiaren-canvas) !important;
+  background: var(--jiaren-accent) !important;
+}
+
+.canvas-app-shell .react-flow__edge-path {
+  stroke: rgba(199, 255, 61, 0.58) !important;
+}
+
+.canvas-app-shell .canvas-minimap,
+.canvas-app-shell .react-flow__minimap {
+  background: var(--jiaren-surface) !important;
+}
+
+.canvas-app-shell .react-flow__minimap-mask {
+  fill: rgba(199, 255, 61, 0.08) !important;
+}
+
+/* Compact two-level creation menu. */
+:root[data-theme] .canvas-app-shell .canvas-context-menu.jiaren-context-menu-v2,
+.canvas-app-shell .canvas-context-menu.jiaren-context-menu-v2 {
+  width: 246px !important;
+  max-width: calc(100vw - 24px) !important;
+  max-height: calc(100vh - 24px) !important;
+  overflow: visible !important;
+  border: 1px solid var(--jiaren-border) !important;
+  border-radius: 8px !important;
+  padding: 8px !important;
+  color: var(--jiaren-text) !important;
+  background: rgba(13, 16, 13, 0.98) !important;
+  box-shadow: 0 22px 62px rgba(0, 0, 0, 0.5), inset 0 1px rgba(255, 255, 255, 0.04) !important;
+  backdrop-filter: blur(20px) !important;
+}
+
+.canvas-app-shell .jiaren-menu-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 34px;
+  padding: 0 6px 6px;
+}
+
+.canvas-app-shell .jiaren-menu-head strong {
+  color: var(--jiaren-text) !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+}
+
+.canvas-app-shell .jiaren-menu-head span {
+  color: var(--jiaren-muted) !important;
+  font-size: 9px !important;
+  font-weight: 700 !important;
+}
+
+.canvas-app-shell .canvas-context-menu.jiaren-context-menu-v2 button {
+  width: 100% !important;
+  min-width: 0 !important;
+  height: 40px !important;
+  display: grid !important;
+  grid-template-columns: 26px minmax(0, 1fr) !important;
+  align-items: center !important;
+  gap: 8px !important;
+  margin: 0 !important;
+  border: 1px solid transparent !important;
+  border-radius: 6px !important;
+  padding: 0 8px !important;
+  color: var(--jiaren-text) !important;
+  background: transparent !important;
+  text-align: left !important;
+}
+
+.canvas-app-shell .canvas-context-menu.jiaren-context-menu-v2 button:hover,
+.canvas-app-shell .canvas-context-menu.jiaren-context-menu-v2 button:focus-visible {
+  border-color: rgba(199, 255, 61, 0.22) !important;
+  color: var(--jiaren-accent) !important;
+  background: var(--jiaren-accent-soft) !important;
+}
+
+.canvas-app-shell .canvas-context-menu.jiaren-context-menu-v2 button > svg {
+  width: 16px !important;
+  height: 16px !important;
+  justify-self: center !important;
+  color: currentColor !important;
+}
+
+.canvas-app-shell .canvas-context-menu.jiaren-context-menu-v2 button > span {
+  min-width: 0 !important;
+  display: block !important;
+}
+
+.canvas-app-shell .canvas-context-menu.jiaren-context-menu-v2 button :is(b, small) {
+  display: block !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.canvas-app-shell .canvas-context-menu.jiaren-context-menu-v2 button b {
+  color: inherit !important;
+  font-size: 11px !important;
+  font-weight: 750 !important;
+  line-height: 1.2 !important;
+}
+
+.canvas-app-shell .canvas-context-menu.jiaren-context-menu-v2 button small {
+  margin-top: 2px !important;
+  color: var(--jiaren-muted) !important;
+  font-size: 8px !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+}
+
+.canvas-app-shell .canvas-context-menu.jiaren-context-menu-v2 .jiaren-menu-direct {
+  height: 48px !important;
+  margin-bottom: 4px !important;
+  border-color: var(--jiaren-border) !important;
+  background: var(--jiaren-surface) !important;
+}
+
+.canvas-app-shell .canvas-context-menu.jiaren-context-menu-v2 .jiaren-menu-direct.is-industrial {
+  border-color: rgba(199, 255, 61, 0.38) !important;
+  color: var(--jiaren-accent) !important;
+  background: rgba(199, 255, 61, 0.07) !important;
+}
+
+.canvas-app-shell .jiaren-menu-separator {
+  height: 1px;
+  margin: 7px 2px;
+  background: var(--jiaren-border);
+}
+
+.canvas-app-shell .jiaren-menu-group {
+  position: relative;
+}
+
+.canvas-app-shell .canvas-context-menu.jiaren-context-menu-v2 .jiaren-menu-parent {
+  grid-template-columns: 26px minmax(0, 1fr) 16px !important;
+}
+
+.canvas-app-shell .jiaren-menu-parent > i {
+  color: var(--jiaren-muted);
+  font-size: 20px;
+  font-style: normal;
+  line-height: 1;
+  text-align: center;
+}
+
+.canvas-app-shell .jiaren-menu-submenu {
+  position: absolute;
+  top: 50%;
+  left: var(--jiaren-submenu-left, calc(100% + 8px));
+  right: var(--jiaren-submenu-right, auto);
+  z-index: 2;
+  display: none;
+  width: 268px;
+  max-height: min(520px, calc(100vh - 28px));
+  overflow: auto;
+  transform: translateY(-50%);
+  border: 1px solid var(--jiaren-border);
+  border-radius: 8px;
+  padding: 6px;
+  background: rgba(13, 16, 13, 0.99);
+  box-shadow: 0 22px 62px rgba(0, 0, 0, 0.52), inset 0 1px rgba(255, 255, 255, 0.035);
+  scrollbar-width: thin;
+  scrollbar-color: #3d4837 transparent;
+}
+
+/* Lower groups align to their trigger bottom so tall submenus stay on-screen. */
+.canvas-app-shell .jiaren-menu-group:nth-last-child(-n + 2) > .jiaren-menu-submenu {
+  top: auto;
+  bottom: 0;
+  transform: none;
+}
+
+/* Local library tools inherit the JiarenAI shell even when legacy data says light. */
+#root .canvas-app-shell .t8-original-scope[data-app-shell-theme] {
+  color-scheme: dark;
+  --t8-bg-base: #090b09 !important;
+  --t8-bg-node: #0d100d !important;
+  --t8-bg-panel: #151915 !important;
+  --t8-bg-panel-elevated: #1b201b !important;
+  --t8-bg-panel-muted: #101310 !important;
+  --t8-text-main: #f4f7ef !important;
+  --t8-text-muted: #9aa392 !important;
+  --t8-text-dim: #747f70 !important;
+  --t8-border: rgba(199, 255, 61, 0.16) !important;
+  --t8-border-strong: rgba(199, 255, 61, 0.3) !important;
+  --t8-accent: #c7ff3d !important;
+  --t8-accent-hover: #d9ff78 !important;
+  --t8-secondary: #67d4c1 !important;
+  --t8-warning: #f6c85f !important;
+  --t8-danger: #ff7a8a !important;
+  --t8-success: #77d98b !important;
+  --t8-shadow-panel: rgba(0, 0, 0, 0.46) !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-app-shell-theme] :is(
+  .artist-style-master-node,
+  .anime-tag-master-node,
+  .t8-node
+) {
+  border: 1px solid var(--jiaren-border) !important;
+  border-radius: 8px !important;
+  color: var(--jiaren-text) !important;
+  background: #0d100d !important;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.42), inset 0 1px rgba(255, 255, 255, 0.035) !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-app-shell-theme] :is(
+  .artist-style-master-header,
+  .anime-tag-master-header,
+  .t8-node-header
+) {
+  border-color: var(--jiaren-border) !important;
+  color: var(--jiaren-text) !important;
+  background: #1b201b !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-app-shell-theme] :is(
+  .artist-style-master-section,
+  .artist-style-master-actions,
+  .artist-style-master-footer,
+  .anime-tag-master-section,
+  .anime-tag-master-actions,
+  .anime-tag-master-footer,
+  .t8-card
+) {
+  border-color: var(--jiaren-border) !important;
+  color: var(--jiaren-text) !important;
+  background: #151915 !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-app-shell-theme] :where(input, select, textarea) {
+  border-color: var(--jiaren-border) !important;
+  color: var(--jiaren-text) !important;
+  background: #101310 !important;
+}
+
+/* Final theme authority: legacy soft-white selectors repeat shell classes. */
+#root .canvas-app-shell :is(
+  .jiaren-canvas-project-pill,
+  .jiaren-canvas-brand-pill,
+  .jiaren-canvas-toolbar-pill,
+  .bottom-floating-toolbar,
+  .flow-controls,
+  .canvas-minimap
+) {
+  border-color: var(--jiaren-border) !important;
+  color: var(--jiaren-text) !important;
+  background-color: rgba(21, 25, 21, 0.97) !important;
+  background-image: none !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.38), inset 0 1px rgba(255, 255, 255, 0.035) !important;
+}
+
+#root .canvas-app-shell :is(.jiaren-canvas-toolbar-pill, .bottom-floating-toolbar, .flow-controls) button {
+  border-color: transparent !important;
+  border-radius: 6px !important;
+  color: var(--jiaren-muted) !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell :is(.jiaren-canvas-toolbar-pill, .bottom-floating-toolbar, .flow-controls) button:hover {
+  border-color: rgba(199, 255, 61, 0.22) !important;
+  color: var(--jiaren-accent) !important;
+  background-color: var(--jiaren-accent-soft) !important;
+}
+
+#root .canvas-app-shell :is(.jiaren-canvas-toolbar-pill, .bottom-floating-toolbar, .flow-controls) button:is(.active, .is-active, [aria-pressed="true"]) {
+  border-color: var(--jiaren-accent) !important;
+  color: #090b09 !important;
+  background-color: var(--jiaren-accent) !important;
+}
+
+#root .canvas-app-shell .canvas-context-menu.jiaren-context-menu-v2 button {
+  border-color: transparent !important;
+  border-radius: 6px !important;
+  color: var(--jiaren-text) !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .canvas-context-menu.jiaren-context-menu-v2 button:hover,
+#root .canvas-app-shell .canvas-context-menu.jiaren-context-menu-v2 button:focus-visible {
+  border-color: rgba(199, 255, 61, 0.22) !important;
+  color: var(--jiaren-accent) !important;
+  background-color: var(--jiaren-accent-soft) !important;
+}
+
+#root .canvas-app-shell .canvas-context-menu.jiaren-context-menu-v2 .jiaren-menu-direct {
+  border-color: var(--jiaren-border) !important;
+  background-color: var(--jiaren-surface) !important;
+}
+
+#root .canvas-app-shell .canvas-context-menu.jiaren-context-menu-v2 .jiaren-menu-direct.is-industrial {
+  border-color: rgba(199, 255, 61, 0.38) !important;
+  color: var(--jiaren-accent) !important;
+  background-color: rgba(199, 255, 61, 0.07) !important;
+}
+
+#root .canvas-app-shell :is(.react-flow__node-default, .react-flow__node-input, .react-flow__node-output) {
+  border: 1px solid var(--jiaren-border) !important;
+  border-radius: 7px !important;
+  color: var(--jiaren-text) !important;
+  background-color: var(--jiaren-surface) !important;
+  background-image: none !important;
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.34) !important;
+}
+
+#root .canvas-app-shell .canvas-node .node-body {
+  border-radius: 7px !important;
+}
+
+#root .canvas-app-shell .canvas-node-label {
+  color: var(--jiaren-muted) !important;
+}
+
+#root .canvas-app-shell .react-flow__minimap {
+  background-color: var(--jiaren-surface) !important;
+  background-image: none !important;
+}
+
+.canvas-app-shell .jiaren-menu-group:hover > .jiaren-menu-submenu,
+.canvas-app-shell .jiaren-menu-group:focus-within > .jiaren-menu-submenu {
+  display: block;
+}
+
+.canvas-app-shell .canvas-context-menu.jiaren-context-menu-v2 .jiaren-menu-submenu button {
+  height: 46px !important;
+  grid-template-columns: 26px minmax(0, 1fr) !important;
+}
+
+/* Dark professional dialogs and drawers. */
+.canvas-app-shell :is(
+  .settings-modal,
+  .resource-library-drawer,
+  .prompt-library-drawer,
+  .agent-panel,
+  .floating-panel,
+  .image-preview-modal,
+  .compare-modal,
+  .vector-trace-modal,
+  .license-modal
+) {
+  border-color: var(--jiaren-border) !important;
+  color: var(--jiaren-text) !important;
+  background: rgba(13, 16, 13, 0.98) !important;
+  box-shadow: 0 24px 74px rgba(0, 0, 0, 0.54) !important;
+}
+
+.canvas-app-shell :is(.settings-modal, .resource-library-drawer, .prompt-library-drawer, .agent-panel) :is(header, footer, section, article) {
+  border-color: var(--jiaren-border) !important;
+}
+
+.canvas-app-shell :is(.settings-modal, .resource-library-drawer, .prompt-library-drawer, .agent-panel) button:is(.active, [aria-selected="true"]) {
+  color: #090b09 !important;
+  background: var(--jiaren-accent) !important;
+}
+
+.canvas-app-shell button:focus-visible,
+.canvas-app-shell input:focus-visible,
+.canvas-app-shell select:focus-visible,
+.canvas-app-shell textarea:focus-visible {
+  outline: 2px solid rgba(199, 255, 61, 0.66) !important;
+  outline-offset: 1px !important;
+}
+
+.canvas-app-shell .t8-original-scope :is([class*="t8-brand"], [class*="penguin-brand"], [class*="vibex-brand"]) {
+  display: none !important;
+}
+
+@media (max-width: 900px) {
+  :root[data-theme] .canvas-app-shell .canvas-context-menu.jiaren-context-menu-v2,
+  .canvas-app-shell .canvas-context-menu.jiaren-context-menu-v2 {
+    width: 224px !important;
+  }
+
+  .canvas-app-shell .jiaren-menu-submenu {
+    width: 244px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .canvas-app-shell *,
+  .canvas-app-shell *::before,
+  .canvas-app-shell *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* Keep the launch state in the same visual system as the workspace. */
+html,
+body,
+#root {
+  background: #090b09 !important;
+}
+
+#app-loading-shell {
+  color: #f4f7ef !important;
+  background: #090b09 !important;
+}
+
+#app-loading-shell::before {
+  background-image:
+    linear-gradient(rgba(199, 255, 61, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(199, 255, 61, 0.035) 1px, transparent 1px) !important;
+  background-size: 28px 28px !important;
+}
+
+#app-loading-shell .app-loading-card {
+  border-color: rgba(199, 255, 61, 0.18) !important;
+  border-radius: 8px !important;
+  background: #151915 !important;
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: none !important;
+}
+
+#app-loading-shell .app-loading-logo {
+  color: #090b09 !important;
+  background: #c7ff3d !important;
+  box-shadow: none !important;
+}
+
+#app-loading-shell .app-loading-title {
+  color: #f4f7ef !important;
+}
+
+#app-loading-shell .app-loading-subtitle {
+  color: #9aa392 !important;
+}
+
+#app-loading-shell .app-loading-line {
+  background: #262c26 !important;
+}
+
+#app-loading-shell .app-loading-line span {
+  background: #c7ff3d !important;
+}
+
+/* Primary workspace chooser. */
+body.jiaren-launch-active .jiaren-launch-chooser {
+  inset: 34px 0 0 !important;
+  display: block !important;
+  padding: 0 !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
+  background:
+    linear-gradient(rgba(199, 255, 61, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(199, 255, 61, 0.025) 1px, transparent 1px),
+    #090b09 !important;
+  background-size: 36px 36px !important;
+}
+
+body.jiaren-launch-active .jiaren-launch-home {
+  position: relative;
+  display: grid;
+  min-height: calc(100vh - 34px);
+  place-items: center;
+  padding: 42px 32px 104px;
+  scroll-snap-align: start;
+}
+
+body.jiaren-launch-active .jiaren-launch-art {
+  display: grid !important;
+  width: min(1120px, calc(100vw - 64px)) !important;
+  aspect-ratio: auto !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 18px !important;
+  transform: none !important;
+  perspective: none !important;
+}
+
+body.jiaren-launch-active .jiaren-launch-art > header {
+  display: flex;
+  grid-column: 1 / -1;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 8px;
+  color: #f4f7ef;
+}
+
+body.jiaren-launch-active .jiaren-launch-art > header strong {
+  color: #c7ff3d;
+  font-size: 28px;
+  font-weight: 850;
+}
+
+body.jiaren-launch-active .jiaren-launch-art > header span {
+  color: #9aa392;
+  font-size: 14px;
+  font-weight: 650;
+}
+
+body.jiaren-launch-active .jiaren-launch-art > button,
+body.jiaren-launch-active .jiaren-launch-art > button:nth-of-type(n) {
+  position: relative !important;
+  inset: auto !important;
+  display: grid !important;
+  width: 100% !important;
+  height: 180px !important;
+  grid-template-rows: 64px auto !important;
+  justify-items: start !important;
+  gap: 18px !important;
+  overflow: hidden !important;
+  border: 1px solid #2a302a !important;
+  border-radius: 8px !important;
+  padding: 22px !important;
+  color: #f4f7ef !important;
+  background: #151915 !important;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.28) !important;
+  transform: none !important;
+}
+
+body.jiaren-launch-active .jiaren-launch-art > button::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 44px;
+  height: 3px;
+  background: #c7ff3d;
+  transition: width 180ms ease;
+}
+
+body.jiaren-launch-active .jiaren-launch-art > button:hover,
+body.jiaren-launch-active .jiaren-launch-art > button:focus-visible {
+  border-color: rgba(199, 255, 61, 0.56) !important;
+  background: #1b201b !important;
+  transform: translateY(-2px) !important;
+}
+
+body.jiaren-launch-active .jiaren-launch-art > button:hover::after,
+body.jiaren-launch-active .jiaren-launch-art > button:focus-visible::after {
+  width: 100%;
+}
+
+body.jiaren-launch-active .jiaren-launch-icon {
+  position: relative !important;
+  inset: auto !important;
+  display: grid !important;
+  width: 56px !important;
+  height: 56px !important;
+  place-items: center !important;
+  border: 1px solid rgba(199, 255, 61, 0.3) !important;
+  border-radius: 8px !important;
+  color: #c7ff3d !important;
+  background: rgba(199, 255, 61, 0.07) !important;
+  transform: none !important;
+}
+
+body.jiaren-launch-active .jiaren-launch-icon > svg {
+  width: 27px;
+  height: 27px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+body.jiaren-launch-active .jiaren-launch-copy {
+  position: relative !important;
+  inset: auto !important;
+  display: grid !important;
+  justify-items: start !important;
+  gap: 5px !important;
+  text-align: left !important;
+  transform: none !important;
+}
+
+body.jiaren-launch-active .jiaren-launch-copy strong {
+  color: #f4f7ef !important;
+  font-size: 17px !important;
+  font-weight: 800 !important;
+}
+
+body.jiaren-launch-active .jiaren-launch-copy small {
+  color: #9aa392 !important;
+  font-size: 12px !important;
+  font-weight: 550 !important;
+}
+
+body.jiaren-launch-active .jiaren-community-scroll {
+  position: absolute;
+  left: 50%;
+  bottom: 24px;
+  display: inline-flex;
+  height: 42px;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(199, 255, 61, 0.24);
+  border-radius: 7px;
+  padding: 0 14px;
+  color: #aeb8aa;
+  background: rgba(18, 22, 18, 0.9);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.32);
+  transform: translateX(-50%);
+  cursor: pointer;
+}
+
+body.jiaren-launch-active .jiaren-community-scroll:hover,
+body.jiaren-launch-active .jiaren-community-scroll:focus-visible {
+  border-color: rgba(199, 255, 61, 0.56);
+  color: #c7ff3d;
+  outline: none;
+}
+
+body.jiaren-launch-active .jiaren-community-scroll svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+body.jiaren-launch-active .jiaren-community-stage {
+  width: 100%;
+  height: calc(100vh - 34px);
+  min-height: 680px;
+  overflow: hidden;
+  border-top: 1px solid rgba(199, 255, 61, 0.16);
+  background: #0d100f;
+  scroll-snap-align: start;
+  pointer-events: auto !important;
+}
+
+body.jiaren-launch-active .jiaren-community-stage iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #0d100f;
+  pointer-events: auto !important;
+}
+
+body.jiaren-launch-active .jc-launcher {
+  display: none !important;
+}
+
+@media (max-width: 820px) {
+  body.jiaren-launch-active .jiaren-launch-home {
+    min-height: auto;
+    padding: 36px 20px 92px;
+  }
+
+  body.jiaren-launch-active .jiaren-launch-art {
+    width: min(520px, calc(100vw - 40px)) !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  body.jiaren-launch-active .jiaren-launch-art > button,
+  body.jiaren-launch-active .jiaren-launch-art > button:nth-of-type(n) {
+    height: 108px !important;
+    grid-template: 1fr / 56px minmax(0, 1fr) !important;
+    align-items: center !important;
+  }
+
+  body.jiaren-launch-active .jiaren-community-stage {
+    height: calc(100vh - 34px);
+    min-height: 620px;
+  }
+}
+
+/* Secondary image canvas: align the legacy editor with the dark-lime shell. */
+.canvas-app-shell .lovart-prompt-console {
+  grid-template-columns: 64px minmax(0, 1fr) !important;
+  grid-template-rows: 42px minmax(64px, auto) 40px !important;
+  gap: 10px 12px !important;
+  border: 1px solid var(--jiaren-border) !important;
+  border-radius: 8px !important;
+  color: var(--jiaren-text) !important;
+  background: rgba(13, 16, 13, 0.98) !important;
+  box-shadow: 0 22px 62px rgba(0, 0, 0, 0.52), inset 0 1px rgba(255, 255, 255, 0.04) !important;
+  backdrop-filter: blur(18px) !important;
+}
+
+.canvas-app-shell .lovart-prompt-console > .jiaren-image-mode-tabs {
+  width: auto !important;
+  height: 42px !important;
+  grid-column: 1 / -1 !important;
+  grid-row: 1 !important;
+  justify-self: start !important;
+  gap: 3px !important;
+  margin: 0 !important;
+  border: 1px solid var(--jiaren-border) !important;
+  border-radius: 7px !important;
+  padding: 3px !important;
+  color: var(--jiaren-muted) !important;
+  background: var(--jiaren-surface) !important;
+  box-shadow: none !important;
+}
+
+.canvas-app-shell .lovart-prompt-console > .jiaren-image-mode-tabs button {
+  width: 76px !important;
+  height: 34px !important;
+  border: 1px solid transparent !important;
+  border-radius: 5px !important;
+  color: var(--jiaren-muted) !important;
+  background: transparent !important;
+}
+
+.canvas-app-shell .lovart-prompt-console > .jiaren-image-mode-tabs button:is(.active, .is-active, [aria-selected="true"]) {
+  border-color: var(--jiaren-accent) !important;
+  color: #090b09 !important;
+  background: var(--jiaren-accent) !important;
+}
+
+.canvas-app-shell .lovart-prompt-console > .reference-picker {
+  width: 64px !important;
+  min-width: 64px !important;
+  height: 64px !important;
+  min-height: 64px !important;
+  grid-column: 1 !important;
+  grid-row: 2 !important;
+  align-self: start !important;
+  border: 1px solid var(--jiaren-border) !important;
+  border-radius: 7px !important;
+  color: var(--jiaren-accent) !important;
+  background: var(--jiaren-surface-raised) !important;
+  box-shadow: none !important;
+}
+
+.canvas-app-shell .lovart-prompt-console > .reference-picker > span {
+  color: var(--jiaren-muted) !important;
+}
+
+.canvas-app-shell .lovart-prompt-console > textarea,
+.canvas-app-shell .lovart-prompt-console > .upstream-prompt-summary {
+  min-width: 0 !important;
+  min-height: 64px !important;
+  grid-column: 2 / -1 !important;
+  grid-row: 2 !important;
+  margin: 0 !important;
+  border: 1px solid var(--jiaren-border) !important;
+  border-radius: 7px !important;
+  padding: 12px !important;
+  color: var(--jiaren-text) !important;
+  background: #101310 !important;
+  box-shadow: none !important;
+}
+
+.canvas-app-shell .lovart-prompt-console > textarea::placeholder {
+  color: rgba(154, 163, 146, 0.68) !important;
+}
+
+.canvas-app-shell .lovart-prompt-console > textarea:focus {
+  border-color: rgba(199, 255, 61, 0.5) !important;
+  outline: 2px solid rgba(199, 255, 61, 0.12) !important;
+}
+
+.canvas-app-shell .lovart-prompt-console > .prompt-console-footer {
+  min-width: 0 !important;
+  grid-column: 1 / -1 !important;
+  grid-row: 3 !important;
+  gap: 7px !important;
+  overflow: visible !important;
+}
+
+.canvas-app-shell .lovart-prompt-console > .prompt-console-footer button {
+  height: 36px !important;
+  min-width: 36px !important;
+  border: 1px solid var(--jiaren-border) !important;
+  border-radius: 6px !important;
+  color: var(--jiaren-text) !important;
+  background: var(--jiaren-surface-raised) !important;
+  box-shadow: none !important;
+}
+
+.canvas-app-shell .lovart-prompt-console > .prompt-console-footer button:hover:not(:disabled) {
+  border-color: rgba(199, 255, 61, 0.34) !important;
+  color: var(--jiaren-accent) !important;
+  background: var(--jiaren-surface-hover) !important;
+}
+
+.canvas-app-shell .lovart-prompt-console > .prompt-console-footer button:is(.active, .is-active, [aria-pressed="true"]) {
+  border-color: rgba(199, 255, 61, 0.58) !important;
+  color: var(--jiaren-accent) !important;
+  background: var(--jiaren-accent-soft) !important;
+}
+
+.canvas-app-shell .lovart-prompt-console > .prompt-console-footer .generate-button:not(:disabled) {
+  border-color: var(--jiaren-accent) !important;
+  color: #090b09 !important;
+  background: var(--jiaren-accent) !important;
+}
+
+.canvas-app-shell .lovart-prompt-console > .prompt-console-footer .generate-button:disabled {
+  color: #697168 !important;
+  background: #171b17 !important;
+  opacity: 1 !important;
+}
+
+.canvas-app-shell .lovart-prompt-console > .prompt-popover {
+  border: 1px solid var(--jiaren-border) !important;
+  border-radius: 8px !important;
+  color: var(--jiaren-text) !important;
+  background: rgba(13, 16, 13, 0.99) !important;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.48) !important;
+}
+
+.canvas-app-shell .lovart-prompt-console > .prompt-popover :is(.popover-row, .token, .ratio-token) {
+  border-color: var(--jiaren-border) !important;
+  color: var(--jiaren-text) !important;
+  background: var(--jiaren-surface-raised) !important;
+}
+
+.canvas-app-shell .lovart-prompt-console > .prompt-popover :is(.popover-row, .token, .ratio-token):hover {
+  border-color: rgba(199, 255, 61, 0.34) !important;
+  color: var(--jiaren-accent) !important;
+  background: var(--jiaren-surface-hover) !important;
+}
+
+.canvas-app-shell .lovart-prompt-console > .prompt-popover :is(.popover-row, .token, .ratio-token).active {
+  border-color: var(--jiaren-accent) !important;
+  color: #090b09 !important;
+  background: var(--jiaren-accent) !important;
+}
+
+.canvas-app-shell .lovart-prompt-console > .prompt-popover .jiaren-model-picker-empty {
+  color: var(--jiaren-muted) !important;
+}
+
+.canvas-app-shell :is(.canvas-node.jiaren-basic-image-card, .canvas-node.jiaren-drawing-media-card) {
+  overflow: hidden !important;
+  border: 1px solid var(--jiaren-border) !important;
+  border-radius: 8px !important;
+  color: var(--jiaren-text) !important;
+  background: var(--jiaren-surface) !important;
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.36), inset 0 1px rgba(255, 255, 255, 0.035) !important;
+}
+
+.canvas-app-shell :is(.canvas-node.jiaren-basic-image-card, .canvas-node.jiaren-drawing-media-card).selected {
+  border-color: var(--jiaren-border-strong) !important;
+  box-shadow: 0 0 0 1px rgba(199, 255, 61, 0.12), 0 18px 48px rgba(0, 0, 0, 0.42) !important;
+}
+
+.canvas-app-shell :is(.canvas-node.jiaren-basic-image-card, .canvas-node.jiaren-drawing-media-card) .canvas-node-label {
+  border-bottom: 1px solid var(--jiaren-border) !important;
+  border-radius: 7px 7px 0 0 !important;
+  color: var(--jiaren-muted) !important;
+  background: var(--jiaren-surface) !important;
+}
+
+.canvas-app-shell :is(.canvas-node.jiaren-basic-image-card, .canvas-node.jiaren-drawing-media-card) .canvas-node-label > svg {
+  border-color: rgba(199, 255, 61, 0.24) !important;
+  border-radius: 6px !important;
+  color: var(--jiaren-accent) !important;
+  background: var(--jiaren-accent-soft) !important;
+}
+
+.canvas-app-shell :is(.canvas-node.jiaren-basic-image-card, .canvas-node.jiaren-drawing-media-card) .canvas-node-label > span,
+.canvas-app-shell .canvas-node.jiaren-drawing-media-card .plain-generate-node > strong {
+  color: var(--jiaren-text) !important;
+}
+
+.canvas-app-shell .canvas-node.jiaren-drawing-media-card .plain-generate-node {
+  border-color: rgba(199, 255, 61, 0.24) !important;
+  border-radius: 7px !important;
+  color: var(--jiaren-muted) !important;
+  background: #101310 !important;
+}
+
+.canvas-app-shell .canvas-node.jiaren-drawing-media-card .plain-generate-node > svg {
+  color: var(--jiaren-accent) !important;
+}
+
+.canvas-app-shell .canvas-node.jiaren-drawing-media-card .plain-generate-node > span {
+  color: var(--jiaren-muted) !important;
+}
+
+.canvas-app-shell .canvas-node.jiaren-drawing-media-card > .react-flow__handle {
+  border-color: var(--jiaren-accent) !important;
+  background: var(--jiaren-surface) !important;
+  box-shadow: 0 0 0 3px rgba(13, 16, 13, 0.92), 0 3px 10px rgba(0, 0, 0, 0.4) !important;
+}
+
+.canvas-app-shell .canvas-node.jiaren-drawing-media-card > .react-flow__handle::after {
+  background: var(--jiaren-accent) !important;
+}
+
+@media (max-width: 760px) {
+  .canvas-app-shell .lovart-prompt-console {
+    grid-template-columns: 56px minmax(0, 1fr) !important;
+    padding: 12px !important;
+  }
+
+  .canvas-app-shell .lovart-prompt-console > .reference-picker {
+    width: 56px !important;
+    min-width: 56px !important;
+  }
+
+  .canvas-app-shell .lovart-prompt-console > .prompt-console-footer {
+    flex-wrap: wrap !important;
+  }
+}
+
+/* Candidate v44: retire the director composer, close light-theme gaps, and keep media editors below modal dialogs. */
+.jiaren-primary-video-prompt {
+  display: none !important;
+}
+
+body.jiaren-app-mounted .t8-original-portal[data-app-shell-theme="dark"].jiaren-media-bottom-editor {
+  color-scheme: dark !important;
+  z-index: 57 !important;
+  width: min(980px, calc(100vw - 32px)) !important;
+  max-width: calc(100vw - 32px) !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(244, 247, 239, 0.13) !important;
+  border-radius: 8px !important;
+  color: var(--jiaren-text, #f4f7ef) !important;
+  background: rgba(13, 16, 13, 0.985) !important;
+  background-image: none !important;
+  box-shadow: 0 24px 68px rgba(0, 0, 0, 0.56) !important;
+  backdrop-filter: blur(18px) !important;
+}
+
+body.jiaren-app-mounted .t8-original-portal[data-app-shell-theme="dark"].jiaren-media-bottom-editor > [class~="flex"][class~="items-center"][class~="border-b"] {
+  min-height: 50px !important;
+  border-color: rgba(244, 247, 239, 0.1) !important;
+  color: var(--jiaren-text, #f4f7ef) !important;
+  background: #111511 !important;
+}
+
+body.jiaren-app-mounted .t8-original-portal[data-app-shell-theme="dark"].jiaren-media-bottom-editor > [class~="flex"][class~="items-center"][class~="border-b"] > div:first-child {
+  color: var(--jiaren-accent, #c7ff3d) !important;
+  background: rgba(199, 255, 61, 0.09) !important;
+  box-shadow: inset 0 0 0 1px rgba(199, 255, 61, 0.3) !important;
+}
+
+body.jiaren-app-mounted .t8-original-portal[data-app-shell-theme="dark"] :is(
+  [class*="text-white"],
+  [class*="text-zinc-"],
+  [class*="text-slate-"],
+  [class*="text-gray-"]
+) {
+  color: var(--jiaren-muted, #9aa392) !important;
+}
+
+body.jiaren-app-mounted .t8-original-portal[data-app-shell-theme="dark"] :is(.text-sm, .font-semibold, strong) {
+  color: var(--jiaren-text, #f4f7ef) !important;
+}
+
+body.jiaren-app-mounted .t8-original-portal[data-app-shell-theme="dark"] :is(input, textarea, select, [contenteditable="true"]) {
+  min-width: 0 !important;
+  border: 1px solid rgba(244, 247, 239, 0.12) !important;
+  border-radius: 7px !important;
+  color: var(--jiaren-text, #f4f7ef) !important;
+  background: #101410 !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+body.jiaren-app-mounted .jiaren-director-desk :is(.jiaren-director-desk-target, footer) {
+  border-color: rgba(156, 186, 103, 0.22) !important;
+}
+
+#root .canvas-app-shell .jiaren-director-desk .jiaren-director-desk-target,
+#root .canvas-app-shell .jiaren-director-desk footer {
+  border-color: rgba(156, 186, 103, 0.22) !important;
+}
+
+body.jiaren-app-mounted .t8-original-portal[data-app-shell-theme="dark"] :is(input, textarea)::placeholder {
+  color: rgba(154, 163, 146, 0.68) !important;
+}
+
+body.jiaren-app-mounted .t8-original-portal[data-app-shell-theme="dark"] option {
+  color: var(--jiaren-text, #f4f7ef) !important;
+  background: #101410 !important;
+}
+
+body.jiaren-app-mounted .t8-original-portal[data-app-shell-theme="dark"] button {
+  display: inline-flex !important;
+  min-width: 0 !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  border: 1px solid rgba(244, 247, 239, 0.12) !important;
+  border-radius: 7px !important;
+  color: var(--jiaren-text, #f4f7ef) !important;
+  background: #1a1f1a !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  line-height: 1.2 !important;
+  text-align: center !important;
+}
+
+body.jiaren-app-mounted .t8-original-portal[data-app-shell-theme="dark"] button > svg {
+  display: block !important;
+  flex: 0 0 auto !important;
+}
+
+body.jiaren-app-mounted .t8-original-portal[data-app-shell-theme="dark"] button:hover:not(:disabled) {
+  border-color: rgba(199, 255, 61, 0.42) !important;
+  color: var(--jiaren-accent, #c7ff3d) !important;
+  background: #202620 !important;
+}
+
+body.jiaren-app-mounted .t8-original-portal[data-app-shell-theme="dark"] .jiaren-media-mode-tabs {
+  border: 1px solid rgba(244, 247, 239, 0.1) !important;
+  border-radius: 8px !important;
+  background: #101410 !important;
+  box-shadow: none !important;
+}
+
+body.jiaren-app-mounted .t8-original-portal[data-app-shell-theme="dark"] .jiaren-media-mode-tabs button {
+  min-width: 72px !important;
+  min-height: 32px !important;
+  color: var(--jiaren-muted, #9aa392) !important;
+  background: transparent !important;
+}
+
+body.jiaren-app-mounted .t8-original-portal[data-app-shell-theme="dark"] .jiaren-media-mode-tabs button:is(.is-active, :hover) {
+  border-color: var(--jiaren-accent, #c7ff3d) !important;
+  color: #090b09 !important;
+  background: var(--jiaren-accent, #c7ff3d) !important;
+}
+
+body.jiaren-app-mounted .t8-original-portal[data-app-shell-theme="dark"].jiaren-video-bottom-editor > [class~="p-2.5"] {
+  gap: 10px !important;
+  padding: 10px 12px 12px !important;
+  color: var(--jiaren-text, #f4f7ef) !important;
+  background: #0d100d !important;
+}
+
+body.jiaren-app-mounted .t8-original-portal[data-app-shell-theme="dark"].jiaren-video-bottom-editor label {
+  margin-bottom: 5px !important;
+  color: var(--jiaren-muted, #9aa392) !important;
+  font-size: 11px !important;
+  line-height: 1.25 !important;
+}
+
+body.jiaren-app-mounted .t8-original-portal[data-app-shell-theme="dark"].jiaren-video-bottom-editor :is(input, select) {
+  height: 36px !important;
+  padding: 0 10px !important;
+  font-size: 12px !important;
+}
+
+body.jiaren-app-mounted .t8-original-portal[data-app-shell-theme="dark"].jiaren-video-bottom-editor textarea {
+  min-height: 72px !important;
+  padding: 10px !important;
+  font-size: 12px !important;
+  line-height: 1.45 !important;
+}
+
+body.jiaren-app-mounted .t8-original-portal[data-app-shell-theme="dark"].jiaren-video-bottom-editor button:is([class*="fuchsia"], [class*="rose"], [class*="amber"]) {
+  border-color: var(--jiaren-accent, #c7ff3d) !important;
+  color: #090b09 !important;
+  background: var(--jiaren-accent, #c7ff3d) !important;
+}
+
+#root .canvas-app-shell :is(.jiaren-media-card-preview, .jiaren-media-card-empty) {
+  border-color: rgba(244, 247, 239, 0.1) !important;
+  color: var(--jiaren-muted) !important;
+  background: #0b0e0b !important;
+  background-image: linear-gradient(rgba(199, 255, 61, 0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(199, 255, 61, 0.025) 1px, transparent 1px) !important;
+  background-size: 18px 18px !important;
+}
+
+#root .canvas-app-shell .jiaren-media-card-empty > svg {
+  color: rgba(199, 255, 61, 0.48) !important;
+}
+
+#root .canvas-app-shell .canvas-node.jiaren-basic-image-card .node-body.imageInput {
+  display: grid !important;
+  min-height: 184px !important;
+  padding: 12px !important;
+  place-items: stretch !important;
+  border-color: var(--jiaren-border) !important;
+  background: #0d100d !important;
+}
+
+#root .canvas-app-shell .canvas-node.jiaren-basic-image-card .node-upload-placeholder {
+  display: flex !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  height: 100% !important;
+  min-height: 150px !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  padding: 16px !important;
+  overflow: hidden !important;
+  border: 1px dashed rgba(199, 255, 61, 0.24) !important;
+  border-radius: 7px !important;
+  color: var(--jiaren-muted) !important;
+  background: #101410 !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  line-height: 1.35 !important;
+  text-align: center !important;
+  white-space: normal !important;
+}
+
+#root .canvas-app-shell .canvas-node.jiaren-basic-image-card .node-upload-placeholder > svg {
+  display: block !important;
+  width: 32px !important;
+  height: 32px !important;
+  flex: 0 0 32px !important;
+  color: var(--jiaren-accent) !important;
+}
+
+#root .canvas-app-shell .react-flow__node-output {
+  overflow: visible !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .react-flow__node-output.selected {
+  outline: 0 !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .canvas-node[data-jiaren-node-kind="output"] {
+  border-color: var(--jiaren-border) !important;
+  border-radius: 8px !important;
+  color: var(--jiaren-text) !important;
+  background: #111511 !important;
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.38) !important;
+}
+
+#root .canvas-app-shell .canvas-node[data-jiaren-node-kind="output"] .node-body.output {
+  border-color: var(--jiaren-border) !important;
+  color: var(--jiaren-text) !important;
+  background: #0d100d !important;
+}
+
+#root .canvas-app-shell .canvas-node[data-jiaren-node-kind="output"] .smart-card-empty {
+  color: var(--jiaren-muted) !important;
+  background: #0d100d !important;
+}
+
+#root .canvas-app-shell :is(button, label, select, input, textarea) {
+  letter-spacing: 0 !important;
+}
+
+#root .canvas-app-shell button > svg {
+  flex: 0 0 auto !important;
+}
+
+/* 2026-07-29 final dark-lime authority. Keep portal surfaces and legacy light utilities aligned. */
+html[data-theme="dark"],
+html[data-app-shell-theme="dark"],
+body,
+#root,
+#root .canvas-app-shell,
+#root .canvas-app-shell.theme-light,
+#root .canvas-app-shell.theme-dark {
+  color-scheme: dark !important;
+  background-color: var(--jiaren-bg) !important;
+}
+
+#root .canvas-app-shell .titlebar-controls {
+  border: 1px solid var(--jiaren-border) !important;
+  background: rgba(21, 25, 21, 0.96) !important;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.34) !important;
+  backdrop-filter: blur(16px) !important;
+}
+
+#root .canvas-app-shell .modal-backdrop {
+  color: var(--jiaren-text) !important;
+  background: rgba(5, 7, 5, 0.74) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+#root .canvas-app-shell .settings-modal {
+  max-height: calc(100vh - 32px) !important;
+  overflow: auto !important;
+  border: 1px solid var(--jiaren-border) !important;
+  border-radius: 8px !important;
+  color: var(--jiaren-text) !important;
+  background: #0d100d !important;
+  box-shadow: 0 28px 84px rgba(0, 0, 0, 0.58) !important;
+  scrollbar-color: #3d4837 transparent !important;
+}
+
+#root .canvas-app-shell .settings-modal :is(.modal-header, .settings-tabs, .global-config, .settings-save-hint) {
+  border-color: var(--jiaren-border) !important;
+  color: var(--jiaren-text) !important;
+  background: #151915 !important;
+}
+
+#root .canvas-app-shell .settings-modal .modal-header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 4 !important;
+}
+
+#root .canvas-app-shell .settings-modal :is(h2, strong, label, summary, code) {
+  color: var(--jiaren-text) !important;
+}
+
+#root .canvas-app-shell .settings-modal :is(.eyebrow, .model-card-subtitle, .settings-save-hint, .test-message) {
+  color: var(--jiaren-muted) !important;
+}
+
+#root .canvas-app-shell .settings-modal :is(input, select, textarea) {
+  min-width: 0 !important;
+  border: 1px solid var(--jiaren-border) !important;
+  border-radius: 6px !important;
+  color: var(--jiaren-text) !important;
+  background: #101410 !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .settings-modal :is(input, textarea)::placeholder {
+  color: rgba(154, 163, 146, 0.66) !important;
+}
+
+#root .canvas-app-shell .settings-modal :is(.settings-api-note, .model-card, .model-advanced-details) {
+  border-color: var(--jiaren-border) !important;
+  color: var(--jiaren-text) !important;
+  background: #151915 !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .settings-modal .settings-api-note {
+  color: var(--jiaren-muted) !important;
+  background: rgba(199, 255, 61, 0.055) !important;
+}
+
+#root .canvas-app-shell .settings-modal .settings-api-note strong {
+  color: var(--jiaren-accent) !important;
+}
+
+#root .canvas-app-shell .settings-modal .settings-tabs {
+  position: sticky !important;
+  top: 68px !important;
+  z-index: 3 !important;
+  gap: 6px !important;
+  padding: 8px 14px !important;
+}
+
+#root .canvas-app-shell .settings-modal button {
+  min-width: 0 !important;
+  border: 1px solid var(--jiaren-border) !important;
+  border-radius: 6px !important;
+  color: var(--jiaren-text) !important;
+  background: #1a1f1a !important;
+  box-shadow: none !important;
+  letter-spacing: 0 !important;
+}
+
+#root .canvas-app-shell .settings-modal button:hover:not(:disabled) {
+  border-color: rgba(199, 255, 61, 0.38) !important;
+  color: var(--jiaren-accent) !important;
+  background: #202620 !important;
+}
+
+#root .canvas-app-shell .settings-modal button:is(.active, [aria-selected="true"]) {
+  border-color: var(--jiaren-accent) !important;
+  color: #090b09 !important;
+  background: var(--jiaren-accent) !important;
+}
+
+#root .canvas-app-shell .settings-modal .model-card {
+  height: auto !important;
+  min-height: 196px !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+}
+
+#root .canvas-app-shell .settings-modal .override-grid {
+  grid-auto-rows: max-content !important;
+  align-content: start !important;
+}
+
+#root .canvas-app-shell .settings-modal .model-title-with-badge {
+  display: flex !important;
+  min-width: 0 !important;
+  align-items: center !important;
+  gap: 9px !important;
+  overflow-wrap: anywhere !important;
+}
+
+#root .canvas-app-shell .model-icon {
+  display: inline-grid !important;
+  width: 28px !important;
+  min-width: 28px !important;
+  height: 28px !important;
+  flex: 0 0 28px !important;
+  place-items: center !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(244, 247, 239, 0.12) !important;
+  border-radius: 6px !important;
+  padding: 5px !important;
+  color: var(--jiaren-text) !important;
+  background: #202520 !important;
+  object-fit: contain !important;
+  box-sizing: border-box !important;
+}
+
+#root .canvas-app-shell img.model-icon:is(.gpt, .openai, .midjourney, .runway, .xai) {
+  filter: none !important;
+  background: #dfe8da !important;
+}
+
+body:has(.settings-modal) #root .canvas-app-shell :is(
+  .jiaren-primary-video-prompt,
+  .jiaren-media-bottom-editor,
+  .jiaren-video-bottom-editor,
+  .lovart-prompt-console
+) {
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-app-shell-theme] {
+  color-scheme: dark !important;
+  --t8-bg-base: #090b09 !important;
+  --t8-bg-node: #0d100d !important;
+  --t8-bg-panel: #151915 !important;
+  --t8-bg-panel-elevated: #1b201b !important;
+  --t8-bg-panel-muted: #101410 !important;
+  --t8-input-bg: #101410 !important;
+  --t8-text-main: #f4f7ef !important;
+  --t8-text-muted: #9aa392 !important;
+  --t8-border: rgba(244, 247, 239, 0.1) !important;
+  --t8-border-strong: rgba(199, 255, 61, 0.36) !important;
+  --t8-accent: #c7ff3d !important;
+  --t8-accent-text: #090b09 !important;
+}
+
+#root .canvas-app-shell .t8-original-scope :is(.t8-node, .t8-advanced-node, .t8-codex-node) {
+  border-color: var(--jiaren-border) !important;
+  color: var(--jiaren-text) !important;
+  background: #0d100d !important;
+  background-image: none !important;
+}
+
+#root .canvas-app-shell .t8-original-scope :is(div, section, article)[class*="bg-[var(--t8-bg-panel-muted)]"],
+#root .canvas-app-shell .t8-original-scope :is(div, section, article)[class*="bg-slate-"],
+#root .canvas-app-shell .t8-original-scope :is(div, section, article)[class*="bg-gray-"],
+#root .canvas-app-shell .t8-original-scope :is(div, section, article)[class*="bg-zinc-"],
+#root .canvas-app-shell .t8-original-scope :is(div, section, article)[class*="bg-sky-"],
+#root .canvas-app-shell .t8-original-scope :is(div, section, article)[class*="bg-amber-"],
+#root .canvas-app-shell .t8-original-scope :is(div, section, article)[class*="bg-black/"],
+#root .canvas-app-shell .t8-original-scope :is(div, section, article)[class~="bg-white"] {
+  border-color: var(--jiaren-border) !important;
+  color: var(--jiaren-text) !important;
+  background: #101410 !important;
+  background-image: none !important;
+}
+
+#root .canvas-app-shell .t8-original-scope :is(div, section, article)[class*="bg-[var(--t8-bg-panel)]"],
+#root .canvas-app-shell .t8-original-scope :is(div, section, article)[class*="bg-[var(--t8-bg-panel-elevated)]"] {
+  border-color: var(--jiaren-border) !important;
+  color: var(--jiaren-text) !important;
+  background: #151915 !important;
+  background-image: none !important;
+}
+
+#root .canvas-app-shell .t8-original-scope :is(input, select, textarea, [contenteditable="true"]) {
+  min-width: 0 !important;
+  border-color: var(--jiaren-border) !important;
+  color: var(--jiaren-text) !important;
+  background: #101410 !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .t8-original-scope :is([class*="text-slate-"], [class*="text-gray-"], [class*="text-zinc-"]) {
+  color: var(--jiaren-muted) !important;
+}
+
+#root .canvas-app-shell .jiaren-media-square-card,
+#root .canvas-app-shell .jiaren-video-square-card {
+  overflow: hidden !important;
+  border: 1px solid var(--jiaren-border) !important;
+  border-radius: 8px !important;
+  color: var(--jiaren-text) !important;
+  background: #111511 !important;
+  background-image: none !important;
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.38) !important;
+}
+
+#root .canvas-app-shell .react-flow__node.selected :is(.jiaren-media-square-card, .jiaren-video-square-card) {
+  border-color: rgba(199, 255, 61, 0.54) !important;
+  box-shadow: 0 0 0 1px rgba(199, 255, 61, 0.12), 0 18px 48px rgba(0, 0, 0, 0.44) !important;
+}
+
+#root .canvas-app-shell :is(.jiaren-media-square-card, .jiaren-video-square-card) :is(strong, h3) {
+  color: var(--jiaren-text) !important;
+}
+
+#root .canvas-app-shell :is(.jiaren-media-square-card, .jiaren-video-square-card) :is(span, small, p) {
+  color: var(--jiaren-muted) !important;
+}
+
+#root .canvas-app-shell .jiaren-video-bottom-editor > [class~="flex"][class~="items-center"][class~="border-b"] > div:first-child {
+  color: var(--jiaren-accent) !important;
+  background: rgba(199, 255, 61, 0.09) !important;
+  box-shadow: inset 0 0 0 1px rgba(199, 255, 61, 0.3) !important;
+}
+
+#root .canvas-app-shell .jiaren-video-bottom-editor .react-flow__handle {
+  border: 0 !important;
+  background: var(--jiaren-accent) !important;
+  box-shadow: 0 0 0 3px rgba(13, 16, 13, 0.92) !important;
+}
+
+#root .canvas-app-shell .jiaren-media-bottom-editor,
+#root .canvas-app-shell .jiaren-video-bottom-editor,
+body.jiaren-drawing-console-active #root .canvas-app-shell .lovart-prompt-console {
+  animation: none !important;
+  will-change: transform !important;
+}
+
+#root .canvas-app-shell .jiaren-media-bottom-editor,
+#root .canvas-app-shell .jiaren-video-bottom-editor {
+  transform: translateX(-50%) scale(var(--jiaren-media-scale, 1)) !important;
+  transform-origin: center top !important;
+}
+
+#root .canvas-app-shell .jiaren-media-bottom-editor[data-jiaren-placement="above"],
+#root .canvas-app-shell .jiaren-video-bottom-editor[data-jiaren-placement="above"] {
+  transform: translate(-50%, -100%) scale(var(--jiaren-media-scale, 1)) !important;
+  transform-origin: center bottom !important;
+}
+
+body.jiaren-drawing-console-active #root .canvas-app-shell .lovart-prompt-console {
+  transform: translateX(-50%) scale(var(--jiaren-media-scale, 1)) !important;
+  transform-origin: center top !important;
+}
+
+body.jiaren-drawing-console-active #root .canvas-app-shell .lovart-prompt-console[data-jiaren-placement="above"] {
+  transform: translate(-50%, -100%) scale(var(--jiaren-media-scale, 1)) !important;
+  transform-origin: center bottom !important;
+}
+
+#root .canvas-app-shell :is(
+  .prompt-library-drawer,
+  .resource-library-drawer,
+  .agent-panel,
+  .design-agent-shell,
+  .floating-panel,
+  .image-selection-popover,
+  .t8-context-menu,
+  .t8-connection-menu
+) {
+  border-color: var(--jiaren-border) !important;
+  color: var(--jiaren-text) !important;
+  background: #0d100d !important;
+  background-image: none !important;
+  box-shadow: 0 24px 72px rgba(0, 0, 0, 0.54) !important;
+}
+
+#root .canvas-app-shell .image-selection-popover {
+  width: min(438px, calc(100vw - 24px)) !important;
+  max-width: calc(100vw - 24px) !important;
+  max-height: calc(100vh - 24px) !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  overscroll-behavior: contain !important;
+  scrollbar-color: rgba(199, 255, 61, 0.42) rgba(244, 247, 239, 0.06) !important;
+  scrollbar-width: thin !important;
+}
+
+#root .canvas-app-shell .image-selection-popover::-webkit-scrollbar {
+  width: 6px !important;
+}
+
+#root .canvas-app-shell .image-selection-popover::-webkit-scrollbar-track {
+  background: rgba(244, 247, 239, 0.06) !important;
+}
+
+#root .canvas-app-shell .image-selection-popover::-webkit-scrollbar-thumb {
+  border-radius: 999px !important;
+  background: rgba(199, 255, 61, 0.42) !important;
+}
+
+#root .canvas-app-shell :is(.prompt-library-drawer, .resource-library-drawer, .agent-panel, .design-agent-shell) :is(header, footer, section, article, nav) {
+  border-color: var(--jiaren-border) !important;
+  color: var(--jiaren-text) !important;
+  background-color: #151915 !important;
+  background-image: none !important;
+}
+
+#root .canvas-app-shell button,
+#root .canvas-app-shell [role="button"] {
+  letter-spacing: 0 !important;
+}
+
+#root .canvas-app-shell button > span,
+#root .canvas-app-shell [role="button"] > span {
+  min-width: 0 !important;
+}
+
+#root .canvas-app-shell .jiaren-context-menu-v2 :is(b, small),
+#root .canvas-app-shell :is(.t8-context-menu, .t8-connection-menu) :is(b, small, span) {
+  min-width: 0 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+@media (max-width: 900px) {
+  #root .canvas-app-shell .settings-modal .override-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  #root .canvas-app-shell .settings-modal .global-config {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+}
+
+/* First-level drawing composer: inline multimodal reference capsules. */
+body.jiaren-drawing-console-active #root .canvas-app-shell .lovart-prompt-console {
+  grid-template-rows: 42px minmax(84px, auto) 40px !important;
+}
+
+body.jiaren-drawing-console-active #root .canvas-app-shell .lovart-prompt-console > .reference-picker {
+  grid-column: 1 !important;
+  grid-row: 2 !important;
+}
+
+body.jiaren-drawing-console-active #root .canvas-app-shell .lovart-prompt-console > .lovart-prompt-input-stack {
+  min-width: 0 !important;
+  min-height: 84px !important;
+  grid-column: 2 !important;
+  grid-row: 2 !important;
+  padding: 12px !important;
+  overflow: visible !important;
+  border: 1px solid var(--jiaren-border) !important;
+  border-radius: 8px !important;
+  color: var(--jiaren-text) !important;
+  background: #101410 !important;
+}
+
+body.jiaren-drawing-console-active #root .canvas-app-shell .lovart-prompt-console > .prompt-console-footer {
+  grid-column: 1 / -1 !important;
+  grid-row: 3 !important;
+}
+
+body.jiaren-drawing-console-active #root .canvas-app-shell .lovart-prompt-input-stack > .jiaren-rich-prompt-composer {
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 58px !important;
+  max-height: 180px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: auto !important;
+  border: 0 !important;
+  outline: 0 !important;
+  color: var(--jiaren-text) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  caret-color: var(--jiaren-accent) !important;
+  cursor: text !important;
+  font: inherit !important;
+  font-size: 14px !important;
+  line-height: 1.65 !important;
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+}
+
+body.jiaren-drawing-console-active #root .canvas-app-shell .jiaren-rich-prompt-composer[data-empty="true"]::before {
+  content: attr(data-placeholder);
+  color: rgba(154, 163, 146, 0.68) !important;
+  pointer-events: none !important;
+}
+
+body.jiaren-drawing-console-active #root .canvas-app-shell .jiaren-rich-prompt-composer .jiaren-page1-rich-reference-chip {
+  position: relative !important;
+  display: inline-grid !important;
+  width: auto !important;
+  max-width: min(240px, 85%) !important;
+  height: 32px !important;
+  margin: 0 4px 3px !important;
+  padding: 2px 5px 2px 2px !important;
+  grid-template-columns: 28px minmax(0, max-content) 16px !important;
+  align-items: center !important;
+  gap: 6px !important;
+  vertical-align: middle !important;
+  border: 1px solid rgba(199, 255, 61, 0.25) !important;
+  border-radius: 7px !important;
+  color: var(--jiaren-text) !important;
+  background: #1a2018 !important;
+  cursor: default !important;
+  user-select: none !important;
+}
+
+body.jiaren-drawing-console-active #root .canvas-app-shell .jiaren-rich-prompt-composer .jiaren-page1-rich-reference-chip:hover {
+  z-index: 15 !important;
+  border-color: rgba(199, 255, 61, 0.64) !important;
+  background: #20291b !important;
+}
+
+body.jiaren-drawing-console-active #root .canvas-app-shell .jiaren-rich-prompt-composer .jiaren-rich-reference-thumbnail,
+body.jiaren-drawing-console-active #root .canvas-app-shell .jiaren-rich-prompt-composer .jiaren-page1-rich-reference-fallback {
+  display: grid !important;
+  width: 28px !important;
+  height: 28px !important;
+  place-items: center !important;
+  border-radius: 5px !important;
+  object-fit: cover !important;
+  background: #0b0e0b !important;
+}
+
+body.jiaren-drawing-console-active #root .canvas-app-shell .jiaren-rich-prompt-composer .jiaren-page1-rich-reference-chip > span:not(.jiaren-page1-rich-reference-fallback) {
+  min-width: 0 !important;
+  overflow: hidden !important;
+  color: inherit !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+body.jiaren-drawing-console-active #root .canvas-app-shell .jiaren-rich-prompt-composer .jiaren-page1-rich-reference-chip > em {
+  display: grid !important;
+  width: 16px !important;
+  height: 16px !important;
+  place-items: center !important;
+  border-radius: 50% !important;
+  color: var(--jiaren-muted) !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  font-style: normal !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+}
+
+body.jiaren-drawing-console-active > .jiaren-rich-reference-preview {
+  position: fixed !important;
+  left: var(--jiaren-reference-preview-left, 50%) !important;
+  top: var(--jiaren-reference-preview-top, 12px) !important;
+  z-index: 2147483647 !important;
+  display: none !important;
+  box-sizing: border-box !important;
+  width: 190px !important;
+  height: 126px !important;
+  padding: 5px !important;
+  border: 1px solid rgba(199, 255, 61, 0.38) !important;
+  border-radius: 8px !important;
+  object-fit: contain !important;
+  background: #0b0e0b !important;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.58) !important;
+  transform: translateX(-50%) !important;
+  pointer-events: none !important;
+}
+
+body.jiaren-drawing-console-active > .jiaren-rich-reference-preview.is-visible {
+  display: block !important;
+}
+
+@media (max-width: 760px) {
+  body.jiaren-drawing-console-active #root .canvas-app-shell .lovart-prompt-console > .lovart-prompt-input-stack {
+    grid-column: 2 !important;
+  }
+
+  body.jiaren-drawing-console-active #root .canvas-app-shell .jiaren-rich-prompt-composer .jiaren-page1-rich-reference-chip {
+    max-width: 180px !important;
+  }
+}
+
+/* Keep menu groups compact; submenus open from the whole trigger row. */
+#root .canvas-app-shell .canvas-context-menu.jiaren-context-menu-v2 button.jiaren-menu-parent {
+  grid-template-columns: 26px minmax(0, 1fr) !important;
+}
+
+#root .canvas-app-shell .canvas-context-menu.jiaren-context-menu-v2 button.jiaren-menu-parent > i {
+  display: none !important;
+}
+
+/* Candidate v10: one dark-lime component language across restored and imported tools. */
+.canvas-app-shell,
+.canvas-app-shell.theme-light,
+.canvas-app-shell:not(.theme-light) {
+  --jiaren-panel-0: #0d100d;
+  --jiaren-panel-1: #151915;
+  --jiaren-panel-2: #1b201b;
+  --jiaren-line: rgba(244, 247, 239, 0.11);
+  --jiaren-line-strong: rgba(199, 255, 61, 0.48);
+  --jiaren-copy: #f4f7ef;
+  --jiaren-copy-muted: #9aa392;
+  --jiaren-lime: #c7ff3d;
+  color: var(--jiaren-copy) !important;
+  background: #090b09 !important;
+}
+
+.canvas-app-shell :is(button, input, select, textarea) {
+  letter-spacing: 0 !important;
+}
+
+.canvas-app-shell :is(button, input, select, textarea):not(.react-flow__controls-button) {
+  border-radius: 6px !important;
+}
+
+.canvas-app-shell :is(button, [role="button"]):not(:disabled) {
+  cursor: pointer;
+}
+
+.canvas-app-shell .canvas-context-menu.jiaren-context-menu-v2 {
+  width: 236px !important;
+  max-height: min(720px, calc(100vh - 24px)) !important;
+  overflow-y: auto !important;
+  border: 1px solid var(--jiaren-line) !important;
+  border-radius: 8px !important;
+  background: rgba(13, 16, 13, 0.99) !important;
+  box-shadow: 0 22px 64px rgba(0, 0, 0, 0.56) !important;
+}
+
+.canvas-app-shell .canvas-context-menu.jiaren-context-menu-v2 :is(.jiaren-menu-direct, .jiaren-menu-parent),
+.canvas-app-shell .canvas-context-menu.jiaren-context-menu-v2 .jiaren-menu-submenu > button {
+  min-height: 46px !important;
+  color: var(--jiaren-copy) !important;
+  background: transparent !important;
+}
+
+.canvas-app-shell .canvas-context-menu.jiaren-context-menu-v2 :is(.jiaren-menu-direct, .jiaren-menu-parent):hover,
+.canvas-app-shell .canvas-context-menu.jiaren-context-menu-v2 .jiaren-menu-submenu > button:hover {
+  color: var(--jiaren-lime) !important;
+  background: var(--jiaren-panel-2) !important;
+}
+
+.canvas-app-shell .canvas-context-menu.jiaren-context-menu-v2 .jiaren-menu-submenu {
+  width: 286px !important;
+  max-height: min(650px, calc(100vh - 32px)) !important;
+  overflow-y: auto !important;
+  border: 1px solid var(--jiaren-line) !important;
+  border-radius: 8px !important;
+  background: rgba(13, 16, 13, 0.99) !important;
+  box-shadow: 0 20px 58px rgba(0, 0, 0, 0.52) !important;
+}
+
+.canvas-app-shell .t8-picker-backdrop {
+  z-index: 1290 !important;
+  background: transparent !important;
+}
+
+.canvas-app-shell .t8-context-menu.t8-context-menu--picker {
+  z-index: 1300 !important;
+  width: 320px !important;
+  max-width: calc(100vw - 24px) !important;
+  border: 1px solid var(--jiaren-line-strong) !important;
+  border-radius: 8px !important;
+  color: var(--jiaren-copy) !important;
+  background: rgba(13, 16, 13, 0.995) !important;
+  box-shadow: 0 24px 72px rgba(0, 0, 0, 0.64) !important;
+  pointer-events: auto !important;
+}
+
+.canvas-app-shell .t8-context-menu--picker :is(.t8-context-menu__header, .t8-context-menu__item--candidate, .t8-picker-node-id) {
+  border-color: var(--jiaren-line) !important;
+  color: var(--jiaren-copy) !important;
+  background: var(--jiaren-panel-1) !important;
+}
+
+.canvas-app-shell .t8-context-menu--picker .t8-context-menu__item--candidate {
+  min-height: 54px !important;
+  height: auto !important;
+  white-space: normal !important;
+}
+
+.canvas-app-shell .t8-context-menu--picker .t8-context-menu__item--candidate:hover {
+  border-color: rgba(199, 255, 61, 0.32) !important;
+  color: var(--jiaren-lime) !important;
+  background: var(--jiaren-panel-2) !important;
+}
+
+.canvas-app-shell .t8-picker-count {
+  color: var(--jiaren-lime) !important;
+  background: rgba(199, 255, 61, 0.08) !important;
+}
+
+.canvas-app-shell .lovart-prompt-console {
+  z-index: 900 !important;
+}
+
+body:has(.t8-context-menu--picker) .canvas-app-shell .lovart-prompt-console {
+  z-index: 800 !important;
+}
+
+.canvas-app-shell .transparent-background-pill {
+  display: inline-flex !important;
+  min-width: 76px !important;
+  height: 34px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  border: 1px solid var(--jiaren-line) !important;
+  color: var(--jiaren-copy-muted) !important;
+  background: var(--jiaren-panel-1) !important;
+}
+
+.canvas-app-shell .transparent-background-pill.active {
+  border-color: var(--jiaren-lime) !important;
+  color: #090b09 !important;
+  background: var(--jiaren-lime) !important;
+}
+
+.canvas-app-shell .prompt-library-drawer,
+.canvas-app-shell.theme-light .prompt-library-drawer,
+.canvas-app-shell:not(.theme-light) .prompt-library-drawer {
+  width: min(940px, calc(100vw - 44px)) !important;
+  height: min(760px, calc(100vh - 92px)) !important;
+  border: 1px solid var(--jiaren-line) !important;
+  border-radius: 8px !important;
+  color: var(--jiaren-copy) !important;
+  background: var(--jiaren-panel-0) !important;
+}
+
+.canvas-app-shell .prompt-library-drawer :is(header, .prompt-library-main, .prompt-library-categories, .prompt-library-content) {
+  border-color: var(--jiaren-line) !important;
+  color: var(--jiaren-copy) !important;
+  background: var(--jiaren-panel-0) !important;
+}
+
+.canvas-app-shell .prompt-library-main {
+  grid-template-columns: 180px minmax(0, 1fr) !important;
+}
+
+.canvas-app-shell .prompt-library-categories button {
+  min-height: 38px !important;
+  color: var(--jiaren-copy-muted) !important;
+  background: transparent !important;
+}
+
+.canvas-app-shell .prompt-library-categories button:is(:hover, .active, [aria-selected="true"]) {
+  color: #090b09 !important;
+  background: var(--jiaren-lime) !important;
+}
+
+.canvas-app-shell .prompt-library-list {
+  grid-auto-rows: max-content !important;
+  gap: 10px !important;
+  padding: 12px 14px 16px !important;
+}
+
+.canvas-app-shell .prompt-library-card {
+  grid-template-columns: 156px minmax(0, 1fr) !important;
+  grid-template-rows: auto auto auto auto !important;
+  min-height: 176px !important;
+  height: auto !important;
+  gap: 8px 14px !important;
+  overflow: visible !important;
+  border: 1px solid var(--jiaren-line) !important;
+  border-radius: 8px !important;
+  color: var(--jiaren-copy) !important;
+  background: var(--jiaren-panel-1) !important;
+}
+
+.canvas-app-shell .prompt-library-card > .prompt-library-preview {
+  width: 156px !important;
+  height: auto !important;
+  min-height: 146px !important;
+  aspect-ratio: 1 / 1 !important;
+  overflow: hidden !important;
+  border-radius: 6px !important;
+  background: #090b09 !important;
+}
+
+.canvas-app-shell .prompt-library-preview img,
+.canvas-app-shell .prompt-library-card img,
+.canvas-app-shell .design-agent-preview img,
+.canvas-app-shell .design-agent-reference img,
+.canvas-app-shell .design-agent-result img,
+.canvas-app-shell .reference-picker img,
+.canvas-app-shell .prompt-reference-strip img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  background: #090b09 !important;
+}
+
+.canvas-app-shell .prompt-library-card > p {
+  display: block !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow: visible !important;
+  white-space: normal !important;
+  word-break: break-word !important;
+  -webkit-line-clamp: unset !important;
+}
+
+.canvas-app-shell .prompt-library-card-actions {
+  display: flex !important;
+  min-width: 0 !important;
+  flex-wrap: wrap !important;
+  gap: 7px !important;
+}
+
+.canvas-app-shell .prompt-library-card-actions button {
+  width: auto !important;
+  min-width: 34px !important;
+  min-height: 34px !important;
+  flex: 0 1 auto !important;
+  color: var(--jiaren-copy) !important;
+  background: var(--jiaren-panel-2) !important;
+}
+
+.canvas-app-shell .design-agent-panel,
+.canvas-app-shell .design-agent-shell,
+.canvas-app-shell .design-agent-body,
+.canvas-app-shell .design-agent-control,
+.canvas-app-shell .design-agent-workspace {
+  border-color: var(--jiaren-line) !important;
+  color: var(--jiaren-copy) !important;
+  background: var(--jiaren-panel-0) !important;
+}
+
+.canvas-app-shell .design-agent-collaboration-steps {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 5px !important;
+}
+
+.canvas-app-shell .design-agent-collaboration-steps > div {
+  display: grid !important;
+  min-width: 0 !important;
+  grid-template-columns: 20px minmax(0, 1fr) !important;
+  align-items: center !important;
+  gap: 5px !important;
+  min-height: 32px !important;
+  padding: 5px 6px !important;
+  border: 1px solid var(--jiaren-line) !important;
+  border-radius: 6px !important;
+  color: var(--jiaren-copy-muted) !important;
+  background: var(--jiaren-panel-1) !important;
+}
+
+.canvas-app-shell .design-agent-collaboration-steps > div b {
+  display: grid !important;
+  width: 20px !important;
+  height: 20px !important;
+  place-items: center !important;
+  border-radius: 50% !important;
+  background: var(--jiaren-panel-2) !important;
+  font-size: 10px !important;
+}
+
+.canvas-app-shell .design-agent-collaboration-steps > div span {
+  min-width: 0 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  font-size: 10px !important;
+}
+
+.canvas-app-shell .design-agent-collaboration-steps > div:is(.active, .done) {
+  border-color: rgba(199, 255, 61, 0.38) !important;
+  color: var(--jiaren-lime) !important;
+}
+
+.canvas-app-shell .design-agent-collaboration-steps > div.active b {
+  color: #090b09 !important;
+  background: var(--jiaren-lime) !important;
+}
+
+.canvas-app-shell .t8-original-scope :is([class~="bg-white"], [class~="bg-slate-50"], [class~="bg-gray-50"], [class~="bg-zinc-50"]) {
+  color: var(--jiaren-copy) !important;
+  background: var(--jiaren-panel-1) !important;
+}
+
+.canvas-app-shell .t8-original-scope :is([class~="text-slate-900"], [class~="text-gray-900"], [class~="text-zinc-900"]) {
+  color: var(--jiaren-copy) !important;
+}
+
+.canvas-app-shell .t8-original-scope :is([class~="border-slate-200"], [class~="border-gray-200"], [class~="border-zinc-200"]) {
+  border-color: var(--jiaren-line) !important;
+}
+
+.canvas-app-shell img.jiaren-image-fallback {
+  object-fit: contain !important;
+  background: #111411 !important;
+  opacity: 0.72 !important;
+}
+
+@media (max-width: 980px) {
+  body.jiaren-launch-active .jiaren-launch-art {
+    width: min(720px, calc(100vw - 40px)) !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .canvas-app-shell .prompt-library-main {
+    grid-template-columns: 150px minmax(0, 1fr) !important;
+  }
+}
+
+@media (max-width: 680px) {
+  .canvas-app-shell .prompt-library-main {
+    grid-template-columns: 1fr !important;
+  }
+
+  .canvas-app-shell .prompt-library-card {
+    grid-template-columns: 112px minmax(0, 1fr) !important;
+  }
+
+  .canvas-app-shell .prompt-library-card > .prompt-library-preview {
+    width: 112px !important;
+    min-height: 112px !important;
+  }
+
+  .canvas-app-shell .design-agent-collaboration-steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+
+/* Candidate v11: restored video, prompt library, and connector visual closure. */
+#root .canvas-app-shell .canvas-video-node-shell {
+  color: var(--jiaren-copy) !important;
+  background: transparent !important;
+}
+
+#root .canvas-app-shell .canvas-video-node-shell .node-body.videoGenerate,
+#root .canvas-app-shell .canvas-video-node-shell .simple-video-node {
+  overflow: hidden !important;
+  border: 1px solid var(--jiaren-line) !important;
+  border-radius: 8px !important;
+  color: var(--jiaren-copy) !important;
+  background: var(--jiaren-panel-1) !important;
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.4) !important;
+}
+
+#root .canvas-app-shell .canvas-video-node-shell .canvas-video-preview {
+  border-color: var(--jiaren-line) !important;
+  color: var(--jiaren-copy-muted) !important;
+  background-color: #0b0e0b !important;
+  background-image:
+    linear-gradient(rgba(199, 255, 61, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(199, 255, 61, 0.035) 1px, transparent 1px) !important;
+  background-size: 20px 20px !important;
+}
+
+#root .canvas-app-shell .canvas-video-node-shell :is(
+  .canvas-video-editor,
+  .canvas-video-upstream,
+  .canvas-video-option-section,
+  .canvas-video-advanced
+) {
+  border-color: var(--jiaren-line) !important;
+  color: var(--jiaren-copy) !important;
+  background: var(--jiaren-panel-0) !important;
+}
+
+#root .canvas-app-shell .canvas-video-node-shell :is(
+  .canvas-video-upstream-head,
+  .canvas-video-toolbar,
+  .canvas-video-option-head
+) {
+  border-color: var(--jiaren-line) !important;
+  color: var(--jiaren-copy-muted) !important;
+  background: var(--jiaren-panel-1) !important;
+}
+
+#root .canvas-app-shell .canvas-video-node-shell :is(
+  textarea,
+  input:not([type="range"]):not([type="checkbox"]),
+  select,
+  .canvas-video-field,
+  .canvas-video-preset-segment
+) {
+  border-color: var(--jiaren-line) !important;
+  color: var(--jiaren-copy) !important;
+  background: #101310 !important;
+}
+
+#root .canvas-app-shell .canvas-video-node-shell :is(textarea, input)::placeholder {
+  color: rgba(154, 163, 146, 0.72) !important;
+}
+
+#root .canvas-app-shell .canvas-video-node-shell button:not(.canvas-video-run) {
+  border-color: var(--jiaren-line) !important;
+  color: var(--jiaren-copy-muted) !important;
+  background: var(--jiaren-panel-2) !important;
+}
+
+#root .canvas-app-shell .canvas-video-node-shell button:not(.canvas-video-run):hover:not(:disabled),
+#root .canvas-app-shell .canvas-video-node-shell button:not(.canvas-video-run).active {
+  border-color: rgba(199, 255, 61, 0.38) !important;
+  color: var(--jiaren-lime) !important;
+  background: #202620 !important;
+}
+
+#root .canvas-app-shell .canvas-video-node-shell .canvas-video-run:not(:disabled) {
+  border-color: var(--jiaren-lime) !important;
+  color: #090b09 !important;
+  background: var(--jiaren-lime) !important;
+}
+
+#root .canvas-app-shell .prompt-library-drawer .prompt-library-head button,
+#root .canvas-app-shell .prompt-library-drawer .prompt-library-toolbar-button {
+  width: 34px !important;
+  min-width: 34px !important;
+  height: 34px !important;
+  padding: 0 !important;
+  border: 1px solid var(--jiaren-line) !important;
+  color: var(--jiaren-copy-muted) !important;
+  background: var(--jiaren-panel-1) !important;
+}
+
+#root .canvas-app-shell .prompt-library-drawer .prompt-library-head button:hover,
+#root .canvas-app-shell .prompt-library-drawer .prompt-library-toolbar-button:hover {
+  border-color: rgba(199, 255, 61, 0.38) !important;
+  color: var(--jiaren-lime) !important;
+  background: var(--jiaren-panel-2) !important;
+}
+
+#root .canvas-app-shell .prompt-library-drawer .prompt-library-search,
+#root .canvas-app-shell .prompt-library-drawer .prompt-library-search > label {
+  border-color: var(--jiaren-line) !important;
+  color: var(--jiaren-copy-muted) !important;
+  background: var(--jiaren-panel-0) !important;
+}
+
+#root .canvas-app-shell .prompt-library-drawer .prompt-library-search > label {
+  min-height: 38px !important;
+  border: 1px solid var(--jiaren-line) !important;
+  border-radius: 6px !important;
+  padding: 0 11px !important;
+}
+
+#root .canvas-app-shell .prompt-library-drawer .prompt-library-search input {
+  min-width: 0 !important;
+  border: 0 !important;
+  outline: 0 !important;
+  color: var(--jiaren-copy) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .prompt-library-drawer .prompt-library-search input::placeholder {
+  color: rgba(154, 163, 146, 0.76) !important;
+}
+
+#root .canvas-app-shell .prompt-library-drawer .prompt-library-categories button {
+  min-height: 38px !important;
+  border: 1px solid transparent !important;
+  border-radius: 6px !important;
+  color: var(--jiaren-copy-muted) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .prompt-library-drawer .prompt-library-categories button:hover {
+  border-color: var(--jiaren-line) !important;
+  color: var(--jiaren-copy) !important;
+  background: var(--jiaren-panel-2) !important;
+}
+
+#root .canvas-app-shell .prompt-library-drawer .prompt-library-categories button:is(.active, [aria-selected="true"]) {
+  border-color: var(--jiaren-lime) !important;
+  color: #090b09 !important;
+  background: var(--jiaren-lime) !important;
+}
+
+#root .canvas-app-shell .prompt-library-drawer .prompt-library-categories button small {
+  color: currentColor !important;
+  opacity: 0.72 !important;
+}
+
+#root .canvas-app-shell .prompt-library-drawer .prompt-library-card :is(.prompt-library-tags span, .prompt-library-card-actions button) {
+  border-color: var(--jiaren-line) !important;
+  color: var(--jiaren-copy-muted) !important;
+  background: var(--jiaren-panel-2) !important;
+}
+
+#root .canvas-app-shell .prompt-library-drawer .prompt-library-card-actions button:hover {
+  border-color: rgba(199, 255, 61, 0.38) !important;
+  color: var(--jiaren-lime) !important;
+}
+
+#root .canvas-app-shell .t8-context-menu.t8-context-menu--picker {
+  width: 320px !important;
+  max-width: calc(100vw - 24px) !important;
+  max-height: min(620px, calc(100vh - 24px)) !important;
+}
+
+#root .canvas-app-shell .t8-context-menu--picker :is(.t8-connection-search, input) {
+  border-color: var(--jiaren-line) !important;
+  color: var(--jiaren-copy) !important;
+  background: #101310 !important;
+}
+
+@media (max-width: 680px) {
+  #root .canvas-app-shell .prompt-library-drawer .prompt-library-categories button {
+    width: auto !important;
+    min-width: max-content !important;
+  }
+}
+
+
+/* Candidate v11.1: keep prompt library controls above global launchers. */
+#root .canvas-app-shell .prompt-library-drawer {
+  z-index: 1250 !important;
+}
+
+body:has(.prompt-library-drawer) .jc-launcher {
+  z-index: 1200 !important;
+}
+
+
+/* Candidate v11.2: dark connector scrim and discoverable transparent output. */
+#root .canvas-app-shell .t8-original-scope > .t8-picker-backdrop,
+#root .canvas-app-shell .t8-picker-backdrop {
+  background: rgba(5, 7, 5, 0.62) !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+#root .canvas-app-shell .t8-context-menu--picker .t8-picker-node-id {
+  display: none !important;
+}
+
+#root .canvas-app-shell .transparent-background-pill:disabled {
+  border-color: var(--jiaren-line) !important;
+  color: #6f786c !important;
+  background: #141814 !important;
+  opacity: 1 !important;
+}
+
+
+/* Candidate v11.3: stable media ports and dark connector tags. */
+#root .canvas-app-shell :is(
+  .canvas-node.jiaren-basic-image-card,
+  .canvas-node.jiaren-drawing-media-card,
+  .canvas-video-node-shell
+) > .react-flow__handle {
+  width: 12px !important;
+  min-width: 12px !important;
+  height: 12px !important;
+  min-height: 12px !important;
+  padding: 0 !important;
+  border: 2px solid #0d100d !important;
+  border-radius: 50% !important;
+  background: var(--jiaren-lime) !important;
+  box-shadow: 0 0 0 1px rgba(199, 255, 61, 0.44), 0 4px 12px rgba(0, 0, 0, 0.42) !important;
+}
+
+#root .canvas-app-shell .t8-context-menu--picker .t8-picker-tags span {
+  border: 1px solid rgba(199, 255, 61, 0.28) !important;
+  color: var(--jiaren-lime) !important;
+  background: rgba(199, 255, 61, 0.08) !important;
+}
+
+
+/* Candidate v11.4: unified dark design-agent workspace. */
+#root .canvas-app-shell .design-agent-panel {
+  padding: 52px 16px 16px !important;
+  color: var(--jiaren-copy) !important;
+  background: rgba(4, 6, 4, 0.82) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+body:has(.design-agent-panel) .jc-launcher {
+  display: none !important;
+}
+
+#root .canvas-app-shell .design-agent-shell {
+  width: min(1460px, calc(100vw - 32px)) !important;
+  height: min(920px, calc(100vh - 68px)) !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+  border: 1px solid var(--jiaren-line) !important;
+  border-radius: 8px !important;
+  color: var(--jiaren-copy) !important;
+  background: var(--jiaren-panel-0) !important;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5) !important;
+}
+
+#root .canvas-app-shell .design-agent-header {
+  min-height: 64px !important;
+  padding: 14px 18px !important;
+  border-color: var(--jiaren-line) !important;
+  color: var(--jiaren-copy) !important;
+  background: #101310 !important;
+}
+
+#root .canvas-app-shell .design-agent-header button {
+  display: grid !important;
+  width: 34px !important;
+  min-width: 34px !important;
+  height: 34px !important;
+  padding: 0 !important;
+  place-items: center !important;
+  border: 1px solid var(--jiaren-line) !important;
+  border-radius: 6px !important;
+  color: var(--jiaren-copy-muted) !important;
+  background: var(--jiaren-panel-1) !important;
+}
+
+#root .canvas-app-shell .design-agent-header button:hover {
+  border-color: rgba(199, 255, 61, 0.4) !important;
+  color: var(--jiaren-lime) !important;
+  background: var(--jiaren-panel-2) !important;
+}
+
+#root .canvas-app-shell .design-agent-body {
+  grid-template-columns: minmax(340px, 390px) minmax(0, 1fr) !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  background: var(--jiaren-panel-0) !important;
+}
+
+#root .canvas-app-shell .design-agent-control {
+  min-width: 0 !important;
+  padding: 16px !important;
+  gap: 10px !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  border-color: var(--jiaren-line) !important;
+  background: #0b0e0b !important;
+}
+
+#root .canvas-app-shell .design-agent-workspace {
+  grid-template-columns: minmax(0, 1.65fr) minmax(280px, 0.9fr) !important;
+  grid-template-rows: auto auto auto minmax(0, 1fr) !important;
+  gap: 12px !important;
+  min-width: 0 !important;
+  padding: 16px !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  background: var(--jiaren-panel-0) !important;
+}
+
+#root .canvas-app-shell .design-agent-steps {
+  width: 100% !important;
+  min-width: 0 !important;
+  grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+  gap: 8px !important;
+}
+
+#root .canvas-app-shell .design-agent-step {
+  min-width: 0 !important;
+  min-height: 58px !important;
+  padding: 9px 10px !important;
+  overflow: hidden !important;
+  border: 1px solid var(--jiaren-line) !important;
+  border-radius: 6px !important;
+  color: var(--jiaren-copy) !important;
+  background: var(--jiaren-panel-1) !important;
+}
+
+#root .canvas-app-shell .design-agent-step :is(span, small) {
+  min-width: 0 !important;
+  overflow: hidden !important;
+  color: var(--jiaren-copy-muted) !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+#root .canvas-app-shell .design-agent-step:is(.running, .done) {
+  border-color: rgba(199, 255, 61, 0.34) !important;
+}
+
+#root .canvas-app-shell .design-agent-preview {
+  height: 190px !important;
+  min-height: 190px !important;
+  border: 1px solid var(--jiaren-line) !important;
+  border-radius: 6px !important;
+  color: var(--jiaren-copy-muted) !important;
+  background-color: #101310 !important;
+  background-image:
+    linear-gradient(rgba(199, 255, 61, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(199, 255, 61, 0.035) 1px, transparent 1px) !important;
+  background-size: 20px 20px !important;
+}
+
+#root .canvas-app-shell .design-agent-control :is(
+  input,
+  textarea,
+  select
+) {
+  min-width: 0 !important;
+  border: 1px solid var(--jiaren-line) !important;
+  border-radius: 6px !important;
+  outline: 0 !important;
+  color: var(--jiaren-copy) !important;
+  background: #101310 !important;
+  box-shadow: none !important;
+  color-scheme: dark !important;
+}
+
+#root .canvas-app-shell .design-agent-control :is(input, textarea)::placeholder {
+  color: rgba(154, 163, 146, 0.72) !important;
+}
+
+#root .canvas-app-shell .design-agent-control label,
+#root .canvas-app-shell .design-agent-control :is(small, .design-agent-task-hint) {
+  color: var(--jiaren-copy-muted) !important;
+}
+
+#root .canvas-app-shell .design-agent-control button:not(.design-agent-primary) {
+  min-height: 36px !important;
+  border: 1px solid var(--jiaren-line) !important;
+  border-radius: 6px !important;
+  color: var(--jiaren-copy) !important;
+  background: var(--jiaren-panel-1) !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .design-agent-control button:not(.design-agent-primary):hover:not(:disabled) {
+  border-color: rgba(199, 255, 61, 0.4) !important;
+  color: var(--jiaren-lime) !important;
+  background: var(--jiaren-panel-2) !important;
+}
+
+#root .canvas-app-shell .design-agent-primary {
+  min-height: 40px !important;
+  border: 1px solid var(--jiaren-lime) !important;
+  border-radius: 6px !important;
+  color: #090b09 !important;
+  background: var(--jiaren-lime) !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .design-agent-primary:disabled {
+  border-color: var(--jiaren-line) !important;
+  color: #6f786c !important;
+  background: #171b17 !important;
+}
+
+#root .canvas-app-shell :is(
+  .design-agent-reference > small,
+  .design-agent-platform-rule,
+  .design-agent-size-note
+) {
+  border-color: var(--jiaren-line) !important;
+  border-radius: 6px !important;
+  color: var(--jiaren-copy-muted) !important;
+  background: var(--jiaren-panel-1) !important;
+}
+
+#root .canvas-app-shell .design-agent-platform-rule {
+  color: var(--jiaren-lime) !important;
+  background: rgba(199, 255, 61, 0.075) !important;
+}
+
+#root .canvas-app-shell .design-agent-analysis {
+  min-width: 0 !important;
+  gap: 10px !important;
+}
+
+#root .canvas-app-shell .design-agent-analysis section,
+#root .canvas-app-shell .design-agent-detail section {
+  min-width: 0 !important;
+  overflow: hidden !important;
+  border: 1px solid var(--jiaren-line) !important;
+  border-radius: 6px !important;
+  color: var(--jiaren-copy) !important;
+  background: var(--jiaren-panel-1) !important;
+}
+
+#root .canvas-app-shell .design-agent-analysis section :is(p, span),
+#root .canvas-app-shell .design-agent-detail section p {
+  color: var(--jiaren-copy-muted) !important;
+}
+
+#root .canvas-app-shell .design-agent-plans {
+  min-width: 0 !important;
+  gap: 8px !important;
+}
+
+#root .canvas-app-shell .design-agent-plans button {
+  min-width: 0 !important;
+  overflow: hidden !important;
+  border: 1px solid var(--jiaren-line) !important;
+  border-radius: 6px !important;
+  color: var(--jiaren-copy) !important;
+  background: var(--jiaren-panel-1) !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .design-agent-plans button.active {
+  border-color: var(--jiaren-lime) !important;
+  background: rgba(199, 255, 61, 0.08) !important;
+}
+
+#root .canvas-app-shell :is(.design-agent-empty, .design-agent-result) {
+  min-width: 0 !important;
+  border-color: rgba(199, 255, 61, 0.2) !important;
+  border-radius: 6px !important;
+  color: var(--jiaren-copy-muted) !important;
+  background-color: #101310 !important;
+  background-image:
+    linear-gradient(rgba(199, 255, 61, 0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(199, 255, 61, 0.028) 1px, transparent 1px) !important;
+  background-size: 24px 24px !important;
+}
+
+#root .canvas-app-shell .design-agent-result {
+  min-height: 420px !important;
+}
+
+#root .canvas-app-shell .design-agent-result :is(strong, span) {
+  color: var(--jiaren-copy-muted) !important;
+}
+
+#root .canvas-app-shell .design-agent-result.has-result,
+#root .canvas-app-shell .design-agent-result-image-button {
+  background: #090b09 !important;
+}
+
+#root .canvas-app-shell .design-agent-result-menu {
+  overflow: hidden !important;
+  border: 1px solid var(--jiaren-line) !important;
+  border-radius: 6px !important;
+  background: var(--jiaren-panel-1) !important;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.48) !important;
+}
+
+#root .canvas-app-shell .design-agent-result-menu button {
+  color: var(--jiaren-copy) !important;
+  background: transparent !important;
+}
+
+#root .canvas-app-shell .design-agent-result-menu button:hover {
+  color: var(--jiaren-lime) !important;
+  background: var(--jiaren-panel-2) !important;
+}
+
+#root .canvas-app-shell .design-agent-workspace textarea {
+  border: 1px solid var(--jiaren-line) !important;
+  border-radius: 6px !important;
+  color: var(--jiaren-copy) !important;
+  background: #101310 !important;
+}
+
+@media (max-width: 1180px) {
+  #root .canvas-app-shell .design-agent-body {
+    grid-template-columns: minmax(300px, 340px) minmax(0, 1fr) !important;
+  }
+
+  #root .canvas-app-shell .design-agent-workspace {
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-rows: auto auto auto auto !important;
+  }
+
+  #root .canvas-app-shell .design-agent-steps {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  #root .canvas-app-shell .design-agent-result {
+    grid-column: 1 !important;
+    grid-row: 2 !important;
+    min-height: 340px !important;
+  }
+
+  #root .canvas-app-shell .design-agent-analysis {
+    grid-column: 1 !important;
+    grid-row: 3 !important;
+  }
+
+  #root .canvas-app-shell .design-agent-plans {
+    grid-column: 1 !important;
+    grid-row: 4 !important;
+  }
+}
+
+@media (max-width: 820px) {
+  #root .canvas-app-shell .design-agent-panel {
+    padding: 48px 8px 8px !important;
+  }
+
+  #root .canvas-app-shell .design-agent-shell {
+    width: calc(100vw - 16px) !important;
+    height: calc(100vh - 56px) !important;
+  }
+
+  #root .canvas-app-shell .design-agent-body {
+    grid-template-columns: minmax(0, 1fr) !important;
+    overflow-y: auto !important;
+  }
+
+  #root .canvas-app-shell .design-agent-control {
+    max-height: none !important;
+    overflow: visible !important;
+    border-right: 0 !important;
+    border-bottom: 1px solid var(--jiaren-line) !important;
+  }
+
+  #root .canvas-app-shell .design-agent-workspace {
+    overflow: visible !important;
+  }
+}
+
+/* Primary drawing and video editors stay attached to their selected canvas node. */
+body.jiaren-drawing-console-active #root .canvas-app-shell .lovart-prompt-console {
+  grid-template-columns: 72px minmax(0, 1fr) !important;
+  grid-template-rows: 42px minmax(84px, auto) 40px !important;
+  gap: 10px 12px !important;
+  padding: 14px !important;
+  border: 1px solid rgba(244, 247, 239, 0.13) !important;
+  border-radius: 8px !important;
+  color: var(--jiaren-text) !important;
+  background: rgba(17, 21, 17, 0.97) !important;
+  box-shadow: 0 22px 58px rgba(0, 0, 0, 0.52) !important;
+  backdrop-filter: blur(18px) !important;
+}
+
+body.jiaren-drawing-console-active #root .canvas-app-shell .lovart-prompt-console:has(> .prompt-reference-strip) {
+  grid-template-rows: 42px 48px minmax(84px, auto) 40px !important;
+}
+
+body.jiaren-drawing-console-active #root .canvas-app-shell .lovart-prompt-console > .jiaren-image-mode-tabs {
+  grid-column: 1 / -1 !important;
+  grid-row: 1 !important;
+}
+
+body.jiaren-drawing-console-active #root .canvas-app-shell .lovart-prompt-console > .reference-picker {
+  grid-column: 1 !important;
+  grid-row: 2 !important;
+  width: 72px !important;
+  min-width: 72px !important;
+  height: 84px !important;
+  min-height: 84px !important;
+  border-color: rgba(199, 255, 61, 0.22) !important;
+  color: var(--jiaren-text) !important;
+  background: #151915 !important;
+}
+
+body.jiaren-drawing-console-active #root .canvas-app-shell .lovart-prompt-console > textarea,
+body.jiaren-drawing-console-active #root .canvas-app-shell .lovart-prompt-console > .upstream-prompt-summary {
+  grid-column: 2 !important;
+  grid-row: 2 !important;
+  min-height: 84px !important;
+  color: var(--jiaren-text) !important;
+  background: #101410 !important;
+  border-color: var(--jiaren-border) !important;
+}
+
+body.jiaren-drawing-console-active #root .canvas-app-shell .lovart-prompt-console > .prompt-console-footer {
+  grid-column: 1 / -1 !important;
+  grid-row: 3 !important;
+}
+
+body.jiaren-drawing-console-active #root .canvas-app-shell .lovart-prompt-console:has(> .prompt-reference-strip) > .prompt-reference-strip {
+  grid-column: 1 / -1 !important;
+  grid-row: 2 !important;
+  display: flex !important;
+  min-width: 0 !important;
+  height: 48px !important;
+  align-items: center !important;
+  gap: 7px !important;
+  padding: 4px !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  border: 1px solid var(--jiaren-border) !important;
+  border-radius: 8px !important;
+  background: #101410 !important;
+}
+
+body.jiaren-drawing-console-active #root .canvas-app-shell .lovart-prompt-console:has(> .prompt-reference-strip) > .reference-picker,
+body.jiaren-drawing-console-active #root .canvas-app-shell .lovart-prompt-console:has(> .prompt-reference-strip) > textarea,
+body.jiaren-drawing-console-active #root .canvas-app-shell .lovart-prompt-console:has(> .prompt-reference-strip) > .upstream-prompt-summary {
+  grid-row: 3 !important;
+}
+
+body.jiaren-drawing-console-active #root .canvas-app-shell .lovart-prompt-console:has(> .prompt-reference-strip) > .prompt-console-footer {
+  grid-row: 4 !important;
+}
+
+body.jiaren-drawing-console-active #root .canvas-app-shell .prompt-reference-strip > button {
+  position: relative !important;
+  width: 38px !important;
+  min-width: 38px !important;
+  height: 38px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border: 1px solid var(--jiaren-border) !important;
+  border-radius: 7px !important;
+  background: #1a1f1a !important;
+}
+
+body.jiaren-drawing-console-active #root .canvas-app-shell .prompt-reference-strip > button.add {
+  color: var(--jiaren-accent) !important;
+  border-style: dashed !important;
+}
+
+#root .canvas-app-shell .jiaren-media-bottom-editor,
+#root .canvas-app-shell .jiaren-video-bottom-editor {
+  border: 1px solid rgba(244, 247, 239, 0.13) !important;
+  border-radius: 8px !important;
+  color: var(--jiaren-text) !important;
+  background: rgba(17, 21, 17, 0.97) !important;
+  box-shadow: 0 22px 58px rgba(0, 0, 0, 0.52) !important;
+  backdrop-filter: blur(18px) !important;
+}
+
+#root .canvas-app-shell .jiaren-media-bottom-editor [class*="text-white"] {
+  color: var(--jiaren-text) !important;
+}
+
+#root .canvas-app-shell .jiaren-media-bottom-editor [class*="border-white"] {
+  border-color: var(--jiaren-border) !important;
+}
+
+#root .canvas-app-shell .jiaren-media-bottom-editor [class*="bg-white"] {
+  background-color: #171b17 !important;
+}
+
+#root .canvas-app-shell .jiaren-media-bottom-editor :is(input, textarea, select),
+#root .canvas-app-shell .jiaren-video-bottom-editor :is(input, textarea, select) {
+  border-color: var(--jiaren-border) !important;
+  color: var(--jiaren-text) !important;
+  background: #101410 !important;
+}
+
+#root .canvas-app-shell .jiaren-media-bottom-editor button,
+#root .canvas-app-shell .jiaren-video-bottom-editor button {
+  border-color: var(--jiaren-border) !important;
+  color: var(--jiaren-text) !important;
+  background: #1a1f1a !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .jiaren-media-bottom-editor button:hover:not(:disabled),
+#root .canvas-app-shell .jiaren-video-bottom-editor button:hover:not(:disabled) {
+  border-color: rgba(199, 255, 61, 0.42) !important;
+  color: var(--jiaren-accent) !important;
+  background: #202620 !important;
+}
+
+#root .canvas-app-shell .jiaren-video-bottom-editor button[class*="rose"],
+#root .canvas-app-shell .jiaren-video-bottom-editor button[class*="amber"] {
+  border-color: var(--jiaren-accent) !important;
+  color: #090b09 !important;
+  background: var(--jiaren-accent) !important;
+}
+
+#root .canvas-app-shell .jiaren-video-bottom-editor > .jiaren-media-mode-tabs {
+  border-color: var(--jiaren-border) !important;
+  background: #101410 !important;
+}
+
+#root .canvas-app-shell .jiaren-video-bottom-editor > .jiaren-media-mode-tabs button.is-active {
+  border-color: var(--jiaren-accent) !important;
+  color: #090b09 !important;
+  background: var(--jiaren-accent) !important;
+}
+
+@media (max-width: 760px) {
+  body.jiaren-drawing-console-active #root .canvas-app-shell .lovart-prompt-console {
+    width: calc(100vw - 24px) !important;
+    grid-template-columns: 60px minmax(0, 1fr) !important;
+    padding: 12px !important;
+  }
+
+  body.jiaren-drawing-console-active #root .canvas-app-shell .lovart-prompt-console > .reference-picker {
+    width: 60px !important;
+    min-width: 60px !important;
+  }
+}
+
+/* The primary video entry uses the native floating composer, not a legacy node editor. */
+body:has(.jiaren-primary-video-prompt) #root .canvas-app-shell .lovart-prompt-console,
+body:has(.jiaren-primary-video-prompt) #root .canvas-app-shell .jiaren-video-bottom-editor {
+  display: none !important;
+}
+
+#root .canvas-app-shell .jiaren-primary-video-prompt {
+  left: 50% !important;
+  right: auto !important;
+  bottom: 70px !important;
+  width: min(900px, calc(100vw - 48px)) !important;
+  transform: translateX(-50%) scale(var(--jiaren-canvas-overlay-scale, 1)) !important;
+  transform-origin: center bottom !important;
+  will-change: transform !important;
+  color: var(--jiaren-text) !important;
+  background: transparent !important;
+}
+
+#root .canvas-app-shell .jiaren-primary-video-prompt > div {
+  grid-template-columns: 76px minmax(0, 1fr) 48px !important;
+  gap: 14px !important;
+  min-height: 188px !important;
+  padding: 18px !important;
+  overflow: visible !important;
+  border: 1px solid rgba(244, 247, 239, 0.13) !important;
+  border-radius: 8px !important;
+  color: var(--jiaren-text) !important;
+  background: rgba(17, 21, 17, 0.98) !important;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.56) !important;
+  backdrop-filter: blur(18px) !important;
+}
+
+#root .canvas-app-shell .jiaren-primary-video-reference-stack > span,
+#root .canvas-app-shell .jiaren-primary-video-greeting span {
+  color: var(--jiaren-muted) !important;
+}
+
+#root .canvas-app-shell .jiaren-primary-video-reference-stack {
+  display: grid !important;
+  grid-template-rows: 72px auto !important;
+  align-content: start !important;
+  justify-items: center !important;
+  gap: 8px !important;
+  min-width: 0 !important;
+}
+
+#root .canvas-app-shell .jiaren-primary-video-greeting strong {
+  color: var(--jiaren-text) !important;
+}
+
+#root .canvas-app-shell .jiaren-primary-video-reference {
+  width: 72px !important;
+  min-width: 72px !important;
+  height: 72px !important;
+  border: 1px solid var(--jiaren-border) !important;
+  border-radius: 8px !important;
+  color: var(--jiaren-accent) !important;
+  background: #151915 !important;
+}
+
+#root .canvas-app-shell .jiaren-primary-video-prompt textarea {
+  min-height: 82px !important;
+  max-height: 132px !important;
+  padding: 13px 14px !important;
+  border: 1px solid var(--jiaren-border) !important;
+  border-radius: 8px !important;
+  color: var(--jiaren-text) !important;
+  background: #101410 !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .jiaren-primary-video-prompt textarea:focus {
+  border-color: rgba(199, 255, 61, 0.52) !important;
+  outline: 2px solid rgba(199, 255, 61, 0.12) !important;
+}
+
+#root .canvas-app-shell .jiaren-primary-video-prompt textarea::placeholder {
+  color: rgba(154, 163, 146, 0.72) !important;
+}
+
+#root .canvas-app-shell .jiaren-primary-video-options button,
+#root .canvas-app-shell .jiaren-primary-video-actions button {
+  min-width: 34px !important;
+  height: 34px !important;
+  padding: 0 11px !important;
+  border: 1px solid var(--jiaren-border) !important;
+  border-radius: 6px !important;
+  color: var(--jiaren-text) !important;
+  background: #1a1f1a !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .jiaren-primary-video-options button:hover,
+#root .canvas-app-shell .jiaren-primary-video-actions button:hover {
+  border-color: rgba(199, 255, 61, 0.42) !important;
+  color: var(--jiaren-accent) !important;
+  background: #202620 !important;
+}
+
+#root .canvas-app-shell .jiaren-primary-video-options button.is-active,
+#root .canvas-app-shell .jiaren-primary-video-actions .is-generate {
+  border-color: var(--jiaren-accent) !important;
+  color: #090b09 !important;
+  background: var(--jiaren-accent) !important;
+}
+
+#root .canvas-app-shell :is(
+  .jiaren-primary-video-custom-panel,
+  .jiaren-primary-video-popover
+) {
+  overflow: hidden !important;
+  border: 1px solid var(--jiaren-border) !important;
+  border-radius: 8px !important;
+  color: var(--jiaren-text) !important;
+  background: rgba(17, 21, 17, 0.99) !important;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.5) !important;
+}
+
+#root .canvas-app-shell :is(
+  .jiaren-primary-video-custom-panel,
+  .jiaren-primary-video-popover
+) button {
+  border-color: var(--jiaren-border) !important;
+  color: var(--jiaren-text) !important;
+  background: #1a1f1a !important;
+}
+
+#root .canvas-app-shell :is(
+  .jiaren-primary-video-custom-panel,
+  .jiaren-primary-video-popover
+) button.is-active {
+  border-color: var(--jiaren-accent) !important;
+  color: #090b09 !important;
+  background: var(--jiaren-accent) !important;
+}
+
+@media (max-width: 760px) {
+  #root .canvas-app-shell .jiaren-primary-video-prompt {
+    bottom: 18px !important;
+    width: calc(100vw - 24px) !important;
+  }
+
+  #root .canvas-app-shell .jiaren-primary-video-prompt > div {
+    grid-template-columns: 60px minmax(0, 1fr) 40px !important;
+    gap: 10px !important;
+    padding: 12px !important;
+  }
+
+  #root .canvas-app-shell .jiaren-primary-video-reference {
+    width: 58px !important;
+    min-width: 58px !important;
+    height: 58px !important;
+  }
+}
+
+/* Candidate v45: combined 2D pose controls and the embedded 3D director desk. */
+#root .canvas-app-shell .window-titlebar,
+#root .canvas-app-shell .titlebar-controls {
+  z-index: 20050 !important;
+}
+
+#root .canvas-app-shell .titlebar-controls {
+  pointer-events: auto !important;
+}
+
+#root .canvas-app-shell .canvas-node:has(.node-body.poseMaster),
+#root .canvas-app-shell .node-body.poseMaster {
+  width: auto !important;
+  height: auto !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .canvas-pose-master-node {
+  width: min(1040px, calc(100vw - 64px)) !important;
+  max-height: min(760px, calc(100vh - 92px)) !important;
+  grid-template-columns: minmax(390px, 0.94fr) minmax(430px, 1.06fr) !important;
+  align-items: start !important;
+  gap: 12px !important;
+  padding: 12px !important;
+  overflow: hidden !important;
+  border: 1px solid var(--jiaren-border) !important;
+  border-radius: 8px !important;
+  color: var(--jiaren-text) !important;
+  background: #0d100d !important;
+  box-shadow: 0 22px 56px rgba(0, 0, 0, 0.52) !important;
+}
+
+#root .canvas-app-shell .canvas-pose-master-node :is(
+  .pose-master-stage,
+  .pose-control-card,
+  .pose-master-control-rail,
+  .pose-master-control-rail-clean
+) {
+  min-width: 0 !important;
+  border-color: var(--jiaren-border) !important;
+  color: var(--jiaren-text) !important;
+  background: #151915 !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .canvas-pose-master-node .pose-master-stage {
+  max-height: calc(min(760px, calc(100vh - 92px)) - 24px) !important;
+  gap: 9px !important;
+  padding: 10px !important;
+  overflow: auto !important;
+}
+
+#root .canvas-app-shell .canvas-pose-master-node :is(
+  .pose-master-control-rail,
+  .pose-master-control-rail-clean
+) {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  align-content: start !important;
+  gap: 9px !important;
+  max-height: calc(min(760px, calc(100vh - 92px)) - 24px) !important;
+  padding: 0 3px 0 0 !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  background: transparent !important;
+}
+
+#root .canvas-app-shell .canvas-pose-master-node :is(
+  .pose-control-card-primary,
+  .pose-output-card
+) {
+  grid-column: 1 / -1 !important;
+}
+
+#root .canvas-app-shell .canvas-pose-master-node .pose-canvas-wrap-pro {
+  height: 370px !important;
+  min-height: 370px !important;
+  overflow: hidden !important;
+  border-color: var(--jiaren-border) !important;
+  border-radius: 7px !important;
+  background: #f4f7ef !important;
+}
+
+#root .canvas-app-shell .canvas-pose-master-node :is(input, select, textarea) {
+  min-width: 0 !important;
+  border: 1px solid var(--jiaren-border) !important;
+  border-radius: 6px !important;
+  color: var(--jiaren-text) !important;
+  background: #0b0e0b !important;
+  box-shadow: none !important;
+  color-scheme: dark !important;
+}
+
+#root .canvas-app-shell .canvas-pose-master-node :is(button, .pose-favorite-pill) {
+  min-width: 0 !important;
+  border-color: var(--jiaren-border) !important;
+  border-radius: 6px !important;
+  color: var(--jiaren-text) !important;
+  background: #1b201b !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .canvas-pose-master-node button:hover:not(:disabled) {
+  border-color: rgba(199, 255, 61, 0.4) !important;
+  color: var(--jiaren-accent) !important;
+  background: #222822 !important;
+}
+
+#root .canvas-app-shell .canvas-pose-master-node :is(
+  .toolkit-primary,
+  .pose-run-output,
+  .pose-director-launch,
+  button.active
+) {
+  border-color: var(--jiaren-accent) !important;
+  color: #090b09 !important;
+  background: var(--jiaren-accent) !important;
+}
+
+#root .canvas-app-shell .canvas-pose-master-node :is(
+  .pose-master-stage-head,
+  .pose-control-card > header,
+  .pose-editor-toolbar,
+  .pose-output-actions,
+  .toolkit-footer-actions
+) {
+  min-width: 0 !important;
+  gap: 7px !important;
+  border-color: var(--jiaren-border) !important;
+  color: var(--jiaren-text) !important;
+  background: transparent !important;
+}
+
+#root .canvas-app-shell .canvas-pose-master-node :is(span, small, label) {
+  color: var(--jiaren-muted) !important;
+}
+
+#root .canvas-app-shell .canvas-pose-master-node :is(strong, b) {
+  color: var(--jiaren-text) !important;
+}
+
+#root .canvas-app-shell .canvas-pose-master-node :is(
+  .toolkit-library-strip,
+  .pose-ab-status-row span,
+  .pose-output-prompt
+) {
+  border-color: var(--jiaren-border) !important;
+  color: var(--jiaren-muted) !important;
+  background: #0b0e0b !important;
+}
+
+#root .canvas-app-shell .jiaren-director-desk-backdrop {
+  inset: 48px 10px 10px !important;
+  z-index: 10020 !important;
+  padding: 0 !important;
+  background: rgba(4, 6, 4, 0.82) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+#root .canvas-app-shell .jiaren-director-desk {
+  width: 100% !important;
+  height: 100% !important;
+  grid-template-rows: 56px minmax(0, 1fr) 30px !important;
+  overflow: hidden !important;
+  border: 1px solid var(--jiaren-border) !important;
+  border-radius: 8px !important;
+  color: var(--jiaren-text) !important;
+  background: #0d100d !important;
+  box-shadow: 0 28px 72px rgba(0, 0, 0, 0.58) !important;
+}
+
+#root .canvas-app-shell .jiaren-director-desk > :is(header, footer) {
+  border-color: var(--jiaren-border) !important;
+  color: var(--jiaren-muted) !important;
+  background: #151915 !important;
+}
+
+#root .canvas-app-shell .jiaren-director-desk-brand :is(strong, svg) {
+  color: var(--jiaren-accent) !important;
+}
+
+#root .canvas-app-shell .jiaren-director-desk-brand small,
+#root .canvas-app-shell .jiaren-director-desk-shortcuts {
+  color: var(--jiaren-muted) !important;
+}
+
+#root .canvas-app-shell .jiaren-director-desk-target {
+  border: 1px solid var(--jiaren-border) !important;
+  border-radius: 6px !important;
+  background: #0b0e0b !important;
+}
+
+#root .canvas-app-shell .jiaren-director-desk-target button,
+#root .canvas-app-shell .jiaren-director-desk > header > .icon-button {
+  border-color: transparent !important;
+  border-radius: 5px !important;
+  color: var(--jiaren-muted) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .jiaren-director-desk-target button.active {
+  color: #090b09 !important;
+  background: var(--jiaren-accent) !important;
+}
+
+#root .canvas-app-shell .jiaren-director-desk-viewport,
+#root .canvas-app-shell .jiaren-director-desk iframe {
+  background: #090b09 !important;
+}
+
+@media (max-width: 920px) {
+  #root .canvas-app-shell .canvas-pose-master-node {
+    width: calc(100vw - 28px) !important;
+    max-height: calc(100vh - 72px) !important;
+    grid-template-columns: 1fr !important;
+    overflow-y: auto !important;
+  }
+
+  #root .canvas-app-shell .canvas-pose-master-node :is(
+    .pose-master-stage,
+    .pose-master-control-rail,
+    .pose-master-control-rail-clean
+  ) {
+    max-height: none !important;
+  }
+}
+
+/* Candidate v46: final dark-lime closure for imported utility surfaces. */
+#root .canvas-app-shell .jiaren-skill-node,
+#root .canvas-app-shell.theme-light .jiaren-skill-node,
+#root .canvas-app-shell:not(.theme-light) .jiaren-skill-node {
+  border: 1px solid rgba(199, 255, 61, 0.34) !important;
+  color: var(--jiaren-text) !important;
+  background: #0d100d !important;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.46) !important;
+}
+
+#root .canvas-app-shell .jiaren-skill-node.is-selected {
+  border-color: var(--jiaren-accent) !important;
+  box-shadow: 0 0 0 1px rgba(199, 255, 61, 0.22), 0 20px 52px rgba(0, 0, 0, 0.52) !important;
+}
+
+#root .canvas-app-shell .jiaren-skill-node > header {
+  border-color: var(--jiaren-border) !important;
+  color: var(--jiaren-text) !important;
+  background: #151915 !important;
+}
+
+#root .canvas-app-shell .jiaren-skill-node > header > div {
+  border: 1px solid rgba(199, 255, 61, 0.28) !important;
+  color: var(--jiaren-accent) !important;
+  background: rgba(199, 255, 61, 0.08) !important;
+}
+
+#root .canvas-app-shell .jiaren-skill-node > header :is(small, em),
+#root .canvas-app-shell .jiaren-skill-node > footer > span,
+#root .canvas-app-shell .jiaren-skill-node-main > span small {
+  color: var(--jiaren-muted) !important;
+}
+
+#root .canvas-app-shell .jiaren-skill-node-main {
+  border: 1px dashed rgba(199, 255, 61, 0.25) !important;
+  color: var(--jiaren-text) !important;
+  background: #101410 !important;
+}
+
+#root .canvas-app-shell .jiaren-skill-node-main > span svg,
+#root .canvas-app-shell .jiaren-skill-node > footer > button {
+  color: var(--jiaren-accent) !important;
+}
+
+#root .canvas-app-shell .jiaren-skill-node .jiaren-progress-track {
+  background: #252b24 !important;
+}
+
+#root .canvas-app-shell .jiaren-skill-node .jiaren-progress-track > i {
+  background: var(--jiaren-accent) !important;
+}
+
+#root .canvas-app-shell .jiaren-local-port.is-skill {
+  border-color: #0d100d !important;
+  background: var(--jiaren-accent) !important;
+  box-shadow: 0 0 0 1px rgba(199, 255, 61, 0.44) !important;
+}
+
+body .jiaren-local-dialog-layer {
+  color: #f4f7ef !important;
+  background: rgba(5, 7, 5, 0.76) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+body .jiaren-skill-dialog,
+body:has(.canvas-app-shell.theme-light) .jiaren-skill-dialog,
+body:has(.canvas-app-shell:not(.theme-light)) .jiaren-skill-dialog {
+  border: 1px solid rgba(244, 247, 239, 0.13) !important;
+  color: #f4f7ef !important;
+  background: #0d100d !important;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.62) !important;
+}
+
+body .jiaren-skill-dialog :is(.jiaren-local-dialog-head, .jiaren-local-dialog-footer, .jiaren-skill-form) {
+  border-color: rgba(244, 247, 239, 0.11) !important;
+  background: #101310 !important;
+}
+
+body .jiaren-skill-dialog .jiaren-skill-side {
+  color: #f4f7ef !important;
+  background: #121612 !important;
+}
+
+body .jiaren-skill-dialog .jiaren-local-dialog-mark {
+  color: #090b09 !important;
+  background: #c7ff3d !important;
+}
+
+body .jiaren-skill-dialog :is(.jiaren-segmented, .jiaren-skill-file, .jiaren-skill-engine-settings) {
+  border-color: rgba(244, 247, 239, 0.11) !important;
+  color: #f4f7ef !important;
+  background: #171c17 !important;
+}
+
+body .jiaren-skill-dialog .jiaren-segmented button {
+  color: #9aa392 !important;
+  background: transparent !important;
+}
+
+body .jiaren-skill-dialog .jiaren-segmented button.is-active {
+  color: #090b09 !important;
+  background: #c7ff3d !important;
+  box-shadow: none !important;
+}
+
+body .jiaren-skill-dialog .jiaren-skill-dropzone {
+  border-color: rgba(199, 255, 61, 0.28) !important;
+  color: #9aa392 !important;
+  background: #101410 !important;
+}
+
+body .jiaren-skill-dialog .jiaren-skill-dropzone:is(:hover, .is-dragging) {
+  border-color: #c7ff3d !important;
+  color: #f4f7ef !important;
+  background: rgba(199, 255, 61, 0.07) !important;
+}
+
+body .jiaren-skill-dialog :is(input, textarea, select),
+body:has(.canvas-app-shell.theme-light) .jiaren-skill-dialog :is(input, textarea, select) {
+  border: 1px solid rgba(244, 247, 239, 0.12) !important;
+  color: #f4f7ef !important;
+  background: #0b0e0b !important;
+  color-scheme: dark !important;
+}
+
+body .jiaren-skill-dialog :is(input, textarea)::placeholder {
+  color: rgba(154, 163, 146, 0.72) !important;
+}
+
+body .jiaren-skill-dialog :is(.jiaren-local-dialog-head > button, .jiaren-secondary-command, .jiaren-skill-engine label button) {
+  border-color: rgba(244, 247, 239, 0.12) !important;
+  color: #f4f7ef !important;
+  background: #1a1f1a !important;
+}
+
+body .jiaren-skill-dialog .jiaren-primary-command {
+  border-color: #c7ff3d !important;
+  color: #090b09 !important;
+  background: #c7ff3d !important;
+}
+
+#root .canvas-app-shell .t8-material-preview-header {
+  min-height: 30px !important;
+  padding: 5px 8px !important;
+  border: 1px solid var(--jiaren-border) !important;
+  border-radius: 6px !important;
+  color: var(--jiaren-text) !important;
+  background: #151915 !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .t8-material-preview-header > svg {
+  color: var(--jiaren-accent) !important;
+}
+
+#root .canvas-app-shell .t8-material-preview-count {
+  min-width: 20px !important;
+  padding: 1px 5px !important;
+  border: 1px solid rgba(199, 255, 61, 0.3) !important;
+  border-radius: 4px !important;
+  color: var(--jiaren-accent) !important;
+  background: rgba(199, 255, 61, 0.08) !important;
+  text-align: center !important;
+}
+
+#root .canvas-app-shell .t8-material-preview-group-label {
+  color: var(--jiaren-muted) !important;
+}
+
+#root .canvas-app-shell .t8-context-menu--picker .t8-context-menu__header {
+  min-height: 44px !important;
+  padding: 10px 12px !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--jiaren-border) !important;
+  color: var(--jiaren-text) !important;
+  background: #151915 !important;
+  font-size: 13px !important;
+}
+
+#root .canvas-app-shell .t8-context-menu--picker .t8-picker-list {
+  display: grid !important;
+  gap: 4px !important;
+  padding: 7px !important;
+  background: #0d100d !important;
+}
+
+#root .canvas-app-shell .t8-context-menu--picker .t8-context-menu__item--candidate {
+  min-height: 52px !important;
+  margin: 0 !important;
+  padding: 8px 9px !important;
+  border: 1px solid transparent !important;
+  border-radius: 6px !important;
+  color: var(--jiaren-text) !important;
+  background: #151915 !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .t8-context-menu--picker .t8-context-menu__item--candidate:hover {
+  border-color: rgba(199, 255, 61, 0.34) !important;
+  color: var(--jiaren-text) !important;
+  background: #202620 !important;
+}
+
+#root .canvas-app-shell .t8-context-menu--picker .t8-picker-copy strong {
+  color: var(--jiaren-text) !important;
+  font-size: 12px !important;
+  line-height: 1.35 !important;
+}
+
+#root .canvas-app-shell .t8-context-menu--picker .t8-picker-copy small {
+  color: var(--jiaren-muted) !important;
+  font-size: 10.5px !important;
+  line-height: 1.4 !important;
+}
+
+#root .canvas-app-shell .t8-context-menu--picker .t8-picker-dot {
+  border-color: #0d100d !important;
+  box-shadow: 0 0 0 1px rgba(199, 255, 61, 0.24) !important;
+}
+
+#root .canvas-app-shell .prompt-library-drawer,
+#root .canvas-app-shell.theme-light .prompt-library-drawer,
+#root .canvas-app-shell:not(.theme-light) .prompt-library-drawer {
+  width: min(1120px, calc(100vw - 48px)) !important;
+  height: min(780px, calc(100vh - 76px)) !important;
+  color: var(--jiaren-text) !important;
+  background: #0d100d !important;
+}
+
+#root .canvas-app-shell .prompt-library-main {
+  grid-template-columns: 166px minmax(0, 1fr) !important;
+}
+
+#root .canvas-app-shell .prompt-library-list {
+  align-content: start !important;
+  grid-auto-rows: max-content !important;
+  gap: 10px !important;
+  overflow-x: hidden !important;
+}
+
+#root .canvas-app-shell .prompt-library-card {
+  display: grid !important;
+  grid-template-columns: 156px minmax(0, 1fr) !important;
+  grid-template-rows: auto minmax(42px, auto) auto auto !important;
+  min-height: 178px !important;
+  gap: 7px 14px !important;
+  padding: 11px !important;
+  overflow: hidden !important;
+  border-color: var(--jiaren-border) !important;
+  color: var(--jiaren-text) !important;
+  background: #151915 !important;
+}
+
+#root .canvas-app-shell .prompt-library-card > .prompt-library-preview {
+  grid-column: 1 !important;
+  grid-row: 1 / 5 !important;
+  width: 156px !important;
+  height: 156px !important;
+  min-height: 156px !important;
+  align-self: start !important;
+}
+
+#root .canvas-app-shell .prompt-library-card > .prompt-library-card-top {
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  min-width: 0 !important;
+}
+
+#root .canvas-app-shell .prompt-library-card > p {
+  grid-column: 2 !important;
+  grid-row: 2 !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  color: var(--jiaren-text) !important;
+  line-height: 1.55 !important;
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-line-clamp: 3 !important;
+}
+
+#root .canvas-app-shell .prompt-library-card > .prompt-library-tags {
+  grid-column: 2 !important;
+  grid-row: 3 !important;
+  min-width: 0 !important;
+}
+
+#root .canvas-app-shell .prompt-library-card > .prompt-library-card-actions {
+  grid-column: 2 !important;
+  grid-row: 4 !important;
+  min-width: 0 !important;
+}
+
+#root .canvas-app-shell .prompt-library-card-actions button {
+  height: 32px !important;
+  min-height: 32px !important;
+  padding: 0 9px !important;
+  border-radius: 6px !important;
+}
+
+#root .canvas-app-shell .jiaren-industrial-swatches button.active {
+  border-color: rgba(199, 255, 61, 0.52) !important;
+  color: var(--jiaren-accent) !important;
+  background: rgba(199, 255, 61, 0.1) !important;
+  box-shadow: inset 0 0 0 1px rgba(199, 255, 61, 0.08) !important;
+}
+
+#root .canvas-app-shell .jiaren-industrial-resize {
+  width: 16px !important;
+  height: 16px !important;
+  right: 3px !important;
+  bottom: 3px !important;
+  border: 0 !important;
+  border-right: 2px solid rgba(199, 255, 61, 0.66) !important;
+  border-bottom: 2px solid rgba(199, 255, 61, 0.66) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .react-flow__edge-path,
+#root .canvas-app-shell .react-flow__connection-path {
+  stroke: rgba(199, 255, 61, 0.68) !important;
+}
+
+#root .canvas-app-shell .react-flow__edge.selected .react-flow__edge-path,
+#root .canvas-app-shell .react-flow__edge:hover .react-flow__edge-path {
+  stroke: #c7ff3d !important;
+}
+
+#root .canvas-app-shell .titlebar-controls {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+@media (max-width: 720px) {
+  #root .canvas-app-shell .prompt-library-main {
+    grid-template-columns: 1fr !important;
+  }
+
+  #root .canvas-app-shell .prompt-library-card {
+    grid-template-columns: 112px minmax(0, 1fr) !important;
+  }
+
+  #root .canvas-app-shell .prompt-library-card > .prompt-library-preview {
+    width: 112px !important;
+    height: 112px !important;
+    min-height: 112px !important;
+  }
+}
+
+/* Keep the full audio workspace aligned with the JiarenAI dark-lime canvas. */
+#root .canvas-app-shell .t8-original-scope[data-t8-original-node="audio"] > div {
+  --bg-secondary: #151915;
+  --border-primary: rgba(244, 247, 239, 0.12);
+  --text-primary: #f4f7ef;
+  --text-secondary: #9aa392;
+  border-color: rgba(199, 255, 61, 0.28) !important;
+  color: #f4f7ef !important;
+  background: #0d100d !important;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.48) !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-t8-original-node="audio"] > div > .flex.items-center {
+  border-color: rgba(244, 247, 239, 0.1) !important;
+  background: #151915 !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-t8-original-node="audio"] :is(label, [class*="text-white"], [class*="text-violet"]) {
+  color: #9aa392 !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-t8-original-node="audio"] .text-sm.font-semibold,
+#root .canvas-app-shell .t8-original-scope[data-t8-original-node="audio"] span.font-semibold {
+  color: #f4f7ef !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-t8-original-node="audio"] div.rounded.border {
+  border-color: rgba(244, 247, 239, 0.11) !important;
+  background: #151915 !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-t8-original-node="audio"] :is(input, select, textarea, [contenteditable="true"]) {
+  border: 1px solid rgba(244, 247, 239, 0.12) !important;
+  color: #f4f7ef !important;
+  background: #090b09 !important;
+  box-shadow: none !important;
+  color-scheme: dark !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-t8-original-node="audio"] option {
+  color: #f4f7ef !important;
+  background: #101410 !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-t8-original-node="audio"] button {
+  border-color: rgba(244, 247, 239, 0.12) !important;
+  color: #dce4d8 !important;
+  background: #1a1f1a !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-t8-original-node="audio"] button:is([class*="bg-violet-400"], [class*="bg-violet-500"]) {
+  border-color: #c7ff3d !important;
+  color: #090b09 !important;
+  background: #c7ff3d !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-t8-original-node="audio"] button:hover {
+  border-color: rgba(199, 255, 61, 0.38) !important;
+  background: #242b23 !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-t8-original-node="audio"] button:is([class*="bg-violet-400"], [class*="bg-violet-500"]):hover {
+  color: #090b09 !important;
+  background: #d3ff67 !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-t8-original-node="audio"] input[type="checkbox"] {
+  accent-color: #c7ff3d !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-t8-original-node="audio"] .react-flow__handle {
+  border: 2px solid #0d100d !important;
+  background: #c7ff3d !important;
+  box-shadow: 0 0 0 1px rgba(199, 255, 61, 0.32) !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-t8-original-node="audio"] .w-6.h-6 {
+  color: #c7ff3d !important;
+  background: rgba(199, 255, 61, 0.1) !important;
+  box-shadow: inset 0 0 0 1px rgba(199, 255, 61, 0.3) !important;
+}
+
+/* Prompt templates render in a body-level portal rather than inside the canvas shell. */
+body.jiaren-app-mounted .t8-original-portal[data-app-shell-theme="dark"] [data-canvas-floating-ui="prompt-template-library"] > section {
+  --px-ink: #f4f7ef;
+  --px-muted: #151915;
+  --px-yellow: #c7ff3d;
+  color-scheme: dark !important;
+  border: 1px solid rgba(244, 247, 239, 0.13) !important;
+  color: #f4f7ef !important;
+  background: #0d100d !important;
+  box-shadow: 0 24px 68px rgba(0, 0, 0, 0.56) !important;
+}
+
+body.jiaren-app-mounted .t8-original-portal[data-app-shell-theme="dark"] [data-canvas-floating-ui="prompt-template-library"] > section > header,
+body.jiaren-app-mounted .t8-original-portal[data-app-shell-theme="dark"] [data-canvas-floating-ui="prompt-template-library"] > section > footer {
+  border-color: rgba(244, 247, 239, 0.1) !important;
+  color: #f4f7ef !important;
+  background: #151915 !important;
+}
+
+body.jiaren-app-mounted .t8-original-portal[data-app-shell-theme="dark"] [data-canvas-floating-ui="prompt-template-library"] > section > div.grid {
+  color: #f4f7ef !important;
+  background: #0d100d !important;
+}
+
+body.jiaren-app-mounted .t8-original-portal[data-app-shell-theme="dark"] [data-canvas-floating-ui="prompt-template-library"] > section > div.grid > :is(aside, section, main) {
+  border-color: rgba(244, 247, 239, 0.1) !important;
+  color: #f4f7ef !important;
+  background: #101410 !important;
+}
+
+body.jiaren-app-mounted .t8-original-portal[data-app-shell-theme="dark"] [data-canvas-floating-ui="prompt-template-library"] > section > div.grid > aside {
+  background: #111511 !important;
+}
+
+body.jiaren-app-mounted .t8-original-portal[data-app-shell-theme="dark"] [data-canvas-floating-ui="prompt-template-library"] :is(p, small, label) {
+  color: #9aa392 !important;
+}
+
+body.jiaren-app-mounted .t8-original-portal[data-app-shell-theme="dark"] [data-canvas-floating-ui="prompt-template-library"] :is([class*="overflow-y-auto"][class*="rounded-lg"], [class*="leading-relaxed"][class*="rounded-lg"]) {
+  border-color: rgba(244, 247, 239, 0.11) !important;
+  color: #dce4d8 !important;
+  background: #151915 !important;
+}
+
+body.jiaren-app-mounted .t8-original-portal[data-app-shell-theme="dark"] [data-canvas-floating-ui="prompt-template-library"] button:is(.px-btn--yellow, [class*="px-yellow"]) {
+  border-color: #c7ff3d !important;
+  color: #090b09 !important;
+  background: #c7ff3d !important;
+}
+
+/* The LLM node has a transparent wrapper plus its own card surface. */
+#root .canvas-app-shell .t8-original-scope[data-t8-original-node="llm"] > div {
+  color: #f4f7ef !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-t8-original-node="llm"] > div > div.relative.rounded-xl {
+  border-color: rgba(199, 255, 61, 0.32) !important;
+  color: #f4f7ef !important;
+  background: #0d100d !important;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.48) !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-t8-original-node="llm"] > div > div.relative.rounded-xl > .flex.items-center {
+  border-color: rgba(244, 247, 239, 0.1) !important;
+  background: #151915 !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-t8-original-node="llm"] :is(label, [class*="text-white"], [class*="text-zinc"], [class*="text-slate"], [class*="text-gray"]) {
+  color: #9aa392 !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-t8-original-node="llm"] .text-sm.font-semibold {
+  color: #f4f7ef !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-t8-original-node="llm"] :is(input, select, textarea, [contenteditable="true"]) {
+  border: 1px solid rgba(244, 247, 239, 0.12) !important;
+  color: #f4f7ef !important;
+  background: #090b09 !important;
+  box-shadow: none !important;
+  color-scheme: dark !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-t8-original-node="llm"] option {
+  color: #f4f7ef !important;
+  background: #101410 !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-t8-original-node="llm"] button {
+  border-color: rgba(244, 247, 239, 0.12) !important;
+  color: #dce4d8 !important;
+  background: #1a1f1a !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-t8-original-node="llm"] button:is([class*="emerald"], [class*="green"]) {
+  border-color: #c7ff3d !important;
+  color: #090b09 !important;
+  background: #c7ff3d !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-t8-original-node="llm"] .react-flow__handle {
+  border: 2px solid #0d100d !important;
+  background: #c7ff3d !important;
+  box-shadow: 0 0 0 1px rgba(199, 255, 61, 0.32) !important;
+}
+
+/* 2026-07-29 final dark-lime authority layer.
+   T8 utilities still carry light neumorphic classes internally; keep their
+   behavior, but make every canvas shell and floating editor visually native. */
+body.jiaren-app-mounted,
+#root .canvas-app-shell {
+  --jiaren-line: rgba(156, 186, 103, 0.2);
+  --jiaren-line-strong: rgba(199, 255, 61, 0.38);
+  --jiaren-surface-0: #090b09;
+  --jiaren-surface-1: #101410;
+  --jiaren-surface-2: #151a15;
+  --jiaren-surface-3: #1b211b;
+}
+
+body.jiaren-launch-active .jiaren-launch-chooser {
+  inset: 0 !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-app-shell-theme="dark"] {
+  --t8-bg-canvas: #090b09 !important;
+  --t8-bg-panel: #101410 !important;
+  --t8-bg-panel-muted: #151a15 !important;
+  --t8-bg-panel-elevated: #1b211b !important;
+  --t8-border: rgba(156, 186, 103, 0.2) !important;
+  --t8-border-strong: rgba(199, 255, 61, 0.38) !important;
+  --t8-text-main: #f2f6ec !important;
+  --t8-text-muted: #a3ad9a !important;
+  --t8-text-dim: #778171 !important;
+  --t8-accent: #c7ff3d !important;
+  color-scheme: dark !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-app-shell-theme="dark"]:not([data-t8-original-node="llm"]) > div {
+  border: 1px solid var(--jiaren-line) !important;
+  color: #f2f6ec !important;
+  background: #101410 !important;
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.44) !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-app-shell-theme="dark"] > div:is([class*="ring-"], [class*="border-white"], [class*="shadow-"]) {
+  --tw-ring-color: rgba(199, 255, 61, 0.34) !important;
+  --tw-ring-offset-shadow: 0 0 transparent !important;
+  --tw-ring-shadow: 0 0 0 1px rgba(199, 255, 61, 0.34) !important;
+  border-color: var(--jiaren-line) !important;
+  background-color: #101410 !important;
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.44) !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-app-shell-theme="dark"] :is(
+  .t8-node-header,
+  .t8-card,
+  .t8-panel,
+  .t8-btn,
+  .t8-mini-icon-button
+) {
+  border-color: var(--jiaren-line) !important;
+  color: #e6ecdf !important;
+  background-color: #151a15 !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell
+  .t8-original-scope[data-app-shell-theme="dark"]:not([data-t8-original-node="panorama-3d"])
+  :is([class*="border-white"], [class*="bg-white"]) {
+  border-color: var(--jiaren-line) !important;
+  color: #e6ecdf !important;
+  background-color: #151a15 !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-app-shell-theme="dark"] :is(.t8-node-header, .t8-card) {
+  box-shadow: 0 1px 0 rgba(199, 255, 61, 0.035) !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-app-shell-theme="dark"] :is(button, .t8-btn, .t8-mini-icon-button) {
+  border-color: var(--jiaren-line) !important;
+  color: #dce4d6 !important;
+  background: #1b211b !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-app-shell-theme="dark"] :is(button, .t8-btn, .t8-mini-icon-button):hover:not(:disabled) {
+  border-color: rgba(199, 255, 61, 0.34) !important;
+  color: #f5f8f0 !important;
+  background: #222a21 !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-app-shell-theme="dark"] :is(
+  .t8-btn-primary,
+  button[aria-pressed="true"],
+  button[data-state="active"],
+  button.active,
+  button[class*="bg-violet-"],
+  button[class*="bg-emerald-"],
+  button[class*="bg-green-"]
+) {
+  border-color: #c7ff3d !important;
+  color: #090b09 !important;
+  background: #c7ff3d !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-app-shell-theme="dark"] :is(
+  input:not([type="range"]):not([type="checkbox"]):not([type="radio"]):not([type="color"]),
+  select,
+  textarea,
+  [contenteditable="true"]
+) {
+  border: 1px solid var(--jiaren-line) !important;
+  color: #eef3e9 !important;
+  background: #0c0f0c !important;
+  box-shadow: none !important;
+  color-scheme: dark !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-app-shell-theme="dark"] :is(input, select, textarea, [contenteditable="true"]):focus {
+  border-color: rgba(199, 255, 61, 0.52) !important;
+  outline: 2px solid rgba(199, 255, 61, 0.1) !important;
+  outline-offset: 0 !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-app-shell-theme="dark"] option {
+  color: #eef3e9 !important;
+  background: #101410 !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-app-shell-theme="dark"] .react-flow__handle {
+  border: 2px solid #0d100d !important;
+  background: #b7db71 !important;
+  box-shadow: 0 0 0 1px rgba(199, 255, 61, 0.34) !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-app-shell-theme="dark"] .react-flow__handle.target {
+  background: #79c99a !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-app-shell-theme="dark"] .react-flow__handle.source {
+  background: #b7db71 !important;
+}
+
+/* Drawing surfaces and media remain truthful; only their controls lose the white halo. */
+#root .canvas-app-shell .t8-original-scope[data-app-shell-theme="dark"] :is(canvas, img, video) {
+  box-shadow: none !important;
+}
+
+/* Body portals need the same authority because they are rendered outside #root. */
+body.jiaren-app-mounted .t8-original-portal[data-app-shell-theme="dark"] {
+  --t8-bg-canvas: #090b09 !important;
+  --t8-bg-panel: #101410 !important;
+  --t8-bg-panel-muted: #151a15 !important;
+  --t8-bg-panel-elevated: #1b211b !important;
+  --t8-border: rgba(156, 186, 103, 0.2) !important;
+  --t8-border-strong: rgba(199, 255, 61, 0.38) !important;
+  --t8-text-main: #f2f6ec !important;
+  --t8-text-muted: #a3ad9a !important;
+  --t8-text-dim: #778171 !important;
+  --t8-accent: #c7ff3d !important;
+  color-scheme: dark !important;
+}
+
+body.jiaren-app-mounted .t8-original-portal[data-app-shell-theme="dark"] :is(.t8-panel, .t8-card) {
+  border-color: var(--t8-border) !important;
+  color: #eef3e9 !important;
+  background: #101410 !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+body.jiaren-app-mounted .t8-original-portal[data-app-shell-theme="dark"] :is(.t8-btn, .t8-mini-icon-button, button) {
+  border-color: var(--t8-border) !important;
+  color: #dce4d6 !important;
+  background: #1b211b !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+body.jiaren-app-mounted .t8-original-portal[data-app-shell-theme="dark"] :is(.t8-btn, button):hover:not(:disabled) {
+  border-color: rgba(199, 255, 61, 0.34) !important;
+  color: #f5f8f0 !important;
+  background: #222a21 !important;
+}
+
+body.jiaren-app-mounted .t8-original-portal[data-app-shell-theme="dark"] :is(
+  .t8-btn-primary,
+  button[aria-pressed="true"],
+  button[data-state="active"],
+  button.active,
+  button[class*="px-yellow"]
+) {
+  border-color: #c7ff3d !important;
+  color: #090b09 !important;
+  background: #c7ff3d !important;
+  box-shadow: none !important;
+}
+
+body.jiaren-app-mounted .t8-original-portal[data-app-shell-theme="dark"] :is(
+  input:not([type="range"]):not([type="checkbox"]):not([type="radio"]):not([type="color"]),
+  select,
+  textarea,
+  [contenteditable="true"]
+) {
+  border: 1px solid var(--t8-border) !important;
+  color: #eef3e9 !important;
+  background: #0c0f0c !important;
+  box-shadow: none !important;
+  color-scheme: dark !important;
+}
+
+/* Portrait Master: opaque workspace, stable height, and three genuinely scrollable columns. */
+body.jiaren-app-mounted [data-canvas-floating-ui="portrait-master-editor"] {
+  padding: 20px !important;
+  background: rgba(5, 7, 5, 0.82) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+body.jiaren-app-mounted [data-canvas-floating-ui="portrait-master-editor"] > .t8-panel {
+  width: min(1320px, calc(100vw - 40px)) !important;
+  height: min(860px, calc(100vh - 40px)) !important;
+  max-width: none !important;
+  max-height: none !important;
+  border: 1px solid rgba(199, 255, 61, 0.24) !important;
+  border-radius: 8px !important;
+  color: #eef3e9 !important;
+  background: #0d100d !important;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.62) !important;
+}
+
+body.jiaren-app-mounted [data-canvas-floating-ui="portrait-master-editor"] > .t8-panel > header {
+  min-height: 60px !important;
+  border-bottom: 1px solid rgba(156, 186, 103, 0.16) !important;
+  background: #121612 !important;
+}
+
+body.jiaren-app-mounted [data-canvas-floating-ui="portrait-master-editor"] > .t8-panel > div.grid {
+  grid-template-columns: 176px minmax(420px, 1fr) 350px !important;
+  min-height: 0 !important;
+  height: 100% !important;
+  gap: 12px !important;
+  overflow: hidden !important;
+  background: #0d100d !important;
+}
+
+body.jiaren-app-mounted [data-canvas-floating-ui="portrait-master-editor"] > .t8-panel > div.grid > :is(aside, main) {
+  min-width: 0 !important;
+  min-height: 0 !important;
+}
+
+body.jiaren-app-mounted [data-canvas-floating-ui="portrait-master-editor"] > .t8-panel > div.grid > aside:first-child,
+body.jiaren-app-mounted [data-canvas-floating-ui="portrait-master-editor"] > .t8-panel > div.grid > aside:last-child,
+body.jiaren-app-mounted [data-canvas-floating-ui="portrait-master-editor"] > .t8-panel > div.grid > main > div:last-child {
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(199, 255, 61, 0.28) transparent !important;
+}
+
+body.jiaren-app-mounted [data-canvas-floating-ui="portrait-master-editor"] > .t8-panel > div.grid > aside:last-child > div:first-child {
+  min-height: 286px !important;
+  border: 1px solid rgba(199, 255, 61, 0.18) !important;
+  background: #151a15 !important;
+  box-shadow: none !important;
+}
+
+body.jiaren-app-mounted [data-canvas-floating-ui="portrait-master-editor"] [class*="border-dashed"] {
+  border-color: rgba(156, 186, 103, 0.24) !important;
+}
+
+body.jiaren-app-mounted [data-canvas-floating-ui="portrait-master-editor"] :is(button, input, select, textarea) {
+  box-shadow: none !important;
+}
+
+body.jiaren-app-mounted [data-canvas-floating-ui="portrait-master-editor"] > .t8-panel button.t8-btn,
+body.jiaren-app-mounted [data-canvas-floating-ui="portrait-master-editor"] > .t8-panel button.t8-mini-icon-button {
+  box-shadow: none !important;
+}
+
+body.jiaren-app-mounted [data-canvas-floating-ui="portrait-master-editor"] > .t8-panel button.t8-btn:is(:hover, :focus, :focus-visible, :active):not(:disabled):not(.danger):not(.destructive):not([data-variant="danger"]),
+body.jiaren-app-mounted [data-canvas-floating-ui="portrait-master-editor"] > .t8-panel button.t8-mini-icon-button:is(:hover, :focus, :focus-visible, :active):not(:disabled) {
+  box-shadow: none !important;
+}
+
+@media (max-width: 1080px) {
+  body.jiaren-app-mounted [data-canvas-floating-ui="portrait-master-editor"] > .t8-panel > div.grid {
+    grid-template-columns: 156px minmax(360px, 1fr) 310px !important;
+  }
+}
+
+/* Industrial sketch controls use the Jiaren lime accent, never the inherited cyan. */
+#root .canvas-app-shell .jiaren-industrial-node {
+  --jiaren-industrial-accent: #c7ff3d !important;
+  --jiaren-industrial-line: rgba(156, 186, 103, 0.2) !important;
+}
+
+#root .canvas-app-shell .jiaren-industrial-node :is(
+  .jiaren-industrial-layers button.active,
+  .jiaren-industrial-preview-tools button.active,
+  .jiaren-industrial-swatches button.active
+) {
+  border-color: #c7ff3d !important;
+  color: #090b09 !important;
+  background: #c7ff3d !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .jiaren-industrial-node :is(button, input, select, textarea) {
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .canvas-node[data-jiaren-node-kind="output"] .smart-card-empty,
+#root .canvas-app-shell .canvas-node[data-jiaren-node-kind="output"] .smart-card-preview,
+#root .canvas-app-shell .jiaren-industrial-node .jiaren-industrial-preview {
+  border-color: rgba(199, 255, 61, 0.18) !important;
+  background-color: #151a15 !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .canvas-node[data-jiaren-node-kind="output"] .smart-card-empty {
+  border-style: dashed !important;
+  color: #8f9a87 !important;
+}
+
+/* 2026-07-29 zero-white residue pass.
+   Keep real media and rendering surfaces untouched while removing inherited
+   paper/neumorphic highlights from controls and empty-state containers. */
+body.jiaren-app-mounted,
+#root .canvas-app-shell {
+  --px-card: #151a15 !important;
+  --px-muted: #1b211b !important;
+  --px-yellow: #c7ff3d !important;
+  --px-cyan: #79c99a !important;
+  --px-ink: #eef3e9 !important;
+  --px-ink-soft: #9aa392 !important;
+}
+
+#root .canvas-app-shell :is(
+  .titlebar-controls,
+  .jiaren-canvas-project-pill,
+  .jiaren-canvas-brand-pill,
+  .jiaren-canvas-toolbar-pill,
+  .flow-controls,
+  .canvas-minimap,
+  .bottom-floating-toolbar
+) {
+  border-color: rgba(156, 186, 103, 0.2) !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.38) !important;
+}
+
+#root .canvas-app-shell .titlebar-controls button {
+  border-color: rgba(156, 186, 103, 0.22) !important;
+  color: #cbd5c5 !important;
+  background: #1b211b !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .titlebar-controls button:hover {
+  border-color: rgba(199, 255, 61, 0.42) !important;
+  color: #f4f7ef !important;
+  background: #222a21 !important;
+}
+
+#root .canvas-app-shell :is(
+  .canvas-node,
+  .node-body,
+  .jiaren-drawing-media-card,
+  .jiaren-basic-image-card,
+  .artist-style-master-section,
+  .artist-style-master-actions,
+  .artist-style-master-footer,
+  .anime-tag-master-section,
+  .anime-tag-master-actions,
+  .anime-tag-master-footer
+) {
+  border-color: rgba(156, 186, 103, 0.2) !important;
+}
+
+#root .canvas-app-shell :is(
+  .canvas-node,
+  .node-body,
+  .jiaren-drawing-media-card,
+  .jiaren-basic-image-card
+) {
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.36) !important;
+}
+
+#root .canvas-app-shell :is(
+  .text-node-input,
+  .story-flow-textarea,
+  .video-breakdown-goal textarea
+) {
+  border-color: rgba(156, 186, 103, 0.22) !important;
+  color: #eef3e9 !important;
+  background: rgba(18, 25, 20, 0.96) !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .video-breakdown-node :is(button, input, textarea, select) {
+  border-color: rgba(156, 186, 103, 0.22) !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .video-breakdown-modes button.active,
+#root .canvas-app-shell .video-breakdown-actions .storyboard-primary {
+  border-color: #c7ff3d !important;
+  color: #090b09 !important;
+  background: #c7ff3d !important;
+}
+
+/* T8 shells inherit old paper tokens from inline styles. Override those tokens
+   at the node boundary and remove only nested highlights, not the node shadow. */
+#root .canvas-app-shell .t8-original-scope[data-app-shell-theme="dark"] {
+  --px-card: #151a15 !important;
+  --px-muted: #1b211b !important;
+  --px-surface: #101410 !important;
+  --px-yellow: #c7ff3d !important;
+  --px-cyan: #79c99a !important;
+  --px-peach: #1b211b !important;
+  --px-ink: #eef3e9 !important;
+  --px-ink-soft: #9aa392 !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-app-shell-theme="dark"] > div :is(
+  button,
+  input,
+  select,
+  textarea,
+  details,
+  summary,
+  .t8-card,
+  .t8-panel,
+  .t8-node-header,
+  .t8-node-footer
+) {
+  border-color: rgba(156, 186, 103, 0.2) !important;
+  box-shadow: none !important;
+}
+
+/* Legacy paper-theme CSS adds a pale gradient to draggable node title bars.
+   Remove the image layer as well as the background color in dark mode. */
+#root .canvas-app-shell
+  .t8-original-scope[data-app-shell-theme="dark"]
+  > div
+  > [class~="cursor-grab"][class~="border-b"] {
+  border-color: rgba(156, 186, 103, 0.22) !important;
+  color: #eef3e9 !important;
+  background: #182018 !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell
+  .t8-original-scope[data-app-shell-theme="dark"]
+  > div
+  > [class~="cursor-grab"][class~="border-b"]
+  .truncate.text-lg {
+  color: #eef3e9 !important;
+}
+
+#root .canvas-app-shell
+  .t8-original-scope[data-app-shell-theme="dark"]
+  > div
+  > [class~="cursor-grab"][class~="border-b"]
+  .truncate.text-xs {
+  color: #aeb8a8 !important;
+}
+
+#root .canvas-app-shell
+  .t8-original-scope[data-app-shell-theme="dark"]
+  > div
+  > [class~="cursor-grab"][class~="border-b"]
+  > .flex:first-child
+  > .flex:first-child {
+  border-color: rgba(199, 255, 61, 0.28) !important;
+  color: #c7ff3d !important;
+  background: rgba(199, 255, 61, 0.08) !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-app-shell-theme="dark"] :is(
+  .pointer-events-none.absolute.left-2.top-1,
+  .t8-material-preview-count,
+  [data-material-preview-section]
+) {
+  border-color: rgba(156, 186, 103, 0.24) !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-app-shell-theme="dark"] [data-material-preview-section] > div {
+  border-color: rgba(156, 186, 103, 0.2) !important;
+  color: #dce4d6 !important;
+  background: #151a15 !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-app-shell-theme="dark"] [data-material-preview-section] > div[style*="position: absolute"] {
+  color: #c7d2c1 !important;
+  background: #1b211b !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-t8-original-node="grid-editor"] .rounded-full,
+#root .canvas-app-shell .t8-original-scope[data-t8-original-node="grid-editor"] .relative.min-h-0.min-w-0.overflow-hidden {
+  border-color: rgba(156, 186, 103, 0.24) !important;
+  color: #dce4d6 !important;
+  background: #121712 !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-t8-original-node="grid-editor"] .relative.min-h-0.min-w-0.overflow-hidden:hover {
+  border-color: rgba(199, 255, 61, 0.42) !important;
+  background: #171d17 !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-t8-original-node="random-route"] :is(
+  .bg-amber-300\/10,
+  .bg-violet-300\/10,
+  .rounded.border
+),
+#root .canvas-app-shell .t8-original-scope[data-t8-original-node="pick-from-set"] :is(
+  .w-6.h-6,
+  .flex-shrink-0
+) {
+  border-color: rgba(156, 186, 103, 0.24) !important;
+  color: #dce4d6 !important;
+  background: #1b211b !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell :is(.react-flow__node-upload, .react-flow__node-material-set) :is(
+  .w-6.h-6,
+  .w-7.h-7,
+  [class*="border-dashed"]
+) {
+  border-color: rgba(156, 186, 103, 0.3) !important;
+  color: #9aa392 !important;
+  background: #151a15 !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .react-flow__node-generation-target :is(
+  .t8-generation-target-chip,
+  .t8-generation-target-preview
+) {
+  border-color: rgba(199, 255, 61, 0.28) !important;
+  color: #dce4d6 !important;
+  background: #151a15 !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell :is(
+  .react-flow__node-video,
+  .t8-original-scope[data-t8-original-node="video"]
+) :is(.jiaren-media-card-icon, .jiaren-media-card-heading em) {
+  border-color: rgba(199, 255, 61, 0.24) !important;
+  color: #c7ff3d !important;
+  background: rgba(199, 255, 61, 0.08) !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-t8-original-node="llm"] .relative.flex.items-start.gap-0 {
+  border-color: rgba(156, 186, 103, 0.2) !important;
+}
+
+#root .canvas-app-shell .canvas-node[data-jiaren-node-kind="output"] .node-body.output,
+#root .canvas-app-shell .canvas-node[data-node-kind="output"] .node-body.output {
+  border-color: rgba(156, 186, 103, 0.2) !important;
+}
+
+#root .canvas-app-shell :is(
+  .react-flow__node-topaz-image-upscale,
+  .react-flow__node-text-split,
+  .react-flow__node-t8\:text-split
+) [class*="border-dashed"] {
+  border-color: rgba(156, 186, 103, 0.3) !important;
+  color: #9aa392 !important;
+  background: #182019 !important;
+  box-shadow: none !important;
+}
+
+/* Native 3D nodes: darken the chrome while preserving canvas/WebGL output. */
+#root .canvas-app-shell :is(
+  .react-flow__node-model-3d-upload,
+  .react-flow__node-model-3d-preview,
+  [data-jiaren-node-kind="model-3d-upload"],
+  [data-jiaren-node-kind="model-3d-preview"]
+) :is(button, input, select, textarea, .jiaren-3d-model-switch, .jiaren-ai-material-command, .jiaren-material-apply) {
+  border-color: rgba(156, 186, 103, 0.24) !important;
+  color: #dce4d6 !important;
+  background: #1b211b !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell :is(
+  .react-flow__node-model-3d-upload,
+  [data-jiaren-node-kind="model-3d-upload"]
+) :is(.w-8.h-8, .w-10.h-10, [class*="border-dashed"]) {
+  border-color: rgba(156, 186, 103, 0.3) !important;
+  color: #c7ff3d !important;
+  background: #151a15 !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .react-flow__node-model-3d-upload header > div,
+#root .canvas-app-shell .react-flow__node-model-3d-preview .jiaren-3d-preview-head > div {
+  border-color: rgba(199, 255, 61, 0.28) !important;
+  color: #c7ff3d !important;
+  background: rgba(199, 255, 61, 0.08) !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .react-flow__node-model-3d-upload footer {
+  border-color: rgba(156, 186, 103, 0.22) !important;
+}
+
+#root .canvas-app-shell .canvas-context-menu.jiaren-context-menu-v2 {
+  border-color: rgba(156, 186, 103, 0.24) !important;
+  overflow: visible !important;
+  box-shadow: 0 22px 62px rgba(0, 0, 0, 0.5) !important;
+}
+
+#root .canvas-app-shell .react-flow__node-model-3d-preview :is(
+  .jiaren-3d-workbench,
+  .jiaren-3d-viewport-meta,
+  .jiaren-color-control
+) {
+  border-color: rgba(156, 186, 103, 0.22) !important;
+}
+
+#root .canvas-app-shell .react-flow__node-model-3d-preview .jiaren-3d-viewport-meta span {
+  border-color: rgba(156, 186, 103, 0.2) !important;
+  color: #aab5a3 !important;
+  background: rgba(13, 16, 13, 0.86) !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell :is(
+  .jiaren-3d-viewport-state,
+  .jiaren-ai-material-command,
+  .jiaren-material-apply
+) {
+  border-color: rgba(156, 186, 103, 0.22) !important;
+  color: #cbd5c5 !important;
+  background-color: #0d100d !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .jiaren-3d-viewport {
+  border-color: rgba(156, 186, 103, 0.22) !important;
+  color: #cbd5c5 !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .t8-original-scope:is(
+  [data-t8-original-node="face-expression-3d"],
+  [data-t8-original-node="panorama-3d"]
+) :is(header, footer, details, summary, button, input, select, textarea, .t8-card, .t8-panel) {
+  border-color: rgba(156, 186, 103, 0.22) !important;
+  color: #dce4d6 !important;
+  background: #151a15 !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-t8-original-node="panorama-3d"] .rounded-md.bg-amber-400\/15 {
+  border: 1px solid rgba(199, 255, 61, 0.24) !important;
+  color: #c7ff3d !important;
+  background: rgba(199, 255, 61, 0.08) !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-t8-original-node="face-expression-3d"] :is(
+  [class*="viewport"],
+  [class*="preview"],
+  [class*="stage"],
+  [data-testid="face-expression-viewport"]
+) {
+  border-color: rgba(156, 186, 103, 0.22) !important;
+  background-color: #0d100d !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-t8-original-node="face-expression-3d"] .shrink-0.space-y-2.border-t.p-3 {
+  border-color: rgba(156, 186, 103, 0.22) !important;
+  color: #dce4d6 !important;
+  background: #101410 !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .t8-original-scope :is(.is-primary, .comfyui-primary, [data-comfyui-primary="true"]) {
+  border-color: #c7ff3d !important;
+  color: #090b09 !important;
+  background: #c7ff3d !important;
+  box-shadow: none !important;
+}
+
+body.jiaren-app-mounted .t8-original-portal[data-app-shell-theme="dark"] :is(
+  .t8-panel,
+  .t8-card,
+  button,
+  input,
+  select,
+  textarea,
+  details,
+  summary
+) {
+  border-color: rgba(156, 186, 103, 0.22) !important;
+  box-shadow: none !important;
+}
+
+/* Floating editors are outside the T8 portal root; keep this last. */
+body.jiaren-app-mounted [data-canvas-floating-ui="portrait-master-editor"] :is(button, input, select, textarea) {
+  box-shadow: none !important;
+}
+
+body.jiaren-app-mounted [data-canvas-floating-ui="portrait-master-editor"] > .t8-panel button.t8-btn,
+body.jiaren-app-mounted [data-canvas-floating-ui="portrait-master-editor"] > .t8-panel button.t8-mini-icon-button,
+body.jiaren-app-mounted [data-canvas-floating-ui="portrait-master-editor"] > .t8-panel button.t8-btn:is(:hover, :focus, :focus-visible, :active):not(:disabled):not(.danger):not(.destructive):not([data-variant="danger"]),
+body.jiaren-app-mounted [data-canvas-floating-ui="portrait-master-editor"] > .t8-panel button.t8-mini-icon-button:is(:hover, :focus, :focus-visible, :active):not(:disabled) {
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .jiaren-director-desk .jiaren-director-desk-target,
+#root .canvas-app-shell .jiaren-director-desk > footer {
+  border-color: rgba(156, 186, 103, 0.22) !important;
+}
+
+/* Final dark-surface pass for utility nodes that render their own light chrome. */
+#root .canvas-app-shell :is(
+  .t8-material-grid,
+  .t8-generation-history-panel,
+  .t8-generation-history-item
+) {
+  border-color: rgba(156, 186, 103, 0.22) !important;
+  color: #dce4d6 !important;
+  background: #121712 !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell :is(
+  [data-grid-editor-stage],
+  .t8-advanced-panel,
+  .t8-grid-editor-preview,
+  .t8-grid-settings-panel,
+  .t8-grid-options,
+  .t8-grid-output-panel,
+  .t8-grid-editor-board
+) {
+  border-color: rgba(156, 186, 103, 0.22) !important;
+  color: #dce4d6 !important;
+  background: #101410 !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell :is(
+  .t8-random-route-summary,
+  .t8-pick-count,
+  .t8-text-split-toggles label,
+  .t8-text-split-item > span
+) {
+  border-color: rgba(156, 186, 103, 0.24) !important;
+  color: #dce4d6 !important;
+  background: #182019 !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+body.jiaren-app-mounted :is(
+  [data-video-edit-workbench],
+  [data-video-edit-node-theme-surface],
+  [data-video-edit-preview-body],
+  [data-video-edit-inspector],
+  [data-video-edit-node-timeline-card],
+  [data-video-edit-timeline-card],
+  [data-video-edit-track-lane],
+  [data-video-edit-selected-item-inspector],
+  [data-video-edit-workbench-capability-dock],
+  .t8-video-edit-list article
+) {
+  border-color: rgba(156, 186, 103, 0.22) !important;
+  color: #dce4d6 !important;
+  background: #101410 !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+/* 2026-07-29 final dark-token authority.
+   The legacy soft-white sheet is loaded earlier but uses !important heavily;
+   keep the fix scoped to dark Jiaren canvas/portal roots. */
+#root .canvas-app-shell .t8-original-scope[data-app-shell-theme="dark"],
+body.jiaren-app-mounted .t8-original-portal[data-app-shell-theme="dark"] {
+  --jt8-surface: #0d100d !important;
+  --jt8-surface-soft: #101410 !important;
+  --jt8-surface-muted: #151a15 !important;
+  --jt8-surface-inset: #0c0f0c !important;
+  --jt8-surface-hover: #1a2119 !important;
+  --jt8-field: #0c0f0c !important;
+  --jt8-border: rgba(156, 186, 103, 0.22) !important;
+  --jt8-border-strong: rgba(199, 255, 61, 0.38) !important;
+  --jt8-text: #eef3e9 !important;
+  --jt8-text-muted: #a3ad9a !important;
+  --jt8-text-dim: #7f8a78 !important;
+  --jt8-mint: rgba(199, 255, 61, 0.12) !important;
+  --jt8-mint-soft: rgba(199, 255, 61, 0.08) !important;
+  --jt8-mint-strong: #c7ff3d !important;
+  --jt8-blue: #c7ff3d !important;
+  --jt8-blue-dark: #a6db32 !important;
+  --jt8-blue-soft: rgba(199, 255, 61, 0.1) !important;
+  --jt8-blue-ring: rgba(199, 255, 61, 0.2) !important;
+  --jt8-danger-soft: rgba(239, 92, 92, 0.11) !important;
+  --jt8-port-input: #79c99a !important;
+  --jt8-port-output: #c7ff3d !important;
+  --jt8-edge: rgba(158, 191, 119, 0.78) !important;
+  --jt8-edge-selected: #c7ff3d !important;
+  --jt8-soft-shadow: none !important;
+  --jt8-soft-shadow-hover: none !important;
+  --jt8-soft-shadow-pressed: none !important;
+  --t8-bg-base: #0d100d !important;
+  --t8-bg-node: #0d100d !important;
+  --t8-bg-panel: #101410 !important;
+  --t8-bg-panel-elevated: #151a15 !important;
+  --t8-bg-panel-muted: #0c0f0c !important;
+  --t8-text-main: #eef3e9 !important;
+  --t8-text-muted: #a3ad9a !important;
+  --t8-text-dim: #7f8a78 !important;
+  --t8-border: rgba(156, 186, 103, 0.22) !important;
+  --t8-border-strong: rgba(199, 255, 61, 0.38) !important;
+  --t8-accent: #c7ff3d !important;
+  --t8-accent-strong: #a6db32 !important;
+  color: #eef3e9 !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-app-shell-theme="dark"] :is(
+  .t8-node,
+  .t8-card,
+  .t8-panel,
+  .t8-node-header,
+  .t8-node-footer
+) {
+  color: #eef3e9 !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-app-shell-theme="dark"] :is(
+  input,
+  textarea,
+  select,
+  option
+) {
+  border-color: rgba(156, 186, 103, 0.24) !important;
+  color: #eef3e9 !important;
+  background-color: #0c0f0c !important;
+  box-shadow: none !important;
+}
+
+body.jiaren-app-mounted :is(
+  [data-video-edit-node-theme-surface],
+  [data-video-edit-workbench]
+) {
+  --t8-video-edit-surface: #0d100d !important;
+  --t8-video-edit-panel: #101410 !important;
+  --t8-video-edit-muted: #151a15 !important;
+  --t8-video-edit-card: #121712 !important;
+  --t8-video-edit-action-bg: #1a2119 !important;
+  --t8-video-edit-action-hover-bg: #222b21 !important;
+  --t8-video-edit-action-border: rgba(156, 186, 103, 0.3) !important;
+  --t8-video-edit-action-text: #eef3e9 !important;
+  --t8-video-edit-action-shadow: none !important;
+  --t8-video-edit-action-disabled-bg: #111511 !important;
+  --t8-video-edit-action-disabled-text: #66705f !important;
+  --t8-bg-node: #0d100d !important;
+  --t8-bg-panel: #101410 !important;
+  --t8-bg-panel-elevated: #151a15 !important;
+  --t8-text-main: #eef3e9 !important;
+  --t8-text-muted: #a3ad9a !important;
+  --t8-text-dim: #7f8a78 !important;
+  --t8-border: rgba(156, 186, 103, 0.22) !important;
+  color: #eef3e9 !important;
+  background: #0d100d !important;
+}
+
+body.jiaren-app-mounted [data-video-edit-node-theme-surface] > header,
+body.jiaren-app-mounted [data-video-edit-workbench] :is(
+  [data-video-edit-workbench-toolbar],
+  [data-video-edit-workbench-command-rail],
+  [data-video-edit-workbench-track-editor],
+  [data-video-edit-workbench-property-inspector],
+  [data-video-edit-workbench-status-strip]
+) {
+  border-color: rgba(156, 186, 103, 0.22) !important;
+  color: #eef3e9 !important;
+  background: #101410 !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+body.jiaren-app-mounted [data-video-edit-workbench] :is(button, input, textarea, select) {
+  border-color: rgba(156, 186, 103, 0.24) !important;
+  color: #e3eadf !important;
+  background-color: #151a15 !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+body.jiaren-app-mounted [data-video-edit-workbench] :is(button, input, textarea, select):hover {
+  border-color: rgba(199, 255, 61, 0.4) !important;
+  background-color: #1b231b !important;
+}
+
+#root .canvas-app-shell .t8-original-scope[data-app-shell-theme="dark"]
+  .t8-node-header > div:first-child:is([class*="items-center"], [style*="background"]) {
+  border: 1px solid rgba(199, 255, 61, 0.28) !important;
+  color: #c7ff3d !important;
+  background: rgba(199, 255, 61, 0.08) !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .react-flow__background {
+  --xy-background-pattern-color-props: rgba(128, 142, 126, 0.14) !important;
+}
+
+#root .canvas-app-shell path.react-flow__background-pattern.lines,
+#root .canvas-app-shell .react-flow__background-pattern.lines {
+  stroke: rgba(128, 142, 126, 0.14) !important;
+  stroke-width: 0.55 !important;
+}
+
+#root .canvas-app-shell .jiaren-canvas-project-pill img,
+#root .canvas-app-shell .titlebar-left img {
+  border: 0 !important;
+  border-radius: 0 !important;
+  object-fit: contain !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell .titlebar-left img {
+  width: 48px !important;
+  height: 22px !important;
+}
+
+#root .canvas-app-shell .jiaren-canvas-project-pill img {
+  width: 26px !important;
+  height: 15px !important;
+}
+
+body.jiaren-app-mounted .jc-launcher {
+  touch-action: none !important;
+  cursor: grab !important;
+  user-select: none !important;
+}
+
+body.jiaren-app-mounted .jc-launcher.is-dragging {
+  cursor: grabbing !important;
+  transition: none !important;
+  width: 68px !important;
+  height: 64px !important;
+}
+
+body.jiaren-app-mounted .jc-launcher.is-dragging .jc-launcher-compact {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+body.jiaren-app-mounted .jc-launcher.is-dragging .jc-launcher-expanded {
+  opacity: 0 !important;
+}
+
+/* Portrait Master now ships a restrained configurable avatar. Undo the old
+   placeholder rule that hid the SVG and replaced it with a dashed circle. */
+#root .canvas-app-shell [data-node-kind="portrait-master"] svg[aria-label="肖像预览"] {
+  display: block !important;
+}
+
+#root .canvas-app-shell [data-node-kind="portrait-master"]
+  div:has(> svg[aria-label="肖像预览"]) {
+  min-height: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+
+#root .canvas-app-shell [data-node-kind="portrait-master"]
+  div:has(> svg[aria-label="肖像预览"])::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* Video editor has legacy high-specificity paper gradients and independent
+   dark-green status labels. Scope the cleanup to the editor only. */
+#root .canvas-app-shell
+  .t8-original-scope[data-t8-original-node="video-edit"]
+  [data-video-edit-node-theme-surface] > header,
+#root .canvas-app-shell
+  .t8-original-scope[data-t8-original-node="video-edit"]
+  [data-video-edit-preview-body],
+#root .canvas-app-shell
+  .t8-original-scope[data-t8-original-node="video-edit"]
+  [data-video-edit-node-timeline],
+#root .canvas-app-shell
+  .t8-original-scope[data-t8-original-node="video-edit"]
+  [data-video-edit-current-clip-summary],
+#root .canvas-app-shell
+  .t8-original-scope[data-t8-original-node="video-edit"]
+  [data-video-edit-option-list] {
+  border-color: rgba(156, 186, 103, 0.22) !important;
+  color: #dce4d6 !important;
+  background-color: #101410 !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+#root .canvas-app-shell
+  .t8-original-scope[data-t8-original-node="video-edit"]
+  [data-video-edit-preview-body] {
+  background-color: #151a15 !important;
+}
+
+#root .canvas-app-shell
+  .t8-original-scope[data-t8-original-node="video-edit"]
+  :is(
+    [data-video-edit-node-timeline],
+    [data-video-edit-current-clip-summary],
+    [data-video-edit-option-list]
+  ) :is(div, span, label, p, strong, small) {
+  color: inherit !important;
+}
+
+/* The legacy upload-surface selector also matches Lucide classes such as
+   `lucide-cloud-upload`. Keep utility icons transparent and token-colored. */
+#root .canvas-app-shell
+  .t8-original-scope[data-app-shell-theme="dark"]
+  svg[class*="upload"],
+#root .canvas-app-shell
+  .t8-original-scope[data-app-shell-theme="dark"]
+  svg[class*="download"] {
+  border: 0 !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+/* Random Route still ships paper-theme inline grays. Restrict the correction
+   to its neutral labels so status colors and active route colors stay intact. */
+#root .canvas-app-shell
+  .t8-original-scope[data-t8-original-node="random-route"]
+  [data-random-route-node]
+  [style*="31, 41, 55"],
+#root .canvas-app-shell
+  .t8-original-scope[data-t8-original-node="random-route"]
+  [data-random-route-output-handle] {
+  color: #aeb8a8 !important;
+}
+
+#root .canvas-app-shell
+  .t8-original-scope[data-t8-original-node="random-route"]
+  [data-random-route-output-handle][data-active="true"] {
+  color: #eef3e9 !important;
+}
+
+#root .canvas-app-shell
+  .t8-original-scope[data-t8-original-node="random-route"]
+  [data-random-route-node] {
+  border: 1px solid rgba(199, 255, 61, 0.28) !important;
+  color: #eef3e9 !important;
+  background: #101410 !important;
+  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.4) !important;
+}
+
+#root .canvas-app-shell
+  .t8-original-scope[data-t8-original-node="random-route"]
+  [data-random-route-node] > .flex.items-center.gap-2.border-b > div:first-child {
+  color: #c7ff3d !important;
+  background: rgba(199, 255, 61, 0.1) !important;
+  box-shadow: inset 0 0 0 1px rgba(199, 255, 61, 0.3) !important;
+}
+
+#root .canvas-app-shell
+  .t8-original-scope[data-t8-original-node="random-route"]
+  [data-random-route-node] > .flex.items-center.gap-2.border-b > div:last-child {
+  color: #dce4d6 !important;
+  background: #1a2119 !important;
+}
+
+#root .canvas-app-shell
+  .t8-original-scope[data-t8-original-node="random-route"]
+  [data-random-route-node] input {
+  border-color: rgba(156, 186, 103, 0.28) !important;
+  color: #eef3e9 !important;
+  background: #0c0f0c !important;
+}
+
+/* Model pickers are rendered beside the floating media console, outside the
+   node tree. Give the portal surface the same dark-lime component language. */
+#root .canvas-app-shell .prompt-popover.model-picker-popover {
+  border: 1px solid rgba(156, 186, 103, 0.24) !important;
+  color: #e8eee3 !important;
+  background-color: #101410 !important;
+  background-image: none !important;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.42) !important;
+  scrollbar-color: rgba(199, 255, 61, 0.34) #101410 !important;
+}
+
+#root .canvas-app-shell
+  .prompt-popover.model-picker-popover
+  .popover-row {
+  border: 1px solid rgba(156, 186, 103, 0.18) !important;
+  color: #dfe7da !important;
+  background-color: #151a15 !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+#root .canvas-app-shell
+  .prompt-popover.model-picker-popover
+  .popover-row:is(:hover, :focus-visible) {
+  border-color: rgba(199, 255, 61, 0.38) !important;
+  background-color: #1b231b !important;
+}
+
+#root .canvas-app-shell
+  .prompt-popover.model-picker-popover
+  .popover-row.active {
+  border-color: rgba(199, 255, 61, 0.56) !important;
+  color: #f2f6ec !important;
+  background-color: #202a1f !important;
+  box-shadow: inset 3px 0 0 #c7ff3d !important;
+}
+
+/* React Flow clears image-node selection before opening the video editor, but
+   the legacy drawing console can remain mounted. Never show both docks. */
+body.jiaren-app-mounted:has(> .jiaren-video-bottom-editor.is-open)
+  .canvas-app-shell
+  .lovart-prompt-console {
+  display: none !important;
+}
+
+/* Candidate v75: portrait reference, compact model menus and complete ports. */
+#root .canvas-app-shell .jiaren-canvas-brand-pill > em {
+  display: inline-flex !important;
+  min-width: 0 !important;
+  height: 24px !important;
+  align-items: center !important;
+  padding: 0 8px !important;
+  border: 1px solid rgba(244, 247, 239, 0.2) !important;
+  border-radius: 5px !important;
+  color: #f2f6ec !important;
+  background: rgba(244, 247, 239, 0.09) !important;
+  font-size: 11px !important;
+  font-style: normal !important;
+  font-weight: 750 !important;
+  line-height: 1 !important;
+}
+
+#root .canvas-app-shell .jiaren-brand-balance.is-success {
+  height: 24px !important;
+  padding: 0 10px !important;
+  border: 1px solid rgba(199, 255, 61, 0.46) !important;
+  border-radius: 5px !important;
+  color: #d9ff78 !important;
+  background: rgba(199, 255, 61, 0.14) !important;
+  box-shadow: inset 0 0 0 1px rgba(199, 255, 61, 0.04) !important;
+  font-weight: 780 !important;
+}
+
+#root .canvas-app-shell .prompt-popover.model-picker-popover {
+  display: grid !important;
+  width: min(292px, calc(100vw - 24px)) !important;
+  min-width: 0 !important;
+  max-width: 292px !important;
+  max-height: min(354px, var(--jiaren-popover-max-height, calc(100vh - 140px))) !important;
+  gap: 4px !important;
+  padding: 6px !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+}
+
+body.jiaren-drawing-console-active
+  #root
+  .canvas-app-shell
+  .lovart-prompt-console
+  > .prompt-popover[data-jiaren-popover-placement="above"] {
+  top: auto !important;
+  bottom: calc(100% + 8px) !important;
+}
+
+body.jiaren-drawing-console-active
+  #root
+  .canvas-app-shell
+  .lovart-prompt-console
+  > .prompt-popover[data-jiaren-popover-placement="below"] {
+  top: calc(100% + 8px) !important;
+  bottom: auto !important;
+}
+
+body.jiaren-drawing-console-active
+  #root
+  .canvas-app-shell
+  .lovart-prompt-console
+  > .model-picker-popover {
+  left: clamp(8px, 126px, calc(100% - 300px)) !important;
+}
+
+#root .canvas-app-shell .prompt-popover.model-picker-popover .popover-row {
+  display: flex !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 40px !important;
+  justify-content: flex-start !important;
+  margin: 0 !important;
+  padding: 5px 9px !important;
+  border-radius: 6px !important;
+  text-align: left !important;
+}
+
+#root .canvas-app-shell .prompt-popover.model-picker-popover .model-option-with-badge {
+  display: grid !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  grid-template-columns: 28px minmax(0, 1fr) !important;
+  align-items: center !important;
+  justify-content: start !important;
+  gap: 8px !important;
+}
+
+#root .canvas-app-shell .prompt-popover.model-picker-popover .model-option-with-badge > span:last-child,
+#root .canvas-app-shell .prompt-popover.model-picker-popover .model-option-with-badge strong {
+  min-width: 0 !important;
+  overflow: hidden !important;
+  color: inherit !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+#root .canvas-app-shell .react-flow__node,
+#root .canvas-app-shell .react-flow__node > .canvas-node,
+#root .canvas-app-shell .react-flow__node > .t8-original-scope,
+#root .canvas-app-shell .react-flow__node > [data-node-kind] {
+  overflow: visible !important;
+}
+
+#root .canvas-app-shell .react-flow__handle {
+  box-sizing: border-box !important;
+  width: 14px !important;
+  min-width: 14px !important;
+  height: 14px !important;
+  min-height: 14px !important;
+  overflow: visible !important;
+  border: 2px solid #0a0d0a !important;
+  border-radius: 50% !important;
+  clip-path: none !important;
+  opacity: 1 !important;
+  box-shadow: 0 0 0 1px rgba(199, 255, 61, 0.48), 0 0 9px rgba(199, 255, 61, 0.18) !important;
+  z-index: 30 !important;
+}
+
+#root .canvas-app-shell .react-flow__handle-left {
+  left: -7px !important;
+}
+
+#root .canvas-app-shell .react-flow__handle-right {
+  right: -7px !important;
+}
+
+#root .canvas-app-shell .react-flow__handle-top {
+  top: -7px !important;
+}
+
+#root .canvas-app-shell .react-flow__handle-bottom {
+  bottom: -7px !important;
+}
+
+/* Portrait nodes use the same raster reference as the editor, but must remain
+   a compact preview inside the node's fixed 170px left column. */
+#root .canvas-app-shell [data-node-kind="portrait-master"] .jiaren-portrait-reference-preview {
+  display: grid !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  height: 286px !important;
+  min-height: 0 !important;
+  grid-template-rows: auto minmax(0, 1fr) auto auto !important;
+  gap: 6px !important;
+  overflow: hidden !important;
+  padding: 8px !important;
+  border: 1px solid rgba(156, 186, 103, 0.2) !important;
+  border-radius: 7px !important;
+  color: #e8eee3 !important;
+  background: #101410 !important;
+}
+
+#root .canvas-app-shell [data-node-kind="portrait-master"] .jiaren-portrait-reference-head {
+  display: flex !important;
+  min-width: 0 !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 6px !important;
+}
+
+#root .canvas-app-shell [data-node-kind="portrait-master"] .jiaren-portrait-reference-head span {
+  color: #f1f5ec !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  white-space: nowrap !important;
+}
+
+#root .canvas-app-shell [data-node-kind="portrait-master"] .jiaren-portrait-reference-head small {
+  overflow: hidden !important;
+  color: #8f9a89 !important;
+  font-size: 8px !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+#root .canvas-app-shell [data-node-kind="portrait-master"] .jiaren-portrait-reference-stage {
+  position: relative !important;
+  display: grid !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  place-items: end center !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(199, 255, 61, 0.14) !important;
+  border-radius: 5px !important;
+  background: #0b0e0b !important;
+}
+
+#root .canvas-app-shell [data-node-kind="portrait-master"] .jiaren-portrait-reference-grid {
+  position: absolute !important;
+  inset: 0 !important;
+  opacity: 0.34 !important;
+  background-image: linear-gradient(rgba(140, 156, 136, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(140, 156, 136, 0.08) 1px, transparent 1px) !important;
+  background-size: 18px 18px !important;
+}
+
+#root .canvas-app-shell [data-node-kind="portrait-master"] .jiaren-portrait-reference-stage img {
+  position: relative !important;
+  z-index: 2 !important;
+  display: block !important;
+  width: auto !important;
+  max-width: 96% !important;
+  height: 178px !important;
+  max-height: 100% !important;
+  object-fit: contain !important;
+  object-position: center bottom !important;
+  transform-origin: 50% 58% !important;
+  transition: transform 180ms ease, filter 180ms ease !important;
+  user-select: none !important;
+}
+
+#root .canvas-app-shell [data-node-kind="portrait-master"] .jiaren-portrait-reference-tone {
+  position: absolute !important;
+  inset: auto 12% 0 !important;
+  z-index: 1 !important;
+  height: 32% !important;
+  border-radius: 50% 50% 0 0 !important;
+  filter: blur(20px) !important;
+  pointer-events: none !important;
+}
+
+#root .canvas-app-shell [data-node-kind="portrait-master"] .jiaren-portrait-reference-swatches {
+  display: grid !important;
+  grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+  gap: 3px !important;
+}
+
+#root .canvas-app-shell [data-node-kind="portrait-master"] .jiaren-portrait-reference-swatches > span {
+  display: inline-flex !important;
+  min-width: 0 !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 2px !important;
+  overflow: hidden !important;
+  color: #9faa99 !important;
+  font-size: 7px !important;
+  white-space: nowrap !important;
+}
+
+#root .canvas-app-shell [data-node-kind="portrait-master"] .jiaren-portrait-reference-swatches i {
+  display: block !important;
+  width: 8px !important;
+  height: 8px !important;
+  flex: 0 0 8px !important;
+  border: 1px solid rgba(244, 247, 239, 0.32) !important;
+  border-radius: 50% !important;
+}
+
+#root .canvas-app-shell [data-node-kind="portrait-master"] .jiaren-portrait-reference-tags {
+  display: flex !important;
+  min-width: 0 !important;
+  max-height: 38px !important;
+  flex-wrap: wrap !important;
+  gap: 3px !important;
+  overflow: hidden !important;
+}
+
+#root .canvas-app-shell [data-node-kind="portrait-master"] .jiaren-portrait-reference-tags > span {
+  max-width: 100% !important;
+  padding: 2px 4px !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(156, 186, 103, 0.16) !important;
+  border-radius: 4px !important;
+  color: #c7d0c1 !important;
+  background: #171c17 !important;
+  font-size: 8px !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+#root .canvas-app-shell [data-node-kind="portrait-master"] .jiaren-portrait-reference-tags > .is-empty {
+  width: 100% !important;
+  border-style: dashed !important;
+  color: #818c7b !important;
+  text-align: center !important;
+}
+
+body.jiaren-app-mounted [data-canvas-floating-ui="portrait-master-editor"] .jiaren-portrait-reference-preview {
+  display: grid !important;
+  min-height: 320px !important;
+  grid-template-rows: auto minmax(210px, 1fr) auto auto !important;
+  gap: 8px !important;
+  overflow: hidden !important;
+  padding: 11px !important;
+  border: 1px solid rgba(156, 186, 103, 0.24) !important;
+  border-radius: 7px !important;
+  color: #e8eee3 !important;
+  background: #101410 !important;
+}
+
+body.jiaren-app-mounted [data-canvas-floating-ui="portrait-master-editor"] .jiaren-portrait-reference-head {
+  display: flex !important;
+  min-width: 0 !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 10px !important;
+}
+
+body.jiaren-app-mounted [data-canvas-floating-ui="portrait-master-editor"] .jiaren-portrait-reference-head span {
+  color: #f1f5ec !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+}
+
+body.jiaren-app-mounted [data-canvas-floating-ui="portrait-master-editor"] .jiaren-portrait-reference-head small {
+  color: #9eaa98 !important;
+  font-size: 10px !important;
+}
+
+body.jiaren-app-mounted [data-canvas-floating-ui="portrait-master-editor"] .jiaren-portrait-reference-stage {
+  position: relative !important;
+  display: grid !important;
+  min-height: 210px !important;
+  place-items: end center !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(199, 255, 61, 0.18) !important;
+  border-radius: 6px !important;
+  background: #0b0e0b !important;
+}
+
+body.jiaren-app-mounted [data-canvas-floating-ui="portrait-master-editor"] .jiaren-portrait-reference-grid {
+  position: absolute !important;
+  inset: 0 !important;
+  opacity: 0.42 !important;
+  background-image: linear-gradient(rgba(140, 156, 136, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(140, 156, 136, 0.08) 1px, transparent 1px) !important;
+  background-size: 22px 22px !important;
+}
+
+body.jiaren-app-mounted [data-canvas-floating-ui="portrait-master-editor"] .jiaren-portrait-reference-stage img {
+  position: relative !important;
+  z-index: 2 !important;
+  display: block !important;
+  width: auto !important;
+  max-width: 94% !important;
+  height: 226px !important;
+  max-height: 100% !important;
+  object-fit: contain !important;
+  object-position: center bottom !important;
+  transform-origin: 50% 58% !important;
+  transition: transform 180ms ease, filter 180ms ease !important;
+  user-select: none !important;
+}
+
+body.jiaren-app-mounted [data-canvas-floating-ui="portrait-master-editor"] .jiaren-portrait-reference-tone {
+  position: absolute !important;
+  inset: auto 12% 0 !important;
+  z-index: 1 !important;
+  height: 34% !important;
+  border-radius: 50% 50% 0 0 !important;
+  filter: blur(28px) !important;
+  pointer-events: none !important;
+}
+
+body.jiaren-app-mounted [data-canvas-floating-ui="portrait-master-editor"] .jiaren-portrait-reference-swatches {
+  display: grid !important;
+  grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+  gap: 5px !important;
+}
+
+body.jiaren-app-mounted [data-canvas-floating-ui="portrait-master-editor"] .jiaren-portrait-reference-swatches > span {
+  display: inline-flex !important;
+  min-width: 0 !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4px !important;
+  color: #aeb9a8 !important;
+  font-size: 9px !important;
+  white-space: nowrap !important;
+}
+
+body.jiaren-app-mounted [data-canvas-floating-ui="portrait-master-editor"] .jiaren-portrait-reference-swatches i {
+  display: block !important;
+  width: 10px !important;
+  height: 10px !important;
+  flex: 0 0 10px !important;
+  border: 1px solid rgba(244, 247, 239, 0.36) !important;
+  border-radius: 50% !important;
+}
+
+body.jiaren-app-mounted [data-canvas-floating-ui="portrait-master-editor"] .jiaren-portrait-reference-tags {
+  display: flex !important;
+  min-width: 0 !important;
+  flex-wrap: wrap !important;
+  gap: 5px !important;
+}
+
+body.jiaren-app-mounted [data-canvas-floating-ui="portrait-master-editor"] .jiaren-portrait-reference-tags > span {
+  max-width: 100% !important;
+  padding: 3px 6px !important;
+  border: 1px solid rgba(156, 186, 103, 0.18) !important;
+  border-radius: 4px !important;
+  color: #cbd5c5 !important;
+  background: #171c17 !important;
+  font-size: 9px !important;
+}
+
+body.jiaren-app-mounted [data-canvas-floating-ui="portrait-master-editor"] .jiaren-portrait-reference-tags > .is-empty {
+  width: 100% !important;
+  border-style: dashed !important;
+  color: #879281 !important;
+  text-align: center !important;
+}
+
+/* Parameter-driven vector portrait. The figure changes shape and colour with
+   both the selected option and its weight slider. */
+#root .canvas-app-shell [data-node-kind="portrait-master"] .jiaren-portrait-vector-preview,
+body.jiaren-app-mounted [data-canvas-floating-ui="portrait-master-editor"] .jiaren-portrait-vector-preview {
+  position: relative !important;
+  display: flex !important;
+  min-width: 0 !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(156, 186, 103, 0.22) !important;
+  border-radius: 7px !important;
+  color: #e8eee3 !important;
+  background: #101410 !important;
+  box-shadow: inset 0 1px rgba(244, 247, 239, 0.025) !important;
+}
+
+#root .canvas-app-shell [data-node-kind="portrait-master"] .jiaren-portrait-vector-preview {
+  min-height: 286px !important;
+  padding: 34px 10px 10px !important;
+}
+
+body.jiaren-app-mounted [data-canvas-floating-ui="portrait-master-editor"] .jiaren-portrait-vector-preview {
+  min-height: 320px !important;
+  padding: 38px 14px 12px !important;
+}
+
+#root .canvas-app-shell [data-node-kind="portrait-master"] .jiaren-portrait-vector-preview > .absolute,
+body.jiaren-app-mounted [data-canvas-floating-ui="portrait-master-editor"] .jiaren-portrait-vector-preview > .absolute {
+  position: absolute !important;
+  top: 11px !important;
+  left: 12px !important;
+  color: #f1f5ec !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  text-transform: none !important;
+}
+
+body.jiaren-app-mounted [data-canvas-floating-ui="portrait-master-editor"] .jiaren-portrait-vector-preview > .absolute {
+  font-size: 12px !important;
+}
+
+#root .canvas-app-shell [data-node-kind="portrait-master"] .jiaren-portrait-vector-stage,
+body.jiaren-app-mounted [data-canvas-floating-ui="portrait-master-editor"] .jiaren-portrait-vector-stage {
+  position: relative !important;
+  display: flex !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  flex: 1 1 auto !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(199, 255, 61, 0.14) !important;
+  border-radius: 6px !important;
+  padding: 2px 0 0 !important;
+  background-color: #0b0e0b !important;
+  background-image: linear-gradient(rgba(140, 156, 136, 0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(140, 156, 136, 0.07) 1px, transparent 1px) !important;
+  background-size: 20px 20px !important;
+}
+
+#root .canvas-app-shell [data-node-kind="portrait-master"] .jiaren-portrait-vector-figure {
+  width: 100% !important;
+  height: 190px !important;
+  max-width: 160px !important;
+  overflow: visible !important;
+  filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.3)) !important;
+  transition: filter 180ms ease !important;
+}
+
+body.jiaren-app-mounted [data-canvas-floating-ui="portrait-master-editor"] .jiaren-portrait-vector-figure {
+  width: min(100%, 260px) !important;
+  height: 228px !important;
+  max-width: 260px !important;
+  overflow: visible !important;
+  filter: drop-shadow(0 16px 22px rgba(0, 0, 0, 0.34)) !important;
+}
+
+#root .canvas-app-shell [data-node-kind="portrait-master"] .jiaren-portrait-vector-tags,
+body.jiaren-app-mounted [data-canvas-floating-ui="portrait-master-editor"] .jiaren-portrait-vector-tags {
+  display: grid !important;
+  min-width: 0 !important;
+  max-height: 42px !important;
+  flex: 0 0 auto !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 4px !important;
+  overflow: hidden !important;
+  margin-top: 7px !important;
+  color: #cbd5c5 !important;
+  font-size: 9px !important;
+}
+
+#root .canvas-app-shell [data-node-kind="portrait-master"] .jiaren-portrait-vector-tags > span,
+body.jiaren-app-mounted [data-canvas-floating-ui="portrait-master-editor"] .jiaren-portrait-vector-tags > span {
+  min-width: 0 !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(156, 186, 103, 0.17) !important;
+  border-radius: 4px !important;
+  padding: 3px 5px !important;
+  color: #cbd5c5 !important;
+  background: #171c17 !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+#root .canvas-app-shell .bottom-floating-toolbar button[aria-label="添加工业草图渲染节点"] {
+  color: #c7ff3d !important;
+}
+
+
+/* Jiaren image tools menu performance v112 */
+#root .canvas-app-shell .image-selection-popover {
+  contain: layout paint style !important;
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 5px !important;
+  padding: 9px !important;
+  border: 1px solid rgba(199, 255, 61, 0.2) !important;
+  border-radius: 8px !important;
+  color: #e8eee4 !important;
+  background: #0d100d !important;
+  box-shadow: 0 18px 52px rgba(0, 0, 0, 0.58) !important;
+}
+#root .canvas-app-shell .image-selection-popover button {
+  display: inline-flex !important;
+  min-width: 0 !important;
+  min-height: 34px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  overflow: hidden !important;
+  padding: 0 7px !important;
+  border: 1px solid rgba(244, 247, 239, 0.1) !important;
+  border-radius: 6px !important;
+  color: #dce4d8 !important;
+  background: #171c17 !important;
+  font-size: 11px !important;
+  line-height: 1.2 !important;
+  text-align: center !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+#root .canvas-app-shell .image-selection-popover button:hover,
+#root .canvas-app-shell .image-selection-popover button.is-expanded {
+  border-color: rgba(199, 255, 61, 0.52) !important;
+  color: #c7ff3d !important;
+  background: rgba(199, 255, 61, 0.1) !important;
+}
+#root .canvas-app-shell .image-selection-popover button > svg {
+  display: block !important;
+  flex: 0 0 15px !important;
+  width: 15px !important;
+  height: 15px !important;
+}
+@media (max-width: 720px) {
+  #root .canvas-app-shell .image-selection-popover {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+
+/* Jiaren complete image menu v112 */
+#root .canvas-app-shell .image-selection-popover .jc-community-context-item {
+  order: 1 !important;
+  border-color: rgba(199, 255, 61, 0.58) !important;
+  color: #c7ff3d !important;
+  background: rgba(199, 255, 61, 0.08) !important;
+}
+#root .canvas-app-shell .image-selection-popover .jc-community-context-item:hover {
+  background: rgba(199, 255, 61, 0.16) !important;
+}

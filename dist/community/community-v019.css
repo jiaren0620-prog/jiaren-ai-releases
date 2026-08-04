@@ -1,0 +1,145 @@
+/* Jiaren AI 0.1.9 detail and comment layout authority. */
+.jc-detail,
+.jc-codex-detail {
+  height: min(840px, calc(100vh - 40px)) !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+}
+
+.jc-detail-panel {
+  min-width: 0 !important;
+  min-height: 0 !important;
+  display: grid !important;
+  grid-template-rows: auto minmax(0, 1fr) auto !important;
+  overflow: hidden !important;
+}
+
+.jc-detail-scroll {
+  min-width: 0 !important;
+  min-height: 0 !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  padding-bottom: 18px !important;
+}
+
+.jc-detail-actions {
+  min-width: 0 !important;
+  flex-wrap: wrap !important;
+  padding-bottom: max(14px, env(safe-area-inset-bottom)) !important;
+}
+
+.jc-work-comments,
+.jc-work-comment-list,
+.jc-work-comment-form,
+.jc-inline-reply {
+  min-width: 0 !important;
+  max-width: 100% !important;
+}
+
+.jc-work-comment-form {
+  width: 100% !important;
+  grid-template-columns: minmax(0, 1fr) 96px !important;
+  align-items: end !important;
+  overflow: visible !important;
+  padding-bottom: 2px !important;
+}
+
+.jc-work-comment-form .jc-textarea,
+.jc-inline-reply .jc-textarea {
+  width: 100% !important;
+  min-width: 0 !important;
+  resize: vertical !important;
+}
+
+.jc-work-comment-form > .jc-button {
+  width: 96px !important;
+  min-width: 96px !important;
+  min-height: 44px !important;
+  justify-self: stretch !important;
+  align-self: end !important;
+}
+
+.jc-codex-detail[data-open="true"] {
+  display: grid !important;
+  grid-template-rows: auto minmax(0, 1fr) !important;
+}
+
+.jc-codex-detail-body {
+  min-width: 0 !important;
+  min-height: 0 !important;
+  height: 100% !important;
+  overflow: hidden !important;
+}
+
+.jc-codex-article {
+  min-width: 0 !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+}
+
+.jc-codex-comments {
+  min-width: 0 !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+}
+
+.jc-codex-comments > h3 {
+  flex: 0 0 auto !important;
+}
+
+.jc-codex-comment-list {
+  min-width: 0 !important;
+  min-height: 0 !important;
+  flex: 1 1 auto !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  padding-right: 4px !important;
+}
+
+.jc-codex-comment-form {
+  min-width: 0 !important;
+  flex: 0 0 auto !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  align-items: end !important;
+  gap: 9px !important;
+  padding-top: 12px !important;
+  padding-bottom: max(2px, env(safe-area-inset-bottom)) !important;
+  border-top: 1px solid rgba(199, 255, 61, 0.14) !important;
+}
+
+.jc-codex-comment-form .jc-textarea {
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 72px !important;
+  max-height: 180px !important;
+}
+
+.jc-codex-comment-form .jc-button {
+  min-width: 104px !important;
+  min-height: 44px !important;
+  justify-self: stretch !important;
+  white-space: nowrap !important;
+}
+
+@media (max-width: 760px) {
+  .jc-detail,
+  .jc-codex-detail {
+    height: calc(100vh - 12px) !important;
+  }
+
+  .jc-work-comment-form,
+  .jc-codex-comment-form {
+    grid-template-columns: 1fr !important;
+  }
+
+  .jc-work-comment-form > .jc-button,
+  .jc-codex-comment-form .jc-button {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "@jiaren/canvas-cli",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Jiaren Canvas Control local CLI",
+  "bin": {
+    "jiaren-canvas": "bin/jiaren-canvas.cjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

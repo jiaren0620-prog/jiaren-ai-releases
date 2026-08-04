@@ -1,0 +1,1 @@
+export const LocalNodeAddonSlot = () => null;

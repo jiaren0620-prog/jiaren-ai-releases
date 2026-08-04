@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jiaren 3D 姿势导演台</title>
+    <style>
+      html,
+      body,
+      #root {
+        height: 100%;
+        margin: 0;
+        background: #f7fbf9;
+      }
+
+      #director-boot {
+        box-sizing: border-box;
+        display: grid;
+        align-content: center;
+        justify-items: center;
+        gap: 12px;
+        width: 100%;
+        height: 100%;
+        color: #315844;
+        font: 600 13px/1.5 "Microsoft YaHei", "PingFang SC", system-ui, sans-serif;
+        background:
+          linear-gradient(rgba(54, 150, 99, 0.045) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(54, 150, 99, 0.045) 1px, transparent 1px),
+          #f7fbf9;
+        background-size: 28px 28px;
+      }
+
+      #director-boot::before {
+        width: 28px;
+        height: 28px;
+        border: 3px solid rgba(47, 171, 104, 0.18);
+        border-top-color: #2fab68;
+        border-radius: 50%;
+        content: "";
+        animation: director-boot-spin 780ms linear infinite;
+      }
+
+      @keyframes director-boot-spin {
+        to { transform: rotate(360deg); }
+      }
+    </style>
+    <link rel="preload" href="./models/ue-mannequin-retopology.glb" as="fetch" type="model/gltf-binary" crossorigin />
+    <link rel="modulepreload" href="./assets/index-r_JrlQUf.js" />
+    <script type="module" crossorigin src="./assets/index-r_JrlQUf.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-DxV9od-5.css">
+  </head>
+  <body>
+    <div id="root"><div id="director-boot">正在载入人物模型与 3D 场景...</div></div>
+  </body>
+  </html>

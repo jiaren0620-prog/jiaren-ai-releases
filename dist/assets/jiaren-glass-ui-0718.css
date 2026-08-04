@@ -1,0 +1,524 @@
+/*
+ * Jiaren canvas glass material layer.
+ * Presentation only: no dimensions, positioning, node data, ports or behavior.
+ */
+
+:root,
+:root[data-theme="light"] {
+  --jg-mint: #159a63;
+  --jg-mint-strong: #0d7f50;
+  --jg-mint-soft: rgba(77, 210, 145, 0.18);
+  --jg-mint-glow: rgba(63, 196, 127, 0.22);
+  --jg-glass: rgba(255, 255, 255, 0.72);
+  --jg-glass-strong: rgba(255, 255, 255, 0.88);
+  --jg-glass-muted: rgba(242, 250, 246, 0.76);
+  --jg-glass-hover: rgba(244, 255, 249, 0.94);
+  --jg-glass-active: rgba(219, 248, 233, 0.9);
+  --jg-border: rgba(71, 127, 97, 0.18);
+  --jg-border-highlight: rgba(255, 255, 255, 0.96);
+  --jg-border-mint: rgba(45, 173, 107, 0.48);
+  --jg-text: #16251d;
+  --jg-text-muted: #586b61;
+  --jg-shadow-button: 0 5px 14px rgba(18, 68, 43, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.92), inset 0 -1px 0 rgba(75, 133, 103, 0.08);
+  --jg-shadow-button-hover: 0 8px 20px rgba(18, 68, 43, 0.13), inset 0 1px 0 #fff, inset 0 -1px 0 rgba(53, 133, 91, 0.11);
+  --jg-shadow-node: 0 12px 30px rgba(22, 77, 48, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.92), inset 0 0 0 1px rgba(255, 255, 255, 0.34);
+  --jg-shadow-node-hover: 0 16px 38px rgba(22, 77, 48, 0.14), inset 0 1px 0 #fff, inset 0 0 0 1px rgba(255, 255, 255, 0.42);
+  --jg-shadow-selected: 0 0 0 2px rgba(40, 179, 107, 0.16), 0 18px 42px rgba(22, 100, 58, 0.17), inset 0 1px 0 #fff;
+  --jg-shadow-error: 0 0 0 2px rgba(203, 74, 74, 0.1), 0 12px 30px rgba(120, 35, 35, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.86);
+  --jg-error-bg: rgba(255, 244, 244, 0.88);
+  --jg-radius-button: 9px;
+  --jg-radius-toolbar: 11px;
+  --jg-radius-node: 16px;
+  --jg-radius-inner: 12px;
+  --jg-motion: 180ms cubic-bezier(0.2, 0, 0, 1);
+  --jg-gradient-chrome: linear-gradient(145deg, rgba(255, 255, 255, 0.34), rgba(146, 235, 188, 0.08));
+  --jg-gradient-surface: linear-gradient(145deg, rgba(255, 255, 255, 0.36), rgba(114, 221, 166, 0.06));
+  --jg-gradient-node: linear-gradient(145deg, rgba(255, 255, 255, 0.38), rgba(96, 216, 155, 0.07));
+  --jg-gradient-button: linear-gradient(155deg, rgba(255, 255, 255, 0.44), rgba(92, 211, 151, 0.07));
+  --jg-gradient-button-hover: linear-gradient(145deg, rgba(255, 255, 255, 0.58), rgba(91, 218, 151, 0.16));
+  --jg-gradient-button-active: linear-gradient(145deg, rgba(247, 255, 251, 0.72), rgba(79, 210, 141, 0.22));
+  --jg-gradient-upload: linear-gradient(145deg, rgba(255, 255, 255, 0.28), rgba(84, 209, 146, 0.07));
+}
+
+:root[data-theme="dark"],
+.canvas-app-shell.theme-dark {
+  --jg-mint: #65d39c;
+  --jg-mint-strong: #84e3b5;
+  --jg-mint-soft: rgba(84, 205, 148, 0.17);
+  --jg-mint-glow: rgba(84, 205, 148, 0.2);
+  --jg-glass: rgba(33, 45, 39, 0.76);
+  --jg-glass-strong: rgba(39, 53, 46, 0.9);
+  --jg-glass-muted: rgba(30, 42, 36, 0.82);
+  --jg-glass-hover: rgba(48, 66, 57, 0.93);
+  --jg-glass-active: rgba(40, 78, 59, 0.91);
+  --jg-border: rgba(216, 240, 226, 0.13);
+  --jg-border-highlight: rgba(238, 255, 245, 0.14);
+  --jg-border-mint: rgba(105, 217, 162, 0.44);
+  --jg-text: #eff8f3;
+  --jg-text-muted: #b1c4ba;
+  --jg-shadow-button: 0 6px 16px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.18);
+  --jg-shadow-button-hover: 0 9px 22px rgba(0, 0, 0, 0.27), inset 0 1px 0 rgba(255, 255, 255, 0.14), inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+  --jg-shadow-node: 0 14px 34px rgba(0, 0, 0, 0.26), inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.025);
+  --jg-shadow-node-hover: 0 18px 42px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  --jg-shadow-selected: 0 0 0 2px rgba(101, 211, 156, 0.16), 0 20px 46px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  --jg-shadow-error: 0 0 0 2px rgba(255, 130, 130, 0.1), 0 14px 34px rgba(0, 0, 0, 0.26), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  --jg-error-bg: rgba(66, 34, 34, 0.84);
+  --jg-gradient-chrome: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(90, 210, 151, 0.05));
+  --jg-gradient-surface: linear-gradient(145deg, rgba(255, 255, 255, 0.075), rgba(84, 203, 143, 0.04));
+  --jg-gradient-node: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(77, 197, 135, 0.045));
+  --jg-gradient-button: linear-gradient(155deg, rgba(255, 255, 255, 0.09), rgba(80, 202, 140, 0.045));
+  --jg-gradient-button-hover: linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(90, 218, 153, 0.1));
+  --jg-gradient-button-active: linear-gradient(145deg, rgba(133, 226, 179, 0.13), rgba(56, 160, 108, 0.18));
+  --jg-gradient-upload: linear-gradient(145deg, rgba(255, 255, 255, 0.055), rgba(84, 209, 146, 0.045));
+}
+
+/* Fixed chrome: visual material only. Existing coordinates and sizes stay authoritative. */
+.canvas-app-shell :is(
+  .jiaren-canvas-project-pill,
+  .jiaren-canvas-brand-pill,
+  .jiaren-canvas-toolbar-pill,
+  .bottom-floating-toolbar,
+  .flow-controls,
+  .canvas-minimap
+) {
+  border-color: var(--jg-border) !important;
+  background-color: var(--jg-glass) !important;
+  background-image: var(--jg-gradient-chrome) !important;
+  box-shadow: var(--jg-shadow-button) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(1.12);
+  backdrop-filter: blur(18px) saturate(1.12);
+}
+
+.canvas-app-shell :is(.jiaren-canvas-project-pill, .jiaren-canvas-toolbar-pill, .bottom-floating-toolbar) {
+  border-radius: var(--jg-radius-toolbar) !important;
+}
+
+.canvas-app-shell.canvas-app-shell.canvas-app-shell :is(
+  .jiaren-canvas-toolbar-pill,
+  .bottom-floating-toolbar,
+  .flow-controls,
+  .window-titlebar .titlebar-controls
+) button {
+  border: 1px solid rgba(255, 255, 255, 0.42) !important;
+  border-radius: var(--jg-radius-button) !important;
+  color: var(--jg-text-muted) !important;
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  background-image: var(--jg-gradient-button) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.68), inset 0 -1px 0 rgba(64, 119, 90, 0.06) !important;
+  transition: color var(--jg-motion), background-color var(--jg-motion), border-color var(--jg-motion), box-shadow var(--jg-motion), filter var(--jg-motion) !important;
+}
+
+.canvas-app-shell.canvas-app-shell.canvas-app-shell :is(
+  .jiaren-canvas-toolbar-pill,
+  .bottom-floating-toolbar,
+  .flow-controls,
+  .window-titlebar .titlebar-controls
+) button:hover:not(:disabled) {
+  border-color: var(--jg-border-mint) !important;
+  color: var(--jg-text) !important;
+  background-color: var(--jg-glass-hover) !important;
+  background-image: var(--jg-gradient-button-hover) !important;
+  box-shadow: var(--jg-shadow-button-hover) !important;
+  filter: brightness(1.025);
+}
+
+.canvas-app-shell.canvas-app-shell.canvas-app-shell :is(
+  .jiaren-canvas-toolbar-pill,
+  .bottom-floating-toolbar,
+  .flow-controls
+) button:active:not(:disabled) {
+  border-color: var(--jg-border-mint) !important;
+  background-color: var(--jg-glass-active) !important;
+  background-image: var(--jg-gradient-button-active) !important;
+  box-shadow: inset 0 2px 5px rgba(23, 102, 61, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.74) !important;
+  transform: none !important;
+}
+
+.canvas-app-shell.canvas-app-shell.canvas-app-shell :is(
+  .jiaren-canvas-toolbar-pill button.is-active,
+  .jiaren-canvas-toolbar-pill button[aria-pressed="true"],
+  .bottom-floating-toolbar button.active,
+  .bottom-floating-toolbar button.is-active,
+  .bottom-floating-toolbar button[aria-pressed="true"],
+  .flow-controls button.active
+) {
+  border-color: var(--jg-border-mint) !important;
+  color: var(--jg-mint-strong) !important;
+  background-color: var(--jg-glass-active) !important;
+  background-image: var(--jg-gradient-button-active) !important;
+  box-shadow: 0 5px 14px var(--jg-mint-glow), inset 0 1px 0 rgba(255, 255, 255, 0.82), inset 0 0 8px rgba(82, 213, 147, 0.12) !important;
+}
+
+.canvas-app-shell.canvas-app-shell.canvas-app-shell :is(
+  .jiaren-canvas-toolbar-pill,
+  .bottom-floating-toolbar,
+  .flow-controls
+) button:is(.is-running, .is-loading, [aria-busy="true"], [data-loading="true"]) {
+  cursor: wait !important;
+  border-color: var(--jg-border-mint) !important;
+  color: var(--jg-mint-strong) !important;
+  background-color: var(--jg-glass-active) !important;
+  background-image: var(--jg-gradient-button-active) !important;
+  box-shadow: 0 0 0 2px var(--jg-mint-soft), var(--jg-shadow-button) !important;
+}
+
+.canvas-app-shell.canvas-app-shell.canvas-app-shell :is(
+  .jiaren-canvas-toolbar-pill,
+  .bottom-floating-toolbar,
+  .flow-controls
+) button:disabled {
+  cursor: not-allowed !important;
+  border-color: var(--jg-border) !important;
+  color: var(--jg-text-muted) !important;
+  background-color: var(--jg-glass-muted) !important;
+  background-image: none !important;
+  box-shadow: inset 0 1px 0 var(--jg-border-highlight) !important;
+  filter: saturate(0.45) !important;
+  opacity: 0.5 !important;
+}
+
+/* Menus, panels and modal surfaces. No positioning or sizing overrides. */
+.canvas-app-shell :is(
+  .canvas-context-menu,
+  .settings-modal,
+  .storage-panel,
+  .license-modal,
+  .agent-panel,
+  .video-shot-panel,
+  .jiaren-canvas-native-panel,
+  .image-preview-modal,
+  .vector-trace-modal,
+  .compare-modal,
+  .prompt-library-drawer,
+  .resource-library-drawer,
+  .floating-panel,
+  .prompt-popover
+) {
+  border-color: var(--jg-border) !important;
+  border-radius: var(--jg-radius-node) !important;
+  color: var(--jg-text) !important;
+  background-color: var(--jg-glass-strong) !important;
+  background-image: var(--jg-gradient-surface) !important;
+  box-shadow: var(--jg-shadow-node) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(1.1);
+  backdrop-filter: blur(22px) saturate(1.1);
+}
+
+.canvas-app-shell :is(
+  .canvas-context-menu,
+  .settings-modal,
+  .storage-panel,
+  .license-modal,
+  .agent-panel,
+  .video-shot-panel,
+  .jiaren-canvas-native-panel,
+  .prompt-library-drawer,
+  .resource-library-drawer,
+  .floating-panel,
+  .prompt-popover
+) button:not(.danger):not(.destructive):not([data-variant="danger"]) {
+  border-color: var(--jg-border) !important;
+  border-radius: var(--jg-radius-button) !important;
+  color: var(--jg-text) !important;
+  background-color: var(--jg-glass-muted) !important;
+  background-image: var(--jg-gradient-button) !important;
+  box-shadow: var(--jg-shadow-button) !important;
+  transition: color var(--jg-motion), background-color var(--jg-motion), border-color var(--jg-motion), box-shadow var(--jg-motion), filter var(--jg-motion) !important;
+}
+
+.canvas-app-shell :is(
+  .canvas-context-menu,
+  .settings-modal,
+  .storage-panel,
+  .license-modal,
+  .agent-panel,
+  .video-shot-panel,
+  .jiaren-canvas-native-panel,
+  .prompt-library-drawer,
+  .resource-library-drawer,
+  .floating-panel,
+  .prompt-popover
+) button:hover:not(:disabled):not(.danger):not(.destructive):not([data-variant="danger"]) {
+  border-color: var(--jg-border-mint) !important;
+  color: var(--jg-mint-strong) !important;
+  background-color: var(--jg-glass-hover) !important;
+  box-shadow: var(--jg-shadow-button-hover) !important;
+  filter: brightness(1.02);
+}
+
+/* Existing and T8 node shells. Width, height, padding and overflow remain untouched. */
+.canvas-app-shell .canvas-node .node-body,
+.canvas-app-shell .smart-flow-node .smart-card-header,
+.canvas-app-shell .smart-flow-node .smart-card-body,
+.canvas-app-shell .simple-video-node,
+.canvas-app-shell .jiaren-film-node,
+.t8-original-scope :is(
+  .t8-node,
+  .t8-advanced-node,
+  .t8-codex-node,
+  .t8-native-video-node,
+  .codex-cli-agent-node,
+  .codex-image-conjure-node,
+  .t8-generation-target-node
+) {
+  border-color: var(--jg-border) !important;
+  color: var(--jg-text) !important;
+  background-color: var(--jg-glass-strong) !important;
+  background-image: var(--jg-gradient-node) !important;
+  box-shadow: var(--jg-shadow-node) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(1.08);
+  backdrop-filter: blur(12px) saturate(1.08);
+  transition: border-color var(--jg-motion), box-shadow var(--jg-motion), filter var(--jg-motion), background-color var(--jg-motion) !important;
+}
+
+.canvas-app-shell .canvas-node .node-body,
+.canvas-app-shell .simple-video-node,
+.canvas-app-shell .jiaren-film-node,
+.t8-original-scope :is(.t8-node, .t8-advanced-node, .t8-codex-node, .t8-native-video-node, .codex-cli-agent-node, .codex-image-conjure-node, .t8-generation-target-node) {
+  border-radius: var(--jg-radius-node) !important;
+}
+
+.canvas-app-shell .smart-flow-node .smart-card-header {
+  border-radius: var(--jg-radius-node) var(--jg-radius-node) 0 0 !important;
+  background-color: var(--jg-glass-muted) !important;
+}
+
+.canvas-app-shell .smart-flow-node .smart-card-body {
+  border-radius: 0 0 var(--jg-radius-node) var(--jg-radius-node) !important;
+}
+
+.canvas-app-shell .canvas-node:hover .node-body,
+.canvas-app-shell .smart-flow-node:hover :is(.smart-card-header, .smart-card-body),
+.canvas-app-shell .simple-video-node:hover,
+.canvas-app-shell .jiaren-film-node:hover,
+.t8-original-scope :is(.t8-node, .t8-advanced-node, .t8-codex-node, .t8-native-video-node, .codex-cli-agent-node, .codex-image-conjure-node):hover {
+  border-color: rgba(49, 159, 101, 0.31) !important;
+  box-shadow: var(--jg-shadow-node-hover) !important;
+  filter: brightness(1.01);
+}
+
+.canvas-app-shell .canvas-node.selected .node-body,
+.canvas-app-shell .smart-flow-node.selected :is(.smart-card-header, .smart-card-body),
+.canvas-app-shell .jiaren-film-node.is-selected,
+.canvas-app-shell .jiaren-film-node.selected,
+.canvas-app-shell .react-flow__node.selected .canvas-node .node-body,
+.canvas-app-shell .react-flow__node.selected .smart-flow-node :is(.smart-card-header, .smart-card-body),
+.canvas-app-shell .react-flow__node.selected .jiaren-film-node,
+.react-flow__node.selected .t8-original-scope :is(.t8-node, .t8-advanced-node, .t8-codex-node, .t8-native-video-node, .codex-cli-agent-node, .codex-image-conjure-node) {
+  border-color: var(--jg-border-mint) !important;
+  box-shadow: var(--jg-shadow-selected) !important;
+}
+
+.canvas-app-shell :is(.canvas-node, .smart-flow-node, .jiaren-film-node, .simple-video-node).is-running,
+.canvas-app-shell :is(.canvas-node, .smart-flow-node, .jiaren-film-node, .simple-video-node)[aria-busy="true"],
+.canvas-app-shell .react-flow__node[data-status="running"] :is(.canvas-node, .smart-flow-node, .jiaren-film-node, .simple-video-node),
+.react-flow__node[data-status="running"] .t8-original-scope :is(.t8-node, .t8-advanced-node, .t8-codex-node, .t8-native-video-node, .codex-cli-agent-node, .codex-image-conjure-node),
+.react-flow__node:has(.is-running) .t8-original-scope :is(.t8-node, .t8-advanced-node, .t8-codex-node, .t8-native-video-node) {
+  border-color: var(--jg-border-mint) !important;
+  box-shadow: 0 0 0 2px rgba(47, 188, 116, 0.11), var(--jg-shadow-node) !important;
+}
+
+.canvas-app-shell :is(.canvas-node, .smart-flow-node, .jiaren-film-node, .simple-video-node).is-error,
+.canvas-app-shell :is(.canvas-node, .smart-flow-node, .jiaren-film-node, .simple-video-node).status-failed,
+.canvas-app-shell .react-flow__node[data-status="error"] :is(.canvas-node, .smart-flow-node, .jiaren-film-node, .simple-video-node),
+.react-flow__node[data-status="error"] .t8-original-scope :is(.t8-node, .t8-advanced-node, .t8-codex-node, .t8-native-video-node, .codex-cli-agent-node, .codex-image-conjure-node),
+.react-flow__node:has(.is-error) .t8-original-scope :is(.t8-node, .t8-advanced-node, .t8-codex-node, .t8-native-video-node) {
+  border-color: rgba(203, 74, 74, 0.48) !important;
+  background-color: var(--jg-error-bg) !important;
+  box-shadow: var(--jg-shadow-error) !important;
+}
+
+.canvas-app-shell :is(.canvas-node, .smart-flow-node, .jiaren-film-node, .simple-video-node):is(.is-disabled, [aria-disabled="true"]),
+.canvas-app-shell .react-flow__node[data-disabled="true"] :is(.canvas-node, .smart-flow-node, .jiaren-film-node, .simple-video-node),
+.react-flow__node[data-disabled="true"] .t8-original-scope :is(.t8-node, .t8-advanced-node, .t8-codex-node, .t8-native-video-node, .codex-cli-agent-node, .codex-image-conjure-node) {
+  filter: saturate(0.5) contrast(0.96) !important;
+  opacity: 0.62 !important;
+}
+
+/* Keep expensive blur out of the pointer-move hot path while a node is dragged. */
+.react-flow__node.dragging :is(
+  .canvas-node .node-body,
+  .smart-flow-node .smart-card-header,
+  .smart-flow-node .smart-card-body,
+  .simple-video-node,
+  .jiaren-film-node,
+  .t8-node,
+  .t8-advanced-node,
+  .t8-codex-node,
+  .t8-native-video-node,
+  .codex-cli-agent-node,
+  .codex-image-conjure-node
+) {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  filter: none !important;
+}
+
+/* Internal cards, fields and upload/drop targets. */
+.canvas-app-shell :is(.node-body, .smart-card-body, .jiaren-film-node) :where(input, select, textarea),
+.t8-original-scope :where(input, select, textarea) {
+  border-color: var(--jg-border) !important;
+  border-radius: var(--jg-radius-button) !important;
+  color: var(--jg-text) !important;
+  background-color: rgba(255, 255, 255, 0.62) !important;
+  box-shadow: inset 0 1px 2px rgba(23, 75, 48, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.72) !important;
+  transition: border-color var(--jg-motion), box-shadow var(--jg-motion), background-color var(--jg-motion) !important;
+}
+
+.canvas-app-shell :is(.node-body, .smart-card-body, .jiaren-film-node) :where(input, select, textarea):focus,
+.t8-original-scope :where(input, select, textarea):focus {
+  border-color: var(--jg-border-mint) !important;
+  background-color: var(--jg-glass-strong) !important;
+  box-shadow: 0 0 0 3px var(--jg-mint-soft), inset 0 1px 0 rgba(255, 255, 255, 0.72) !important;
+  outline: none !important;
+}
+
+.canvas-app-shell :is(.jiaren-material-upload, .node-upload, .upload-zone, .drop-zone, .dropzone),
+.canvas-app-shell .node-body :is(div, section, label)[class*="upload"],
+.t8-original-scope :is(div, section, label)[class*="upload"] {
+  border-color: rgba(57, 154, 103, 0.3) !important;
+  border-style: dashed !important;
+  border-radius: var(--jg-radius-inner) !important;
+  background-color: rgba(247, 255, 251, 0.54) !important;
+  background-image: var(--jg-gradient-upload) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72) !important;
+}
+
+.t8-original-scope :is(.t8-advanced-panel, .t8-codex-card, .t8-codex-status-card, .t8-material-grid, .t8-grid-settings-panel, .t8-grid-output-panel),
+.canvas-app-shell .node-body :is(.node-panel, .parameter-panel, .input-panel, .output-panel) {
+  border-color: var(--jg-border) !important;
+  border-radius: var(--jg-radius-inner) !important;
+  background-color: var(--jg-glass-muted) !important;
+  background-image: var(--jg-gradient-surface) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.68), 0 5px 16px rgba(22, 77, 48, 0.05) !important;
+}
+
+/* General node and panel controls, scoped away from canvas positioning. */
+.canvas-app-shell :is(.node-body, .smart-card-body, .jiaren-film-node) button:not(.danger):not(.destructive):not([data-variant="danger"]),
+.t8-original-scope button:not(.danger):not(.destructive):not([data-variant="danger"]) {
+  border-color: var(--jg-border) !important;
+  border-radius: var(--jg-radius-button) !important;
+  color: var(--jg-text) !important;
+  background-color: var(--jg-glass-muted) !important;
+  background-image: var(--jg-gradient-button) !important;
+  box-shadow: var(--jg-shadow-button) !important;
+  transition: color var(--jg-motion), background-color var(--jg-motion), border-color var(--jg-motion), box-shadow var(--jg-motion), filter var(--jg-motion) !important;
+}
+
+.canvas-app-shell :is(.node-body, .smart-card-body, .jiaren-film-node) button:hover:not(:disabled):not(.danger):not(.destructive):not([data-variant="danger"]),
+.t8-original-scope button:hover:not(:disabled):not(.danger):not(.destructive):not([data-variant="danger"]) {
+  border-color: var(--jg-border-mint) !important;
+  color: var(--jg-mint-strong) !important;
+  background-color: var(--jg-glass-hover) !important;
+  box-shadow: var(--jg-shadow-button-hover) !important;
+  filter: brightness(1.02);
+}
+
+.canvas-app-shell button:is(.active, .is-active, .selected, .is-selected, [aria-pressed="true"], [aria-selected="true"]):not(.danger):not(.destructive),
+.t8-original-scope button:is(.active, .is-active, .selected, .is-selected, [aria-pressed="true"], [aria-selected="true"]):not(.danger):not(.destructive) {
+  border-color: var(--jg-border-mint) !important;
+  color: var(--jg-mint-strong) !important;
+  background-color: var(--jg-glass-active) !important;
+  background-image: var(--jg-gradient-button-active) !important;
+  box-shadow: 0 5px 15px var(--jg-mint-glow), inset 0 1px 0 rgba(255, 255, 255, 0.76) !important;
+}
+
+.canvas-app-shell button:is(.is-running, .is-loading, [aria-busy="true"], [data-loading="true"]),
+.t8-original-scope button:is(.is-running, .is-loading, [aria-busy="true"], [data-loading="true"]) {
+  cursor: wait !important;
+  border-color: var(--jg-border-mint) !important;
+  color: var(--jg-mint-strong) !important;
+  background-color: var(--jg-glass-active) !important;
+  box-shadow: 0 0 0 2px var(--jg-mint-soft), var(--jg-shadow-button) !important;
+}
+
+.canvas-app-shell button:focus-visible,
+.t8-original-scope button:focus-visible {
+  border-color: var(--jg-border-mint) !important;
+  outline: 2px solid var(--jg-mint-soft) !important;
+  outline-offset: 2px !important;
+  box-shadow: var(--jg-shadow-button-hover) !important;
+}
+
+.canvas-app-shell button:disabled,
+.t8-original-scope button:disabled {
+  cursor: not-allowed !important;
+  color: var(--jg-text-muted) !important;
+  background-color: var(--jg-glass-muted) !important;
+  background-image: none !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.42) !important;
+  filter: saturate(0.45) !important;
+  opacity: 0.5 !important;
+}
+
+/* Destructive controls retain meaning while using the same material. */
+.canvas-app-shell button:is(.danger, .destructive, [data-variant="danger"]),
+.t8-original-scope button:is(.danger, .destructive, [data-variant="danger"]) {
+  border-color: rgba(203, 74, 74, 0.25) !important;
+  border-radius: var(--jg-radius-button) !important;
+  color: #a83f3f !important;
+  background-color: rgba(255, 240, 240, 0.76) !important;
+  box-shadow: var(--jg-shadow-button) !important;
+}
+
+:root[data-theme="dark"] .canvas-app-shell :is(.node-body, .smart-card-body, .jiaren-film-node) :where(input, select, textarea),
+:root[data-theme="dark"] .t8-original-scope :where(input, select, textarea),
+.canvas-app-shell.theme-dark :is(.node-body, .smart-card-body, .jiaren-film-node) :where(input, select, textarea) {
+  background-color: rgba(27, 39, 33, 0.74) !important;
+}
+
+:root[data-theme="dark"] .canvas-app-shell :is(.jiaren-material-upload, .node-upload, .upload-zone, .drop-zone, .dropzone),
+:root[data-theme="dark"] .canvas-app-shell .node-body :is(div, section, label)[class*="upload"],
+:root[data-theme="dark"] .t8-original-scope :is(div, section, label)[class*="upload"],
+.canvas-app-shell.theme-dark .node-body :is(div, section, label)[class*="upload"] {
+  border-color: rgba(105, 217, 162, 0.28) !important;
+  background-color: rgba(27, 42, 34, 0.64) !important;
+}
+
+:root[data-theme="dark"] .canvas-app-shell :is(.canvas-node, .smart-flow-node, .jiaren-film-node, .simple-video-node).is-error,
+.canvas-app-shell.theme-dark :is(.canvas-node, .smart-flow-node, .jiaren-film-node, .simple-video-node).is-error {
+  background-color: var(--jg-error-bg) !important;
+}
+
+:root[data-theme="dark"] .canvas-app-shell button:disabled,
+:root[data-theme="dark"] .t8-original-scope button:disabled,
+.canvas-app-shell.theme-dark button:disabled {
+  background-color: rgba(37, 49, 43, 0.64) !important;
+  color: rgba(177, 196, 186, 0.68) !important;
+}
+
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .canvas-app-shell :is(
+    .jiaren-canvas-project-pill,
+    .jiaren-canvas-brand-pill,
+    .jiaren-canvas-toolbar-pill,
+    .bottom-floating-toolbar,
+    .flow-controls,
+    .canvas-minimap,
+    .canvas-context-menu,
+    .settings-modal,
+    .storage-panel,
+    .license-modal,
+    .agent-panel,
+    .video-shot-panel,
+    .jiaren-canvas-native-panel,
+    .prompt-library-drawer,
+    .resource-library-drawer,
+    .floating-panel
+  ),
+  .canvas-app-shell .canvas-node .node-body,
+  .canvas-app-shell .smart-flow-node :is(.smart-card-header, .smart-card-body),
+  .t8-original-scope :is(.t8-node, .t8-advanced-node, .t8-codex-node, .t8-native-video-node, .codex-cli-agent-node, .codex-image-conjure-node) {
+    background-color: var(--jg-glass-strong) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .canvas-app-shell *,
+  .t8-original-scope * {
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

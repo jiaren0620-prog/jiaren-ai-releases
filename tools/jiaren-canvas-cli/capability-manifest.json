@@ -1,0 +1,25 @@
+{
+  "id": "jiaren-canvas-control",
+  "name": "Jiaren Canvas Control",
+  "version": "1.0.0",
+  "approvalRequired": true,
+  "apiKeysExposed": false,
+  "scopes": [
+    "canvas:read",
+    "canvas:write",
+    "asset:read",
+    "asset:transfer",
+    "run:read",
+    "run:execute"
+  ],
+  "operations": [
+    "node.add",
+    "node.update",
+    "node.delete",
+    "node.select",
+    "edge.add",
+    "edge.remove",
+    "asset.add",
+    "run.node"
+  ]
+}
