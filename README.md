@@ -129,10 +129,10 @@ cd jiaren-ai-releases
 | [Jiaren-AI-1.1.2-source.zip](https://github.com/jiaren0620-prog/jiaren-ai-releases/releases/download/v1.1.2/Jiaren-AI-1.1.2-source.zip) | V1.1.2 桌面端源码归档 |
 | [SHA256SUMS.txt](https://github.com/jiaren0620-prog/jiaren-ai-releases/releases/download/v1.1.2/SHA256SUMS.txt) | 发布文件 SHA-256 清单 |
 
-Windows x64 安装包大小为 **1,024,187,452 字节**，SHA-256：
+Windows x64 安装包大小为 **1,024,189,082 字节**，SHA-256：
 
 ```text
-C5AC24E7383AA483BB6C24837625150DF94B6DD4A4AB4912377C33C9C5A5A6F4
+686D01E958D6EA964C1D94B83059D0AF3007A5DA7BBF7B6CA963180E3B393417
 ```
 
 下载后可在 PowerShell 中执行 `Get-FileHash .\Jiaren-AI-Setup-1.1.2-x64.exe -Algorithm SHA256` 核对完整性。完整文件清单见 Release 中的 `SHA256SUMS.txt`。
@@ -212,7 +212,7 @@ flowchart TB
 
 ## 更新机制
 
-Jiaren AI 启动后从 Jiaren 官方版本服务读取版本号、更新说明、公开下载地址和 SHA-256。桌面程序下载更新时显示进度，完成后执行 SHA-256 校验。GitHub Release 是公开安装包的主要下载源，社区内容更新不要求重新安装桌面客户端。
+Jiaren AI 启动后直接从 GitHub 仓库的 `latest.json` 读取版本号、更新说明、公开下载地址和 SHA-256，不再依赖旧的社区服务器更新接口。桌面程序下载更新时显示进度，完成后执行 SHA-256 校验。安装包由 GitHub Release CDN 提供，社区内容更新不要求重新安装桌面客户端。
 
 ## 许可与商业授权
 

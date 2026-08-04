@@ -2,9 +2,11 @@
   "version": "1.1.2",
   "platform": "windows-x64",
   "releaseDate": "2026-08-04",
+  "title": "Jiaren AI 1.1.2",
+  "notes": "完善本地 Codex 与画布联动、渠道驱动、图片任务回传和多任务稳定性。更新安装包由 GitHub Release 提供，并执行 SHA-256 完整性校验。",
   "downloadUrl": "https://github.com/jiaren0620-prog/jiaren-ai-releases/releases/download/v1.1.2/Jiaren-AI-Setup-1.1.2-x64.exe",
   "fileName": "Jiaren-AI-Setup-1.1.2-x64.exe",
-  "byteSize": 1024187452,
-  "checksumSha256": "c5ac24e7383aa483bb6c24837625150df94b6dd4a4ab4912377c33c9c5a5a6f4",
+  "byteSize": 1024189082,
+  "checksumSha256": "686d01e958d6ea964c1d94b83059d0af3007a5da7bbf7b6ca963180e3b393417",
   "releaseUrl": "https://github.com/jiaren0620-prog/jiaren-ai-releases/releases/tag/v1.1.2"
 }

@@ -2,7 +2,7 @@
   'use strict';
 
   let currentVersion = '0.1.9';
-  const API = 'https://api.jiaren.xyz/v1';
+  const GITHUB_LATEST_URL = 'https://raw.githubusercontent.com/jiaren0620-prog/jiaren-ai-releases/main/latest.json';
   const DISMISSED_KEY = 'jiaren-global-dismissed-announcements';
   const HANDLED_VERSION_KEY = 'jiaren-global-handled-version';
   let stopDownloadProgress = null;
@@ -35,9 +35,33 @@
       const result = await window.jiaren.system.getAppVersion().catch(() => null);
       if (result?.version) currentVersion = result.version;
     }
-    const response = await fetch(`${API}/app/bootstrap?version=${encodeURIComponent(currentVersion)}&platform=windows-x64`);
-    if (!response.ok) throw new Error(`Update service returned ${response.status}`);
-    return response.json();
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 12000);
+    try {
+      const response = await fetch(`${GITHUB_LATEST_URL}?v=${Date.now()}`, {
+        cache: 'no-store',
+        signal: controller.signal,
+      });
+      if (!response.ok) throw new Error(`GitHub update source returned ${response.status}`);
+      const latest = await response.json();
+      if (!latest?.version || !latest?.downloadUrl) throw new Error('GitHub update metadata is incomplete');
+      return {
+        announcements: [],
+        latestRelease: {
+          id: `github-${latest.version}`,
+          version: latest.version,
+          platform: latest.platform || 'windows-x64',
+          title: latest.title || `Jiaren AI ${latest.version}`,
+          notes: latest.notes || 'GitHub Release 已发布新版本，建议更新后继续使用。',
+          downloadUrl: latest.downloadUrl,
+          checksumSha256: latest.checksumSha256 || '',
+          releaseUrl: latest.releaseUrl || '',
+          publishedAt: latest.releaseDate || '',
+        },
+      };
+    } finally {
+      window.clearTimeout(timeout);
+    }
   }
 
   function buildOverlay() {

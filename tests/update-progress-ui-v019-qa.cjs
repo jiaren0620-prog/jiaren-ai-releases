@@ -15,6 +15,9 @@ assert.ok(script.includes("onUpdateDownloadProgress"), "Renderer does not subscr
 assert.ok(script.includes("smoothedSpeed"), "Download speed calculation is missing");
 assert.ok(script.includes("formatDuration"), "Remaining-time calculation is missing");
 assert.ok(script.includes("正在校验"), "Verification-stage feedback is missing");
+assert.ok(script.includes("raw.githubusercontent.com/jiaren0620-prog/jiaren-ai-releases/main/latest.json"), "Updater does not read GitHub release metadata");
+assert.ok(script.includes("cache: 'no-store'"), "GitHub update metadata is not cache-busted");
+assert.ok(!script.includes("api.jiaren.xyz/v1"), "Updater still depends on the legacy update server");
 assert.ok(styles.includes("/* Jiaren v0.1.9 updater progress */"), "Updater progress styles are missing");
 assert.ok(styles.includes("--jg-update-progress"), "Progress fill state is not styled");
 assert.ok(preload.includes('onUpdateDownloadProgress'), "Preload progress bridge is missing");
