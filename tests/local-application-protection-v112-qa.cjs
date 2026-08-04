@@ -17,12 +17,13 @@ const license = read("LICENSE");
 const licenseNotice = read("docs/JIAREN_LICENSE_ZH-CN.txt");
 
 assert.equal(packageJson.private, true);
-assert.equal(packageJson.license, "AGPL-3.0-only");
+assert.equal(packageJson.license, "SEE LICENSE IN LICENSE");
 
 for (const [label, builder] of [["Windows", windowsBuilder], ["macOS", macBuilder]]) {
   assert.equal(builder.asar, true, `${label} must package application code in ASAR`);
   assert.ok(builder.files.includes("dist/**/*"), `${label} package must retain the complete frontend`);
-  assert.ok(builder.files.includes("LICENSE"), `${label} package must include the AGPL-3.0 license`);
+  assert.ok(builder.files.includes("LICENSE"));
+  assert.ok(builder.files.includes("COMMERCIAL_LICENSE.md"));
   assert.ok(!builder.asarUnpack.includes("dist/**/*"), `${label} must not expose the frontend in app.asar.unpacked`);
   for (const secretPattern of ["!**/.codex{,/**}", "!**/auth.json", "!**/credentials.json", "!**/.env"]) {
     assert.ok(builder.files.includes(secretPattern), `${label} must exclude ${secretPattern}`);
@@ -42,13 +43,13 @@ assert.match(localService, /JIAREN_LOCAL_AUTH_TOKEN/);
 assert.match(localService, /timingSafeEqual/);
 assert.match(localService, /status\(401\)/);
 
-assert.match(installer, /开源免费分享，全程无任何收费项目/);
-assert.doesNotMatch(installer, /未开放源代码/);
-assert.match(license, /GNU AFFERO GENERAL PUBLIC LICENSE/);
-assert.match(license, /Version 3, 19 November 2007/);
-assert.match(licenseNotice, /AGPL-3\.0-only/);
-assert.match(licenseNotice, /第三方组件不受本说明取代/);
-assert.match(licenseNotice, /默认保存在用户本机/);
+assert.match(installer, /JiarenAI/);
+assert.doesNotMatch(installer, /开源免费分享/);
+assert.match(license, /JIAREN AI DUAL LICENSE/);
+assert.match(license, /source-available license, not an open-source license/);
+assert.match(licenseNotice, /Jiaren AI 双重许可政策/);
+assert.match(licenseNotice, /团队部署/);
+assert.match(licenseNotice, /完整且具有控制效力的条款见软件根目录 LICENSE/);
 
 const sourceMaps = [];
 for (const directory of ["dist", "dist-electron"]) {
@@ -61,4 +62,4 @@ for (const directory of ["dist", "dist-electron"]) {
 }
 assert.deepEqual(sourceMaps, [], `Production source maps must be absent: ${sourceMaps.join(", ")}`);
 
-console.log("Jiaren AI v1.1.2 AGPL-3.0 and local application protection contracts passed.");
+console.log("Jiaren AI v1.1.2 dual-license and local application protection contracts passed.");

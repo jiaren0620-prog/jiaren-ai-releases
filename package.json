@@ -2,7 +2,7 @@
   "name": "jiaren-ai-canvas",
   "version": "1.1.2",
   "private": true,
-  "license": "AGPL-3.0-only",
+  "license": "SEE LICENSE IN LICENSE",
   "author": "JiarenAI",
   "description": "Jiaren AI localized infinite canvas creative workstation.",
   "main": "dist-electron/electron/main.js",

@@ -2,7 +2,7 @@
   "name": "jiaren-local-service",
   "version": "1.1.2",
   "private": true,
-  "license": "AGPL-3.0-only",
+  "license": "SEE LICENSE IN ../LICENSE",
   "type": "commonjs",
   "dependencies": {
     "cors": "2.8.5",

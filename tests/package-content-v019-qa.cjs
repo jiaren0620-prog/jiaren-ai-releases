@@ -139,6 +139,10 @@ if (asar && fs.existsSync(asarPath)) {
   const entries = new Set(asar.listPackage(asarPath).map((entry) => entry.replace(/^[/\\]/, "").replace(/\\/g, "/")));
   checkSensitiveEntries(entries, "app.asar");
   const requiredEntries = [
+    "LICENSE",
+    "COMMERCIAL_LICENSE.md",
+    "package.json",
+    "docs/JIAREN_LICENSE_ZH-CN.txt",
     "dist/index.html",
     "dist-electron/electron/main.js",
     "dist-electron/electron/preload.js",

@@ -7,7 +7,7 @@
 - 本地 Codex App Server 与无限画布联动；
 - 多渠道模型驱动和配置持久化；
 - 图片标注修改节点；
-- V1.1.2 桌面源码与 AGPL-3.0 许可。
+- V1.1.2 桌面源码与 Jiaren AI Community License / Commercial License 双重许可。
 
 ### 优化
 

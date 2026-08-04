@@ -59,6 +59,7 @@ module.exports = {
     "shared/**/*",
     "docs/**/*",
     "LICENSE",
+    "COMMERCIAL_LICENSE.md",
     "package.json",
     "node_modules/onnxruntime-node/**/*",
     "node_modules/onnxruntime-common/**/*",

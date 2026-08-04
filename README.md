@@ -12,7 +12,7 @@
 
 <p align="center">
   <a href="https://github.com/jiaren0620-prog/jiaren-ai-releases/releases/latest"><img src="https://img.shields.io/github/v/release/jiaren0620-prog/jiaren-ai-releases?style=for-the-badge&label=Release&color=2fbf71" alt="Latest release"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/License-AGPL--3.0-2fbf71?style=for-the-badge" alt="GNU AGPLv3"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-Jiaren%20Dual%20License-2fbf71?style=for-the-badge" alt="Jiaren AI dual license"></a>
   <a href="https://win.jiaren.xyz"><img src="https://img.shields.io/badge/Download-win.jiaren.xyz-171a18?style=for-the-badge" alt="Official website"></a>
 </p>
 
@@ -25,7 +25,7 @@
 </p>
 
 <p align="center">
-  <a href="#快速开始">快速开始</a> · <a href="#核心能力">核心能力</a> · <a href="#下载与校验">下载</a> · <a href="#技术架构">架构</a> · <a href="#开源许可">许可</a> · <a href="#问题反馈">反馈</a>
+  <a href="#快速开始">快速开始</a> · <a href="#核心能力">核心能力</a> · <a href="#下载与校验">下载</a> · <a href="#技术架构">架构</a> · <a href="#许可与商业授权">许可</a> · <a href="#问题反馈">反馈</a>
 </p>
 
 <p align="center"><img src="assets/jiaren-canvas.png" alt="Jiaren AI 无限画布" width="900"></p>
@@ -36,7 +36,7 @@
 
 Jiaren AI 是一款面向个人创作者、编程学习和工业设计研究的桌面 AI 无限画布工作台。它把节点画布、多模型生成、本地媒体处理、Jiaren Agent、本地 Codex 联动与创作者社区放进同一个桌面应用，让文字、图片、视频、音频和工作流可以在一个项目中持续连接、保存和复用。
 
-本仓库是 Jiaren AI 的官方开源与发行仓库，提供：
+本仓库是 Jiaren AI 的官方源码与发行仓库，提供：
 
 - Windows 正式安装包与版本更新文件；
 - Jiaren AI 桌面端可维护源码；
@@ -129,10 +129,10 @@ cd jiaren-ai-releases
 | [Jiaren-AI-1.1.2-source.zip](https://github.com/jiaren0620-prog/jiaren-ai-releases/releases/download/v1.1.2/Jiaren-AI-1.1.2-source.zip) | V1.1.2 桌面端源码归档 |
 | [SHA256SUMS.txt](https://github.com/jiaren0620-prog/jiaren-ai-releases/releases/download/v1.1.2/SHA256SUMS.txt) | 发布文件 SHA-256 清单 |
 
-Windows x64 安装包大小为 **1,024,171,852 字节**，SHA-256：
+Windows x64 安装包大小为 **1,024,187,452 字节**，SHA-256：
 
 ```text
-8D7D0D064BC74313068567A96E56940B6A7DA6AA287BDB2568E1E6CBCFB1F8E5
+C5AC24E7383AA483BB6C24837625150DF94B6DD4A4AB4912377C33C9C5A5A6F4
 ```
 
 下载后可在 PowerShell 中执行 `Get-FileHash .\Jiaren-AI-Setup-1.1.2-x64.exe -Algorithm SHA256` 核对完整性。完整文件清单见 Release 中的 `SHA256SUMS.txt`。
@@ -214,15 +214,15 @@ flowchart TB
 
 Jiaren AI 启动后从 Jiaren 官方版本服务读取版本号、更新说明、公开下载地址和 SHA-256。桌面程序下载更新时显示进度，完成后执行 SHA-256 校验。GitHub Release 是公开安装包的主要下载源，社区内容更新不要求重新安装桌面客户端。
 
-## 开源许可
+## 许可与商业授权
 
-Jiaren AI 自有代码采用 [GNU Affero General Public License v3.0](LICENSE)，SPDX 标识为 `AGPL-3.0-only`。
+Jiaren AI 采用 [Jiaren AI Community License 1.0](LICENSE) 与单独商业许可证双重许可。社区许可证是源码可见许可，不是 OSI 认可的开源许可证。
 
-你可以在 AGPL-3.0 条款下使用、研究、修改和再发布代码。若你向他人分发修改版本，或通过网络向用户提供修改后的程序功能，必须按照 AGPL-3.0 提供相应源码和许可声明。AGPL 允许商业使用，仓库不会对 AGPL 已授予的权利附加“禁止商用”或“禁止再发布”等额外限制。
+个人用户可按社区许可证免费使用未经修改的标准版本，并将生成内容用于个人或商业项目。组织生产、团队部署、二次开发、定制、嵌入、再分发、托管、竞品服务和官方支持均须事先取得商业许可证。
 
-第三方组件继续适用各自的 MIT、Apache、AGPL 或其他许可证，详见 [`docs/THIRD_PARTY_NOTICES.md`](docs/THIRD_PARTY_NOTICES.md)。
+商业授权条款与咨询入口见 [`COMMERCIAL_LICENSE.md`](COMMERCIAL_LICENSE.md)。第三方组件继续适用各自的 MIT、Apache、AGPL 或其他许可证，详见 [`docs/THIRD_PARTY_NOTICES.md`](docs/THIRD_PARTY_NOTICES.md)；Jiaren 自定义许可不会限制第三方许可证已经授予的权利。
 
-AGPL 不授予 Jiaren AI、JiarenAI、JIA 名称、Logo、域名和产品视觉的商标使用权。分叉或再发布版本不得暗示获得 JiarenAI 官方认可，具体见 [`TRADEMARKS.md`](TRADEMARKS.md)。
+社区许可证和商业许可证均不授予 Jiaren AI、JiarenAI、JIA 名称、Logo、域名和产品视觉的商标使用权。再发布版本不得暗示获得 JiarenAI 官方认可，具体见 [`TRADEMARKS.md`](TRADEMARKS.md)。
 
 ## 贡献与安全
 
