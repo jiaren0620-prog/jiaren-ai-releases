@@ -48,8 +48,8 @@ def update_plist(filename, data):
             "CFBundleExecutable": APP_NAME,
             "CFBundleIdentifier": "com.jiaren.ai.canvas",
             "CFBundleName": APP_NAME,
-            "CFBundleShortVersionString": "1.1.1",
-            "CFBundleVersion": "1.1.1",
+            "CFBundleShortVersionString": "1.1.3",
+            "CFBundleVersion": "1.1.3",
             "CFBundleIconFile": "jiaren.icns",
             "LSApplicationCategoryType": "public.app-category.graphics-design",
             "NSRequiresAquaSystemAppearance": False,
@@ -64,8 +64,8 @@ def update_plist(filename, data):
             "CFBundleExecutable": executable,
             "CFBundleIdentifier": f"com.jiaren.ai.canvas.helper{bundle_suffix}",
             "CFBundleName": executable,
-            "CFBundleShortVersionString": "1.1.1",
-            "CFBundleVersion": "1.1.1",
+            "CFBundleShortVersionString": "1.1.3",
+            "CFBundleVersion": "1.1.3",
         })
     return plistlib.dumps(values, fmt=plistlib.FMT_XML, sort_keys=False)
 

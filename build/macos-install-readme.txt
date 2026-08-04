@@ -1,4 +1,4 @@
-Jiaren AI 1.1.1 macOS x64
+Jiaren AI 1.1.3 macOS x64
 
 本版本未使用 Apple 开发者证书，也未进行 Apple 公证。
 用户不需要安装 Xcode 或任何开发者工具。

@@ -120,7 +120,7 @@ module.exports = {
     oneClick: false,
     perMachine: false,
     allowElevation: false,
-    allowToChangeInstallationDirectory: false,
+    allowToChangeInstallationDirectory: true,
     createDesktopShortcut: true,
     createStartMenuShortcut: true,
     shortcutName: "Jiaren AI",

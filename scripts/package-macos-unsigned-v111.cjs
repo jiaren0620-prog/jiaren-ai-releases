@@ -7,7 +7,7 @@ const { spawnSync } = require("node:child_process");
 const projectRoot = path.resolve(__dirname, "..");
 const buildRoot = path.join(projectRoot, "build");
 const cacheRoot = path.join(buildRoot, "mac-runtime-cache");
-const releaseRoot = path.join(projectRoot, "release-v111-macos");
+const releaseRoot = path.join(projectRoot, "release-v113-macos");
 
 const packageSpecs = [
   ["@img/sharp-darwin-arm64", "0.34.5"],
@@ -166,11 +166,11 @@ async function prepareNativeDependencies() {
 }
 
 async function prepareAppSource(toolRoot) {
-  const appSource = path.join(cacheRoot, "app-source-v111");
+  const appSource = path.join(cacheRoot, "app-source-v113");
   fs.rmSync(appSource, { recursive: true, force: true });
   fs.mkdirSync(appSource, { recursive: true });
   const asar = require(path.join(toolRoot, "node_modules", "@electron", "asar"));
-  const windowsResources = path.join(projectRoot, "release-v111", "win-unpacked", "resources");
+  const windowsResources = path.join(projectRoot, "release-v113", "win-unpacked", "resources");
   await asar.extractAll(path.join(windowsResources, "app.asar"), appSource);
   fs.cpSync(path.join(windowsResources, "app.asar.unpacked"), appSource, {
     recursive: true,
@@ -180,14 +180,20 @@ async function prepareAppSource(toolRoot) {
 }
 
 function prepareIcon() {
-  const png2icons = require(path.join(buildRoot, "mac-packager-tools", "node_modules", "png2icons"));
+  const prebuiltIcon = path.join(buildRoot, "jiaren.icns");
+  const png2iconsRoot = path.join(buildRoot, "mac-packager-tools", "node_modules", "png2icons");
+  if (!fs.existsSync(path.join(png2iconsRoot, "package.json"))) {
+    if (fs.existsSync(prebuiltIcon) && fs.statSync(prebuiltIcon).size > 1024) return prebuiltIcon;
+    throw new Error(`Missing png2icons and prebuilt macOS icon: ${prebuiltIcon}`);
+  }
+  const png2icons = require(png2iconsRoot);
   const icon = png2icons.createICNS(
     fs.readFileSync(path.join(buildRoot, "jiaren-logo-source.png")),
     png2icons.BICUBIC2,
     0,
   );
   if (!icon) throw new Error("Failed to generate Jiaren AI macOS icon.");
-  const destination = path.join(buildRoot, "jiaren.icns");
+  const destination = prebuiltIcon;
   fs.writeFileSync(destination, icon);
   return destination;
 }
@@ -215,7 +221,7 @@ function writeAuthorizationFiles(arch) {
     "",
   ].join("\n");
   const readmeText = [
-    `Jiaren AI 1.1.1 macOS ${arch}`,
+    `Jiaren AI 1.1.3 macOS ${arch}`,
     "",
     "\u672c\u7248\u672c\u672a\u4f7f\u7528 Apple \u5f00\u53d1\u8005\u8bc1\u4e66\uff0c\u4e5f\u672a\u8fdb\u884c Apple \u516c\u8bc1\u3002",
     "\u7528\u6237\u4e0d\u9700\u8981\u5b89\u88c5 Xcode \u6216\u4efb\u4f55\u5f00\u53d1\u8005\u5de5\u5177\u3002",
@@ -238,7 +244,7 @@ function writeAuthorizationFiles(arch) {
 
 async function main() {
   await prepareNativeDependencies();
-  if (path.dirname(releaseRoot) !== projectRoot || path.basename(releaseRoot) !== "release-v111-macos") {
+  if (path.dirname(releaseRoot) !== projectRoot || path.basename(releaseRoot) !== "release-v113-macos") {
     throw new Error(`Refusing to clean unexpected directory: ${releaseRoot}`);
   }
   fs.rmSync(releaseRoot, { recursive: true, force: true });
@@ -248,7 +254,7 @@ async function main() {
   const icon = prepareIcon();
   for (const arch of ["arm64", "x64"]) {
     const { helper, readme } = writeAuthorizationFiles(arch);
-    const zipPath = path.join(releaseRoot, `Jiaren-AI-1.1.1-macOS-${arch}.zip`);
+    const zipPath = path.join(releaseRoot, `Jiaren-AI-1.1.3-macOS-${arch}.zip`);
     run("python", [
       path.join(projectRoot, "scripts", "build-macos-zip-v111.py"),
       "--project", projectRoot,

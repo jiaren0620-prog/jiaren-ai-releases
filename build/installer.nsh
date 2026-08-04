@@ -55,7 +55,7 @@ Function JiarenDisclaimerPage
   SendMessage $0 ${WM_SETFONT} $1 1
   SetCtlColors $0 0x245C3A 0xF4F7F4
 
-  ${NSD_CreateLabel} 0 17u 100% 12u "版本 1.1.2 正式版 · 2026.08.04"
+  ${NSD_CreateLabel} 0 17u 100% 12u "版本 1.1.3 正式版 · 2026.08.04"
   Pop $0
   SetCtlColors $0 0x667269 0xF4F7F4
 

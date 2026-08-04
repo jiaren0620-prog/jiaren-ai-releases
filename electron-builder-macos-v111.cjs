@@ -38,7 +38,7 @@ module.exports = {
   nodeGypRebuild: false,
   buildDependenciesFromSource: false,
   directories: {
-    output: path.join(projectDir, "release-v111-macos"),
+    output: path.join(projectDir, "release-v113-macos"),
     buildResources: buildRoot,
   },
   files: [
@@ -49,6 +49,7 @@ module.exports = {
     "jiaren-local-service/**/*",
     "python/**/*",
     "tools/**/*",
+    "plugins/**/*",
     "shared/**/*",
     "docs/**/*",
     "LICENSE",
@@ -73,6 +74,7 @@ module.exports = {
     "node_modules/base64-js/**/*",
     "node_modules/pako/**/*",
     "node_modules/sql.js/**/*",
+    "node_modules/ws/**/*",
     "!**/.codex{,/**}",
     "!**/auth.json",
     "!**/credentials.json",
@@ -95,6 +97,7 @@ module.exports = {
     { from: requiredPath(projectDir, "jiaren-local-service"), to: "jiaren-local-service" },
     { from: requiredPath(projectDir, "python"), to: "python" },
     { from: requiredPath(projectDir, "tools"), to: "tools" },
+    { from: requiredPath(projectDir, "plugins"), to: "plugins" },
     { from: requiredPath(projectDir, "shared"), to: "shared" },
   ],
   asarUnpack: [
@@ -114,6 +117,6 @@ module.exports = {
     hardenedRuntime: false,
     gatekeeperAssess: false,
     darkModeSupport: true,
-    artifactName: "Jiaren-AI-1.1.1-macOS-${arch}.${ext}",
+    artifactName: "Jiaren-AI-1.1.3-macOS-${arch}.${ext}",
   },
 };

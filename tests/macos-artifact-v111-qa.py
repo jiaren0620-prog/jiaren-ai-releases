@@ -111,7 +111,7 @@ def verify(path):
         assert plist["CFBundleDisplayName"] == "Jiaren AI"
         assert plist["CFBundleExecutable"] == "Jiaren AI"
         assert plist["CFBundleIdentifier"] == "com.jiaren.ai.canvas"
-        assert plist["CFBundleShortVersionString"] == "1.1.1"
+        assert plist["CFBundleShortVersionString"] == "1.1.3"
         assert plist["CFBundleIconFile"] == "jiaren.icns"
         assert all(mode == 0o755 for mode in modes.values()), modes
         assert "${0:A:h}" in helper
@@ -136,4 +136,4 @@ def verify(path):
 for artifact in map(pathlib.Path, sys.argv[1:]):
     verify(artifact)
 
-print("Jiaren AI 1.1.1 macOS artifacts passed structural QA.")
+print("Jiaren AI 1.1.3 macOS artifacts passed structural QA.")
